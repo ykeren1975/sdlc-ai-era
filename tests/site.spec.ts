@@ -40,6 +40,13 @@ test.describe("content integrity", () => {
       expect(used.filter((id) => !known.has(id))).toEqual([]);
       expect(known.size).toBe(role.data.sources.length); // no duplicate source ids
     });
+
+    test(`${role.id}: every shift phase is listed in sdlcPhases`, () => {
+      const phases = new Set(role.data.sdlcPhases);
+      expect(
+        role.data.shifts.map((s) => s.phase).filter((p) => !phases.has(p)),
+      ).toEqual([]);
+    });
   }
 });
 

@@ -31,6 +31,25 @@ A static website: a visitor picks their SDLC role and sees what changes for them
 - `src/components/`, `src/layouts/Base.astro`, `src/pages/`
 - `scripts/check-links.mjs`, `tests/`
 
+## Roles (id → order, icon)
+
+Order follows the SDLC flow on the home page.
+
+| id                  | title                         | order | icon           |
+| ------------------- | ----------------------------- | ----- | -------------- |
+| product-manager     | Product Manager / Owner       | 10    | compass        |
+| business-analyst    | Business Analyst              | 20    | clipboard-list |
+| ux-designer         | UX/UI Designer                | 30    | pen-tool       |
+| software-architect  | Software Architect            | 40    | layers         |
+| developer           | Software Developer / Engineer | 50    | code           |
+| qa-tester           | QA Engineer / Tester          | 60    | flask-conical  |
+| security-engineer   | Security Engineer             | 70    | shield-check   |
+| devops-sre          | DevOps / SRE Engineer         | 80    | server-cog     |
+| data-engineer       | Data Engineer / Analyst       | 90    | database       |
+| project-manager     | Project Manager               | 100   | chart-gantt    |
+| scrum-master        | Scrum Master / Agile Coach    | 110   | refresh-cw     |
+| engineering-manager | Engineering Manager           | 120   | users          |
+
 ## Content rules
 
 - Every `shifts[]` item needs at least one `sourceIds` entry that exists in that role's `sources`. Tool recommendations and risks that make a factual claim cite sources too.
@@ -50,6 +69,8 @@ A static website: a visitor picks their SDLC role and sees what changes for them
 
 - **Don't pad a sourced sentence with unsourced detail.** Developer pilot: true claims got extra clauses no cited source had ("agents run tests as they work", "AI reviewers give a first pass", "small batches"). Every clause of an `aiEra` sentence must be in a cited source, or be cut.
 - **Don't turn one person's quote into a group finding.** "One engineer estimated…" never becomes "engineers report…". Comparative words ("far more", "most", "increasingly") need a source that actually compares.
+- **A `quote` is one continuous passage from the page.** Never stitch sentences with "…", never reorder them, and never drop a lead-in like "They estimated…" that changes who is making the claim (Business Analyst batch).
+- **Keep caveats the source gives about itself.** Small samples ("three epics", "55 respondents"), model vintage ("LLMs available in 2024") and the base of a percentage stay in the text; don't write "of respondents" unless the page says so (QA batch).
 - **Don't generalise from one company or a niche group.** Findings about one vendor's own staff (e.g. Anthropic's internal study) are written as "At <company>, …", not as industry-wide truths. Use surveys for "most developers".
 - **Don't use `astro preview` from Claude sessions or tests.** Astro 7 detects AI agents and backgrounds the preview with a lock file, which breaks Playwright's `webServer`. Tests serve `dist/` with `node scripts/serve-dist.mjs <port>`. For a manual look, run the same script in the background.
 - **Recheck vendor reports for a newer edition.** Annual reports (Veracode, DORA, Stack Overflow, State of DevOps) get updated. Before citing one, search for a newer edition, and date claims from older studies ("early-2025 tools").

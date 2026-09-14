@@ -1,6 +1,6 @@
 ---
 title: Software Developer / Engineer
-order: 30
+order: 50
 icon: code
 summary: Less time typing code, more time specifying work, directing coding agents, and reviewing and testing what they produce. Judgement, tests and code review matter more, not less.
 lastReviewed: 2026-09-14

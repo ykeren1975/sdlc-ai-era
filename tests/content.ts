@@ -9,7 +9,8 @@ export interface RoleFile {
   id: string;
   data: {
     title: string;
-    shifts: { sourceIds: string[] }[];
+    sdlcPhases: string[];
+    shifts: { phase: string; sourceIds: string[] }[];
     tools: { sourceIds?: string[] }[];
     risks: { sourceIds?: string[] }[];
     sources: { id: string }[];
