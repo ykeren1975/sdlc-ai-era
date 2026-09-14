@@ -185,3 +185,97 @@
   description: AI evaluation and observability platform for datasets, scoring outputs with code, LLM judges or humans, and tracing agents in production.
   status: active
   lastVerified: 2026-09-14
+- id: axe-devtools
+  name: Axe DevTools
+  vendor: Deque Systems
+  url: https://www.deque.com/axe/devtools/
+  category: testing-and-qa
+  description: Accessibility testing for web UI against WCAG, with a free browser extension and paid AI-assisted guided tests.
+  status: active
+  lastVerified: 2026-09-14
+- id: archunit
+  name: ArchUnit
+  vendor: TNG Technology Consulting (open source)
+  url: https://www.archunit.org/
+  category: testing-and-qa
+  description: Free, open-source Java library for checking architecture rules such as package dependencies, layers and cycles as plain unit tests.
+  status: active
+  lastVerified: 2026-09-14
+
+# Design
+- id: figma
+  name: Figma Design
+  vendor: Figma
+  url: https://www.figma.com/design/
+  category: design-and-prototyping
+  description: Collaborative interface design and prototyping tool with an AI agent (beta) and an MCP server so AI agents can read designs. Free tier available.
+  status: active
+  lastVerified: 2026-09-14
+
+# Security
+- id: github-code-security
+  name: GitHub Code Security
+  vendor: GitHub
+  url: https://github.com/security/advanced-security/code-security
+  category: security
+  description: CodeQL code scanning with Copilot Autofix fix suggestions for alerts and security campaigns to track remediation across repositories.
+  status: active
+  lastVerified: 2026-09-14
+- id: semgrep
+  name: Semgrep
+  vendor: Semgrep
+  url: https://semgrep.dev/
+  category: security
+  description: Static analysis, supply chain and secrets scanning, with AI triage that flags likely false positives and gives fix guidance.
+  status: active
+  lastVerified: 2026-09-14
+- id: snyk-code
+  name: Snyk Code
+  vendor: Snyk
+  url: https://snyk.io/product/snyk-code/
+  category: security
+  description: Static application security testing in the IDE and pull requests, with Snyk Agent Fix AI remediation. Free plan available.
+  status: active
+  lastVerified: 2026-09-14
+- id: checkov
+  name: Checkov
+  vendor: Palo Alto Networks
+  url: https://www.checkov.io/
+  category: security
+  description: Open-source scanner that finds misconfigurations in Terraform, CloudFormation, Kubernetes, Helm and other infrastructure code before deployment.
+  status: active
+  lastVerified: 2026-09-14
+
+# Operations and observability
+- id: opentelemetry
+  name: OpenTelemetry
+  vendor: Cloud Native Computing Foundation
+  url: https://opentelemetry.io/
+  category: observability
+  description: Open-source, vendor-neutral standard and SDKs for traces, metrics and logs, with GenAI conventions for LLM calls.
+  status: active
+  lastVerified: 2026-09-14
+- id: pagerduty-sre-agent
+  name: PagerDuty SRE Agent
+  vendor: PagerDuty
+  url: https://www.pagerduty.com/platform/ai-agents/sre/
+  category: ai-agent
+  description: AI agent that correlates observability signals, gives diagnostic context and recommends or runs approved automation during incidents.
+  status: active
+  lastVerified: 2026-09-14
+- id: datadog-bits-investigation
+  name: Bits Investigation
+  vendor: Datadog
+  url: https://www.datadoghq.com/product/ai/bits-investigation/
+  category: ai-agent
+  description: AI agent in Datadog that investigates alerts against telemetry and helps on-call engineers identify likely root causes.
+  status: active
+  lastVerified: 2026-09-14
+- id: incident-io
+  name: incident.io
+  vendor: incident.io
+  url: https://incident.io/
+  category: observability
+  description: Incident management platform with on-call, Slack and Teams response, status pages, and AI investigations that suggest root causes.
+  status: active
+  lastVerified: 2026-09-14
