@@ -1,6 +1,9 @@
 ---
 name: epic-to-stories-and-criteria
 description: "Breaks an epic into user stories with GIVEN/WHEN/THEN acceptance criteria, using a written domain context, and explicitly covers edge cases, business rules and non-functional requirements while flagging anything invented. Use when a business analyst asks to split an epic or feature into stories, write acceptance criteria, draft backlog items from an epic, or produce requirements that testers or coding agents will work from."
+metadata:
+  title: "Epic to stories"
+  summary: "Splits an epic into user stories with acceptance criteria, flagging anything invented"
 ---
 
 # Epic to Stories and Acceptance Criteria

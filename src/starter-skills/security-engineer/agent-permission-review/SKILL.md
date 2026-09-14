@@ -1,6 +1,9 @@
 ---
 name: agent-permission-review
 description: Reviews the tools, integrations, credentials and autonomy granted to an AI agent, assistant or MCP server setup, checking for the combination of private data access, exposure to untrusted content and a way to send data out, plus over-broad permissions, and drafts least-privilege recommendations. Use before connecting an agent or MCP server to real systems, when auditing an AI feature's tool access, reviewing agent credentials or scopes, or assessing prompt injection and data exfiltration risk.
+metadata:
+  title: "Agent permission review"
+  summary: "Reviews what an AI agent can access and do, and drafts least-privilege recommendations"
 ---
 
 # Agent Permission Review

@@ -102,18 +102,23 @@ skills:
     - Manually sweeping the tracker for stalled work
     - Building spreadsheet formulas and dashboards by hand
 risks:
-  - text: AI output can be wrong or expose data. Among project professionals using AI in APM's 2025 survey, 44% cited security or data privacy and 41% inaccuracy or untrustworthiness of using AI at work as concerns. The UK government's late-2024 Copilot trial concluded that human oversight was required at all times.
+  - headline: AI output can be wrong or expose data, and a UK government trial required human oversight
+    highlight: true
+    text: AI output can be wrong or expose data. Among project professionals using AI in APM's 2025 survey, 44% cited security or data privacy and 41% inaccuracy or untrustworthiness of using AI at work as concerns. The UK government's late-2024 Copilot trial concluded that human oversight was required at all times.
     sourceIds:
       - apm-ai-survey-2025
       - ukgov-m365-copilot-experiment
-  - text: Summaries of complex work can miss context. A finance participant in the late-2024 UK government trial said Copilot generates initial summaries and reports efficiently but struggles with complex data requiring contextual input.
+  - headline: AI summaries of complex work can miss context, a UK government trial participant said
+    text: Summaries of complex work can miss context. A finance participant in the late-2024 UK government trial said Copilot generates initial summaries and reports efficiently but struggles with complex data requiring contextual input.
     sourceIds:
       - ukgov-m365-copilot-experiment
-  - text: Generated reports depend on the data in the tool. Planner Agent reports on the current state of work in the plan, and Atlassian says its Delivery Agent generates higher-quality output when analysing delivery data within Jira. Keep plans and tickets current before relying on them.
+  - headline: Generated reports depend on the data in the tool, so keep plans and tickets current
+    text: Generated reports depend on the data in the tool. Planner Agent reports on the current state of work in the plan, and Atlassian says its Delivery Agent generates higher-quality output when analysing delivery data within Jira. Keep plans and tickets current before relying on them.
     sourceIds:
       - microsoft-planner-agent-faq
       - atlassian-jira-delivery-agent
-  - text: Buying AI features is not the same as using them well. In Capterra's 2025 survey, 41% of respondents cited AI adoption issues as their top software challenge, driven by skill gaps, poor onboarding and workflow misalignment.
+  - headline: Buying AI features is not the same as using them well, Capterra's survey suggests
+    text: Buying AI features is not the same as using them well. In Capterra's 2025 survey, 41% of respondents cited AI adoption issues as their top software challenge, driven by skill gaps, poor onboarding and workflow misalignment.
     sourceIds:
       - capterra-pm-trends-2025
 first30Days:

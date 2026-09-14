@@ -1,6 +1,9 @@
 ---
 name: ai-diff-review
 description: Reviews a diff or pull request written by an AI assistant or coding agent for correctness, security, test integrity and fit with the codebase, and drafts review comments. Use when asked to review AI-generated code, an agent's pull request, a large machine-generated diff, or your own agent's changes before merge; triggers include "review this diff", "check the agent's PR", "is this AI change safe to merge". For infrastructure, data-model, security-fix or test-only changes, a more specific review skill fits better.
+metadata:
+  title: "AI diff review"
+  summary: "Reviews AI-written code changes for correctness, security and tests, and drafts comments"
 ---
 
 # AI Diff Review

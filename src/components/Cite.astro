@@ -1,0 +1,17 @@
+---
+// Inline numbered citation for pages with a local sources list (ids "source-<n>").
+interface Props {
+  n: number;
+}
+const { n } = Astro.props;
+---
+
+<sup class="ml-0.5">
+  <a
+    href={`#source-${n}`}
+    class="text-accent no-underline"
+    aria-label={`Source ${n}`}
+  >
+    [{n}]
+  </a>
+</sup>

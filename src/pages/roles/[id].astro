@@ -1,16 +1,22 @@
 ---
-import { ArrowLeft, ChevronDown, ExternalLink } from "@lucide/astro";
+import {
+  AlertTriangle,
+  ArrowLeft,
+  ChevronDown,
+  ExternalLink,
+} from "@lucide/astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
+import AgentSkills from "../../components/AgentSkills.astro";
+import OurSuggestion from "../../components/OurSuggestion.astro";
 import RoleIcon from "../../components/RoleIcon.astro";
 import ShareActions from "../../components/ShareActions.astro";
 import ShiftList from "../../components/ShiftList.astro";
-import AgentSkills from "../../components/AgentSkills.astro";
 import SkillsPanel from "../../components/SkillsPanel.astro";
 import SourceRefs from "../../components/SourceRefs.astro";
 import SummaryPanel from "../../components/SummaryPanel.astro";
 import ToolList from "../../components/ToolList.astro";
 import Base from "../../layouts/Base.astro";
-import { formatDate, splitFirstSentence } from "../../lib/role";
+import { formatDate } from "../../lib/role";
 import { url } from "../../lib/url";
 
 export async function getStaticPaths() {
@@ -29,13 +35,14 @@ const { Content } = await render(role);
 const sourceNumbers = new Map(data.sources.map((s, i) => [s.id, i + 1]));
 const hasStart = !!data.first30Days?.length;
 
+// Order follows the visitor's questions: what changes → what to watch → what to learn → what to use → how to start.
 const sections = [
-  { id: "shifts", label: "Your work" },
+  { id: "shifts", label: "How your work changes" },
+  { id: "risks", label: "Risks to watch" },
+  { id: "skills", label: "Skills to build" },
   { id: "tools", label: "Tools" },
-  { id: "skills", label: "Your skills" },
-  { id: "agent-skills", label: "Agent skills" },
-  { id: "risks", label: "Risks" },
-  ...(hasStart ? [{ id: "start", label: "First steps" }] : []),
+  ...(hasStart ? [{ id: "start", label: "Your first steps" }] : []),
+  { id: "agent-skills", label: "AI instructions to copy" },
   { id: "sources", label: "Sources" },
 ];
 const h2 = "text-2xl font-semibold tracking-tight";
@@ -44,7 +51,7 @@ const h2 = "text-2xl font-semibold tracking-tight";
 <Base title={data.title} description={data.summary}>
   <a
     href={url("/")}
-    class="no-print mb-6 inline-flex items-center gap-1.5 text-sm text-muted no-underline hover:text-ink"
+    class="no-print mb-6 inline-flex min-h-10 items-center gap-1.5 text-sm text-muted no-underline hover:text-ink"
   >
     <ArrowLeft class="size-4" aria-hidden="true" /> All roles
   </a>
@@ -58,9 +65,7 @@ const h2 = "text-2xl font-semibold tracking-tight";
         <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">
           {data.title}
         </h1>
-        <p class="mt-1 text-lg text-pretty text-muted">
-          {data.tagline ?? data.summary}
-        </p>
+        <p class="mt-1 text-lg text-pretty text-muted">{data.tagline}</p>
       </div>
     </div>
     <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
@@ -71,7 +76,7 @@ const h2 = "text-2xl font-semibold tracking-tight";
     </div>
   </header>
 
-  <SummaryPanel data={data} />
+  <SummaryPanel roleId={role.id} data={data} />
 
   <!-- Mobile: section chips -->
   <nav
@@ -83,7 +88,7 @@ const h2 = "text-2xl font-semibold tracking-tight";
         <li>
           <a
             href={`#${s.id}`}
-            class="block rounded-full border border-line bg-surface px-3 py-1 text-muted no-underline"
+            class="block rounded-full border border-line bg-surface px-3 py-2 text-muted no-underline"
           >
             {s.label}
           </a>
@@ -92,14 +97,17 @@ const h2 = "text-2xl font-semibold tracking-tight";
     </ul>
   </nav>
 
-  <div class="mt-8 lg:mt-12 lg:grid lg:grid-cols-[11rem_1fr] lg:gap-10">
+  <div class="mt-8 lg:mt-12 lg:grid lg:grid-cols-[12rem_1fr] lg:gap-10">
     <nav aria-label="Sections" class="no-print hidden lg:block">
-      <ul class="sticky top-8 space-y-1 border-l border-line text-sm">
+      <ul
+        class="sticky top-8 space-y-1 border-l border-line text-sm"
+        data-testid="section-nav"
+      >
         {sections.map((s) => (
           <li>
             <a
               href={`#${s.id}`}
-              class="-ml-px block border-l border-transparent py-1 pl-4 text-muted no-underline hover:border-accent hover:text-ink"
+              class="-ml-px block border-l border-transparent py-1.5 pl-4 text-muted no-underline hover:border-accent hover:text-ink"
             >
               {s.label}
             </a>
@@ -108,11 +116,11 @@ const h2 = "text-2xl font-semibold tracking-tight";
       </ul>
     </nav>
 
-    <div class="min-w-0 space-y-12">
+    <div class="min-w-0 space-y-14" data-testid="role-sections">
       <section
         id="shifts"
         aria-labelledby="shifts-heading"
-        class="scroll-mt-16"
+        class="scroll-mt-20"
       >
         <h2 id="shifts-heading" class={h2}>
           How your work changes
@@ -125,106 +133,91 @@ const h2 = "text-2xl font-semibold tracking-tight";
         </div>
       </section>
 
-      <section id="tools" aria-labelledby="tools-heading" class="scroll-mt-16">
-        <h2 id="tools-heading" class={`${h2} mb-4`}>
-          Tools
+      <section id="risks" aria-labelledby="risks-heading" class="scroll-mt-20">
+        <h2 id="risks-heading" class={`${h2} mb-4`}>
+          Risks to watch
         </h2>
-        <ToolList tools={data.tools} sourceNumbers={sourceNumbers} />
+        <ul class="space-y-2" data-disclosure-group>
+          {data.risks.map((risk, i) => (
+            <li
+              id={`risk-${i + 1}`}
+              class="print-break-avoid scroll-mt-20"
+              data-testid="risk"
+            >
+              <details class="group rounded-xl border border-line border-l-4 border-l-amber-500 bg-surface">
+                <summary class="flex items-start gap-3 px-4 py-3.5 hover:bg-accent-soft">
+                  <AlertTriangle
+                    class="mt-0.5 size-4 shrink-0 text-amber-600 dark:text-amber-400"
+                    aria-hidden="true"
+                  />
+                  <span class="flex-1 font-medium">
+                    {risk.headline ?? risk.text}
+                  </span>
+                  <ChevronDown
+                    class="no-print mt-1 size-4 shrink-0 text-muted transition-transform group-open:rotate-180"
+                    aria-hidden="true"
+                  />
+                </summary>
+                <p class="px-4 pb-4 pl-11 text-sm leading-relaxed text-muted">
+                  {risk.text}
+                  <SourceRefs
+                    ids={risk.sourceIds}
+                    sourceNumbers={sourceNumbers}
+                  />
+                </p>
+              </details>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section
         id="skills"
         aria-labelledby="skills-heading"
-        class="scroll-mt-16"
+        class="scroll-mt-20"
       >
-        <h2 id="skills-heading" class={`${h2} mb-4`}>
-          Your skills
+        <h2 id="skills-heading" class={h2}>
+          Skills to build
         </h2>
+        <p class="mt-1 mb-4 text-muted">
+          Human skills: what's new, what matters more, and what AI now does for
+          you.
+        </p>
         <SkillsPanel skills={data.skills} />
       </section>
 
-      <section
-        id="agent-skills"
-        aria-labelledby="agent-skills-heading"
-        class="scroll-mt-16"
-      >
-        <h2 id="agent-skills-heading" class={`${h2} mb-2`}>
-          Agent skills
+      <section id="tools" aria-labelledby="tools-heading" class="scroll-mt-20">
+        <h2 id="tools-heading" class={`${h2} mb-3`}>
+          Tools
         </h2>
-        <AgentSkills roleId={role.id} data={data} />
-      </section>
-
-      <section id="risks" aria-labelledby="risks-heading" class="scroll-mt-16">
-        <h2 id="risks-heading" class={`${h2} mb-4`}>
-          Risks to watch
-        </h2>
-        <ul
-          class="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface"
-          data-disclosure-group
-        >
-          {data.risks.map((risk) => {
-            const { lead, rest } = splitFirstSentence(risk.text);
-            return (
-              <li class="print-break-avoid">
-                {rest ? (
-                  <details class="group">
-                    <summary class="flex items-start gap-3 px-5 py-3.5 hover:bg-accent-soft">
-                      <span class="flex-1 font-medium">{lead}</span>
-                      <ChevronDown
-                        class="no-print mt-1 size-4 shrink-0 text-muted transition-transform group-open:rotate-180"
-                        aria-hidden="true"
-                      />
-                    </summary>
-                    <p class="px-5 pb-4 text-sm leading-relaxed text-muted">
-                      {rest}
-                      <SourceRefs
-                        ids={risk.sourceIds}
-                        sourceNumbers={sourceNumbers}
-                      />
-                    </p>
-                  </details>
-                ) : (
-                  <p class="px-5 py-3.5 font-medium">
-                    {lead}
-                    <SourceRefs
-                      ids={risk.sourceIds}
-                      sourceNumbers={sourceNumbers}
-                    />
-                  </p>
-                )}
-              </li>
-            );
-          })}
-        </ul>
+        <ToolList tools={data.tools} sourceNumbers={sourceNumbers} />
       </section>
 
       {hasStart && (
         <section
           id="start"
           aria-labelledby="start-heading"
-          class="scroll-mt-16"
+          class="scroll-mt-20"
         >
-          <div class="mb-4 flex flex-wrap items-baseline gap-3">
+          <div class="mb-4 flex flex-wrap items-center gap-3">
             <h2 id="start-heading" class={h2}>
               Your first steps
             </h2>
-            <span class="rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">
-              Editorial
-            </span>
+            <OurSuggestion />
           </div>
           <div class="grid gap-6 md:grid-cols-[3fr_2fr]">
             <ol class="space-y-3">
               {data.first30Days!.map((step, i) => (
-                <li class="print-break-avoid flex gap-3 rounded-xl border border-line bg-surface p-4 text-sm leading-relaxed">
-                  <span class="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-xs font-semibold text-accent">
+                <li class="print-break-avoid flex gap-3 rounded-xl border border-line bg-surface p-4 leading-relaxed">
+                  <span class="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent-soft text-sm font-semibold text-accent">
                     {i + 1}
                   </span>
                   <span>{step}</span>
                 </li>
               ))}
             </ol>
-            <div class="space-y-3 text-sm leading-relaxed text-muted">
-              <p class="text-xs font-medium tracking-wide uppercase">
+            <div class="space-y-3 leading-relaxed text-muted">
+              <p class="text-sm font-semibold text-ink">
                 A week in this role now
               </p>
               <Content />
@@ -234,9 +227,23 @@ const h2 = "text-2xl font-semibold tracking-tight";
       )}
 
       <section
+        id="agent-skills"
+        aria-labelledby="agent-skills-heading"
+        class="scroll-mt-20"
+      >
+        <p class="text-xs font-semibold tracking-wide text-accent uppercase">
+          Agent Skills
+        </p>
+        <h2 id="agent-skills-heading" class={`${h2} mb-2`}>
+          AI instructions to copy
+        </h2>
+        <AgentSkills roleId={role.id} data={data} />
+      </section>
+
+      <section
         id="sources"
         aria-labelledby="sources-heading"
-        class="scroll-mt-16"
+        class="scroll-mt-20"
       >
         <details class="group rounded-2xl border border-line bg-surface">
           <summary class="flex items-center justify-between gap-3 px-5 py-4">
@@ -256,7 +263,7 @@ const h2 = "text-2xl font-semibold tracking-tight";
             data-testid="sources"
           >
             {data.sources.map((source, i) => (
-              <li id={`source-${source.id}`} class="flex scroll-mt-16 gap-3">
+              <li id={`source-${source.id}`} class="flex scroll-mt-20 gap-3">
                 <span class="w-6 shrink-0 text-right text-muted">{i + 1}.</span>
                 <div class="min-w-0">
                   <a
@@ -292,7 +299,8 @@ const h2 = "text-2xl font-semibold tracking-tight";
 </Base>
 
 <script>
-  // Links into collapsed content (citations, starter skills): open the disclosure first.
+  // Links into collapsed content (changes, risks, citations, starter skills): open the disclosure first.
+  const PREFIXES = ["#change-", "#risk-", "#source-", "#skill-"];
   const openTarget = (hash: string) => {
     const target = hash ? document.querySelector(hash) : null;
     const details =
@@ -301,10 +309,11 @@ const h2 = "text-2xl font-semibold tracking-tight";
   };
   document
     .querySelectorAll<HTMLAnchorElement>(
-      'a[href^="#source-"], a[href^="#skill-"]',
+      PREFIXES.map((p) => `a[href^="${p}"]`).join(", "),
     )
     .forEach((link) =>
       link.addEventListener("click", () => openTarget(link.hash)),
     );
-  if (location.hash.startsWith("#skill-")) openTarget(location.hash);
+  if (PREFIXES.some((p) => location.hash.startsWith(p)))
+    openTarget(location.hash);
 </script>

@@ -104,19 +104,25 @@ skills:
     - Hand-writing extraction and loading code for common sources
     - Answering routine one-off data requests
 risks:
-  - text: AI-generated SQL can run without errors and still return the wrong number. dbt Labs notes that with text-to-SQL, failure looks like a plausible but incorrect answer, while with its Semantic Layer failure looks like an error message.
+  - headline: AI-written SQL can run without errors and still return the wrong number
+    highlight: true
+    text: AI-generated SQL can run without errors and still return the wrong number. dbt Labs notes that with text-to-SQL, failure looks like a plausible but incorrect answer, while with its Semantic Layer failure looks like an error message.
     sourceIds:
       - dbt-semantic-layer-vs-text-to-sql-2026
-  - text: A semantic layer only covers what has been modeled. In dbt Labs' benchmark, questions the Semantic Layer could not answer in 2023 still could not be answered without additional modeling. Its text-to-SQL runs loaded the entire schema as context, which dbt Labs says isn't practical for larger datasets.
+  - headline: A semantic layer only covers what has been modeled, dbt Labs' benchmark shows
+    text: A semantic layer only covers what has been modeled. In dbt Labs' benchmark, questions the Semantic Layer could not answer in 2023 still could not be answered without additional modeling. Its text-to-SQL runs loaded the entire schema as context, which dbt Labs says isn't practical for larger datasets.
     sourceIds:
       - dbt-semantic-layer-vs-text-to-sql-2026
-  - text: Leaderboard scores are a weak basis for choosing a tool. Researchers found annotation error rates of 52.8% in BIRD Mini-Dev and 62.8% in Spider 2.0-Snow, and warn that annotation errors can distort reported performance and rankings and could misguide deployment choices.
+  - headline: Leaderboard scores are a weak basis for choosing a tool, as benchmarks can contain errors
+    text: Leaderboard scores are a weak basis for choosing a tool. Researchers found annotation error rates of 52.8% in BIRD Mini-Dev and 62.8% in Spider 2.0-Snow, and warn that annotation errors can distort reported performance and rankings and could misguide deployment choices.
     sourceIds:
       - text-to-sql-annotation-errors
-  - text: Output can grow faster than checking. In dbt Labs' 2026 survey, 72% prioritise AI-assisted coding but only 24% prioritise AI-assisted pipeline management, and 71% are concerned about hallucinated or incorrect data reaching stakeholders.
+  - headline: Output can grow faster than checking, dbt Labs' survey suggests
+    text: Output can grow faster than checking. In dbt Labs' 2026 survey, 72% prioritise AI-assisted coding but only 24% prioritise AI-assisted pipeline management, and 71% are concerned about hallucinated or incorrect data reaching stakeholders.
     sourceIds:
       - dbt-state-of-analytics-engineering-2026
-  - text: Sensitive data can end up in AI tools. In dbt Labs' survey, practitioners showed a 7-percentage-point higher level of concern than leaders about exposing sensitive data to LLMs.
+  - headline: Sensitive data can end up in AI tools, a concern raised in dbt Labs' survey
+    text: Sensitive data can end up in AI tools. In dbt Labs' survey, practitioners showed a 7-percentage-point higher level of concern than leaders about exposing sensitive data to LLMs.
     sourceIds:
       - dbt-state-of-analytics-engineering-2026
 first30Days:

@@ -278,6 +278,8 @@ test("every internal link resolves", async ({ page, request }) => {
       if (!seen.has(clean)) {
         if (!u.pathname.startsWith("/sdlc-ai-era"))
           broken.push(`${clean} (missing base path, from ${pageUrl})`);
+        // Downloads (SKILL.md, .zip) are checked with a request, not opened as pages.
+        else if (/\.(zip|md)$/.test(u.pathname)) seen.add(clean);
         else toVisit.push(clean);
       }
     }
@@ -295,7 +297,10 @@ test("external links open in a new tab safely", async ({ page }) => {
     await page.goto(path);
     const links = await page.locator('a[href^="http"]').evaluateAll((els) =>
       els
-        .filter((a) => new URL((a as HTMLAnchorElement).href).origin !== location.origin)
+        .filter(
+          (a) =>
+            new URL((a as HTMLAnchorElement).href).origin !== location.origin,
+        )
         .map((a) => ({
           href: a.getAttribute("href"),
           target: a.getAttribute("target"),
@@ -304,9 +309,68 @@ test("external links open in a new tab safely", async ({ page }) => {
         })),
     );
     for (const l of links) {
-      if (l.target !== "_blank" || !l.rel.includes("noopener") || !l.label.includes("opens in new tab"))
+      if (
+        l.target !== "_blank" ||
+        !l.rel.includes("noopener") ||
+        !l.label.includes("opens in new tab")
+      )
         problems.push(`${path}: ${l.href}`);
     }
   }
   expect(problems).toEqual([]);
+});
+
+test.describe("role page structure (packages B and C)", () => {
+  const ORDER = [
+    "How your work changes",
+    "Risks to watch",
+    "Skills to build",
+    "Tools",
+    "Your first steps",
+    "AI instructions to copy",
+    "Sources",
+  ];
+
+  for (const role of roles) {
+    test(`${role.id}: section order, one highlighted risk, headlines`, async ({ page }) => {
+      const risks = (role.data as unknown as { risks: { headline?: string; highlight?: boolean }[] }).risks;
+      expect(risks.filter((r) => r.highlight), "exactly one highlighted risk").toHaveLength(1);
+      for (const r of risks) {
+        expect(r.headline, "every risk has a headline").toBeTruthy();
+        expect(r.headline!.length).toBeLessThanOrEqual(90);
+        expect(r.headline).not.toMatch(/[\d%]/);
+      }
+
+      await page.goto(`roles/${role.id}`);
+      const h2s = await page.getByTestId("role-sections").locator("h2").allInnerTexts();
+      const found = h2s.map((t) => t.replace(/\s*\(\d+\)$/, "").trim()).filter((t) => ORDER.includes(t));
+      expect(found).toEqual(ORDER);
+
+      const highlighted = risks.find((r) => r.highlight)!;
+      await expect(page.getByTestId("watch-out")).toContainText(highlighted.headline!);
+    });
+  }
+
+  test("summary cards link to and open their change", async ({ page }) => {
+    await page.goto("roles/developer");
+    const cards = page.getByTestId("summary").getByTestId("highlight").locator("a");
+    await expect(cards).toHaveCount(3);
+    const href = await cards.first().getAttribute("href");
+    expect(href).toMatch(/^#change-\d+$/);
+    await cards.first().click();
+    await expect(page.locator(`${href} > details`)).toHaveAttribute("open", "");
+  });
+
+  test("watch-out links to and opens its risk", async ({ page }) => {
+    await page.goto("roles/developer");
+    const href = await page.getByTestId("watch-out").getAttribute("href");
+    await page.getByTestId("watch-out").click();
+    await expect(page.locator(`${href} > details`)).toHaveAttribute("open", "");
+  });
+
+  test("editorial sections say 'Our suggestion', not 'Editorial'", async ({ page }) => {
+    await page.goto("roles/developer");
+    await expect(page.getByTestId("our-suggestion").first()).toBeVisible();
+    await expect(page.getByText("Editorial", { exact: true })).toHaveCount(0);
+  });
 });

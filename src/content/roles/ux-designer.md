@@ -113,19 +113,25 @@ skills:
     - Building linked static screens to fake complex interactions
     - Manual transcription of research sessions
 risks:
-  - text: "A polished AI prototype can hide design problems. NN/g warns that AI-generated prototypes may look complete while using the wrong design pattern, creating a confusing hierarchy or repeating elements unnecessarily."
+  - headline: A polished AI prototype can hide design problems, NN/g warns
+    highlight: true
+    text: "A polished AI prototype can hide design problems. NN/g warns that AI-generated prototypes may look complete while using the wrong design pattern, creating a confusing hierarchy or repeating elements unnecessarily."
     sourceIds:
       - nng-test-earlier-with-ai
-  - text: "Synthetic users are not a substitute for research with real users. In NN/g's test, synthetic users viewed discussion forums favourably while real participants found the interactions contrived, and NN/g notes that because AI loves to please, every idea is often seen as a good one."
+  - headline: Synthetic users are not a substitute for research with real users
+    text: "Synthetic users are not a substitute for research with real users. In NN/g's test, synthetic users viewed discussion forums favourably while real participants found the interactions contrived, and NN/g notes that because AI loves to please, every idea is often seen as a good one."
     sourceIds:
       - nng-synthetic-users
-  - text: "AI coding assistants may not make UI accessible on their own. A CHI 2025 formative study using GitHub Copilot, with 16 developers without accessibility training (almost all students), found three issues in AI-assisted coding: not prompting the AI for accessibility, omitting manual steps such as replacing placeholder attributes, and being unable to verify compliance."
+  - headline: AI coding assistants may not make UI accessible on their own, a small study found
+    text: "AI coding assistants may not make UI accessible on their own. A CHI 2025 formative study using GitHub Copilot, with 16 developers without accessibility training (almost all students), found three issues in AI-assisted coding: not prompting the AI for accessibility, omitting manual steps such as replacing placeholder attributes, and being unable to verify compliance."
     sourceIds:
       - codea11y-chi-2025
-  - text: "Prototyping with real product data can expose personal information. NN/g advises following your organisation's data policies, not uploading personally identifiable information, and reviewing how the AI tool's vendor could use your data."
+  - headline: Prototyping with real product data can expose personal information
+    text: "Prototyping with real product data can expose personal information. NN/g advises following your organisation's data policies, not uploading personally identifiable information, and reviewing how the AI tool's vendor could use your data."
     sourceIds:
       - nng-test-earlier-with-ai
-  - text: "Surface-level UI work is exposed to automation. NN/g writes that if you're just slapping together components from a design system, you're already replaceable by AI, and that entry-level UX positions remain scarce and highly competitive."
+  - headline: Surface-level UI work is exposed to automation, NN/g writes
+    text: "Surface-level UI work is exposed to automation. NN/g writes that if you're just slapping together components from a design system, you're already replaceable by AI, and that entry-level UX positions remain scarce and highly competitive."
     sourceIds:
       - nng-state-of-ux-2026
 first30Days:

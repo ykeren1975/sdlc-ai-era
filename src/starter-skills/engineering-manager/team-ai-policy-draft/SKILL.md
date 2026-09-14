@@ -1,6 +1,9 @@
 ---
 name: team-ai-policy-draft
 description: Drafts a manager-owned team AI tool policy for approval, within the organisation's rules, covering approved tools, what code and data may go into them, agent permissions, spend limits, minimum review and testing requirements, how usage data will and will not be used, and a plan to walk the team through it. Day-to-day team norms (Definition of Done for AI-assisted work, review pairing, retrospective questions) belong in a team-authored working agreement instead. Use when a team adopts AI coding tools or agents, when policy is unclear or out of date, or when asked to "write our AI policy", "which AI tools are we allowed to use" or "set rules for AI agents and data".
+metadata:
+  title: "Team AI policy draft"
+  summary: "Drafts a team policy on approved AI tools, data, agent permissions and spend, for approval"
 ---
 
 # Team AI Policy Draft

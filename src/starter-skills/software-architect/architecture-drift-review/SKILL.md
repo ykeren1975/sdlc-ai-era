@@ -1,6 +1,9 @@
 ---
 name: architecture-drift-review
 description: "Compares a codebase or a set of recent changes against the intended architecture, such as layers, module boundaries, dependency rules and decision records, reports structural and semantic violations with evidence, triages them, and proposes rules that could become automated fitness functions or agent instructions. Use when a software architect asks to check for architecture drift or erosion, review whether AI-generated or recent code respects boundaries, prepare a conformance review, or turn architecture guidelines into checkable rules."
+metadata:
+  title: "Architecture drift review"
+  summary: "Checks code against the intended architecture and reports violations with evidence"
 ---
 
 # Architecture Drift Review

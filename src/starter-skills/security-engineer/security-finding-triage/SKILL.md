@@ -1,6 +1,9 @@
 ---
 name: security-finding-triage
 description: Triages a security finding or vulnerability report, whether from a scanner, an AI tool or an external researcher, by checking whether it is real, reachable and exploitable in this codebase, rating severity and drafting a prioritised recommendation and reply. Use when handling scanner alerts, bug bounty or disclosure reports, AI-generated vulnerability reports, a backlog of security findings, or when asked "is this vulnerability real" or "how serious is this".
+metadata:
+  title: "Security finding triage"
+  summary: "Checks if a reported vulnerability is real and exploitable, rates severity, drafts a reply"
 ---
 
 # Security Finding Triage

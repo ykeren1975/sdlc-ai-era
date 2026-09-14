@@ -1,6 +1,9 @@
 ---
 name: mitigation-safety-check
 description: Checks whether a proposed operational action during an incident, such as a rollback, restart, failover, scale change, config change or traffic shift, is safe given the current system state, and checks an AI investigation's suggested cause against the evidence before any action is recommended. Use during an incident or on-call when an agent or person proposes a mitigation, when asked "is it safe to roll back", or when verifying an AI-suggested root cause.
+metadata:
+  title: "Mitigation safety check"
+  summary: "Checks if a proposed incident action, like a rollback, is safe in the current system state"
 ---
 
 # Mitigation Safety Check

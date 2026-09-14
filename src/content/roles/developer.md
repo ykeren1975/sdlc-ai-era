@@ -114,20 +114,26 @@ skills:
     - Typing boilerplate and scaffolding by hand
     - Searching forums for common error messages
 risks:
-  - text: Output that is almost right can cost more time than it saves. In one controlled study of early-2025 tools, experienced open-source developers took 19% longer with AI, yet still believed it had sped them up.
+  - headline: Almost-right output can cost more time than it saves
+    text: Output that is almost right can cost more time than it saves. In one controlled study of early-2025 tools, experienced open-source developers took 19% longer with AI, yet still believed it had sped them up.
     sourceIds:
       - metr-2025-study
       - so-survey-2025-ai
-  - text: Generated code often carries security flaws. In Veracode's 2026 tests, AI-generated code passed security checks only 56% of the time, barely changed from its first report, even though syntax errors are now rare.
+  - headline: Generated code often carries security flaws, as Veracode's tests show
+    highlight: true
+    text: Generated code often carries security flaws. In Veracode's 2026 tests, AI-generated code passed security checks only 56% of the time, barely changed from its first report, even though syntax errors are now rare.
     sourceIds:
       - veracode-genai-2026
-  - text: Higher change volume without strong testing, version control and feedback loops is linked to lower delivery stability.
+  - headline: More change volume without strong testing and feedback loops is linked to lower stability
+    text: Higher change volume without strong testing, version control and feedback loops is linked to lower delivery stability.
     sourceIds:
       - dora-2025
-  - text: Anthropic's study flags a "paradox of supervision". Coding skills may weaken from AI overuse, yet supervising an agent requires those same skills.
+  - headline: "Anthropic's study flags AI overuse may weaken the skills needed to supervise agents"
+    text: Anthropic's study flags a "paradox of supervision". Coding skills may weaken from AI overuse, yet supervising an agent requires those same skills.
     sourceIds:
       - anthropic-work-study
-  - text: Heavy spec workflows can create long documents that are tedious to review, and agents do not always follow them.
+  - headline: Heavy spec workflows can create tedious documents, and agents do not always follow them
+    text: Heavy spec workflows can create long documents that are tedious to review, and agents do not always follow them.
     sourceIds:
       - fowler-sdd-tools
 first30Days:

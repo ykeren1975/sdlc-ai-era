@@ -23,8 +23,12 @@ const { shifts, sourceNumbers } = Astro.props;
     </button>
   </div>
   <ul class="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
-    {shifts.map((shift) => (
-      <li data-testid="shift" class="print-break-avoid">
+    {shifts.map((shift, i) => (
+      <li
+        id={`change-${i + 1}`}
+        data-testid="shift"
+        class="print-break-avoid scroll-mt-20"
+      >
         <details class="group">
           <summary class="flex items-start gap-3 px-4 py-3.5 hover:bg-accent-soft sm:gap-4 sm:px-5">
             <span class="mt-0.5 w-24 shrink-0 text-xs font-medium tracking-wide text-muted uppercase max-sm:hidden">

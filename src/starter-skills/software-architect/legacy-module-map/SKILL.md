@@ -1,6 +1,9 @@
 ---
 name: legacy-module-map
 description: "Explores an unfamiliar or legacy module read-only and drafts a map of its responsibilities, dependencies, data flows, business rules and risky coupling, with every statement linked to file and line references and graded by confidence, plus questions for the people who know the system. Use when a software architect or developer needs to understand legacy code before modernising, migrating, splitting or changing it, onboard to an inherited system, or recover design intent and hidden business rules."
+metadata:
+  title: "Legacy module map"
+  summary: "Maps what an unfamiliar legacy module does, with file references and confidence levels"
 ---
 
 # Legacy Module Map

@@ -102,7 +102,15 @@ const roles = defineCollection({
       lessImportant: z.array(z.string()).min(1),
     }),
     risks: z
-      .array(z.object({ text: z.string(), sourceIds: sourceIds.optional() }))
+      .array(
+        z.object({
+          // Plain lead condensed from `text` only; `highlight` marks the one shown in the summary.
+          headline: z.string().max(90).optional(),
+          highlight: z.boolean().optional(),
+          text: z.string(),
+          sourceIds: sourceIds.optional(),
+        }),
+      )
       .min(2),
     first30Days: z.array(z.string()).optional(),
     agentSkills: z

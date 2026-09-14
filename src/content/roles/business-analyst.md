@@ -104,16 +104,21 @@ skills:
     - Formatting requirements documents from scratch
     - Writing routine stories and test cases from a blank page
 risks:
-  - text: An LLM rewrite can drift from what the stakeholder meant, so keep the stakeholder in the loop to validate it.
+  - headline: An LLM rewrite can drift from what the stakeholder meant, so have them validate it
+    highlight: true
+    text: An LLM rewrite can drift from what the stakeholder meant, so keep the stakeholder in the loop to validate it.
     sourceIds:
       - llm-stakeholder-revisions-2026
-  - text: A review of 238 studies on generative AI for requirements identified hallucination, reproducibility and interpretability as core challenges, and only 1.3% of studies reached production-level integration.
+  - headline: Hallucination and reproducibility are core AI challenges in requirements, a review found
+    text: A review of 238 studies on generative AI for requirements identified hallucination, reproducibility and interpretability as core challenges, and only 1.3% of studies reached production-level integration.
     sourceIds:
       - genai-re-slr
-  - text: In a survey of 55 practitioners, respondents raised privacy and information-leakage concerns about using AI for requirements specification.
+  - headline: Practitioners in a survey raised privacy and data-leak concerns about AI in requirements
+    text: In a survey of 55 practitioners, respondents raised privacy and information-leakage concerns about using AI for requirements specification.
     sourceIds:
       - ai4re-practitioner-survey-2025
-  - text: In one study, LLM-generated user stories were less diverse and met acceptance quality criteria less often than human-written ones. In another, AI-generated test cases tended to overlook non-functional requirements.
+  - headline: In one study, AI-written user stories met quality criteria less often than human ones
+    text: In one study, LLM-generated user stories were less diverse and met acceptance quality criteria less often than human-written ones. In another, AI-generated test cases tended to overlook non-functional requirements.
     sourceIds:
       - llm-user-stories-2025
       - thoughtworks-testcases-2025

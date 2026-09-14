@@ -7,6 +7,7 @@ import {
   resolveAgentSkills,
 } from "../lib/role";
 import { url } from "../lib/url";
+import OurSuggestion from "./OurSuggestion.astro";
 
 interface Props {
   roleId: string;
@@ -16,67 +17,73 @@ interface Props {
 const { roleId, data } = Astro.props;
 const readyMade = await resolveAgentSkills(data.agentSkills);
 const starters = await getStarterSkills(roleId, data.starterSkills);
+const ext = { target: "_blank", rel: "noopener noreferrer" };
+const btn =
+  "inline-flex min-h-10 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium no-underline";
 ---
 
 <div class="space-y-6" data-agent-skills>
   <p class="text-muted">
-    Agent Skills are folders of instructions an AI agent loads when a task needs
-    them. It's an open format supported by Claude, GitHub Copilot, Cursor,
-    Codex, Gemini CLI and more.{" "}
+    Each one is a text file (<code class="font-mono text-sm">SKILL.md</code>)
+    that tells an AI tool, step by step, how to do one task the way you want.
+    Copy it into a chat, or add it to a tool that supports Agent Skills.{" "}
     <a href={url("/agent-skills")} class="font-medium text-accent">
-      How to install a skill
+      Which tools, and how
     </a>
   </p>
 
   {starters.length > 0 && (
     <div data-disclosure-group>
-      <div class="mb-2 flex flex-wrap items-baseline gap-3">
-        <h3 class="font-semibold">Starter skills to copy</h3>
-        <span class="rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">
-          Editorial
-        </span>
+      <div class="mb-1 flex flex-wrap items-center gap-3">
+        <h3 class="text-lg font-semibold">
+          Starter instructions for this role
+        </h3>
+        <OurSuggestion />
       </div>
       <p class="mb-3 text-sm text-muted">
-        Written for this role from the changes above. Read and adapt before you
-        use one.
+        Written from the changes above. Read and adapt one before you use it.
       </p>
       <ul class="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
-        {starters.map(({ entry, raw, name }) => (
+        {starters.map(({ entry, raw, name, title, summary }) => (
           <li
             id={`skill-${name}`}
-            class="scroll-mt-16"
+            class="scroll-mt-20"
             data-testid="starter-skill"
           >
-            <details class="group">
-              <summary class="flex items-start gap-3 px-5 py-3.5 hover:bg-accent-soft">
+            <details class="group/skill">
+              <summary class="flex items-start gap-3 px-5 py-4 hover:bg-accent-soft">
                 <span class="min-w-0 flex-1">
-                  <code class="block font-mono text-sm font-semibold text-accent">
-                    {entry.data.name}
+                  <span class="block font-semibold">{title}</span>
+                  <span class="mt-0.5 block text-sm text-muted">{summary}</span>
+                  <code class="mt-1 block font-mono text-xs text-muted">
+                    {name}
                   </code>
-                  <span class="mt-0.5 block text-sm text-muted">
-                    {entry.data.description}
-                  </span>
+                </span>
+                <span class="no-print mt-0.5 hidden text-xs text-muted sm:inline">
+                  View · Copy · Download
                 </span>
                 <ChevronDown
-                  class="no-print mt-1 size-4 shrink-0 text-muted transition-transform group-open:rotate-180"
+                  class="no-print mt-1 size-4 shrink-0 text-muted transition-transform group-open/skill:rotate-180"
                   aria-hidden="true"
                 />
               </summary>
-              <div class="border-t border-line px-5 py-4">
-                <div class="no-print mb-3 flex flex-wrap items-center gap-2">
+
+              <div class="space-y-4 border-t border-line px-5 py-4">
+                <div class="no-print flex flex-wrap items-center gap-2">
                   <button
                     type="button"
                     data-copy-skill
-                    class="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-medium hover:border-accent"
+                    class={`${btn} bg-accent text-on-accent hover:opacity-90`}
                   >
-                    <Copy class="size-4" aria-hidden="true" /> Copy SKILL.md
+                    <Copy class="size-4" aria-hidden="true" /> Copy instructions
                   </button>
                   <a
-                    href={url(`/skills/${roleId}/${name}/SKILL.md`)}
-                    download="SKILL.md"
-                    class="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-medium no-underline hover:border-accent"
+                    href={url(`/skills/${roleId}/${name}.zip`)}
+                    download={`${name}.zip`}
+                    class={`${btn} border border-line bg-surface hover:border-accent`}
+                    data-download-zip
                   >
-                    <Download class="size-4" aria-hidden="true" /> Download
+                    <Download class="size-4" aria-hidden="true" /> Download .zip
                   </a>
                   <span
                     class="text-sm text-accent"
@@ -85,16 +92,71 @@ const starters = await getStarterSkills(roleId, data.starterSkills);
                     data-copy-skill-status
                   />
                 </div>
-                <p class="mb-2 text-xs text-muted">
-                  Save as <code class="font-mono">{name}/SKILL.md</code> in your
-                  agent's skills folder.
-                </p>
-                <pre
-                  class="max-h-96 overflow-auto rounded-xl bg-before p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap"
-                  tabindex="0"
-                  aria-label={`${name} SKILL.md`}
-                  data-skill-source
-                >{raw}</pre>
+
+                <div
+                  class="rounded-xl bg-before p-4 text-sm"
+                  data-testid="how-to-use"
+                >
+                  <p class="mb-2 font-semibold">How to use it</p>
+                  <ul class="space-y-2.5 leading-relaxed">
+                    <li>
+                      <strong class="font-medium">In any AI chat</strong>, such
+                      as ChatGPT, Microsoft 365 Copilot or Claude: choose Copy
+                      instructions, paste them at the start of a new chat, then
+                      add your material. <OurSuggestion />
+                    </li>
+                    <li>
+                      <strong class="font-medium">
+                        Install it in Claude (web or desktop):
+                      </strong>{" "}
+                      download the .zip, then go to Customize › Skills › + ›
+                      Create skill › Upload a skill. Code execution must be
+                      turned on.{" "}
+                      <a
+                        href="https://support.claude.com/en/articles/12512180-use-skills-in-claude"
+                        {...ext}
+                        class="text-accent"
+                      >
+                        Claude help
+                        <span class="sr-only"> (opens in new tab)</span>
+                      </a>
+                    </li>
+                    <li>
+                      <strong class="font-medium">
+                        Install it in a coding agent
+                      </strong>{" "}
+                      such as Claude Code, GitHub Copilot or Codex: unzip the
+                      folder into the tool's skills folder.{" "}
+                      <a
+                        href={url("/agent-skills#install-heading")}
+                        class="text-accent"
+                      >
+                        Folder locations
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <details class="group/file">
+                  <summary class="inline-flex min-h-10 items-center gap-1.5 text-sm font-medium text-accent">
+                    <ChevronDown
+                      class="size-4 transition-transform group-open/file:rotate-180"
+                      aria-hidden="true"
+                    />
+                    Show the full file
+                  </summary>
+                  <p class="mt-2 mb-2 text-xs text-muted">
+                    File name <code class="font-mono">SKILL.md</code>, in a
+                    folder named <code class="font-mono">{name}</code>. When to
+                    use it: {entry.data.description}
+                  </p>
+                  <pre
+                    class="max-h-96 overflow-auto rounded-xl bg-before p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap print:max-h-none print:overflow-visible"
+                    tabindex="0"
+                    aria-label={`${name} SKILL.md`}
+                    data-skill-source
+                  >{raw}</pre>
+                </details>
               </div>
             </details>
           </li>
@@ -105,9 +167,9 @@ const starters = await getStarterSkills(roleId, data.starterSkills);
 
   {readyMade.length > 0 && (
     <div>
-      <h3 class="font-semibold">Ready-made skills</h3>
+      <h3 class="text-lg font-semibold">Published skills you can reuse</h3>
       <p class="mb-3 text-sm text-muted">
-        Published in public skill catalogs. Check the license before use.
+        From public skill catalogs. Check the license before use.
       </p>
       <ul class="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
         {readyMade.map(({ entry, useFor }) => (
@@ -115,8 +177,7 @@ const starters = await getStarterSkills(roleId, data.starterSkills);
             <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
               <a
                 href={entry.data.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...ext}
                 class="print-url inline-flex items-center gap-1.5 font-mono text-sm font-semibold hover:text-accent"
               >
                 {entry.data.name}
@@ -147,11 +208,17 @@ const starters = await getStarterSkills(roleId, data.starterSkills);
       const status = panel?.querySelector("[data-copy-skill-status]");
       button.addEventListener("click", async () => {
         try {
-          await navigator.clipboard.writeText(source?.textContent ?? "");
+          // Copy the instructions only: the YAML header is for tools, and looks broken pasted into a chat.
+          const body = (source?.textContent ?? "").replace(
+            /^---\n[\s\S]*?\n---\n+/,
+            "",
+          );
+          await navigator.clipboard.writeText(body);
           if (status) status.textContent = "Copied";
         } catch {
           if (status)
-            status.textContent = "Couldn't copy; select the text below";
+            status.textContent =
+              "Couldn't copy; open 'Show the full file' and select the text";
         }
         setTimeout(() => status && (status.textContent = ""), 3000);
       });

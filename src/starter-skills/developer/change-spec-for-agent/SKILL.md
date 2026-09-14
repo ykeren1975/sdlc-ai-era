@@ -1,6 +1,9 @@
 ---
 name: change-spec-for-agent
 description: Turns a ticket or feature request into a short spec, technical plan and ordered task list that a coding agent can follow, with acceptance checks and a security and testing plan for each task. Use when planning a medium or large code change before delegating it to an AI agent, breaking down a ticket, writing a spec or implementation plan, or deciding what to hand to an agent and what to do by hand.
+metadata:
+  title: "Change spec for an agent"
+  summary: "Turns a ticket into a short spec, plan and task list that a coding agent can follow"
 ---
 
 # Change Spec for an Agent

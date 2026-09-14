@@ -2,6 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
+import { strFromU8, unzipSync } from "fflate";
 import { parse } from "yaml";
 import { loadRoles } from "./content";
 
@@ -70,6 +71,12 @@ test.describe("starter skills follow the Agent Skills spec", () => {
       ]) {
         expect(s.body, `has "${heading}"`).toContain(heading);
       }
+      // Human-facing display fields
+      const meta = s.front.metadata as
+        { title?: string; summary?: string } | undefined;
+      expect(meta?.title, "metadata.title").toBeTruthy();
+      expect(meta?.summary, "metadata.summary").toBeTruthy();
+      expect(meta!.summary!.length).toBeLessThanOrEqual(90);
       // Lessons from smoke tests and review
       expect(
         s.body,
@@ -126,7 +133,10 @@ test.describe("agent skills UI", () => {
   test("role page lists starter and ready-made skills", async ({ page }) => {
     await page.goto(`roles/${role.id}`);
     await expect(
-      page.getByRole("heading", { name: "Your skills" }),
+      page.getByRole("heading", { name: "Skills to build" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "AI instructions to copy" }),
     ).toBeVisible();
     await expect(page.getByTestId("starter-skill")).toHaveCount(
       role.data.starterSkills!.length,
@@ -144,30 +154,53 @@ test.describe("agent skills UI", () => {
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
     await page.goto(`roles/${role.id}`);
     const item = page.locator(`#skill-${first.folder}`);
-    await item.locator("summary").click();
+    await item.locator("summary").first().click();
+    // Collapsed row shows the human title and summary, not the routing description.
+    const meta = first.front.metadata as { title: string; summary: string };
+    await expect(item.locator("summary").first()).toContainText(meta.title);
+    await expect(item.locator("summary").first()).toContainText(meta.summary);
+    await expect(item.getByTestId("how-to-use")).toContainText("Claude");
+    await expect(item.getByTestId("how-to-use")).toContainText("Install it in a coding agent");
+    await expect(item.getByTestId("how-to-use")).toContainText(
+      "In any AI chat",
+    );
+
+    await item.getByRole("button", { name: "Copy instructions" }).click();
+    await expect(item.getByRole("status")).toHaveText("Copied");
+    // Copy gives the instructions without the YAML header (the .zip keeps the full file).
+    const copied = await page.evaluate(() => navigator.clipboard.readText());
+    expect(copied).toBe(first.body.replace(/^\n+/, ""));
+    expect(copied.startsWith("---")).toBe(false);
+    expect(copied).toContain("## Steps");
+    // The first route is the one that works in any AI chat.
+    await expect(
+      item.getByTestId("how-to-use").locator("li").first(),
+    ).toContainText("In any AI chat");
+
+    // The full file is one more click away.
+    await item.getByText("Show the full file").click();
     await expect(item.locator("[data-skill-source]")).toContainText(
       `name: ${first.folder}`,
     );
 
-    await item.getByRole("button", { name: "Copy SKILL.md" }).click();
-    await expect(item.getByRole("status")).toHaveText("Copied");
-    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
-      first.raw,
-    );
-
+    // Download .zip contains <name>/SKILL.md identical to the source.
     const href = await item
-      .getByRole("link", { name: "Download" })
+      .getByRole("link", { name: "Download .zip" })
       .getAttribute("href");
     const res = await request.get(href!);
     expect(res.status()).toBe(200);
-    expect(await res.text()).toBe(first.raw);
+    const files = unzipSync(new Uint8Array(await res.body()));
+    expect(Object.keys(files).filter((f) => !f.endsWith("/"))).toEqual([
+      `${first.folder}/SKILL.md`,
+    ]);
+    expect(strFromU8(files[`${first.folder}/SKILL.md`])).toBe(first.raw);
   });
 
   test("summary 'Try an agent skill' opens that skill", async ({ page }) => {
     await page.goto(`roles/${role.id}`);
     await page.getByTestId("try-skill").click();
     await expect(
-      page.locator(`#skill-${first.folder} details`),
+      page.locator(`#skill-${first.folder} > details`),
     ).toHaveAttribute("open", "");
   });
 
@@ -193,7 +226,10 @@ test.describe("agent skills UI", () => {
   }) => {
     await page.goto("agent-skills");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Agent skills",
+      "Agent Skills guide",
+    );
+    await expect(page.getByTestId("install-routes")).toContainText(
+      "Upload a skill",
     );
     await expect(page.getByTestId("guide-skill")).toHaveCount(
       starterFiles.length,

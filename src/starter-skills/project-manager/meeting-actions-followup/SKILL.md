@@ -1,6 +1,9 @@
 ---
 name: meeting-actions-followup
 description: Turns meeting notes or a transcript into a checked list of decisions, action items and proposed tracker updates, plus a draft follow-up message, marking anything unclear for the organiser to confirm. Use after a project meeting, steering group or stand-up, when reviewing AI-suggested action items or tracker updates, or when asked to "write up the actions", "draft meeting minutes" or "what did we agree in this meeting".
+metadata:
+  title: "Meeting actions follow-up"
+  summary: "Turns meeting notes into decisions, action items and a draft follow-up message"
 ---
 
 # Meeting Actions Follow-up

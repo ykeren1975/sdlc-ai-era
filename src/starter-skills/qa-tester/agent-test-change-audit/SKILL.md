@@ -1,6 +1,9 @@
 ---
 name: agent-test-change-audit
 description: Audits test changes made by a coding or testing agent, such as healed locators, adjusted waits, updated assertions, skipped, disabled or deleted tests, and flags changes that could hide a real bug or create a false pass. Use when reviewing a pull request where an agent wrote or repaired tests, when a test suite suddenly turns green after agent work, when tests were auto-healed or marked skipped, or when checking generated test code for gaps.
+metadata:
+  title: "Agent test change audit"
+  summary: "Checks agent-changed tests for edits that could hide a real bug or create a false pass"
 ---
 
 # Agent Test Change Audit

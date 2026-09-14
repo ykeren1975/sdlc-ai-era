@@ -102,19 +102,25 @@ skills:
     - Reading every low-risk scanner alert one by one
     - Relying on manual review alone to find deep bugs
 risks:
-  - text: AI-generated code often fails security checks. In Veracode's 2026 tests the average security pass rate across models was 56%, barely changed from its first report.
+  - headline: In Veracode's tests, AI-generated code often failed security checks
+    text: AI-generated code often fails security checks. In Veracode's 2026 tests the average security pass rate across models was 56%, barely changed from its first report.
     sourceIds:
       - veracode-genai-2026
-  - text: AI fixes can be wrong in quiet ways. GitHub warns that Autofix suggestions may introduce new vulnerabilities, change program semantics, or suggest fabricated dependencies published under statistically probable names.
+  - headline: "AI fixes can be wrong in quiet ways; GitHub warns Autofix may add vulnerabilities"
+    highlight: true
+    text: AI fixes can be wrong in quiet ways. GitHub warns that Autofix suggestions may introduce new vulnerabilities, change program semantics, or suggest fabricated dependencies published under statistically probable names.
     sourceIds:
       - github-autofix-docs
-  - text: Prompt injection can turn agents against their users. Under ASI01, agent goal hijack, OWASP cites hidden prompts that turned copilots into "silent exfiltration engines".
+  - headline: Prompt injection can turn agents against their users, OWASP warns
+    text: Prompt injection can turn agents against their users. Under ASI01, agent goal hijack, OWASP cites hidden prompts that turned copilots into "silent exfiltration engines".
     sourceIds:
       - owasp-agentic-top-10-2026
-  - text: Guardrail filters are not a complete defence. Willison writes that such products almost always claim to capture "95% of attacks", but "in web application security 95% is very much a failing grade."
+  - headline: Guardrail filters are not a complete defence against attacks, Willison warns
+    text: Guardrail filters are not a complete defence. Willison writes that such products almost always claim to capture "95% of attacks", but "in web application security 95% is very much a failing grade."
     sourceIds:
       - willison-lethal-trifecta
-  - text: Finding bugs faster does not fix them faster. Anthropic reports that only 75 of the 530 high- or critical-severity bugs it had reported were patched at the time of its update, and argues the limit is how quickly bugs can be verified, disclosed and patched. Daniel Stenberg expects the rising volume of reports to make maintainer overload worse.
+  - headline: "Finding bugs faster does not fix them faster; Stenberg expects worse maintainer overload"
+    text: Finding bugs faster does not fix them faster. Anthropic reports that only 75 of the 530 high- or critical-severity bugs it had reported were patched at the time of its update, and argues the limit is how quickly bugs can be verified, disclosed and patched. Daniel Stenberg expects the rising volume of reports to make maintainer overload worse.
     sourceIds:
       - anthropic-glasswing-update
       - curl-high-quality-chaos

@@ -1,6 +1,9 @@
 ---
 name: team-ai-working-agreement
 description: Drafts a team-authored working agreement on how the team works with AI tools and agents inside an existing organisation or team AI policy, covering a Definition of Done for AI-assisted work, review pairing, change size, sharing skills and how the team inspects AI use in retrospectives, with open questions for the team to decide. It does not approve tools, set data rules, agent permissions or spend; those belong in the manager-owned team AI policy. Use when a team starts using AI coding or writing tools under an existing policy, when refreshing working agreements, or when asked to "draft an AI working agreement", "agree team norms for AI" or "how should our team work with AI".
+metadata:
+  title: "Team AI working agreement"
+  summary: "Drafts the team's own agreement on how it works with AI tools, with open questions"
 ---
 
 # Team AI Working Agreement

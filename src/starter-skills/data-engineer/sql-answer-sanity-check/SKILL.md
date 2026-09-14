@@ -1,6 +1,9 @@
 ---
 name: sql-answer-sanity-check
 description: Checks a SQL query and the number it returns before the answer goes to a stakeholder, covering joins, grain, filters, metric definitions and simple reconciliation checks. Use when an AI tool or a colleague has written a query that answers a business question, when a stakeholder brings a number from an AI assistant, or when someone asks "is this number right?", "check this SQL", "validate this query" or "sanity check these results".
+metadata:
+  title: "SQL answer sanity check"
+  summary: "Checks a SQL query and the number it returns before the answer goes to a stakeholder"
 ---
 
 # SQL Answer Sanity Check

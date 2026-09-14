@@ -111,18 +111,23 @@ skills:
     - Manually updating locators and waits after UI changes
     - Writing boilerplate test scaffolding
 risks:
-  - text: Tests changed by agents need a human check. Kent Beck watches for agents disabling or deleting tests, and Playwright's healer marks a test as skipped when it believes the functionality is broken, so someone has to confirm whether that bug is real.
+  - headline: Tests changed by agents, including skipped or deleted ones, need a human check
+    highlight: true
+    text: Tests changed by agents need a human check. Kent Beck watches for agents disabling or deleting tests, and Playwright's healer marks a test as skipped when it believes the functionality is broken, so someone has to confirm whether that bug is real.
     sourceIds:
       - playwright-test-agents
       - beck-augmented-coding
-  - text: Hallucination, reliability and data privacy are among the top challenges respondents report with generative AI in quality engineering. ISTQB's CT-GenAI certification covers identifying and mitigating hallucinations, biases and data privacy concerns.
+  - headline: Hallucination, reliability and privacy are among top reported GenAI challenges in testing
+    text: Hallucination, reliability and data privacy are among the top challenges respondents report with generative AI in quality engineering. ISTQB's CT-GenAI certification covers identifying and mitigating hallucinations, biases and data privacy concerns.
     sourceIds:
       - wqr-2025-26
       - istqb-ct-genai
-  - text: AI use in testing leans towards producing scripts rather than finding risk. In PractiTest's 2026 State of Testing report, 70% use AI for test case creation and only 19.9% for risk identification.
+  - headline: AI use in testing leans towards producing scripts rather than finding risk
+    text: AI use in testing leans towards producing scripts rather than finding risk. In PractiTest's 2026 State of Testing report, 70% use AI for test case creation and only 19.9% for risk identification.
     sourceIds:
       - practitest-sot-2026
-  - text: Testers who only supervise AI may lose their own testing skills. Akehurst-Ryan suggests keeping them sharp by reviewing AI-based testing.
+  - headline: Testers who only supervise AI may lose their own testing skills
+    text: Testers who only supervise AI may lose their own testing skills. Akehurst-Ryan suggests keeping them sharp by reviewing AI-based testing.
     sourceIds:
       - akehurst-ryan-exploratory-ai
 first30Days:

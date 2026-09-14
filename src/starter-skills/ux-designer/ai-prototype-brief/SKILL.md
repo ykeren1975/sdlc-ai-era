@@ -1,6 +1,9 @@
 ---
 name: ai-prototype-brief
 description: "Writes a detailed, context-rich prompt brief for an AI prototyping or UI generation tool, covering users, the interaction to test, design system rules, content, states and accessibility, plus a review checklist for the generated prototype before it goes in front of users. Use when a UX designer wants to build a working prototype of a complex interaction with AI, generate screens that fit their product instead of a generic layout, or prepare a prototype for usability testing."
+metadata:
+  title: "AI prototype brief"
+  summary: "Writes a detailed brief for an AI prototyping tool, plus a checklist to review the result"
 ---
 
 # AI Prototype Brief

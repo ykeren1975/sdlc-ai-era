@@ -1,6 +1,9 @@
 ---
 name: ai-impact-metrics-review
 description: Reviews team-level data on AI tool use together with delivery, quality and stability metrics against a baseline, using metrics that keep each other in check, and drafts a balanced summary for leadership. Never uses code volume or individual data as a productivity measure. Use when asked "is AI making the team faster?", when preparing an AI adoption or impact update, setting a baseline before rolling out a tool, or reviewing an AI usage dashboard.
+metadata:
+  title: "AI impact metrics review"
+  summary: "Compares team AI use with delivery and quality metrics and drafts a balanced summary"
 ---
 
 # AI Impact Metrics Review

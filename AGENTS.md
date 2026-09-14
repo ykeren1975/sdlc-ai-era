@@ -59,7 +59,11 @@ Order follows the SDLC flow on the home page.
 - `recommendation: should` = widely adopted, fits the role's core work, free tier or industry standard. Everything else is `could`.
 - Caps per role: 5–8 shifts, 4–8 tools, 3–8 sources.
 - Neutral, practical tone. No vendor hype, no "revolutionize". Write for a practitioner, in plain English.
-- `first30Days` and the Markdown body are editorial opinion and are labeled as such on the page.
+- `first30Days`, the Markdown body, tool tiers and starter skills are editorial. They are labelled **"Our suggestion"** on the page, never presented as sourced claims.
+- **Risk headlines:**
+  - Each risk has a `headline` (≤90 characters) that condenses that risk's own `text`: state the risk plainly first, and keep any attribution the text needs ("In one study…").
+  - Exactly 1 risk per role has `highlight: true`, shown in the summary.
+- **Starter skill display fields:** each `SKILL.md` has `metadata.title` (readable title) and `metadata.summary` (≤90 characters, condenses its own `description`, with no new capabilities).
 - **Skimmable layer:**
   - `tagline` (≤70 chars) condenses the role `summary`.
   - Each shift's `headline` (≤80 chars) condenses **that shift's own `aiEra` text**.
@@ -96,6 +100,7 @@ Order follows the SDLC flow on the home page.
   - Every starter skill now ends its output with `### Assumptions and open questions`.
   - "What to gather first" says: ask once, then proceed and record assumptions.
 - **Skills that read code, logs, data or tickets must say "never reproduce secrets or personal data in the output"**, and skills must not overlap in triggers. Where two roles need related skills, each description states the boundary (e.g. team working agreement vs manager-owned AI policy).
+- **After adding tests, confirm the test count went up** (`npx playwright test --list | tail -1`). A `grep && sed && cat >>` chain once stopped at a grep that found nothing, so the new tests were never written, yet the suite still showed "all passed" (UX batch).
 - **Wrap frontmatter strings containing `: ` or `#` in double quotes.** An unquoted colon in a `quote` broke YAML parsing for the whole site (DevOps batch). Run `npm run check` before reporting a role as written.
 - **Don't generalise from one company or a niche group.** Findings about one vendor's own staff (e.g. Anthropic's internal study) are written as "At <company>, …", not as industry-wide truths. Use surveys for "most developers".
 - **Don't use `astro preview` from Claude sessions or tests.** Astro 7 detects AI agents and backgrounds the preview with a lock file, which breaks Playwright's `webServer`. Tests serve `dist/` with `node scripts/serve-dist.mjs <port>`. For a manual look, run the same script in the background.

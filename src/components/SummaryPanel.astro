@@ -1,18 +1,28 @@
 ---
-import { ArrowRight, ExternalLink } from "@lucide/astro";
+import { AlertTriangle, ArrowRight, Check, ExternalLink } from "@lucide/astro";
 import type { CollectionEntry } from "astro:content";
-import { resolveTools } from "../lib/role";
+import { getStarterSkills, resolveTools } from "../lib/role";
 
 interface Props {
+  roleId: string;
   data: CollectionEntry<"roles">["data"];
 }
 
-const { data } = Astro.props;
-const flagged = data.shifts.filter((s) => s.highlight);
-const highlights = (flagged.length ? flagged : data.shifts).slice(0, 3);
+const { roleId, data } = Astro.props;
+const indexed = data.shifts.map((shift, i) => ({ shift, n: i + 1 }));
+const flagged = indexed.filter(({ shift }) => shift.highlight);
+const highlights = (flagged.length ? flagged : indexed).slice(0, 3);
 const topTools = (await resolveTools(data.tools)).slice(0, 3);
 const topSkills = data.skills.new.slice(0, 2);
-const firstSkill = data.starterSkills?.[0];
+const riskIndex = Math.max(
+  0,
+  data.risks.findIndex((r) => r.highlight),
+);
+const watchOut = data.risks[riskIndex];
+const [firstSkill] = await getStarterSkills(
+  roleId,
+  data.starterSkills?.slice(0, 1),
+);
 ---
 
 <section
@@ -22,35 +32,66 @@ const firstSkill = data.starterSkills?.[0];
 >
   <h2
     id="summary-heading"
-    class="mb-4 text-xs font-semibold tracking-wide text-accent uppercase"
+    class="mb-4 text-sm font-semibold tracking-wide text-accent uppercase"
   >
-    In 30 seconds
+    Top 3 changes for you
   </h2>
 
   <ol class="grid gap-3 sm:grid-cols-3">
-    {highlights.map((shift, i) => (
-      <li class="rounded-xl bg-surface p-4" data-testid="highlight">
-        <span class="mb-2 flex size-6 items-center justify-center rounded-full bg-accent text-xs font-semibold text-on-accent">
-          {i + 1}
-        </span>
-        <p class="font-semibold leading-snug">{shift.activity}</p>
-        <p class="mt-1 text-sm leading-relaxed text-muted">
-          {shift.headline ?? shift.aiEra}
-        </p>
+    {highlights.map(({ shift, n }, i) => (
+      <li data-testid="highlight">
+        <a
+          href={`#change-${n}`}
+          class="group flex h-full flex-col rounded-xl bg-surface p-4 no-underline hover:ring-2 hover:ring-accent/40"
+        >
+          <span class="mb-2 flex size-6 items-center justify-center rounded-full bg-accent text-xs font-semibold text-on-accent">
+            {i + 1}
+          </span>
+          <span class="font-semibold leading-snug">{shift.activity}</span>
+          <span class="mt-1 flex-1 text-sm leading-relaxed text-muted">
+            {shift.headline}
+          </span>
+          <span class="no-print mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent">
+            See before &amp; now{" "}
+            <ArrowRight
+              class="size-3.5 transition-transform group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </span>
+        </a>
       </li>
     ))}
   </ol>
 
+  {watchOut && (
+    <a
+      href={`#risk-${riskIndex + 1}`}
+      class="mt-3 flex items-start gap-3 rounded-xl border-l-4 border-amber-500 bg-surface p-4 no-underline hover:ring-2 hover:ring-accent/40"
+      data-testid="watch-out"
+    >
+      <AlertTriangle
+        class="mt-0.5 size-5 shrink-0 text-amber-600 dark:text-amber-400"
+        aria-hidden="true"
+      />
+      <span>
+        <span class="block text-sm font-semibold">Watch out for</span>
+        <span class="block text-sm leading-relaxed text-muted">
+          {watchOut.headline ?? watchOut.text}
+        </span>
+      </span>
+    </a>
+  )}
+
   <dl class="mt-5 grid gap-4 text-sm sm:grid-cols-2">
     <div>
-      <dt class="mb-1.5 font-medium">Start with these tools</dt>
+      <dt class="mb-1.5 font-medium">Tools to try first</dt>
       <dd class="flex flex-wrap gap-2">
         {topTools.map(({ entry }) => (
           <a
             href={entry.data.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="print-url inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 no-underline hover:border-accent"
+            class="print-url inline-flex min-h-9 items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 no-underline hover:border-accent"
           >
             {entry.data.name}
             <ExternalLink
@@ -63,12 +104,16 @@ const firstSkill = data.starterSkills?.[0];
       </dd>
     </div>
     <div>
-      <dt class="mb-1.5 font-medium">Build these skills</dt>
+      <dt class="mb-1.5 font-medium">Skills to build</dt>
       <dd>
-        <ul class="flex flex-wrap gap-2">
+        <ul class="space-y-1">
           {topSkills.map((skill) => (
-            <li class="rounded-full border border-line bg-surface px-3 py-1">
-              {skill}
+            <li class="flex gap-2">
+              <Check
+                class="mt-0.5 size-4 shrink-0 text-accent"
+                aria-hidden="true"
+              />
+              <span>{skill}</span>
             </li>
           ))}
         </ul>
@@ -79,11 +124,11 @@ const firstSkill = data.starterSkills?.[0];
   <div class="no-print mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
     {firstSkill && (
       <a
-        href={`#skill-${firstSkill}`}
+        href={`#skill-${firstSkill.name}`}
         class="inline-flex items-center gap-1.5 text-accent"
         data-testid="try-skill"
       >
-        Try an agent skill: <code class="font-mono">{firstSkill}</code>
+        Try a ready-made AI instruction: {firstSkill.title}
         <ArrowRight class="size-4" aria-hidden="true" />
       </a>
     )}

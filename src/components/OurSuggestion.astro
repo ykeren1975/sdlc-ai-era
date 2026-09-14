@@ -1,0 +1,18 @@
+---
+// Marks editorial content: the editors' practical advice, not a sourced claim.
+interface Props {
+  explain?: boolean;
+}
+const { explain = false } = Astro.props;
+const definition =
+  "Practical advice from the editors, based on the sources on this page. Not a sourced claim.";
+---
+
+<span
+  class="inline-flex items-center rounded-full bg-before px-2.5 py-0.5 text-xs font-medium text-muted"
+  title={definition}
+  data-testid="our-suggestion"
+>
+  Our suggestion
+</span>
+{explain && <p class="mt-1 text-sm text-muted">{definition}</p>}

@@ -1,6 +1,9 @@
 ---
 name: iac-change-review
 description: Reviews an infrastructure-as-code change, such as Terraform, CloudFormation, Kubernetes manifests, Helm charts or pipeline files, for security misconfigurations, blast radius, drift from the live environment, destructive operations and rollback, whether a person or an AI wrote it. Use when reviewing an infrastructure pull request, an AI-generated IaC change, a plan output before apply, or when asked "is this infrastructure change safe".
+metadata:
+  title: "Infrastructure change review"
+  summary: "Reviews an infrastructure code change for security risks, blast radius and rollback"
 ---
 
 # IaC Change Review

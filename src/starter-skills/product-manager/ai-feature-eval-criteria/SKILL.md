@@ -1,6 +1,9 @@
 ---
 name: ai-feature-eval-criteria
 description: "Helps a product manager define what good output looks like for an AI feature by reviewing real user interactions, naming failure modes and drafting binary pass/fail criteria to agree with engineering and QA. Use when defining what good output means for an AI feature from real user interactions (error analysis), before building an eval suite."
+metadata:
+  title: "AI feature eval criteria"
+  summary: "Reviews real AI feature use to name failure modes and draft pass/fail quality criteria"
 ---
 
 # AI Feature Eval Criteria

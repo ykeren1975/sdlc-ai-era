@@ -1,6 +1,9 @@
 ---
 name: requirements-quality-review
 description: "Reviews a set of user stories or requirements against explicit quality criteria, such as clear, testable, independent, consistent, complete and covering non-functional needs, and returns specific findings with suggested fixes and questions. Use when a business analyst asks to check, critique or quality-review a backlog, requirements document, stories or acceptance criteria before refinement, sign-off, test design or handing a spec to developers or a coding agent."
+metadata:
+  title: "Requirements quality review"
+  summary: "Checks stories or requirements for clarity and testability, with suggested fixes"
 ---
 
 # Requirements Quality Review

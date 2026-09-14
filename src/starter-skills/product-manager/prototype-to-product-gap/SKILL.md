@@ -1,6 +1,9 @@
 ---
 name: prototype-to-product-gap
 description: "Reviews a validated prototype or demo and drafts a plain-language gap analysis of what is still needed to turn it into a shippable product, such as untested use cases, reliability, telemetry, performance, data security and compliance, plus open questions for engineering. Use when a product manager has an AI-built or throwaway prototype that tested well and needs to plan next steps, brief engineers, set expectations with stakeholders, or avoid treating a demo as nearly done."
+metadata:
+  title: "Prototype to product gap"
+  summary: "Lists what a tested prototype still needs to become a shippable product"
 ---
 
 # Prototype to Product Gap

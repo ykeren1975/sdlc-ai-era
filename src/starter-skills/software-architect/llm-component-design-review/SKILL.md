@@ -1,6 +1,9 @@
 ---
 name: llm-component-design-review
 description: "Reviews a proposed or existing design for a system component that uses an LLM, such as retrieval, agents or tool integrations, covering non-deterministic output, evals, data access, integration choices like CLI, API or MCP, cost, latency, failure handling and security, and returns findings, trade-offs and open questions. Use when a software architect is designing or reviewing a RAG pipeline, AI agent, chatbot backend, LLM feature or agent tool integration, or needs a design review checklist for AI components."
+metadata:
+  title: "LLM component design review"
+  summary: "Reviews designs for LLM-based components, covering evals, cost, failures and security"
 ---
 
 # LLM Component Design Review

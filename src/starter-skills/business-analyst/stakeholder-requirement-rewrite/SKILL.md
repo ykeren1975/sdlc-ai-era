@@ -1,6 +1,9 @@
 ---
 name: stakeholder-requirement-rewrite
 description: "Rewrites rough stakeholder statements from interviews, workshops or emails into clear, testable requirements, keeps each original beside its rewrite, flags any possible change of meaning, and prepares a confirmation message for the stakeholder. Use when a business analyst asks to clean up, reword or formalise requirements, turn meeting notes or wishlists into requirement statements, or prepare requirements for stakeholder sign-off."
+metadata:
+  title: "Stakeholder requirement rewrite"
+  summary: "Rewrites rough stakeholder asks as clear, testable requirements for them to confirm"
 ---
 
 # Stakeholder Requirement Rewrite

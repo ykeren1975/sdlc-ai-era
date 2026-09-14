@@ -121,19 +121,25 @@ skills:
     - Writing first drafts of ADRs and summaries from a blank page
     - Reading large legacy codebases line by line to find where things live
 risks:
-  - text: Drift can compound. Thoughtworks warns that when agents and humans replicate existing patterns, including degraded ones, poor code begets poorer code.
+  - headline: "Drift can compound: agents and humans copying degraded patterns can make code worse"
+    highlight: true
+    text: Drift can compound. Thoughtworks warns that when agents and humans replicate existing patterns, including degraded ones, poor code begets poorer code.
     sourceIds:
       - thoughtworks-radar-architecture-drift
-  - text: Cognitive debt left unmanaged can reach a tipping point. Thoughtworks describes teams where small changes trigger unexpected failures, fixes introduce regressions and cleanup efforts increase risk instead of reducing it.
+  - headline: Unmanaged cognitive debt can reach a tipping point where small changes cause failures
+    text: Cognitive debt left unmanaged can reach a tipping point. Thoughtworks describes teams where small changes trigger unexpected failures, fixes introduce regressions and cleanup efforts increase risk instead of reducing it.
     sourceIds:
       - thoughtworks-radar-cognitive-debt
-  - text: Automated checks do not catch everything. Böckeler notes that neither deterministic checks nor LLM-based checks reliably catch some higher-impact problems, such as misdiagnosis of issues, overengineering and unnecessary features, and misunderstood instructions.
+  - headline: Automated and LLM-based checks may miss some higher-impact problems, Böckeler notes
+    text: Automated checks do not catch everything. Böckeler notes that neither deterministic checks nor LLM-based checks reliably catch some higher-impact problems, such as misdiagnosis of issues, overengineering and unnecessary features, and misunderstood instructions.
     sourceIds:
       - fowler-harness-engineering
-  - text: Adding protocol layers by default has a cost. Thoughtworks, citing Justin Poehnelt, notes that every protocol layer between an agent and an API loses fidelity, and for complex APIs those losses compound.
+  - headline: "Adding protocol layers by default has a cost; Thoughtworks notes each loses fidelity"
+    text: Adding protocol layers by default has a cost. Thoughtworks, citing Justin Poehnelt, notes that every protocol layer between an agent and an API loses fidelity, and for complex APIs those losses compound.
     sourceIds:
       - thoughtworks-radar-mcp-by-default
-  - text: LLM components are not deterministic. Subramaniam and Fowler note that such a system will give different outputs to the same inputs on repeated requests, and they see evals as crucial unless users can be relied on to treat its output with healthy scepticism.
+  - headline: "LLM components are not deterministic: the same input can give different outputs"
+    text: LLM components are not deterministic. Subramaniam and Fowler note that such a system will give different outputs to the same inputs on repeated requests, and they see evals as crucial unless users can be relied on to treat its output with healthy scepticism.
     sourceIds:
       - fowler-genai-patterns
 first30Days:

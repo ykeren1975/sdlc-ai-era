@@ -1,6 +1,9 @@
 ---
 name: raid-log-triage
 description: Reviews AI-flagged or newly raised risks, assumptions, issues and dependencies before they enter the RAID log, removing duplicates, checking evidence, suggesting owners and ratings, and listing escalation options for a human to decide. Use when triaging risk flags from a tool or agent, preparing a risk review meeting, cleaning up a RAID log, or when asked to "review these risks", "update the risk register" or "which risks should we escalate".
+metadata:
+  title: "RAID log triage"
+  summary: "Checks new risks and issues before they enter the log; a person decides what to escalate"
 ---
 
 # RAID Log Triage

@@ -1,6 +1,9 @@
 ---
 name: ai-tool-spend-review
 description: Reviews a team's AI tool spend from invoices or usage exports, breaking it down by tool, seat and usage-based charges, calculating spend per developer, spotting unused seats and cost spikes, and drafting a forecast and budget note with options. Use when preparing a tooling budget, checking a surprise AI bill, planning licence renewals, or when asked "what are we spending on AI tools?" or "forecast our AI costs".
+metadata:
+  title: "AI tool spend review"
+  summary: "Breaks down AI tool spend, spots unused seats and cost spikes, and drafts a forecast"
 ---
 
 # AI Tool Spend Review

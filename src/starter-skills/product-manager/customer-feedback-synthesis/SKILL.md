@@ -1,6 +1,9 @@
 ---
 name: customer-feedback-synthesis
 description: "Synthesises high-volume customer feedback from support tickets, survey comments, app or product reviews and sales call notes into themes, with every theme traced back to the original items and a spot-check of the summary against the source. Use when a product manager asks to summarise a large set of customer feedback, find recurring themes or pain points, prepare insight for roadmap or prioritisation discussions, or turn a pile of tickets and comments into evidence for a product decision. For moderated interviews or usability sessions, use the UX research synthesis instead."
+metadata:
+  title: "Customer feedback synthesis"
+  summary: "Turns tickets, surveys, reviews and call notes into themes traced back to the source"
 ---
 
 # Customer Feedback Synthesis

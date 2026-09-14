@@ -1,6 +1,9 @@
 ---
 name: llm-feature-eval-plan
 description: Drafts an evaluation plan and a starter eval dataset for a product feature built on a large language model, where the same input can give different outputs, covering labelled examples, edge and adversarial cases, a Pass/Fail grading method and regression runs on every change. Use when quality criteria for a chatbot, summariser, AI assistant or other generative AI feature exist, or alongside defining them, to build the eval dataset, grading method and regression runs. Defining what good output looks like is a product decision; if there are no criteria yet, draft them with the product manager first.
+metadata:
+  title: "LLM feature eval plan"
+  summary: "Drafts an evaluation plan and starter test set for a feature built on a language model"
 ---
 
 # LLM Feature Eval Plan

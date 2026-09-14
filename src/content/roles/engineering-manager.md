@@ -100,19 +100,25 @@ skills:
     - Algorithm-only interview screens
     - Planning the tooling budget as seat licences alone
 risks:
-  - text: Output metrics are easy to game. DX warns that metrics like code generation volume are particularly susceptible to gaming, and recommends telling developers the metrics will not be used in individual performance evaluations.
+  - headline: Output metrics are easy to game, DX warns, so keep them out of individual reviews
+    text: Output metrics are easy to game. DX warns that metrics like code generation volume are particularly susceptible to gaming, and recommends telling developers the metrics will not be used in individual performance evaluations.
     sourceIds:
       - dx-ai-measurement-framework
-  - text: Easy numbers can mislead. The Pragmatic Engineer notes that lines of code are easy to measure and, in the absence of a clear alternative, easy to latch on to, and that acceptance rate misses whether accepted code is maintainable or later gets reverted.
+  - headline: Easy numbers like lines of code can mislead, The Pragmatic Engineer notes
+    text: Easy numbers can mislead. The Pragmatic Engineer notes that lines of code are easy to measure and, in the absence of a clear alternative, easy to latch on to, and that acceptance rate misses whether accepted code is maintainable or later gets reverted.
     sourceIds:
       - pragmatic-measure-ai-impact
-  - text: More changes can mean less stability. DORA's 2025 report still found a negative relationship between AI adoption and software delivery stability, and warns that without controls such as strong automated testing, more change volume leads to instability.
+  - headline: More changes can mean less stability without controls like automated testing, DORA warns
+    highlight: true
+    text: More changes can mean less stability. DORA's 2025 report still found a negative relationship between AI adoption and software delivery stability, and warns that without controls such as strong automated testing, more change volume leads to instability.
     sourceIds:
       - dora-2025-report
-  - text: Reading the early productivity dip as failure. According to InfoQ's summary of DORA's ROI report, leaders who misread the dip as failure risk pulling funding during it and losing the eventual return.
+  - headline: "Misreading the early productivity dip as failure risks losing the return, InfoQ says"
+    text: Reading the early productivity dip as failure. According to InfoQ's summary of DORA's ROI report, leaders who misread the dip as failure risk pulling funding during it and losing the eventual return.
     sourceIds:
       - dora-roi-infoq
-  - text: Cutting junior hiring can empty the future senior pipeline. James Stanier asks managers to make the case for junior hiring and frame it as risk mitigation, not charity.
+  - headline: Cutting junior hiring can empty the future senior pipeline
+    text: Cutting junior hiring can empty the future senior pipeline. James Stanier asks managers to make the case for junior hiring and frame it as risk mitigation, not charity.
     sourceIds:
       - stanier-senior-engineers-2035
 first30Days:

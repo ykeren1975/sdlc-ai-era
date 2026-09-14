@@ -1,6 +1,9 @@
 ---
 name: agent-context-file
 description: Drafts or updates a repository instruction file for coding agents, covering build and test commands, conventions, architecture notes, internal APIs and lessons learned from past agent mistakes. Use when setting up a repository for AI coding agents, when an agent keeps making the same mistake, when onboarding an agent to an unfamiliar codebase, or when asked to write or refresh an agent instructions, context or conventions file.
+metadata:
+  title: "Agent context file"
+  summary: "Drafts or updates a file telling AI coding agents a repo's commands and conventions"
 ---
 
 # Agent Context File

@@ -1,6 +1,9 @@
 ---
 name: ai-feature-trust-states
 description: "Maps the trust and failure states of an AI-powered feature, such as uncertain answers, errors, refusals, slow responses and wrong actions, and drafts the transparency, control and recovery design for each, plus design-intent examples of acceptable and unacceptable output. Use when a UX designer is designing an AI assistant, chatbot, agent or generated-content feature, needs to plan what users see when the AI is unsure or wrong, or wants to hand product and QA examples of the output the design intends."
+metadata:
+  title: "AI feature trust states"
+  summary: "Plans what users see when an AI feature is unsure, slow or wrong, and how they recover"
 ---
 
 # AI Feature Trust States

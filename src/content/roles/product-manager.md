@@ -108,20 +108,26 @@ skills:
     - Building slides and first-draft roadmap documents by hand
     - Waiting on design or engineering for a first clickable mockup
 risks:
-  - text: A polished prototype can hide how much work a real product takes. Marty Cagan notes that some product managers "embarrass themselves in front of their engineers" by assuming the leap is easy.
+  - headline: A polished prototype can hide how much work a real product takes
+    highlight: true
+    text: A polished prototype can hide how much work a real product takes. Marty Cagan notes that some product managers "embarrass themselves in front of their engineers" by assuming the leap is easy.
     sourceIds:
       - svpg-prototypes-vs-products
-  - text: AI use can run ahead of company rules. In Productboard's survey, every respondent used AI tools, but only 65% said their company had a documented AI policy.
+  - headline: In Productboard's survey, AI use ran ahead of documented company AI policies
+    text: AI use can run ahead of company rules. In Productboard's survey, every respondent used AI tools, but only 65% said their company had a documented AI policy.
     sourceIds:
       - productboard-ai-pm-report
-  - text: Time saved is not the same as better decisions. Atlassian found the most common AI uses are routine tasks and documentation, while AI is not yet helping with prioritisation or planning. Only 40% of Productboard's respondents measure AI ROI through business outcomes such as ARR.
+  - headline: Time saved is not the same as better decisions
+    text: Time saved is not the same as better decisions. Atlassian found the most common AI uses are routine tasks and documentation, while AI is not yet helping with prioritisation or planning. Only 40% of Productboard's respondents measure AI ROI through business outcomes such as ARR.
     sourceIds:
       - atlassian-state-of-product-2026
       - productboard-ai-pm-report
-  - text: Trying a few prompts by hand does not show how an AI feature fails. Husain and Shankar argue you cannot know what to measure until you systematically find out how the product fails in specific contexts.
+  - headline: Trying a few prompts by hand does not show how an AI feature fails
+    text: Trying a few prompts by hand does not show how an AI feature fails. Husain and Shankar argue you cannot know what to measure until you systematically find out how the product fails in specific contexts.
     sourceIds:
       - husain-shankar-eval-systems
-  - text: Product teams in Atlassian's survey named integration challenges, trust in AI outputs and data security concerns as barriers holding them back.
+  - headline: In Atlassian's survey, integration, trust in AI output and data security held teams back
+    text: Product teams in Atlassian's survey named integration challenges, trust in AI outputs and data security concerns as barriers holding them back.
     sourceIds:
       - atlassian-state-of-product-2026
 first30Days:

@@ -1,6 +1,9 @@
 ---
 name: retro-prep
 description: Prepares a Sprint Retrospective by clustering team feedback into themes, drafting an agenda with activities and timings, and adding a question on how AI helped or hindered the Sprint, while keeping the team's own words visible. Use before a retrospective, when grouping retro sticky notes or survey answers, or when asked to "prepare the retro", "cluster this feedback" or "suggest a retrospective format".
+metadata:
+  title: "Retrospective prep"
+  summary: "Groups team feedback into themes and drafts a retrospective agenda"
 ---
 
 # Retro Prep

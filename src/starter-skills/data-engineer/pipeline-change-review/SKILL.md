@@ -1,6 +1,9 @@
 ---
 name: pipeline-change-review
 description: Reviews a proposed change to a data pipeline or transformation model, often drafted by an AI agent, for correctness, grain changes, downstream impact and missing tests, and produces a review with suggested tests. Use when reviewing a pull request that touches SQL models, ELT jobs, schema changes or pipeline code, or when asked to "review this model change", "check this pipeline PR" or "what could this change break downstream".
+metadata:
+  title: "Pipeline change review"
+  summary: "Reviews a data pipeline change for errors, downstream impact and missing tests"
 ---
 
 # Pipeline Change Review

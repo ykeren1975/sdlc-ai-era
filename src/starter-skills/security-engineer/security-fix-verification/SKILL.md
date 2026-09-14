@@ -1,6 +1,9 @@
 ---
 name: security-fix-verification
 description: Verifies a proposed security fix, especially one suggested by an AI tool or autofix feature, by checking that it closes the vulnerability on every path, does not introduce new vulnerabilities, keeps program behaviour intact and adds only real, intended dependencies. Use when reviewing an AI-suggested security patch, a scanner autofix, a vulnerability remediation pull request, or when asked "does this fix actually close the issue".
+metadata:
+  title: "Security fix verification"
+  summary: "Checks that a security fix, including AI-suggested ones, closes the hole safely"
 ---
 
 # Security Fix Verification

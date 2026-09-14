@@ -39,8 +39,13 @@ const tagline = (r: CollectionEntry<"roles">) =>
       <h2 id="map-heading" class="text-xl font-semibold tracking-tight">
         Find your role in the lifecycle
       </h2>
-      <p class="text-sm text-muted">
-        Dots show where AI changes each role's work. Bigger dot, more changes.
+      <p class="hidden text-sm text-muted lg:block">
+        Dots show the phases where this guide lists changes for each role.
+        Bigger dot, more changes listed.
+      </p>
+      <p class="text-sm text-muted lg:hidden">
+        The bar under each role runs from Plan to Operate. Filled segments are
+        phases where this guide lists changes.
       </p>
     </div>
     <p
@@ -173,10 +178,6 @@ const tagline = (r: CollectionEntry<"roles">) =>
         </ul>
       </div>
     ))}
-    <p class="text-xs text-muted">
-      The bar under each role shows the lifecycle from Plan to Operate; filled
-      segments are phases where AI changes the work.
-    </p>
   </div>
 </section>
 

@@ -1,6 +1,9 @@
 ---
 name: research-synthesis-check
 description: "Drafts themes and findings from moderated user research sessions, such as interview transcripts and usability test notes, links every finding to raw evidence, and lists what needs the researcher's own judgement, such as possible priming or leading questions. Use when a UX designer or researcher asks to analyse or synthesise interviews or usability sessions, code or tag session notes, separate observed behaviour from what participants said, or check an AI-generated research summary against the raw data. For high-volume feedback such as tickets or surveys, use the product manager's feedback synthesis instead."
+metadata:
+  title: "Research synthesis check"
+  summary: "Drafts findings from interviews and usability tests, each linked to raw evidence"
 ---
 
 # Research Synthesis Check

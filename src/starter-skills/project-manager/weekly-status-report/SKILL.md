@@ -1,6 +1,9 @@
 ---
 name: weekly-status-report
 description: Drafts a weekly project status report from plan, tracker and meeting notes, checks it against the underlying data, and flags low-confidence items and escalation decisions for the project manager. Use when preparing a weekly or fortnightly status update, a steering group summary or a sponsor report, or when asked to "write the status report", "summarise project progress" or "check this AI-generated status update".
+metadata:
+  title: "Weekly status report"
+  summary: "Drafts a weekly project status report, checks it against the data and flags doubts"
 ---
 
 # Weekly Status Report

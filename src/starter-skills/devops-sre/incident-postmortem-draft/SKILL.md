@@ -1,6 +1,9 @@
 ---
 name: incident-postmortem-draft
 description: Drafts a blameless incident postmortem from chat logs, alerts, metrics, deploy history and responder notes, building an evidence-linked timeline, contributing factors and proposed action items, and marking every claim that lacks evidence. Use after an outage or incident when asked to write a postmortem, incident report, incident review, incident retrospective or timeline, or to check an AI-drafted postmortem against the evidence.
+metadata:
+  title: "Incident postmortem draft"
+  summary: "Drafts a blameless incident postmortem from logs and notes, flagging unsupported claims"
 ---
 
 # Incident Postmortem Draft

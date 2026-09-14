@@ -1,6 +1,9 @@
 ---
 name: test-cases-from-acceptance-criteria
 description: Drafts a reviewable set of test cases from a user story, acceptance criteria or requirements, covering functional paths, negative and boundary cases, and non-functional requirements such as performance, accessibility, security and privacy, with traceability back to each criterion. Use when writing test cases or test ideas for a new story or feature, doing test analysis and design, or checking an AI-drafted test list for gaps.
+metadata:
+  title: "Test cases from acceptance criteria"
+  summary: "Drafts test cases from a user story, covering edge cases and non-functional needs"
 ---
 
 # Test Cases from Acceptance Criteria

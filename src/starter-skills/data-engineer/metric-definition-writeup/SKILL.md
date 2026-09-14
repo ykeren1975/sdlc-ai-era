@@ -1,6 +1,9 @@
 ---
 name: metric-definition-writeup
 description: Drafts a clear, unambiguous business definition for a metric, covering calculation, grain, filters, edge cases, owner and verified example questions, so people and AI query tools use the same meaning. Use when a metric is defined differently in different reports, before adding a metric to a semantic layer or data model, or when asked to "define this metric", "document what active users means" or "write a metric spec".
+metadata:
+  title: "Metric definition write-up"
+  summary: "Writes one clear definition of a metric so people and AI query tools use the same meaning"
 ---
 
 # Metric Definition Write-up

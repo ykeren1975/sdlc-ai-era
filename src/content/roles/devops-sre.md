@@ -122,19 +122,25 @@ skills:
     - Hand-writing boilerplate Terraform and YAML
     - Assembling incident timelines by hand
 risks:
-  - text: Generated infrastructure code can be valid but insecure. A 2026 Terraform benchmark found well-formed output was no guarantee of security compliance, and that prompting alone did not fix it.
+  - headline: Generated infrastructure code can be valid but insecure, one Terraform benchmark found
+    text: Generated infrastructure code can be valid but insecure. A 2026 Terraform benchmark found well-formed output was no guarantee of security compliance, and that prompting alone did not fix it.
     sourceIds:
       - text-to-terraform-security
-  - text: An action that is safe in one system state can be unsafe in another. Google's example is a binary rollback, generally safe but not while a service is receiving a configuration push, which is why its setup combines typed tools, a policy layer that checks the current context, and a human confirmation step.
+  - headline: An action that is safe in one system state, like a rollback, can be unsafe in another
+    highlight: true
+    text: An action that is safe in one system state can be unsafe in another. Google's example is a binary rollback, generally safe but not while a service is receiving a configuration push, which is why its setup combines typed tools, a policy layer that checks the current context, and a human confirmation step.
     sourceIds:
       - google-sre-gemini-cli
-  - text: An LLM-drafted postmortem can look complete and still be wrong. Lorin Hochstein notes there is no obvious test for correctness, so errors may go unnoticed.
+  - headline: An LLM-drafted postmortem can look complete and still be wrong
+    text: An LLM-drafted postmortem can look complete and still be wrong. Lorin Hochstein notes there is no obvious test for correctness, so errors may go unnoticed.
     sourceIds:
       - hochstein-llm-incident-reports
-  - text: AI can move toil instead of removing it. In Catchpoint's report, 16% of respondents said AI increased toil, and Catchpoint lists new work such as model monitoring and managing incidents caused by AI.
+  - headline: AI can move toil instead of removing it, Catchpoint's report suggests
+    text: AI can move toil instead of removing it. In Catchpoint's report, 16% of respondents said AI increased toil, and Catchpoint lists new work such as model monitoring and managing incidents caused by AI.
     sourceIds:
       - catchpoint-sre-report-2026
-  - text: More change volume without strong automated testing, version control and fast feedback loops leads to instability, according to DORA.
+  - headline: More change volume without strong testing and fast feedback leads to instability, per DORA
+    text: More change volume without strong automated testing, version control and fast feedback loops leads to instability, according to DORA.
     sourceIds:
       - dora-2025
 first30Days:

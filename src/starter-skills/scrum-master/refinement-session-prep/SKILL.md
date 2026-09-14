@@ -1,6 +1,9 @@
 ---
 name: refinement-session-prep
 description: Prepares a backlog refinement session by scanning draft backlog items, including AI-drafted stories, for unclear outcomes, missing acceptance criteria, hidden dependencies and items too large for a Sprint. Its output is facilitation questions for the team, not a quality verdict on the items (a requirements quality review is a business analyst skill). Use before backlog refinement, when bringing AI-generated user stories to the team, or when asked to "prep refinement" or "which items are ready to discuss in refinement".
+metadata:
+  title: "Refinement session prep"
+  summary: "Spots unclear or oversized backlog items and suggests questions for the team to discuss"
 ---
 
 # Refinement Session Prep

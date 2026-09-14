@@ -13,7 +13,7 @@ const siteName = "SDLC in the AI Era";
 const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
 const nav = [
   { href: url("/"), label: "All roles" },
-  { href: url("/agent-skills"), label: "Agent skills" },
+  { href: url("/agent-skills"), label: "Agent Skills guide" },
 ];
 ---
 
@@ -60,7 +60,10 @@ const nav = [
             <ul class="flex gap-5 text-sm">
               {nav.map((item) => (
                 <li>
-                  <a href={item.href} class="text-muted hover:text-ink">
+                  <a
+                    href={item.href}
+                    class="inline-flex min-h-10 items-center px-1 text-muted hover:text-ink"
+                  >
                     {item.label}
                   </a>
                 </li>
@@ -76,9 +79,9 @@ const nav = [
     </main>
     <footer class="border-t border-line">
       <div class="mx-auto max-w-6xl px-4 py-8 text-sm text-muted sm:px-6">
-        A researched snapshot of how software roles are changing. Every claim
-        links to its source. Content is reviewed per role; check each page's
-        review date.
+        A researched snapshot of how software roles are changing. Research
+        claims link to their sources. Sections marked <em>Our suggestion</em>
+        are the editors' practical advice. Each page shows its review date.
       </div>
     </footer>
   </body>

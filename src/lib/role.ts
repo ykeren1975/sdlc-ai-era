@@ -19,7 +19,15 @@ export async function getStarterSkills(roleId: string, names: string[] = []) {
       path.join(STARTER_SKILLS_DIR, roleId, name, "SKILL.md"),
       "utf8",
     );
-    return { entry, raw, role: roleId, name };
+    const meta = entry.data.metadata ?? {};
+    return {
+      entry,
+      raw,
+      role: roleId,
+      name,
+      title: meta.title ?? name,
+      summary: meta.summary ?? entry.data.description,
+    };
   });
 }
 

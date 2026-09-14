@@ -120,20 +120,26 @@ skills:
     - Writing meeting and retrospective notes from scratch
     - Building workshop agendas and templates from a blank page
 risks:
-  - text: The Expansion Pack warns of automation bias and complacency, where people over-trust automated systems and become passive in oversight.
+  - headline: The Expansion Pack warns people can over-trust automation and grow passive in oversight
+    text: The Expansion Pack warns of automation bias and complacency, where people over-trust automated systems and become passive in oversight.
     sourceIds:
       - scrum-expansion-ai
-  - text: Speed can crowd out quality. The Expansion Pack warns that skipping testing in the rush to capitalise on AI speed builds technical debt that will almost certainly nullify future gains, and DORA advises avoiding massive pull requests when using AI tools.
+  - headline: Speed can crowd out quality; the Expansion Pack warns skipped testing builds debt
+    highlight: true
+    text: Speed can crowd out quality. The Expansion Pack warns that skipping testing in the rush to capitalise on AI speed builds technical debt that will almost certainly nullify future gains, and DORA advises avoiding massive pull requests when using AI tools.
     sourceIds:
       - scrum-expansion-ai
       - dora-small-batches
-  - text: Adoption can run ahead of oversight. Digital.ai's survey, primarily of agile coaches and consultants at large enterprises, found only 49% have governance guardrails in place.
+  - headline: Adoption can run ahead of oversight, with many lacking guardrails in Digital.ai's survey
+    text: Adoption can run ahead of oversight. Digital.ai's survey, primarily of agile coaches and consultants at large enterprises, found only 49% have governance guardrails in place.
     sourceIds:
       - digital-ai-state-of-agile-18
-  - text: Retrospective input may leave your tools. Parabol's AI summaries send reflections, comments and tasks to OpenAI to produce a summary; Parabol says it has asked OpenAI to exclude its data from model training. Check your data policy before switching on AI features in facilitation tools.
+  - headline: Retrospective input may leave your tools, as Parabol's AI summaries send it to OpenAI
+    text: Retrospective input may leave your tools. Parabol's AI summaries send reflections, comments and tasks to OpenAI to produce a summary; Parabol says it has asked OpenAI to exclude its data from model training. Check your data policy before switching on AI features in facilitation tools.
     sourceIds:
       - parabol-ai-summaries
-  - text: In Wolpers' survey, the most frequently mentioned concerns were the erosion of agile values and principles, the loss of human-centred collaboration, and reduced critical thinking.
+  - headline: Agile values, collaboration and critical thinking may erode, say Wolpers' respondents
+    text: In Wolpers' survey, the most frequently mentioned concerns were the erosion of agile values and principles, the loss of human-centred collaboration, and reduced critical thinking.
     sourceIds:
       - ai4agile-report-2026
 first30Days:
