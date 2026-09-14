@@ -19,6 +19,7 @@ Before writing, read:
 - Open every page you cite with WebFetch and confirm it says what you attribute to it. Never cite a URL you did not open. Never invent a URL.
 - AI-era claims: sources from 2024 or later. Prefer primary sources over blog summaries.
 - Statistics only if the exact figure is on the page — copy the sentence into that source's `quote`.
+- Follow the "Lessons learned" section of `CLAUDE.md` strictly. Before finishing, reread each `aiEra` sentence clause by clause and delete any clause you cannot point to in a cited source.
 
 ## Writing
 

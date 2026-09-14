@@ -1,6 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 4321;
+// Dedicated port so tests never hit a dev/preview server you have open.
+const PORT = 4329;
 
 export default defineConfig({
   testDir: "tests",
@@ -11,9 +12,10 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: `npm run build && npx astro preview --port ${PORT}`,
+    // Always rebuild so tests never run against stale content.
+    command: `npm run build && node scripts/serve-dist.mjs ${PORT}`,
     url: `http://localhost:${PORT}/sdlc-ai-era/`,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 180_000,
   },
 });

@@ -47,3 +47,9 @@ A static website: a visitor picks their SDLC role and sees what changes for them
 ## Lessons learned
 
 <!-- Add a bullet each time Claude makes a mistake worth preventing. -->
+
+- **Don't pad a sourced sentence with unsourced detail.** Developer pilot: true claims got extra clauses no cited source had ("agents run tests as they work", "AI reviewers give a first pass", "small batches"). Every clause of an `aiEra` sentence must be in a cited source, or be cut.
+- **Don't turn one person's quote into a group finding.** "One engineer estimated…" never becomes "engineers report…". Comparative words ("far more", "most", "increasingly") need a source that actually compares.
+- **Don't generalise from one company or a niche group.** Findings about one vendor's own staff (e.g. Anthropic's internal study) are written as "At <company>, …", not as industry-wide truths. Use surveys for "most developers".
+- **Don't use `astro preview` from Claude sessions or tests.** Astro 7 detects AI agents and backgrounds the preview with a lock file, which breaks Playwright's `webServer`. Tests serve `dist/` with `node scripts/serve-dist.mjs <port>`. For a manual look, run the same script in the background.
+- **Recheck vendor reports for a newer edition.** Annual reports (Veracode, DORA, Stack Overflow, State of DevOps) get updated. Before citing one, search for a newer edition, and date claims from older studies ("early-2025 tools").

@@ -1,0 +1,59 @@
+# Single source of truth for tools. Role files reference entries by id.
+# Only the main session edits this file (research subagents propose additions).
+
+- id: github-copilot
+  name: GitHub Copilot
+  vendor: GitHub
+  url: https://github.com/features/copilot
+  category: ai-coding-assistant
+  description: AI pair programmer with IDE completions, chat, agent mode and a cloud agent that opens pull requests. Free tier available.
+  status: active
+  lastVerified: 2026-09-14
+- id: claude-code
+  name: Claude Code
+  vendor: Anthropic
+  url: https://www.claude.com/product/claude-code
+  category: ai-agent
+  description: Agentic coding tool that works in your codebase from the terminal, IDE, web and Slack to build, debug and refactor.
+  status: active
+  lastVerified: 2026-09-14
+- id: cursor
+  name: Cursor
+  vendor: Anysphere
+  url: https://cursor.com/
+  category: ai-coding-assistant
+  description: AI code editor with tab completion, coding agents and Bugbot pull request review.
+  status: active
+  lastVerified: 2026-09-14
+- id: gemini-cli
+  name: Gemini CLI
+  vendor: Google
+  url: https://github.com/google-gemini/gemini-cli
+  category: ai-agent
+  description: Open-source terminal AI agent using Gemini models to query codebases and automate tasks, with a free usage tier.
+  status: active
+  lastVerified: 2026-09-14
+- id: spec-kit
+  name: Spec Kit
+  vendor: GitHub
+  url: https://github.com/github/spec-kit
+  category: requirements-and-docs
+  description: Open-source toolkit for spec-driven development that guides coding agents through spec, plan, tasks and implementation.
+  status: active
+  lastVerified: 2026-09-14
+- id: kiro
+  name: Kiro
+  vendor: Amazon Web Services
+  url: https://kiro.dev/
+  category: ai-coding-assistant
+  description: Agentic IDE and CLI that turns prompts into requirements, design and tasks before implementing them, with automation hooks.
+  status: active
+  lastVerified: 2026-09-14
+- id: coderabbit
+  name: CodeRabbit
+  vendor: CodeRabbit
+  url: https://www.coderabbit.ai/
+  category: code-review
+  description: AI code review service that comments on GitHub and GitLab pull requests with suggested fixes.
+  status: active
+  lastVerified: 2026-09-14
