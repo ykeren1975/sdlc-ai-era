@@ -1,0 +1,63 @@
+---
+import "../styles/global.css";
+import { url } from "../lib/url";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const siteName = "SDLC in the AI Era";
+const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
+const nav = [{ href: url("/"), label: "Roles" }];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+  </head>
+  <body class="min-h-screen">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:rounded focus:bg-surface focus:px-3 focus:py-2"
+    >
+      Skip to content
+    </a>
+    <header class="border-b border-line">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+        <a href={url("/")} class="font-semibold tracking-tight no-underline">
+          SDLC <span class="text-accent">in the AI Era</span>
+        </a>
+        <nav aria-label="Main">
+          <ul class="flex gap-5 text-sm">
+            {nav.map((item) => (
+              <li>
+                <a href={item.href} class="text-muted hover:text-ink">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+      <slot />
+    </main>
+    <footer class="border-t border-line">
+      <div class="mx-auto max-w-6xl px-4 py-8 text-sm text-muted sm:px-6">
+        A researched snapshot of how software roles are changing. Every claim
+        links to its source. Content is reviewed per role; check each page's
+        review date.
+      </div>
+    </footer>
+  </body>
+</html>

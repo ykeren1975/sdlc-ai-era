@@ -1,0 +1,42 @@
+---
+import {
+  ChartGantt,
+  ClipboardList,
+  Code,
+  Compass,
+  Database,
+  FlaskConical,
+  Layers,
+  PenTool,
+  RefreshCw,
+  ServerCog,
+  ShieldCheck,
+  Users,
+} from "@lucide/astro";
+import type { RoleIcon } from "../lib/taxonomy";
+
+interface Props {
+  name: RoleIcon;
+  class?: string;
+}
+
+const icons = {
+  "clipboard-list": ClipboardList,
+  "chart-gantt": ChartGantt,
+  code: Code,
+  "flask-conical": FlaskConical,
+  compass: Compass,
+  "pen-tool": PenTool,
+  "server-cog": ServerCog,
+  layers: Layers,
+  "shield-check": ShieldCheck,
+  database: Database,
+  users: Users,
+  "refresh-cw": RefreshCw,
+} satisfies Record<RoleIcon, unknown>;
+
+const { name, class: className } = Astro.props;
+const Icon = icons[name];
+---
+
+<Icon class={className} aria-hidden="true" stroke-width={1.75} />

@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  skills: CollectionEntry<"roles">["data"]["skills"];
+}
+
+const { skills } = Astro.props;
+const groups = [
+  {
+    title: "New skills",
+    hint: "Didn't really exist in the role before",
+    items: skills.new,
+    marker: "bg-accent",
+  },
+  {
+    title: "More important now",
+    hint: "Existing skills that AI makes more valuable",
+    items: skills.amplified,
+    marker: "bg-ink",
+  },
+  {
+    title: "Less central",
+    hint: "Still useful, but AI now does much of it",
+    items: skills.lessImportant,
+    marker: "bg-line",
+  },
+];
+---
+
+<div class="grid gap-4 md:grid-cols-3">
+  {groups.map((group) => (
+    <div class="rounded-xl border border-line bg-surface p-5">
+      <h3 class="font-semibold">{group.title}</h3>
+      <p class="mb-3 text-xs text-muted">{group.hint}</p>
+      <ul class="space-y-2 text-sm">
+        {group.items.map((item) => (
+          <li class="flex gap-2.5">
+            <span
+              class:list={["mt-1.5 size-2 shrink-0 rounded-full", group.marker]}
+              aria-hidden="true"
+            />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>

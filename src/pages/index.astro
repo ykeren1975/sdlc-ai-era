@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import RoleCard from "../components/RoleCard.astro";
+import Base from "../layouts/Base.astro";
+
+const roles = (await getCollection("roles")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Base
+  title="SDLC in the AI Era"
+  description="Pick your role in the software development lifecycle and see what changes for you with AI: how the work shifts, which tools to use, and which skills matter now."
+>
+  <section class="mb-12 max-w-3xl">
+    <p class="mb-3 text-sm font-medium text-accent">
+      A role-by-role guide, with sources
+    </p>
+    <h1 class="mb-5 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+      What changes for <em class="text-accent not-italic">you</em> when software
+      is built with AI?
+    </h1>
+    <p class="text-lg leading-relaxed text-pretty text-muted">
+      Choose your role to see how your day-to-day work shifts from the
+      traditional SDLC to an AI-assisted one, which tools are worth using, which
+      skills to build, and what to watch out for.
+    </p>
+  </section>
+
+  <section aria-labelledby="roles-heading">
+    <h2 id="roles-heading" class="mb-5 text-xl font-semibold">
+      Choose your role
+    </h2>
+    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {roles.map((role) => (
+        <RoleCard role={role} />
+      ))}
+    </ul>
+  </section>
+</Base>

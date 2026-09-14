@@ -1,0 +1,45 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { PHASE_LABELS } from "../lib/taxonomy";
+import SourceRefs from "./SourceRefs.astro";
+
+interface Props {
+  shifts: CollectionEntry<"roles">["data"]["shifts"];
+  sourceNumbers: Map<string, number>;
+}
+
+const { shifts, sourceNumbers } = Astro.props;
+---
+
+<ol class="space-y-4">
+  {shifts.map((shift) => (
+    <li
+      class="overflow-hidden rounded-xl border border-line bg-surface"
+      data-testid="shift"
+    >
+      <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-line px-5 py-3">
+        <span class="text-xs font-medium tracking-wide text-muted uppercase">
+          {PHASE_LABELS[shift.phase]}
+        </span>
+        <h3 class="font-semibold">{shift.activity}</h3>
+      </div>
+      <div class="grid md:grid-cols-2">
+        <div class="bg-before px-5 py-4">
+          <p class="mb-1 text-xs font-medium tracking-wide text-muted uppercase">
+            Traditional
+          </p>
+          <p class="text-sm leading-relaxed text-muted">{shift.traditional}</p>
+        </div>
+        <div class="px-5 py-4">
+          <p class="mb-1 text-xs font-medium tracking-wide text-accent uppercase">
+            AI era
+          </p>
+          <p class="text-sm leading-relaxed">
+            {shift.aiEra}
+            <SourceRefs ids={shift.sourceIds} sourceNumbers={sourceNumbers} />
+          </p>
+        </div>
+      </div>
+    </li>
+  ))}
+</ol>

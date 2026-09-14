@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { url } from "../lib/url";
+import RoleIcon from "./RoleIcon.astro";
+
+interface Props {
+  role: CollectionEntry<"roles">;
+}
+
+const { role } = Astro.props;
+---
+
+<li data-testid="role-card">
+  <a
+    href={url(`/roles/${role.id}`)}
+    class="group flex h-full flex-col gap-3 rounded-xl border border-line bg-surface p-5 no-underline transition hover:-translate-y-0.5 hover:border-accent hover:shadow-sm"
+  >
+    <span class="flex size-10 items-center justify-center rounded-lg bg-accent-soft text-accent">
+      <RoleIcon name={role.data.icon} class="size-5" />
+    </span>
+    <span class="text-lg font-semibold tracking-tight group-hover:text-accent">
+      {role.data.title}
+    </span>
+    <span class="text-sm leading-relaxed text-muted">{role.data.summary}</span>
+  </a>
+</li>

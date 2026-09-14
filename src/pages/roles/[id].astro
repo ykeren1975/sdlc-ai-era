@@ -1,0 +1,211 @@
+---
+import { ArrowLeft } from "@lucide/astro";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import RoleIcon from "../../components/RoleIcon.astro";
+import ShiftList from "../../components/ShiftList.astro";
+import SkillsPanel from "../../components/SkillsPanel.astro";
+import SourceRefs from "../../components/SourceRefs.astro";
+import ToolList from "../../components/ToolList.astro";
+import Base from "../../layouts/Base.astro";
+import { PHASE_LABELS } from "../../lib/taxonomy";
+import { url } from "../../lib/url";
+
+export async function getStaticPaths() {
+  const roles = await getCollection("roles");
+  return roles.map((role) => ({ params: { id: role.id }, props: { role } }));
+}
+
+interface Props {
+  role: CollectionEntry<"roles">;
+}
+
+const { role } = Astro.props;
+const { data } = role;
+const { Content } = await render(role);
+
+const sourceNumbers = new Map(data.sources.map((s, i) => [s.id, i + 1]));
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+const sections = [
+  { id: "shifts", label: "How the work changes" },
+  { id: "tools", label: "Tools" },
+  { id: "skills", label: "Skills" },
+  { id: "risks", label: "Risks" },
+  ...(data.first30Days?.length
+    ? [{ id: "start", label: "Getting started" }]
+    : []),
+  { id: "sources", label: "Sources" },
+];
+---
+
+<Base title={data.title} description={data.summary}>
+  <a
+    href={url("/")}
+    class="mb-8 inline-flex items-center gap-1.5 text-sm text-muted no-underline hover:text-ink"
+  >
+    <ArrowLeft class="size-4" aria-hidden="true" /> All roles
+  </a>
+
+  <header class="mb-10 max-w-3xl">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="flex size-12 items-center justify-center rounded-xl bg-accent-soft text-accent">
+        <RoleIcon name={data.icon} class="size-6" />
+      </span>
+      <p class="text-sm text-muted" data-testid="last-reviewed">
+        Last reviewed {formatDate(data.lastReviewed)}
+      </p>
+    </div>
+    <h1 class="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+      {data.title}
+    </h1>
+    <p class="text-lg leading-relaxed text-pretty text-muted">{data.summary}</p>
+    <ul
+      class="mt-5 flex flex-wrap gap-2"
+      aria-label="SDLC phases this role works in"
+    >
+      {data.sdlcPhases.map((phase) => (
+        <li class="rounded-full border border-line px-3 py-1 text-xs text-muted">
+          {PHASE_LABELS[phase]}
+        </li>
+      ))}
+    </ul>
+  </header>
+
+  <div class="lg:grid lg:grid-cols-[12rem_1fr] lg:gap-12">
+    <nav aria-label="On this page" class="hidden lg:block">
+      <ul class="sticky top-8 space-y-2 text-sm">
+        {sections.map((s) => (
+          <li>
+            <a href={`#${s.id}`} class="text-muted no-underline hover:text-ink">
+              {s.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="min-w-0 space-y-14">
+      <section id="shifts" aria-labelledby="shifts-heading">
+        <h2
+          id="shifts-heading"
+          class="mb-2 text-2xl font-semibold tracking-tight"
+        >
+          How the work changes
+        </h2>
+        <p class="mb-6 text-muted">
+          The same responsibilities, done differently.
+        </p>
+        <ShiftList shifts={data.shifts} sourceNumbers={sourceNumbers} />
+      </section>
+
+      <section id="tools" aria-labelledby="tools-heading">
+        <h2
+          id="tools-heading"
+          class="mb-2 text-2xl font-semibold tracking-tight"
+        >
+          Tools
+        </h2>
+        <p class="mb-6 text-muted">
+          <strong class="font-medium text-ink">Should use</strong>: widely
+          adopted and core to the role.{" "}
+          <strong class="font-medium text-ink">Could use</strong>: worth a look
+          depending on your context.
+        </p>
+        <ToolList tools={data.tools} sourceNumbers={sourceNumbers} />
+      </section>
+
+      <section id="skills" aria-labelledby="skills-heading">
+        <h2
+          id="skills-heading"
+          class="mb-6 text-2xl font-semibold tracking-tight"
+        >
+          Skills
+        </h2>
+        <SkillsPanel skills={data.skills} />
+      </section>
+
+      <section id="risks" aria-labelledby="risks-heading">
+        <h2
+          id="risks-heading"
+          class="mb-6 text-2xl font-semibold tracking-tight"
+        >
+          Risks to watch
+        </h2>
+        <ul class="space-y-3">
+          {data.risks.map((risk) => (
+            <li class="rounded-xl border border-line bg-surface px-5 py-4 text-sm leading-relaxed">
+              {risk.text}
+              <SourceRefs ids={risk.sourceIds} sourceNumbers={sourceNumbers} />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {!!data.first30Days?.length && (
+        <section id="start" aria-labelledby="start-heading">
+          <div class="mb-6 flex flex-wrap items-baseline gap-3">
+            <h2
+              id="start-heading"
+              class="text-2xl font-semibold tracking-tight"
+            >
+              Getting started
+            </h2>
+            <span class="rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">
+              Editorial
+            </span>
+          </div>
+          <div class="grid gap-6 md:grid-cols-2">
+            <ol class="list-decimal space-y-2 pl-5 text-sm leading-relaxed marker:text-accent">
+              {data.first30Days.map((step) => (
+                <li>{step}</li>
+              ))}
+            </ol>
+            <div class="space-y-3 text-sm leading-relaxed text-muted">
+              <Content />
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section id="sources" aria-labelledby="sources-heading">
+        <h2
+          id="sources-heading"
+          class="mb-6 text-2xl font-semibold tracking-tight"
+        >
+          Sources
+        </h2>
+        <ol class="space-y-3 text-sm" data-testid="sources">
+          {data.sources.map((source, i) => (
+            <li id={`source-${source.id}`} class="flex scroll-mt-8 gap-3">
+              <span class="w-6 shrink-0 text-right text-muted">{i + 1}.</span>
+              <div class="min-w-0">
+                <a
+                  href={source.url}
+                  rel="noopener"
+                  class="font-medium break-words hover:text-accent"
+                >
+                  {source.title}
+                </a>
+                <p class="text-muted">
+                  {source.publisher}
+                  {source.published && <> · {formatDate(source.published)}</>}
+                </p>
+                {source.quote && (
+                  <blockquote class="mt-1 border-l-2 border-line pl-3 text-muted italic">
+                    “{source.quote}”
+                  </blockquote>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </div>
+  </div>
+</Base>

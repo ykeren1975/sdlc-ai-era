@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: oklch(98.5% 0.006 85);
+  --color-surface: oklch(100% 0 0);
+  --color-ink: oklch(22% 0.02 260);
+  --color-muted: oklch(46% 0.02 260);
+  --color-line: oklch(90% 0.01 260);
+  --color-before: oklch(95% 0.008 260);
+  --color-accent: oklch(48% 0.13 185);
+  --color-accent-soft: oklch(95% 0.035 185);
+}
+
+@layer base {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-paper: oklch(18% 0.015 260);
+      --color-surface: oklch(22% 0.018 260);
+      --color-ink: oklch(94% 0.01 260);
+      --color-muted: oklch(74% 0.015 260);
+      --color-line: oklch(32% 0.02 260);
+      --color-before: oklch(25% 0.015 260);
+      --color-accent: oklch(78% 0.12 185);
+      --color-accent-soft: oklch(30% 0.05 185);
+    }
+  }
+
+  html {
+    color-scheme: light dark;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+
+  a {
+    @apply underline-offset-4;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+}
