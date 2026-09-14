@@ -244,9 +244,9 @@ test.describe("role page interactions (developer)", () => {
     await page.emulateMedia({ media: "print" });
     await expect(page.locator("header.no-print")).toBeHidden();
     await expect(page.locator("[data-share]")).toBeHidden();
-    // The print button's beforeprint handler opens every disclosure.
+    // Full print opens every disclosure except full SKILL.md sources.
     await page.evaluate(() => dispatchEvent(new Event("beforeprint")));
-    await expect(page.locator("details:not([open])")).toHaveCount(0);
+    await expect(page.locator("details:not([open]):not([data-print-keep-closed])")).toHaveCount(0);
     await expect(
       page.getByTestId("shift").first().getByText("Now", { exact: true }),
     ).toBeVisible();
@@ -356,7 +356,7 @@ test.describe("role page structure (packages B and C)", () => {
     const cards = page.getByTestId("summary").getByTestId("highlight").locator("a");
     await expect(cards).toHaveCount(3);
     const href = await cards.first().getAttribute("href");
-    expect(href).toMatch(/^#change-\d+$/);
+    expect(href).toMatch(/^#change-[a-z0-9-]+$/);
     await cards.first().click();
     await expect(page.locator(`${href} > details`)).toHaveAttribute("open", "");
   });

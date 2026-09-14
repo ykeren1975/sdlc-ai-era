@@ -2,6 +2,8 @@
 import { ChevronDown } from "@lucide/astro";
 import type { CollectionEntry } from "astro:content";
 import { PHASE_LABELS } from "../lib/taxonomy";
+import { changeIds } from "../lib/anchors";
+import CopyItemLink from "./CopyItemLink.astro";
 import SourceRefs from "./SourceRefs.astro";
 
 interface Props {
@@ -10,14 +12,15 @@ interface Props {
 }
 
 const { shifts, sourceNumbers } = Astro.props;
+const ids = changeIds(shifts);
 ---
 
 <div data-disclosure-group>
-  <div class="no-print mb-3 flex justify-end">
+  <div class="no-print mb-2 flex justify-end">
     <button
       type="button"
       data-toggle-all
-      class="rounded-lg px-2 py-1 text-sm font-medium text-accent hover:bg-accent-soft"
+      class="min-h-11 rounded-lg px-3 text-sm font-medium text-accent hover:bg-accent-soft"
     >
       Expand all
     </button>
@@ -25,19 +28,22 @@ const { shifts, sourceNumbers } = Astro.props;
   <ul class="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
     {shifts.map((shift, i) => (
       <li
-        id={`change-${i + 1}`}
+        id={ids[i]}
         data-testid="shift"
-        class="print-break-avoid scroll-mt-20"
+        class="print-break-avoid scroll-mt-24"
       >
         <details class="group">
-          <summary class="flex items-start gap-3 px-4 py-3.5 hover:bg-accent-soft sm:gap-4 sm:px-5">
-            <span class="mt-0.5 w-24 shrink-0 text-xs font-medium tracking-wide text-muted uppercase max-sm:hidden">
+          <summary class="flex min-h-12 items-start gap-3 px-4 py-3 hover:bg-accent-soft sm:gap-4 sm:px-5 sm:py-3.5">
+            <span class="mt-0.5 hidden w-24 shrink-0 text-xs font-medium tracking-wide text-muted uppercase sm:block">
               {PHASE_LABELS[shift.phase]}
             </span>
             <span class="min-w-0 flex-1">
+              <span class="block text-[11px] font-medium tracking-wide text-muted uppercase sm:hidden">
+                {PHASE_LABELS[shift.phase]}
+              </span>
               <span class="block font-semibold">{shift.activity}</span>
-              <span class="block text-sm text-muted">
-                {shift.headline ?? shift.aiEra}
+              <span class="block text-[15px] text-muted sm:text-sm">
+                {shift.headline}
               </span>
             </span>
             <ChevronDown
@@ -46,11 +52,11 @@ const { shifts, sourceNumbers } = Astro.props;
             />
           </summary>
           <div class="grid gap-px border-t border-line bg-line sm:grid-cols-2">
-            <div class="bg-before px-5 py-4">
+            <div class="bg-before px-5 py-4" data-print-hide="summary">
               <p class="mb-1 text-xs font-medium tracking-wide text-muted uppercase">
                 Before
               </p>
-              <p class="text-sm leading-relaxed text-muted">
+              <p class="text-[15px] leading-relaxed text-muted sm:text-sm">
                 {shift.traditional}
               </p>
             </div>
@@ -58,13 +64,16 @@ const { shifts, sourceNumbers } = Astro.props;
               <p class="mb-1 text-xs font-medium tracking-wide text-accent uppercase">
                 Now
               </p>
-              <p class="text-sm leading-relaxed">
+              <p class="text-[15px] leading-relaxed sm:text-sm">
                 {shift.aiEra}
                 <SourceRefs
                   ids={shift.sourceIds}
                   sourceNumbers={sourceNumbers}
                 />
               </p>
+              <div class="mt-2">
+                <CopyItemLink target={ids[i]} />
+              </div>
             </div>
           </div>
         </details>

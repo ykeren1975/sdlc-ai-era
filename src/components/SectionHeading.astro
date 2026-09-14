@@ -1,0 +1,23 @@
+---
+// Section H2 with a hover/focus "#" link for sharing the section.
+// The link sits outside the <h2> so the heading's accessible name stays clean.
+interface Props {
+  id: string;
+  class?: string;
+}
+const { id, class: className = "" } = Astro.props;
+---
+
+<div class:list={["group/heading flex items-baseline gap-2", className]}>
+  <h2 id={`${id}-heading`} class="text-2xl font-semibold tracking-tight">
+    <slot />
+  </h2>
+  <a
+    href={`#${id}`}
+    class="no-print inline-flex min-h-6 min-w-6 items-center justify-center rounded text-lg text-muted no-underline opacity-0 group-hover/heading:opacity-100 focus-visible:opacity-100"
+    aria-label="Link to this section"
+    data-section-anchor
+  >
+    #
+  </a>
+</div>

@@ -15,6 +15,7 @@
   --color-accent: oklch(48% 0.13 185);
   --color-accent-soft: oklch(95% 0.035 185);
   --color-on-accent: oklch(100% 0 0);
+  --color-raised: oklch(100% 0 0);
 }
 
 @layer base {
@@ -26,10 +27,11 @@
     --color-ink: oklch(94% 0.01 260);
     --color-muted: oklch(74% 0.015 260);
     --color-line: oklch(32% 0.02 260);
-    --color-before: oklch(25% 0.015 260);
+    --color-before: oklch(19% 0.015 260);
     --color-accent: oklch(78% 0.12 185);
     --color-accent-soft: oklch(30% 0.05 185);
     --color-on-accent: oklch(18% 0.015 260);
+    --color-raised: oklch(26% 0.02 260);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -39,10 +41,11 @@
       --color-ink: oklch(94% 0.01 260);
       --color-muted: oklch(74% 0.015 260);
       --color-line: oklch(32% 0.02 260);
-      --color-before: oklch(25% 0.015 260);
+      --color-before: oklch(19% 0.015 260);
       --color-accent: oklch(78% 0.12 185);
       --color-accent-soft: oklch(30% 0.05 185);
       --color-on-accent: oklch(18% 0.015 260);
+      --color-raised: oklch(26% 0.02 260);
     }
   }
 
@@ -71,6 +74,33 @@
   summary::-webkit-details-marker {
     display: none;
   }
+
+  /* Rows inside rounded, overflow-hidden lists: draw the focus ring inside so it isn't clipped. */
+  summary:focus-visible,
+  .focus-inset:focus-visible {
+    outline-offset: -2px;
+  }
+
+  /* Brief highlight on a citation target after a jump. */
+  [data-flash] {
+    @apply rounded-lg bg-accent-soft ring-2 ring-accent;
+    transition:
+      background-color 0.4s,
+      box-shadow 0.4s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-flash] {
+      transition: none;
+    }
+  }
+
+  /* Hide the right-edge fade once a horizontal scroller reaches its end. */
+  .scroll-fade {
+    mask-image: linear-gradient(to right, black 85%, transparent);
+  }
+  .scroll-fade[data-at-end] {
+    mask-image: none;
+  }
 }
 
 /* Shareable one-page summary: Print / Save as PDF */
@@ -86,7 +116,38 @@
     --color-accent: #0b6e66;
     --color-accent-soft: #e6f4f2;
     --color-on-accent: #fff;
+    --color-raised: #fff;
     color-scheme: light;
+  }
+
+  /* "Summary" print mode: headlines only (see ShareActions). */
+  :root[data-print="summary"] [data-print-hide~="summary"] {
+    display: none !important;
+  }
+  /* Full print is the default (e.g. Ctrl+P). */
+  :root:not([data-print="summary"]) [data-print-hide~="full"] {
+    display: none !important;
+  }
+  /* A handout doesn't need every link's URL spelled out. */
+  :root[data-print="summary"] a.print-url[href^="http"]::after {
+    content: none;
+  }
+  :root[data-print="summary"] body {
+    font-size: 10pt;
+  }
+  :root[data-print="summary"] main {
+    padding-block: 0;
+  }
+  :root[data-print="summary"] [data-role-section] {
+    margin-top: 1.25rem !important;
+  }
+  :root[data-print="summary"] details > summary {
+    min-height: 0;
+    padding-block: 0.4rem;
+  }
+
+  .scroll-fade {
+    mask-image: none;
   }
 
   @page {

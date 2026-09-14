@@ -1,5 +1,5 @@
 ---
-import { ExternalLink } from "@lucide/astro";
+import { ChevronDown, ExternalLink } from "@lucide/astro";
 import type { CollectionEntry } from "astro:content";
 import { TOOL_CATEGORY_LABELS } from "../lib/taxonomy";
 import { resolveTools } from "../lib/role";
@@ -15,6 +15,10 @@ const { tools, sourceNumbers } = Astro.props;
 const resolved = await resolveTools(tools);
 const startHere = resolved.filter((t) => t.recommendation === "should");
 const alsoWorth = resolved.filter((t) => t.recommendation === "could");
+// Collapsed on phones (VISIBLE shown up front); from md up PageEnhancements opens the rest.
+const VISIBLE = 0;
+const groups = [alsoWorth.slice(0, VISIBLE), alsoWorth.slice(VISIBLE)];
+const ext = { target: "_blank", rel: "noopener noreferrer" };
 ---
 
 <div class="space-y-6">
@@ -29,23 +33,25 @@ const alsoWorth = resolved.filter((t) => t.recommendation === "could");
       <ul class="grid gap-3 md:grid-cols-2">
         {startHere.map(({ entry, useFor, sourceIds }) => (
           <li
-            class="print-break-avoid rounded-2xl border border-accent/30 bg-accent-soft/40 p-4"
+            class="print-break-avoid rounded-2xl border border-accent/30 bg-raised p-3 sm:p-4"
             data-testid="tool"
           >
             <a
               href={entry.data.url}
-              class="print-url inline-flex items-center gap-1.5 font-semibold hover:text-accent"
-              target="_blank"
-              rel="noopener noreferrer"
+              {...ext}
+              class="print-url inline-flex min-h-8 items-center gap-1.5 font-semibold hover:text-accent"
             >
               {entry.data.name}
               <ExternalLink class="no-print size-3.5" aria-hidden="true" />
               <span class="sr-only">(opens in new tab)</span>
             </a>
-            <p class="text-xs text-muted">
-              {entry.data.vendor} · {TOOL_CATEGORY_LABELS[entry.data.category]}
+            <p class="hidden text-sm text-muted sm:block">
+ · {TOOL_CATEGORY_LABELS[entry.data.category]}
             </p>
-            <p class="mt-2 text-sm leading-relaxed">
+            <p
+              class="mt-2 text-[15px] leading-relaxed sm:text-sm"
+              data-print-hide="summary"
+            >
               {useFor}
               <SourceRefs ids={sourceIds} sourceNumbers={sourceNumbers} />
             </p>
@@ -59,32 +65,61 @@ const alsoWorth = resolved.filter((t) => t.recommendation === "could");
     <div>
       <h3 class="text-lg font-semibold">Also worth a look</h3>
       <p class="mb-2 text-sm text-muted">Depends on your team and stack</p>
-      <ul class="grid gap-x-6 md:grid-cols-2">
-        {alsoWorth.map(({ entry, useFor, sourceIds }) => (
-          <li
-            class="print-break-avoid border-b border-line py-3"
-            data-testid="tool"
-          >
-            <div class="flex flex-wrap items-baseline justify-between gap-x-3">
-              <a
-                href={entry.data.url}
-                class="print-url inline-flex items-center gap-1.5 font-medium hover:text-accent"
-                target="_blank"
-                rel="noopener noreferrer"
+      {groups.map((items, part) => {
+        if (items.length === 0) return null;
+        const list = (
+          <ul class="grid gap-x-6 md:grid-cols-2">
+            {items.map(({ entry, useFor, sourceIds }) => (
+              <li
+                class="print-break-avoid border-b border-line py-3"
+                data-testid="tool"
               >
-                {entry.data.name}
-                <ExternalLink class="no-print size-3.5" aria-hidden="true" />
-                <span class="sr-only">(opens in new tab)</span>
-              </a>
-              <span class="text-xs text-muted">{entry.data.vendor}</span>
-            </div>
-            <p class="mt-0.5 text-sm leading-relaxed text-muted">
-              {useFor}
-              <SourceRefs ids={sourceIds} sourceNumbers={sourceNumbers} />
-            </p>
-          </li>
-        ))}
-      </ul>
+                <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <a
+                    href={entry.data.url}
+                    {...ext}
+                    class="print-url inline-flex min-h-8 items-center gap-1.5 font-medium hover:text-accent"
+                  >
+                    {entry.data.name}
+                    <ExternalLink
+                      class="no-print size-3.5"
+                      aria-hidden="true"
+                    />
+                    <span class="sr-only">(opens in new tab)</span>
+                  </a>
+                  <span class="text-sm text-muted">{entry.data.vendor}</span>
+                </div>
+                <p
+                  class="mt-0.5 text-[15px] leading-relaxed text-muted sm:text-sm"
+                  data-print-hide="summary"
+                >
+                  {useFor}
+                  <SourceRefs ids={sourceIds} sourceNumbers={sourceNumbers} />
+                </p>
+              </li>
+            ))}
+          </ul>
+        );
+        return part === 0 ? (
+          list
+        ) : (
+          <details class="group/more" data-open-from-md>
+            <summary class="no-print mt-1 inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent md:hidden">
+              <span class="group-open/more:hidden">
+                Show {items.length} tools
+              </span>
+              <span class="hidden group-open/more:inline">
+                Hide tools
+              </span>
+              <ChevronDown
+                class="size-4 transition-transform group-open/more:rotate-180"
+                aria-hidden="true"
+              />
+            </summary>
+            {list}
+          </details>
+        );
+      })}
     </div>
   )}
 </div>

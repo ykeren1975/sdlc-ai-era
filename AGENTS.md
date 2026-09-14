@@ -100,6 +100,7 @@ Order follows the SDLC flow on the home page.
   - Every starter skill now ends its output with `### Assumptions and open questions`.
   - "What to gather first" says: ask once, then proceed and record assumptions.
 - **Skills that read code, logs, data or tickets must say "never reproduce secrets or personal data in the output"**, and skills must not overlap in triggers. Where two roles need related skills, each description states the boundary (e.g. team working agreement vs manager-owned AI policy).
+- **Inline elements at a line break lose their space.** When Prettier wraps `word` and `<code>`/`<strong>`/`<a>` onto separate lines, Astro renders them glued ("orDownload"). End such lines with `{" "}` (found on the guide page three times).
 - **After adding tests, confirm the test count went up** (`npx playwright test --list | tail -1`). A `grep && sed && cat >>` chain once stopped at a grep that found nothing, so the new tests were never written, yet the suite still showed "all passed" (UX batch).
 - **Wrap frontmatter strings containing `: ` or `#` in double quotes.** An unquoted colon in a `quote` broke YAML parsing for the whole site (DevOps batch). Run `npm run check` before reporting a role as written.
 - **Don't generalise from one company or a niche group.** Findings about one vendor's own staff (e.g. Anthropic's internal study) are written as "At <company>, …", not as industry-wide truths. Use surveys for "most developers".

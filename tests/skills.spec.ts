@@ -166,7 +166,7 @@ test.describe("agent skills UI", () => {
     );
 
     await item.getByRole("button", { name: "Copy instructions" }).click();
-    await expect(item.getByRole("status")).toHaveText("Copied");
+    await expect(item.locator("[data-copy-skill-status]")).toHaveText("Copied");
     // Copy gives the instructions without the YAML header (the .zip keeps the full file).
     const copied = await page.evaluate(() => navigator.clipboard.readText());
     expect(copied).toBe(first.body.replace(/^\n+/, ""));

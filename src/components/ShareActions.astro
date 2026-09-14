@@ -1,21 +1,43 @@
 ---
-import { Link, Printer } from "@lucide/astro";
+import { ChevronDown, Link, Printer } from "@lucide/astro";
+
+const btn =
+  "inline-flex min-h-11 items-center gap-2 rounded-lg border border-line bg-surface px-3 py-2 text-sm font-medium hover:border-accent";
 ---
 
 <div class="no-print flex flex-wrap items-center gap-2" data-share>
-  <button
-    type="button"
-    data-print
-    class="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-medium hover:border-accent"
-  >
-    <Printer class="size-4" aria-hidden="true" /> Print / Save as PDF
-  </button>
-  <button
-    type="button"
-    data-copy-link
-    class="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-medium hover:border-accent"
-  >
-    <Link class="size-4" aria-hidden="true" /> Copy link
+  <details class="relative" data-print-menu>
+    <summary class={btn}>
+      <Printer class="size-4" aria-hidden="true" /><span class="max-sm:sr-only">Print / Save as PDF</span>
+      <ChevronDown class="size-4 text-muted" aria-hidden="true" />
+    </summary>
+    <div
+      class="absolute right-0 z-20 mt-2 w-64 rounded-xl border border-line bg-raised p-2 shadow-lg"
+      role="group"
+      aria-label="Print options"
+    >
+      <button
+        type="button"
+        data-print="summary"
+        class="focus-inset flex min-h-11 w-full flex-col items-start rounded-lg px-3 py-2 text-left hover:bg-accent-soft"
+      >
+        <span class="text-sm font-medium">Summary</span>
+        <span class="text-sm text-muted">Headlines only, about 2 pages</span>
+      </button>
+      <button
+        type="button"
+        data-print="full"
+        class="focus-inset flex min-h-11 w-full flex-col items-start rounded-lg px-3 py-2 text-left hover:bg-accent-soft"
+      >
+        <span class="text-sm font-medium">Full page</span>
+        <span class="text-sm text-muted">
+          Everything expanded, with sources
+        </span>
+      </button>
+    </div>
+  </details>
+  <button type="button" data-copy-link class={btn}>
+    <Link class="size-4" aria-hidden="true" /><span class="max-sm:sr-only">Copy page link</span>
   </button>
   <span
     class="text-sm text-accent"
@@ -26,9 +48,18 @@ import { Link, Printer } from "@lucide/astro";
 </div>
 
 <script>
+  const root = document.documentElement;
+  const menu = document.querySelector<HTMLDetailsElement>("[data-print-menu]");
+
   document
-    .querySelector("[data-print]")
-    ?.addEventListener("click", () => window.print());
+    .querySelectorAll<HTMLButtonElement>("[data-print]")
+    .forEach((button) =>
+      button.addEventListener("click", () => {
+        root.dataset.print = button.dataset.print;
+        if (menu) menu.open = false;
+        window.print();
+      }),
+    );
 
   const status = document.querySelector("[data-copy-status]");
   document
@@ -43,15 +74,23 @@ import { Link, Printer } from "@lucide/astro";
       setTimeout(() => status && (status.textContent = ""), 3000);
     });
 
-  // Open every disclosure for printing, and restore afterwards.
-  let closed: HTMLDetailsElement[] = [];
+  // Print: "full" (the default, e.g. Ctrl+P) opens every disclosure except full SKILL.md sources;
+  // "summary" keeps them closed so only headlines print. Restore afterwards.
+  let opened: HTMLDetailsElement[] = [];
   addEventListener("beforeprint", () => {
-    closed = [
-      ...document.querySelectorAll<HTMLDetailsElement>("details:not([open])"),
+    if ((root.dataset.print ?? "full") === "summary") return;
+    opened = [
+      ...document.querySelectorAll<HTMLDetailsElement>(
+        "details:not([open]):not([data-print-keep-closed])",
+      ),
     ];
-    closed.forEach((d) => (d.open = true));
+    opened.forEach((d) => (d.open = true));
   });
-  addEventListener("afterprint", () => closed.forEach((d) => (d.open = false)));
+  addEventListener("afterprint", () => {
+    opened.forEach((d) => (d.open = false));
+    opened = [];
+    delete root.dataset.print;
+  });
 
   // "Expand all / Collapse all" for each disclosure group.
   document
@@ -59,16 +98,18 @@ import { Link, Printer } from "@lucide/astro";
     .forEach((group) => {
       const button =
         group.querySelector<HTMLButtonElement>("[data-toggle-all]");
+      if (!button) return;
       const all = () => [
-        ...group.querySelectorAll<HTMLDetailsElement>("details"),
+        ...group.querySelectorAll<HTMLDetailsElement>(
+          ":scope details:not([data-print-keep-closed])",
+        ),
       ];
       const sync = () => {
-        if (button)
-          button.textContent = all().every((d) => d.open)
-            ? "Collapse all"
-            : "Expand all";
+        button.textContent = all().every((d) => d.open)
+          ? "Collapse all"
+          : "Expand all";
       };
-      button?.addEventListener("click", () => {
+      button.addEventListener("click", () => {
         const open = !all().every((d) => d.open);
         all().forEach((d) => (d.open = open));
         sync();

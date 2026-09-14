@@ -1,0 +1,25 @@
+---
+import { Link } from "@lucide/astro";
+
+// "Copy link to this" for an item with a stable id (change, risk, skill). Behaviour lives in PageEnhancements.
+interface Props {
+  target: string;
+}
+const { target } = Astro.props;
+---
+
+<span class="no-print inline-flex items-center gap-2">
+  <button
+    type="button"
+    data-copy-item-link={target}
+    class="inline-flex min-h-10 items-center gap-1.5 rounded-lg px-2 text-sm font-medium text-accent hover:bg-accent-soft"
+  >
+    <Link class="size-4" aria-hidden="true" /> Copy link to this
+  </button>
+  <span
+    class="text-sm text-accent"
+    role="status"
+    aria-live="polite"
+    data-item-link-status
+  ></span>
+</span>

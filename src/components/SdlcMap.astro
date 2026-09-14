@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { PHASES, PHASE_LABELS, ROLE_GROUPS } from "../lib/taxonomy";
 import { url } from "../lib/url";
+import { ArrowRight } from "@lucide/astro";
 import RoleIcon from "./RoleIcon.astro";
 
 interface Props {
@@ -34,11 +35,27 @@ const tagline = (r: CollectionEntry<"roles">) =>
 ---
 
 <section aria-labelledby="map-heading" data-sdlc-map>
-  <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
-    <div>
+  <div class="mb-4">
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
       <h2 id="map-heading" class="text-xl font-semibold tracking-tight">
         Find your role in the lifecycle
       </h2>
+      <ul
+        class="hidden items-center gap-4 text-xs text-muted lg:flex"
+        aria-hidden="true"
+        data-map-legend
+      >
+        {[1, 2, 3].map((n) => (
+          <li class="flex items-center gap-1.5">
+            <span class="flex size-4 items-center justify-center">
+              <span class:list={["rounded-full bg-accent", dotSize(n)]} />
+            </span>
+            {n === 1 ? "1 change" : n === 2 ? "2 changes" : "3+ changes"}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
       <p class="hidden text-sm text-muted lg:block">
         Dots show the phases where this guide lists changes for each role.
         Bigger dot, more changes listed.
@@ -47,21 +64,21 @@ const tagline = (r: CollectionEntry<"roles">) =>
         The bar under each role runs from Plan to Operate. Filled segments are
         phases where this guide lists changes.
       </p>
+      <p
+        class="mt-1 hidden text-xs text-muted lg:block"
+        aria-live="polite"
+        data-map-status
+      >
+        Select a phase to highlight the roles it affects.
+      </p>
     </div>
-    <p
-      class="hidden text-xs text-muted lg:block"
-      aria-live="polite"
-      data-map-status
-    >
-      Select a phase to highlight the roles it affects.
-    </p>
   </div>
 
   <!-- Desktop / tablet: matrix -->
   <div class="hidden overflow-hidden rounded-2xl border border-line bg-surface lg:block">
     <div class="grid grid-cols-[minmax(19rem,2.6fr)_repeat(7,minmax(0,1fr))] items-center border-b border-line bg-before px-4 py-3">
       <span class="text-xs font-medium tracking-wide text-muted uppercase">
-        Role
+        Role · filter by phase →
       </span>
       {PHASES.map((phase, i) => (
         <div class="relative flex justify-center">
@@ -75,7 +92,7 @@ const tagline = (r: CollectionEntry<"roles">) =>
             type="button"
             data-phase-filter={phase}
             aria-pressed="false"
-            class="relative z-10 rounded-full border border-line bg-surface px-2.5 py-1 text-xs font-medium text-muted hover:border-accent hover:text-ink aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-on-accent"
+            class="relative z-10 inline-flex min-h-9 items-center rounded-full border border-line bg-surface px-3 text-xs shadow-sm font-medium text-muted hover:border-accent hover:text-ink aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-on-accent"
           >
             {PHASE_LABELS[phase]}
           </button>
@@ -97,14 +114,14 @@ const tagline = (r: CollectionEntry<"roles">) =>
             >
               <a
                 href={url(`/roles/${role.id}`)}
-                class="group grid grid-cols-[minmax(19rem,2.6fr)_repeat(7,minmax(0,1fr))] items-center px-4 py-2.5 no-underline hover:bg-accent-soft"
+                class="group relative grid grid-cols-[minmax(19rem,2.6fr)_repeat(7,minmax(0,1fr))] items-center px-4 py-2.5 no-underline hover:bg-accent-soft focus-visible:bg-accent-soft focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none focus-visible:ring-inset"
               >
                 <span class="flex min-w-0 items-center gap-3">
-                  <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent group-hover:bg-surface">
+                  <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent group-hover:bg-surface group-focus-visible:bg-surface">
                     <RoleIcon name={role.data.icon} class="size-4" />
                   </span>
                   <span class="min-w-0">
-                    <span class="block font-medium group-hover:text-accent">
+                    <span class="block font-medium group-hover:text-accent group-focus-visible:text-accent">
                       {role.data.title}
                     </span>
                     <span class="block text-xs text-muted">
@@ -122,7 +139,7 @@ const tagline = (r: CollectionEntry<"roles">) =>
                         ]}
                       />
                     ) : (
-                      <span class="size-1 rounded-full bg-line" />
+                      <span class="size-1 rounded-full bg-muted/40" />
                     )}
                   </span>
                 ))}
@@ -132,6 +149,11 @@ const tagline = (r: CollectionEntry<"roles">) =>
                     .map((p) => PHASE_LABELS[p])
                     .join(", ")}
                 </span>
+                <ArrowRight
+                  class="absolute top-1/2 right-1.5 size-4 -translate-y-1/2 text-accent opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+                  aria-hidden="true"
+                  data-row-arrow
+                />
               </a>
             </li>
           ))}

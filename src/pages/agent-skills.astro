@@ -106,6 +106,13 @@ metadata:
 const ext = { target: "_blank", rel: "noopener noreferrer" };
 const h2 = "text-2xl font-semibold tracking-tight";
 const route = "rounded-2xl border border-line bg-surface p-5";
+const contents = [
+  { id: "what", label: "What a skill is" },
+  { id: "install", label: "How to use one" },
+  { id: "starters", label: "Starter instructions" },
+  { id: "built", label: "How this site uses it" },
+  { id: "sources", label: "Sources" },
+];
 ---
 
 <Base
@@ -124,231 +131,331 @@ const route = "rounded-2xl border border-line bg-surface p-5";
     </p>
   </header>
 
-  <div class="max-w-3xl space-y-12">
-    <section aria-labelledby="what-heading">
-      <h2 id="what-heading" class={`${h2} mb-3`}>
-        What a skill is
-      </h2>
-      <div class="space-y-3 leading-relaxed">
-        <p>
-          Agent Skills is an open format, originally developed by Anthropic and
-          released as an open standard. A tool first loads only each skill's
-          name and description, and reads the full instructions when a task
-          calls for them, so you can keep many skills available.
-          <Cite n={1} />
-        </p>
-        <p>
-          The <code class="font-mono">name</code> uses lowercase letters,
-          numbers and hyphens, up to 64 characters, and must match the folder
-          name. The <code class="font-mono">description</code> should say what
-          the skill does and when to use it.
-          <Cite n={2} />
-        </p>
-      </div>
-      <pre
-        class="mt-4 overflow-x-auto rounded-xl border border-line bg-surface p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap"
-        tabindex="0"
-        aria-label="Example SKILL.md"
-      >{example}</pre>
-    </section>
-
-    <section aria-labelledby="install-heading" class="scroll-mt-20">
-      <h2 id="install-heading" class={`${h2} mb-2`}>
-        How to use one
-      </h2>
-      <p class="mb-4 text-muted">
-        On your role page, open a starter instruction and choose{" "}
-        <strong class="text-ink">Copy instructions</strong> or
-        <strong class="text-ink">Download .zip</strong>. Then pick the route for
-        the tool you use.
-      </p>
-
-      <div class="space-y-4" data-testid="install-routes">
-        <div class={route}>
-          <h3 class="text-lg font-semibold">Claude (web or desktop app)</h3>
-          <ol class="mt-2 list-decimal space-y-1.5 pl-5 leading-relaxed marker:text-accent">
-            <li>
-              Make sure code execution is turned on in Settings › Capabilities.
-              <Cite n={4} />
-            </li>
-            <li>
-              Go to Customize › Skills, choose + › Create skill › Upload a
-              skill.
-              <Cite n={4} />
-            </li>
-            <li>
-              Upload the .zip you downloaded. It contains the skill folder with
-              its SKILL.md.
-              <Cite n={4} />
-            </li>
-          </ol>
-          <p class="mt-2 text-sm text-muted">
-            Skills are available on Claude's Free, Pro, Max, Team and Enterprise
-            plans.
-            <Cite n={4} />
-          </p>
-        </div>
-
-        <div class={route}>
-          <h3 class="text-lg font-semibold">Coding agents</h3>
-          <p class="mt-1 leading-relaxed">
-            Unzip the folder into the tool's skills folder:
-          </p>
-          <ul class="mt-2 space-y-1.5 leading-relaxed">
-            <li>
-              <strong class="font-medium">Claude Code:</strong>{" "}
-              <code class="font-mono text-sm">~/.claude/skills/</code> for all
-              your projects, or{" "}
-              <code class="font-mono text-sm">.claude/skills/</code> in one
-              repository. Ask for the task, or type{" "}
-              <code class="font-mono text-sm">/&lt;name&gt;</code>.
-              <Cite n={3} />
-            </li>
-            <li>
-              <strong class="font-medium">GitHub Copilot</strong> (cloud agent,
-              CLI, and agent mode in VS Code and JetBrains IDEs):{" "}
-              <code class="font-mono text-sm">.github/skills/</code> in a
-              repository, or
-              <code class="font-mono text-sm">~/.copilot/skills/</code> for
-              yourself.
-              <Cite n={5} />
-            </li>
-            <li>
-              <strong class="font-medium">
-                Codex and the ChatGPT desktop app:
-              </strong>
-              <code class="font-mono text-sm">.agents/skills/</code> in a
-              repository, or
-              <code class="font-mono text-sm">~/.agents/skills/</code> for
-              yourself.
-              <Cite n={6} />
-            </li>
-          </ul>
-        </div>
-
-        <div class={route}>
-          <div class="flex flex-wrap items-center gap-2">
-            <h3 class="text-lg font-semibold">Any other AI chat</h3>
-            <OurSuggestion />
-          </div>
-          <p class="mt-1 leading-relaxed">
-            Tools such as ChatGPT on the web or Microsoft 365 Copilot don't let
-            you upload a standalone skill file, as far as their public
-            documentation shows.
-            <Cite n={6} /> You can still use the instructions: choose
-            <strong>Copy instructions</strong>, paste them at the start of a new
-            chat, then add your material. For repeat use, save them in the
-            tool's custom instructions or project settings if it has them.
-          </p>
-        </div>
-      </div>
-
-      <p class="mt-5 text-sm text-muted">
-        Other tools that support the format document their own skills folder:
-      </p>
-      <ul class="mt-2 flex flex-wrap gap-2 text-sm">
-        {clients.map((c) => (
-          <li>
-            <a
-              href={c.href}
-              {...ext}
-              class="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 no-underline hover:border-accent"
-            >
-              {c.name}
-              <ExternalLink class="size-3 text-muted" aria-hidden="true" />
-              <span class="sr-only">(opens in new tab)</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <div class="mt-5 rounded-xl border border-line bg-before p-4 text-sm leading-relaxed">
-        <p class="font-medium">Read a skill before you install it.</p>
-        <p class="mt-1 text-muted">
-          A skill can pre-approve tools for itself through{" "}
-          <code class="font-mono">allowed-tools</code> in its frontmatter, so
-          check that field in any skill you didn't write.
-          <Cite n={3} /> The starter instructions on this site never use it.
-        </p>
-      </div>
-    </section>
-
-    <section aria-labelledby="starters-heading">
-      <div class="mb-3 flex flex-wrap items-center gap-3">
-        <h2 id="starters-heading" class={h2}>
-          Starter instructions by role
+  <div class="lg:grid lg:grid-cols-[minmax(0,48rem)_12rem] lg:gap-12">
+    <div class="max-w-3xl min-w-0 space-y-12">
+      <section
+        id="what"
+        aria-labelledby="what-heading"
+        class="scroll-mt-20"
+        data-toc-section
+      >
+        <h2 id="what-heading" class={`${h2} mb-3 scroll-mt-20`}>
+          What a skill is
         </h2>
-        <OurSuggestion />
-      </div>
-      <p class="mb-4 text-muted">
-        Written for each role from its researched changes. Treat them as a
-        starting point and adapt them to how your team works.
-      </p>
-      <div class="grid gap-4 sm:grid-cols-2">
-        {byRole.map(({ role, skills }) => (
-          <div class="rounded-2xl border border-line bg-surface p-4">
-            <a
-              href={url(`/roles/${role.id}#agent-skills`)}
-              class="font-semibold hover:text-accent"
-            >
-              {role.data.title}
-            </a>
-            <ul class="mt-2 space-y-1.5 text-sm">
-              {skills.map((s) => (
-                <li>
-                  <a
-                    href={url(`/roles/${role.id}#skill-${s.data.name}`)}
-                    class="text-accent"
-                    data-testid="guide-skill"
-                  >
-                    {s.data.metadata?.title ?? s.data.name}
-                  </a>
-                </li>
-              ))}
+        <div class="space-y-3 leading-relaxed">
+          <p>
+            Agent Skills is an open format, originally developed by Anthropic
+            and released as an open standard. A tool first loads only each
+            skill's name and description, and reads the full instructions when a
+            task calls for them, so you can keep many skills available.
+            <Cite n={1} />
+          </p>
+          <p>
+            The <code class="font-mono">name</code> uses lowercase letters,
+            numbers and hyphens, up to 64 characters, and must match the folder
+            name. The <code class="font-mono">description</code> should say what
+            the skill does and when to use it.
+            <Cite n={2} />
+          </p>
+        </div>
+        <pre
+          class="mt-4 overflow-x-auto rounded-xl border border-line bg-surface p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap"
+          tabindex="0"
+          aria-label="Example SKILL.md"
+        >{example}</pre>
+      </section>
+
+      <section
+        id="install"
+        aria-labelledby="install-heading"
+        class="scroll-mt-20"
+        data-toc-section
+      >
+        <h2 id="install-heading" class={`${h2} mb-2 scroll-mt-20`}>
+          How to use one
+        </h2>
+        <p class="mb-4 text-muted">
+          On your role page, open a starter instruction and choose{" "}
+          <strong class="text-ink">Copy instructions</strong> or{" "}
+          <strong class="text-ink">Download .zip</strong>. Then pick the route
+          for the tool you use.
+        </p>
+
+        <div class="space-y-4" data-testid="install-routes">
+          <div class={route}>
+            <h3 class="text-lg font-semibold">Claude (web or desktop app)</h3>
+            <ol class="mt-2 list-decimal space-y-1.5 pl-5 leading-relaxed marker:text-accent">
+              <li>
+                Make sure code execution is turned on in Settings ›
+                Capabilities.
+                <Cite n={4} />
+              </li>
+              <li>
+                Go to Customize › Skills, choose + › Create skill › Upload a
+                skill.
+                <Cite n={4} />
+              </li>
+              <li>
+                Upload the .zip you downloaded. It contains the skill folder
+                with its SKILL.md.
+                <Cite n={4} />
+              </li>
+            </ol>
+            <p class="mt-2 text-sm text-muted">
+              Skills are available on Claude's Free, Pro, Max, Team and
+              Enterprise plans.
+              <Cite n={4} />
+            </p>
+          </div>
+
+          <div class={route}>
+            <h3 class="text-lg font-semibold">Coding agents</h3>
+            <p class="mt-1 leading-relaxed">
+              Unzip the folder into the tool's skills folder:
+            </p>
+            <ul class="mt-2 space-y-1.5 leading-relaxed">
+              <li>
+                <strong class="font-medium">Claude Code:</strong>{" "}
+                <code class="font-mono text-sm">~/.claude/skills/</code> for all
+                your projects, or{" "}
+                <code class="font-mono text-sm">.claude/skills/</code> in one
+                repository. Ask for the task, or type{" "}
+                <code class="font-mono text-sm">/&lt;name&gt;</code>.
+                <Cite n={3} />
+              </li>
+              <li>
+                <strong class="font-medium">GitHub Copilot</strong> (cloud
+                agent, CLI, and agent mode in VS Code and JetBrains IDEs):{" "}
+                <code class="font-mono text-sm">.github/skills/</code> in a
+                repository, or{" "}
+                <code class="font-mono text-sm">~/.copilot/skills/</code> for
+                yourself.
+                <Cite n={5} />
+              </li>
+              <li>
+                <strong class="font-medium">
+                  Codex and the ChatGPT desktop app:
+                </strong>{" "}
+                <code class="font-mono text-sm">.agents/skills/</code> in a
+                repository, or{" "}
+                <code class="font-mono text-sm">~/.agents/skills/</code> for
+                yourself.
+                <Cite n={6} />
+              </li>
             </ul>
           </div>
-        ))}
-      </div>
-    </section>
 
-    <section aria-labelledby="built-heading">
-      <h2 id="built-heading" class={`${h2} mb-3`}>
-        How this site uses the same idea
-      </h2>
-      <p class="leading-relaxed text-muted">
-        This site was built with Claude Code. Repeated work is packaged as
-        reusable commands, such as <code class="font-mono">/verify</code> for
-        checks and tests and <code class="font-mono">/add-role</code> for
-        research, and every role page was checked by a separate fact-checking
-        agent before publishing.
-      </p>
-    </section>
+          <div class={route}>
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="text-lg font-semibold">Any other AI chat</h3>
+              <OurSuggestion />
+            </div>
+            <p class="mt-1 leading-relaxed">
+              Tools such as ChatGPT on the web or Microsoft 365 Copilot don't
+              let you upload a standalone skill file, as far as their public
+              documentation shows.
+              <Cite n={6} /> You can still use the instructions: choose{" "}
+              <strong>Copy instructions</strong>, paste them at the start of a
+              new chat, then add your material. For repeat use, save them in the
+              tool's custom instructions or project settings if it has them.
+            </p>
+          </div>
+        </div>
 
-    <section aria-labelledby="sources-heading">
-      <h2 id="sources-heading" class="mb-3 text-lg font-semibold">
-        Sources
-      </h2>
-      <ol class="space-y-2 text-sm">
-        {sources.map((s, i) => (
-          <li id={`source-${i + 1}`} class="flex scroll-mt-20 gap-3">
-            <span class="w-5 shrink-0 text-right text-muted">{i + 1}.</span>
-            <span>
+        <p class="mt-5 text-sm text-muted">
+          Other tools that support the format document their own skills folder:
+        </p>
+        <ul class="mt-2 flex flex-wrap gap-2 text-sm">
+          {clients.map((c) => (
+            <li>
               <a
-                href={s.href}
+                href={c.href}
                 {...ext}
-                class="print-url font-medium hover:text-accent"
+                class="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 no-underline hover:border-accent"
               >
-                {s.title}
+                {c.name}
+                <ExternalLink class="size-3 text-muted" aria-hidden="true" />
                 <span class="sr-only">(opens in new tab)</span>
               </a>
-              <span class="text-muted">
-                {" "}
-                · {s.publisher}, accessed 14 September 2026
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-5 rounded-xl border border-line bg-before p-4 text-sm leading-relaxed">
+          <p class="font-medium">Read a skill before you install it.</p>
+          <p class="mt-1 text-muted">
+            A skill can pre-approve tools for itself through{" "}
+            <code class="font-mono">allowed-tools</code> in its frontmatter, so
+            check that field in any skill you didn't write.
+            <Cite n={3} /> The starter instructions on this site never use it.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="starters"
+        aria-labelledby="starters-heading"
+        class="scroll-mt-20"
+        data-toc-section
+      >
+        <div class="mb-3 flex flex-wrap items-center gap-3">
+          <h2 id="starters-heading" class={`${h2} scroll-mt-20`}>
+            Starter instructions by role
+          </h2>
+          <OurSuggestion />
+        </div>
+        <p class="mb-4 text-muted">
+          Written for each role from its researched changes. Treat them as a
+          starting point and adapt them to how your team works.
+        </p>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {byRole.map(({ role, skills }) => (
+            <div class="rounded-2xl border border-line bg-surface p-4">
+              <a
+                href={url(`/roles/${role.id}#agent-skills`)}
+                class="font-semibold hover:text-accent"
+              >
+                {role.data.title}
+              </a>
+              <ul class="mt-2 space-y-1.5 text-sm">
+                {skills.map((s) => (
+                  <li>
+                    <a
+                      href={url(`/roles/${role.id}#skill-${s.data.name}`)}
+                      class="text-accent"
+                      data-testid="guide-skill"
+                    >
+                      {s.data.metadata?.title ?? s.data.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="built"
+        aria-labelledby="built-heading"
+        class="scroll-mt-20"
+        data-toc-section
+      >
+        <h2 id="built-heading" class={`${h2} mb-3 scroll-mt-20`}>
+          How this site uses the same idea
+        </h2>
+        <p class="leading-relaxed text-muted">
+          This site was built with Claude Code. Repeated work is packaged as
+          reusable commands, such as <code class="font-mono">/verify</code> for
+          checks and tests and <code class="font-mono">/add-role</code> for
+          research, and every role page was checked by a separate fact-checking
+          agent before publishing.
+        </p>
+      </section>
+
+      <section
+        id="sources"
+        aria-labelledby="sources-heading"
+        class="scroll-mt-20"
+        data-toc-section
+      >
+        <h2
+          id="sources-heading"
+          class="mb-3 scroll-mt-20 text-lg font-semibold"
+        >
+          Sources
+        </h2>
+        <ol class="space-y-2 text-sm">
+          {sources.map((s, i) => (
+            <li id={`source-${i + 1}`} class="flex scroll-mt-20 gap-3">
+              <span class="w-5 shrink-0 text-right text-muted">{i + 1}.</span>
+              <span>
+                <a
+                  href={s.href}
+                  {...ext}
+                  class="print-url font-medium hover:text-accent"
+                >
+                  {s.title}
+                  <span class="sr-only">(opens in new tab)</span>
+                </a>
+                <span class="text-muted">
+                  {" "}
+                  · {s.publisher}, accessed 14 September 2026
+                </span>
               </span>
-            </span>
-          </li>
-        ))}
-      </ol>
-    </section>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </div>
+
+    <nav
+      aria-label="On this page"
+      class="no-print hidden lg:block"
+      data-testid="guide-contents"
+    >
+      <div class="sticky top-8">
+        <p class="mb-2 text-xs font-medium tracking-wide text-muted uppercase">
+          On this page
+        </p>
+        <ul class="space-y-1 border-l border-line text-sm">
+          {contents.map((c) => (
+            <li>
+              <a
+                href={`#${c.id}-heading`}
+                data-toc-link={c.id}
+                class="-ml-px block border-l border-transparent py-1.5 pl-4 text-muted no-underline hover:text-ink aria-[current=location]:border-accent aria-[current=location]:font-medium aria-[current=location]:text-ink"
+              >
+                {c.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
   </div>
 </Base>
+
+<script>
+  // Scrollspy: mark the contents link for the section currently being read.
+  const sections = [
+    ...document.querySelectorAll<HTMLElement>("[data-toc-section]"),
+  ];
+  const links = new Map(
+    [...document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]")].map(
+      (a) => [a.dataset.tocLink!, a],
+    ),
+  );
+
+  const update = () => {
+    const last = sections.at(-1);
+    const lastRect = last?.getBoundingClientRect();
+    // The last section is short, so it counts as current once fully in view.
+    let current =
+      last && lastRect && lastRect.bottom <= innerHeight && lastRect.top >= 0
+        ? last
+        : undefined;
+    if (!current) {
+      const line = innerHeight * 0.4;
+      current =
+        sections.filter((s) => s.getBoundingClientRect().top <= line).at(-1) ??
+        sections[0];
+    }
+    links.forEach((link, id) => {
+      if (id === current?.id) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  };
+
+  if (sections.length && "IntersectionObserver" in window) {
+    const band = new IntersectionObserver(update, {
+      rootMargin: "0px 0px -60% 0px",
+    });
+    const full = new IntersectionObserver(update, { threshold: [0, 1] });
+    sections.forEach((s) => {
+      band.observe(s);
+      full.observe(s);
+    });
+    update();
+  }
+</script>

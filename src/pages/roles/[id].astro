@@ -3,12 +3,16 @@ import {
   AlertTriangle,
   ArrowLeft,
   ChevronDown,
+  CornerUpLeft,
   ExternalLink,
 } from "@lucide/astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import AgentSkills from "../../components/AgentSkills.astro";
+import CopyItemLink from "../../components/CopyItemLink.astro";
 import OurSuggestion from "../../components/OurSuggestion.astro";
+import PageEnhancements from "../../components/PageEnhancements.astro";
 import RoleIcon from "../../components/RoleIcon.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
 import ShareActions from "../../components/ShareActions.astro";
 import ShiftList from "../../components/ShiftList.astro";
 import SkillsPanel from "../../components/SkillsPanel.astro";
@@ -16,6 +20,7 @@ import SourceRefs from "../../components/SourceRefs.astro";
 import SummaryPanel from "../../components/SummaryPanel.astro";
 import ToolList from "../../components/ToolList.astro";
 import Base from "../../layouts/Base.astro";
+import { riskIds } from "../../lib/anchors";
 import { formatDate } from "../../lib/role";
 import { url } from "../../lib/url";
 
@@ -34,6 +39,7 @@ const { Content } = await render(role);
 
 const sourceNumbers = new Map(data.sources.map((s, i) => [s.id, i + 1]));
 const hasStart = !!data.first30Days?.length;
+const riskAnchors = riskIds(data.risks);
 
 // Order follows the visitor's questions: what changes → what to watch → what to learn → what to use → how to start.
 const sections = [
@@ -45,13 +51,13 @@ const sections = [
   { id: "agent-skills", label: "AI instructions to copy" },
   { id: "sources", label: "Sources" },
 ];
-const h2 = "text-2xl font-semibold tracking-tight";
+const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
 ---
 
 <Base title={data.title} description={data.summary}>
   <a
     href={url("/")}
-    class="no-print mb-6 inline-flex min-h-10 items-center gap-1.5 text-sm text-muted no-underline hover:text-ink"
+    class="no-print mb-2 inline-flex min-h-11 items-center gap-1.5 text-sm text-muted no-underline hover:text-ink sm:mb-6"
   >
     <ArrowLeft class="size-4" aria-hidden="true" /> All roles
   </a>
@@ -62,7 +68,10 @@ const h2 = "text-2xl font-semibold tracking-tight";
         <RoleIcon name={data.icon} class="size-7" />
       </span>
       <div class="min-w-0 flex-1">
-        <h1 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h1
+          class="text-3xl font-semibold tracking-tight sm:text-4xl"
+          tabindex="-1"
+        >
           {data.title}
         </h1>
         <p class="mt-1 text-lg text-pretty text-muted">{data.tagline}</p>
@@ -78,17 +87,21 @@ const h2 = "text-2xl font-semibold tracking-tight";
 
   <SummaryPanel roleId={role.id} data={data} />
 
-  <!-- Mobile: section chips -->
+  <!-- Phone: section chips with current-section state -->
   <nav
     aria-label="On this page"
-    class="no-print sticky top-0 z-10 -mx-4 mt-6 overflow-x-auto border-b border-line bg-paper/95 px-4 py-2 backdrop-blur lg:hidden"
+    class="no-print sticky top-0 z-10 -mx-4 mt-6 border-b border-line bg-paper/95 backdrop-blur lg:hidden"
   >
-    <ul class="flex gap-2 text-sm whitespace-nowrap">
+    <ul
+      class="scroll-fade flex gap-2 overflow-x-auto px-4 py-2 text-sm whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      data-chip-scroller
+    >
       {sections.map((s) => (
         <li>
           <a
             href={`#${s.id}`}
-            class="block rounded-full border border-line bg-surface px-3 py-2 text-muted no-underline"
+            data-section-link
+            class="flex min-h-10 items-center rounded-full border border-line bg-surface px-3.5 text-muted no-underline aria-[current=location]:border-accent aria-[current=location]:bg-accent aria-[current=location]:text-on-accent"
           >
             {s.label}
           </a>
@@ -107,7 +120,8 @@ const h2 = "text-2xl font-semibold tracking-tight";
           <li>
             <a
               href={`#${s.id}`}
-              class="-ml-px block border-l border-transparent py-1.5 pl-4 text-muted no-underline hover:border-accent hover:text-ink"
+              data-section-link
+              class="-ml-px block border-l-2 border-transparent py-1.5 pl-4 text-muted no-underline hover:border-line hover:text-ink aria-[current=location]:border-accent aria-[current=location]:font-medium aria-[current=location]:text-ink"
             >
               {s.label}
             </a>
@@ -116,16 +130,10 @@ const h2 = "text-2xl font-semibold tracking-tight";
       </ul>
     </nav>
 
-    <div class="min-w-0 space-y-14" data-testid="role-sections">
-      <section
-        id="shifts"
-        aria-labelledby="shifts-heading"
-        class="scroll-mt-20"
-      >
-        <h2 id="shifts-heading" class={h2}>
-          How your work changes
-        </h2>
-        <p class="mt-1 text-muted">
+    <div class="min-w-0 space-y-10 sm:space-y-14" data-testid="role-sections">
+      <section id="shifts" aria-labelledby="shifts-heading" {...sectionAttrs}>
+        <SectionHeading id="shifts">How your work changes</SectionHeading>
+        <p class="no-print mt-1 text-muted">
           Open any item to see before and now, with sources.
         </p>
         <div class="mt-3">
@@ -133,19 +141,19 @@ const h2 = "text-2xl font-semibold tracking-tight";
         </div>
       </section>
 
-      <section id="risks" aria-labelledby="risks-heading" class="scroll-mt-20">
-        <h2 id="risks-heading" class={`${h2} mb-4`}>
+      <section id="risks" aria-labelledby="risks-heading" {...sectionAttrs}>
+        <SectionHeading id="risks" class="mb-4">
           Risks to watch
-        </h2>
-        <ul class="space-y-2" data-disclosure-group>
+        </SectionHeading>
+        <ul class="space-y-2">
           {data.risks.map((risk, i) => (
             <li
-              id={`risk-${i + 1}`}
-              class="print-break-avoid scroll-mt-20"
+              id={riskAnchors[i]}
+              class="print-break-avoid scroll-mt-24"
               data-testid="risk"
             >
               <details class="group rounded-xl border border-line border-l-4 border-l-amber-500 bg-surface">
-                <summary class="flex items-start gap-3 px-4 py-3.5 hover:bg-accent-soft">
+                <summary class="flex min-h-12 items-start gap-3 px-4 py-3.5 hover:bg-accent-soft">
                   <AlertTriangle
                     class="mt-0.5 size-4 shrink-0 text-amber-600 dark:text-amber-400"
                     aria-hidden="true"
@@ -158,13 +166,18 @@ const h2 = "text-2xl font-semibold tracking-tight";
                     aria-hidden="true"
                   />
                 </summary>
-                <p class="px-4 pb-4 pl-11 text-sm leading-relaxed text-muted">
-                  {risk.text}
-                  <SourceRefs
-                    ids={risk.sourceIds}
-                    sourceNumbers={sourceNumbers}
-                  />
-                </p>
+                <div class="px-4 pb-3 pl-11">
+                  <p class="text-[15px] leading-relaxed text-muted sm:text-sm">
+                    {risk.text}
+                    <SourceRefs
+                      ids={risk.sourceIds}
+                      sourceNumbers={sourceNumbers}
+                    />
+                  </p>
+                  <div class="mt-1">
+                    <CopyItemLink target={riskAnchors[i]} />
+                  </div>
+                </div>
               </details>
             </li>
           ))}
@@ -174,11 +187,10 @@ const h2 = "text-2xl font-semibold tracking-tight";
       <section
         id="skills"
         aria-labelledby="skills-heading"
-        class="scroll-mt-20"
+        data-print-hide="summary"
+        {...sectionAttrs}
       >
-        <h2 id="skills-heading" class={h2}>
-          Skills to build
-        </h2>
+        <SectionHeading id="skills">Skills to build</SectionHeading>
         <p class="mt-1 mb-4 text-muted">
           Human skills: what's new, what matters more, and what AI now does for
           you.
@@ -186,10 +198,15 @@ const h2 = "text-2xl font-semibold tracking-tight";
         <SkillsPanel skills={data.skills} />
       </section>
 
-      <section id="tools" aria-labelledby="tools-heading" class="scroll-mt-20">
-        <h2 id="tools-heading" class={`${h2} mb-3`}>
+      <section
+        id="tools"
+        aria-labelledby="tools-heading"
+        data-print-hide="summary"
+        {...sectionAttrs}
+      >
+        <SectionHeading id="tools" class="mb-3">
           Tools
-        </h2>
+        </SectionHeading>
         <ToolList tools={data.tools} sourceNumbers={sourceNumbers} />
       </section>
 
@@ -197,31 +214,73 @@ const h2 = "text-2xl font-semibold tracking-tight";
         <section
           id="start"
           aria-labelledby="start-heading"
-          class="scroll-mt-20"
+          data-print-hide="summary"
+          {...sectionAttrs}
         >
           <div class="mb-4 flex flex-wrap items-center gap-3">
-            <h2 id="start-heading" class={h2}>
-              Your first steps
-            </h2>
+            <SectionHeading id="start">Your first steps</SectionHeading>
             <OurSuggestion />
           </div>
           <div class="grid gap-6 md:grid-cols-[3fr_2fr]">
-            <ol class="space-y-3">
-              {data.first30Days!.map((step, i) => (
-                <li class="print-break-avoid flex gap-3 rounded-xl border border-line bg-surface p-4 leading-relaxed">
-                  <span class="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent-soft text-sm font-semibold text-accent">
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-            <div class="space-y-3 leading-relaxed text-muted">
-              <p class="text-sm font-semibold text-ink">
-                A week in this role now
-              </p>
-              <Content />
+            <div>
+              {[data.first30Days!.slice(0, 2), data.first30Days!.slice(2)].map(
+                (steps, part) => {
+                  const list = (
+                    <ol
+                      class="space-y-3"
+                      start={part === 0 ? 1 : 3}
+                      data-testid="first-steps"
+                    >
+                      {steps.map((step, i) => (
+                        <li class="print-break-avoid flex gap-3 rounded-xl border border-line bg-surface p-3 text-[15px] leading-relaxed sm:p-4 sm:text-base">
+                          <span class="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent-soft text-sm font-semibold text-accent">
+                            {i + 1 + (part === 0 ? 0 : 2)}
+                          </span>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                  );
+                  if (steps.length === 0) return null;
+                  // Phones: first two steps, the rest one tap away; open from md up.
+                  return part === 0 ? (
+                    list
+                  ) : (
+                    <details class="group/steps mt-3" data-open-from-md>
+                      <summary class="no-print inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent md:hidden">
+                        <span class="group-open/steps:hidden">
+                          Show {steps.length} more steps
+                        </span>
+                        <span class="hidden group-open/steps:inline">
+                          Show fewer steps
+                        </span>
+                        <ChevronDown
+                          class="size-4 transition-transform group-open/steps:rotate-180"
+                          aria-hidden="true"
+                        />
+                      </summary>
+                      {list}
+                    </details>
+                  );
+                },
+              )}
             </div>
+            <details
+              class="group/week self-start"
+              data-open-from-md
+              data-print-hide="summary"
+            >
+              <summary class="flex min-h-11 items-center gap-2 text-sm font-semibold md:pointer-events-none">
+                A week in this role now
+                <ChevronDown
+                  class="size-4 text-muted transition-transform group-open/week:rotate-180 md:hidden"
+                  aria-hidden="true"
+                />
+              </summary>
+              <div class="space-y-3 leading-relaxed text-muted">
+                <Content />
+              </div>
+            </details>
           </div>
         </section>
       )}
@@ -229,24 +288,26 @@ const h2 = "text-2xl font-semibold tracking-tight";
       <section
         id="agent-skills"
         aria-labelledby="agent-skills-heading"
-        class="scroll-mt-20"
+        data-print-hide="summary"
+        {...sectionAttrs}
       >
         <p class="text-xs font-semibold tracking-wide text-accent uppercase">
           Agent Skills
         </p>
-        <h2 id="agent-skills-heading" class={`${h2} mb-2`}>
+        <SectionHeading id="agent-skills" class="mb-2">
           AI instructions to copy
-        </h2>
+        </SectionHeading>
         <AgentSkills roleId={role.id} data={data} />
       </section>
 
       <section
         id="sources"
         aria-labelledby="sources-heading"
-        class="scroll-mt-20"
+        data-print-hide="summary"
+        {...sectionAttrs}
       >
         <details class="group rounded-2xl border border-line bg-surface">
-          <summary class="flex items-center justify-between gap-3 px-5 py-4">
+          <summary class="flex min-h-12 items-center justify-between gap-3 px-5 py-4">
             <h2 id="sources-heading" class="text-lg font-semibold">
               Sources{" "}
               <span class="font-normal text-muted">
@@ -259,11 +320,14 @@ const h2 = "text-2xl font-semibold tracking-tight";
             />
           </summary>
           <ol
-            class="space-y-3 border-t border-line px-5 py-4 text-sm"
+            class="space-y-2 border-t border-line px-3 py-3 text-sm"
             data-testid="sources"
           >
             {data.sources.map((source, i) => (
-              <li id={`source-${source.id}`} class="flex scroll-mt-20 gap-3">
+              <li
+                id={`source-${source.id}`}
+                class="flex scroll-mt-24 gap-3 p-2"
+              >
                 <span class="w-6 shrink-0 text-right text-muted">{i + 1}.</span>
                 <div class="min-w-0">
                   <a
@@ -288,6 +352,15 @@ const h2 = "text-2xl font-semibold tracking-tight";
                       “{source.quote}”
                     </blockquote>
                   )}
+                  <button
+                    type="button"
+                    hidden
+                    data-back-to-text
+                    class="no-print mt-1 inline-flex min-h-10 items-center gap-1.5 rounded-lg px-2 text-sm font-medium text-accent hover:bg-accent-soft"
+                  >
+                    <CornerUpLeft class="size-4" aria-hidden="true" /> Back to
+                    text
+                  </button>
                 </div>
               </li>
             ))}
@@ -296,24 +369,6 @@ const h2 = "text-2xl font-semibold tracking-tight";
       </section>
     </div>
   </div>
-</Base>
 
-<script>
-  // Links into collapsed content (changes, risks, citations, starter skills): open the disclosure first.
-  const PREFIXES = ["#change-", "#risk-", "#source-", "#skill-"];
-  const openTarget = (hash: string) => {
-    const target = hash ? document.querySelector(hash) : null;
-    const details =
-      target?.closest("details") ?? target?.querySelector("details");
-    if (details) details.open = true;
-  };
-  document
-    .querySelectorAll<HTMLAnchorElement>(
-      PREFIXES.map((p) => `a[href^="${p}"]`).join(", "),
-    )
-    .forEach((link) =>
-      link.addEventListener("click", () => openTarget(link.hash)),
-    );
-  if (PREFIXES.some((p) => location.hash.startsWith(p)))
-    openTarget(location.hash);
-</script>
+  <PageEnhancements />
+</Base>

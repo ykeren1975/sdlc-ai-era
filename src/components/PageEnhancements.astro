@@ -1,0 +1,187 @@
+---
+// Role-page behaviour: deep links, copy-link-to-item, citation jumps with a way back,
+// section scrollspy, phone-only collapsed sections, and a back-to-top button.
+import { ArrowUp } from "@lucide/astro";
+---
+
+<button
+  type="button"
+  data-back-to-top
+  hidden
+  class="no-print fixed right-4 bottom-4 z-30 flex size-11 items-center justify-center rounded-full border border-line bg-raised text-ink shadow-lg lg:hidden"
+  aria-label="Back to top"
+>
+  <ArrowUp class="size-5" aria-hidden="true" />
+</button>
+
+<script>
+  // ---- Deep links: open the disclosure that contains (or is) the target.
+  const PREFIXES = ["#change-", "#risk-", "#source-", "#skill-"];
+  const openTarget = (hash: string) => {
+    const target = hash ? document.querySelector<HTMLElement>(hash) : null;
+    const details =
+      target?.closest("details") ?? target?.querySelector(":scope > details");
+    if (details) details.open = true;
+    return target;
+  };
+  document
+    .querySelectorAll<HTMLAnchorElement>(
+      PREFIXES.map((p) => `a[href^="${p}"]`).join(", "),
+    )
+    .forEach((link) =>
+      link.addEventListener("click", () => openTarget(link.hash)),
+    );
+  // A shared link (page load, pasted link, back/forward): open, scroll to and briefly highlight the item.
+  const followHash = () => {
+    if (!PREFIXES.some((p) => location.hash.startsWith(p))) return;
+    const target = openTarget(location.hash);
+    if (!target) return;
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ block: "start" });
+      target.setAttribute("data-flash", "");
+      setTimeout(() => target.removeAttribute("data-flash"), 2000);
+    });
+  };
+  followHash();
+  addEventListener("hashchange", followHash);
+
+  // ---- "Copy link to this" buttons.
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-copy-item-link]")
+    .forEach((button) => {
+      const status = button.parentElement?.querySelector(
+        "[data-item-link-status]",
+      );
+      button.addEventListener("click", async () => {
+        const link = `${location.origin}${location.pathname}#${button.dataset.copyItemLink}`;
+        try {
+          await navigator.clipboard.writeText(link);
+          if (status) status.textContent = "Link copied";
+        } catch {
+          if (status) status.textContent = link;
+        }
+        setTimeout(() => status && (status.textContent = ""), 3000);
+      });
+    });
+
+  // ---- Citations: flash the source and offer a way back to the text.
+  let lastCitation: HTMLElement | null = null;
+  const clearFlash = () =>
+    document
+      .querySelectorAll("[data-flash]")
+      .forEach((el) => el.removeAttribute("data-flash"));
+  document
+    .querySelectorAll<HTMLAnchorElement>('sup a[href^="#source-"]')
+    .forEach((link) =>
+      link.addEventListener("click", () => {
+        lastCitation = link;
+        const entry = document.querySelector<HTMLElement>(link.hash);
+        if (!entry) return;
+        clearFlash();
+        entry.setAttribute("data-flash", "");
+        setTimeout(() => entry.removeAttribute("data-flash"), 2000);
+        document
+          .querySelectorAll<HTMLElement>("[data-back-to-text]")
+          .forEach((b) => (b.hidden = true));
+        const back = entry.querySelector<HTMLElement>("[data-back-to-text]");
+        if (back) back.hidden = false;
+      }),
+    );
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-back-to-text]")
+    .forEach((button) =>
+      button.addEventListener("click", () => {
+        if (!lastCitation) return;
+        lastCitation.scrollIntoView({ block: "center" });
+        lastCitation.focus();
+        button.hidden = true;
+      }),
+    );
+
+  // ---- Scrollspy for the section nav (desktop sidebar and phone chips).
+  const navLinks = [
+    ...document.querySelectorAll<HTMLAnchorElement>("[data-section-link]"),
+  ];
+  const sections = [
+    ...document.querySelectorAll<HTMLElement>("[data-role-section]"),
+  ];
+  const chipScroller = document.querySelector<HTMLElement>(
+    "[data-chip-scroller]",
+  );
+  const setCurrent = (id: string) => {
+    navLinks.forEach((a) => {
+      const active = a.hash === `#${id}`;
+      if (active) a.setAttribute("aria-current", "location");
+      else a.removeAttribute("aria-current");
+      if (
+        active &&
+        chipScroller?.contains(a) &&
+        chipScroller.offsetParent !== null
+      ) {
+        const left =
+          a.offsetLeft - (chipScroller.clientWidth - a.offsetWidth) / 2;
+        chipScroller.scrollTo({ left, behavior: "smooth" });
+      }
+    });
+  };
+  if (sections.length && "IntersectionObserver" in window) {
+    const visible = new Map<string, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) =>
+          visible.set(
+            e.target.id,
+            e.isIntersecting ? e.boundingClientRect.top : Infinity,
+          ),
+        );
+        // The current section is the first one whose top has crossed the upper part of the viewport.
+        const candidates = sections.filter(
+          (s) => (visible.get(s.id) ?? Infinity) !== Infinity,
+        );
+        const current = candidates[0];
+        if (current) setCurrent(current.id);
+      },
+      { rootMargin: "-20% 0px -60% 0px" },
+    );
+    sections.forEach((s) => observer.observe(s));
+  }
+
+  // Right-edge fade on the chip scroller disappears when scrolled to the end.
+  const syncFade = () => {
+    if (!chipScroller) return;
+    const atEnd =
+      chipScroller.scrollLeft + chipScroller.clientWidth >=
+      chipScroller.scrollWidth - 4;
+    chipScroller.toggleAttribute("data-at-end", atEnd);
+  };
+  chipScroller?.addEventListener("scroll", syncFade, { passive: true });
+  syncFade();
+
+  // ---- Sections collapsed on phones only: open them from md up.
+  const md = matchMedia("(min-width: 768px)");
+  const syncResponsive = () =>
+    document
+      .querySelectorAll<HTMLDetailsElement>("details[data-open-from-md]")
+      .forEach((d) => {
+        if (md.matches) d.open = true;
+      });
+  md.addEventListener("change", syncResponsive);
+  syncResponsive();
+
+  // ---- Back to top (phones).
+  const backToTop =
+    document.querySelector<HTMLButtonElement>("[data-back-to-top]");
+  const syncBackToTop = () =>
+    backToTop && (backToTop.hidden = scrollY < innerHeight * 2);
+  addEventListener("scroll", syncBackToTop, { passive: true });
+  backToTop?.addEventListener("click", () => {
+    scrollTo({
+      top: 0,
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
+    document.querySelector<HTMLElement>("h1")?.focus({ preventScroll: true });
+  });
+  syncBackToTop();
+</script>
