@@ -142,6 +142,15 @@ first30Days:
   - Draft a working agreement with the team on which tasks use AI, who reviews AI output, and who stays accountable for it.
   - Look at the size of recent pull requests, and raise it with the team if AI-generated changes are getting harder to review.
   - Use an approved assistant to prepare your next retrospective, then compare its suggested themes with what the team actually raised.
+agentSkills:
+  - skill: internal-comms
+    useFor: "Writing team updates and other internal communications in your organisation's formats."
+  - skill: linear
+    useFor: "Reading and updating issues, projects and team workflows in Linear."
+starterSkills:
+  - retro-prep
+  - team-ai-working-agreement
+  - refinement-session-prep
 sources:
   - id: scrum-expansion-ai
     title: AI and Scrum (Scrum Guide Expansion Pack, v2026.1)

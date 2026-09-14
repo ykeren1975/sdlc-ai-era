@@ -136,6 +136,17 @@ first30Days:
   - Add a short instruction file with build commands, conventions and architecture notes, and update it when the agent gets something wrong.
   - Try a spec-plan-tasks flow on one medium-sized feature and compare it with plain prompting on a small fix.
   - Review every generated diff as you would a colleague's, with extra attention to security, error handling and duplicated code.
+agentSkills:
+  - skill: mcp-builder
+    useFor: "Building an MCP server so an agent can use an internal API or service through well-designed tools."
+  - skill: webapp-testing
+    useFor: "Letting an agent test your local web app with Playwright, capture screenshots and read browser logs."
+  - skill: gh-fix-ci
+    useFor: "Debugging failing GitHub Actions checks on a pull request, with a fix plan before any change."
+starterSkills:
+  - ai-diff-review
+  - change-spec-for-agent
+  - agent-context-file
 sources:
   - id: so-survey-2025-ai
     title: 2025 Stack Overflow Developer Survey — AI

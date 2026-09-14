@@ -121,6 +121,15 @@ first30Days:
   - Find out what your team spends on AI tools per developer each month and who can see and cap that spend.
   - Use your team's approved coding agent on a small real task yourself so you understand what reviewing its output involves.
   - For each junior engineer, agree one piece of real work they own end to end and a senior they pair with on harder problems.
+agentSkills:
+  - skill: internal-comms
+    useFor: "Writing status reports and leadership updates in your organisation's formats."
+  - skill: xlsx
+    useFor: "Working with spreadsheets, for example tool spend or headcount plans."
+starterSkills:
+  - ai-impact-metrics-review
+  - ai-tool-spend-review
+  - team-ai-policy-draft
 sources:
   - id: dora-2025-report
     title: Announcing the 2025 DORA Report

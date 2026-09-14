@@ -142,6 +142,15 @@ first30Days:
   - Turn one or two important architecture rules, such as a layer or module boundary, into automated checks that run in CI and that coding agents can run too.
   - Write down the architecture guidelines your team's AI tools should follow and put them in the shared instruction files in your repository templates.
   - If your system has an LLM feature, list how it retrieves data, what it costs per request and how it is evaluated, and agree what counts as a failure.
+agentSkills:
+  - skill: doc-coauthoring
+    useFor: "Co-writing technical specs and decision records in a structured, iterative workflow."
+  - skill: mcp-builder
+    useFor: "Designing an MCP server that exposes a service to agents through well-designed tools."
+starterSkills:
+  - legacy-module-map
+  - architecture-drift-review
+  - llm-component-design-review
 sources:
   - id: icepanel-state-of-architecture-2025
     title: State of Software Architecture Report — 2025

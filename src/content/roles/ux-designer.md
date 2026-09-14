@@ -134,6 +134,15 @@ first30Days:
   - Run AI analysis on a study you have already analysed by hand, and compare its themes with yours, noting what it missed or got wrong.
   - Write down the design standards, research findings and patterns an AI tool would need to produce on-brand screens for your product, and try them as context.
   - If your product has an AI feature, read a sample of real outputs with engineering and draft pass/fail judging criteria together.
+agentSkills:
+  - skill: frontend-design
+    useFor: "Guiding an agent toward intentional visual design, typography and aesthetic direction when it builds UI."
+  - skill: figma-implement-design
+    useFor: "Translating a Figma design into application code that matches it."
+starterSkills:
+  - research-synthesis-check
+  - ai-prototype-brief
+  - ai-feature-trust-states
 sources:
   - id: nng-research-with-ai
     title: Accelerating Research with AI

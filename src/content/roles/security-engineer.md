@@ -124,6 +124,15 @@ first30Days:
   - Turn on AI fix suggestions for your scanner in one repository, and review a sample of the suggested fixes yourself before trusting them more widely.
   - Run a prompt injection red team test against one LLM feature before its next release, and add the failing cases to CI.
   - Measure how long it takes from a confirmed finding to a deployed patch, since that is where a larger volume of findings will pile up.
+agentSkills:
+  - skill: security-threat-model
+    useFor: "Threat modeling a repository: trust boundaries, assets, abuse paths and mitigations, written up as Markdown."
+  - skill: security-best-practices
+    useFor: "Language- and framework-specific security reviews with suggested improvements."
+starterSkills:
+  - security-finding-triage
+  - security-fix-verification
+  - agent-permission-review
 sources:
   - id: owasp-agentic-top-10-2026
     title: "OWASP Top 10 for Agentic Applications: The Benchmark for Agentic Security in the Age of Autonomous AI"

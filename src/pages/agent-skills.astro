@@ -1,0 +1,309 @@
+---
+import { ExternalLink } from "@lucide/astro";
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import { ROLE_GROUPS } from "../lib/taxonomy";
+import { url } from "../lib/url";
+
+const roles = await getCollection("roles");
+const starters = await getCollection("starterSkills");
+const byRole = ROLE_GROUPS.flatMap((g) => g.roles)
+  .map((id) => roles.find((r) => r.id === id))
+  .filter((r) => !!r)
+  .map((role) => ({
+    role,
+    skills: (role.data.starterSkills ?? [])
+      .map((name) => starters.find((s) => s.id === `${role.id}/${name}`))
+      .filter((s) => !!s),
+  }));
+
+// Where to install skills in each client: official docs, as listed on agentskills.io.
+const clients = [
+  { name: "Claude Code", href: "https://code.claude.com/docs/en/skills" },
+  {
+    name: "Claude (apps and API)",
+    href: "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+  },
+  {
+    name: "GitHub Copilot",
+    href: "https://docs.github.com/en/copilot/concepts/agents/about-agent-skills",
+  },
+  {
+    name: "VS Code",
+    href: "https://code.visualstudio.com/docs/copilot/customization/agent-skills",
+  },
+  { name: "Cursor", href: "https://cursor.com/docs/context/skills" },
+  {
+    name: "ChatGPT & Codex",
+    href: "https://developers.openai.com/codex/skills/",
+  },
+  { name: "Gemini CLI", href: "https://geminicli.com/docs/cli/skills/" },
+  { name: "Kiro", href: "https://kiro.dev/docs/skills/" },
+];
+
+const sources = [
+  {
+    title: "Agent Skills: Overview",
+    publisher: "agentskills.io",
+    href: "https://agentskills.io/",
+  },
+  {
+    title: "Agent Skills: Specification",
+    publisher: "agentskills.io",
+    href: "https://agentskills.io/specification",
+  },
+  {
+    title: "Extend Claude with skills",
+    publisher: "Claude Code docs",
+    href: "https://code.claude.com/docs/en/skills",
+  },
+  {
+    title: "anthropics/skills",
+    publisher: "GitHub",
+    href: "https://github.com/anthropics/skills",
+  },
+  {
+    title: "openai/skills: Skills Catalog for Codex",
+    publisher: "GitHub",
+    href: "https://github.com/openai/skills",
+  },
+];
+
+const example = `---
+name: weekly-status-report
+description: Drafts a weekly project status report from tracker exports and meeting notes. Use when asked for a status update, weekly report or stakeholder summary.
+---
+
+# Weekly status report
+
+## Steps
+1. Ask for the tracker export and this week's notes if they are missing.
+2. ...
+
+## Before you finish
+- Flag assumptions and anything a human must decide.`;
+
+const ext = { target: "_blank", rel: "noopener noreferrer" };
+const h2 = "text-2xl font-semibold tracking-tight";
+---
+
+<Base
+  title="Agent skills"
+  description="What Agent Skills are, how to install one in Claude, GitHub Copilot, Cursor, Codex and other tools, and copy-ready starter skills for every SDLC role."
+>
+  <header class="mb-10 max-w-3xl">
+    <p class="mb-3 text-sm font-medium text-accent">Guide</p>
+    <h1 class="mb-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+      Agent skills
+    </h1>
+    <p class="text-lg leading-relaxed text-pretty text-muted">
+      Teach your AI agent how <em>you</em> do a task, once. A skill is a folder
+      with a <code class="font-mono text-base">SKILL.md</code> file: a name, a
+      description of when to use it, and step-by-step instructions the agent
+      loads when a task matches.
+    </p>
+  </header>
+
+  <div class="max-w-3xl space-y-12">
+    <section aria-labelledby="what-heading">
+      <h2 id="what-heading" class={`${h2} mb-3`}>
+        What a skill is
+      </h2>
+      <div class="space-y-3 leading-relaxed">
+        <p>
+          Agent Skills is an open format, originally developed by Anthropic and
+          released as an open standard. An agent first loads only each skill's
+          name and description, and reads the full instructions when a task
+          calls for them, so you can keep many skills available.
+          <sup>
+            <a
+              href="#source-1"
+              class="text-accent no-underline"
+              aria-label="Source 1"
+            >
+              [1]
+            </a>
+          </sup>
+        </p>
+        <p>
+          The <code class="font-mono">name</code> uses lowercase letters,
+          numbers and hyphens, up to 64 characters, and must match the folder
+          name. The <code class="font-mono">description</code> should say what
+          the skill does and when to use it.
+          <sup>
+            <a
+              href="#source-2"
+              class="text-accent no-underline"
+              aria-label="Source 2"
+            >
+              [2]
+            </a>
+          </sup>
+        </p>
+      </div>
+      <pre
+        class="mt-4 overflow-x-auto rounded-xl border border-line bg-surface p-4 font-mono text-xs leading-relaxed"
+        tabindex="0"
+        aria-label="Example SKILL.md"
+      >{example}</pre>
+    </section>
+
+    <section aria-labelledby="install-heading">
+      <h2 id="install-heading" class={`${h2} mb-3`}>
+        How to install one
+      </h2>
+      <ol class="list-decimal space-y-2 pl-5 leading-relaxed marker:text-accent">
+        <li>
+          Open a starter skill on your role page and choose{" "}
+          <strong>Copy</strong> or <strong>Download</strong>.
+        </li>
+        <li>
+          In Claude Code, save it as{" "}
+          <code class="font-mono">~/.claude/skills/&lt;name&gt;/SKILL.md</code>{" "}
+          for all your projects, or{" "}
+          <code class="font-mono">.claude/skills/&lt;name&gt;/SKILL.md</code> in
+          one repository.
+          <sup>
+            <a
+              href="#source-3"
+              class="text-accent no-underline"
+              aria-label="Source 3"
+            >
+              [3]
+            </a>
+          </sup>
+        </li>
+        <li>
+          Ask for the task in plain words, and the agent loads the skill when it
+          matches. In Claude Code you can also type{" "}
+          <code class="font-mono">/&lt;name&gt;</code>.
+          <sup>
+            <a
+              href="#source-3"
+              class="text-accent no-underline"
+              aria-label="Source 3"
+            >
+              [3]
+            </a>
+          </sup>
+        </li>
+      </ol>
+      <p class="mt-4 text-sm text-muted">
+        Other tools that support the format document their own skills folder:
+      </p>
+      <ul class="mt-2 flex flex-wrap gap-2 text-sm">
+        {clients.map((c) => (
+          <li>
+            <a
+              href={c.href}
+              {...ext}
+              class="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 no-underline hover:border-accent"
+            >
+              {c.name}
+              <ExternalLink class="size-3 text-muted" aria-hidden="true" />
+              <span class="sr-only">(opens in new tab)</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-5 rounded-xl border border-line bg-before p-4 text-sm leading-relaxed">
+        <p class="font-medium">Read a skill before you install it.</p>
+        <p class="mt-1 text-muted">
+          A skill can pre-approve tools for itself through{" "}
+          <code class="font-mono">allowed-tools</code> in its frontmatter, so
+          check that field in any skill you didn't write.
+          <sup>
+            <a
+              href="#source-3"
+              class="text-accent no-underline"
+              aria-label="Source 3"
+            >
+              [3]
+            </a>
+          </sup>{" "}
+          The starter skills on this site never use it.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="starters-heading">
+      <div class="mb-3 flex flex-wrap items-baseline gap-3">
+        <h2 id="starters-heading" class={h2}>
+          Starter skills by role
+        </h2>
+        <span class="rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">
+          Editorial
+        </span>
+      </div>
+      <p class="mb-4 text-muted">
+        Written for each role from its researched changes. Treat them as a
+        starting point and adapt them to how your team works.
+      </p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {byRole.map(({ role, skills }) => (
+          <div class="rounded-2xl border border-line bg-surface p-4">
+            <a
+              href={url(`/roles/${role.id}#agent-skills`)}
+              class="font-semibold no-underline hover:text-accent"
+            >
+              {role.data.title}
+            </a>
+            <ul class="mt-2 space-y-1.5 text-sm">
+              {skills.map((s) => (
+                <li>
+                  <a
+                    href={url(`/roles/${role.id}#skill-${s.data.name}`)}
+                    class="font-mono text-accent"
+                    data-testid="guide-skill"
+                  >
+                    {s.data.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="built-heading">
+      <h2 id="built-heading" class={`${h2} mb-3`}>
+        How this site uses the same idea
+      </h2>
+      <p class="leading-relaxed text-muted">
+        This site was built with Claude Code. Repeated work is packaged as
+        reusable commands, such as <code class="font-mono">/verify</code> for
+        checks and tests and <code class="font-mono">/add-role</code> for
+        research, and every role page was checked by a separate fact-checking
+        agent before publishing.
+      </p>
+    </section>
+
+    <section aria-labelledby="sources-heading">
+      <h2 id="sources-heading" class="mb-3 text-lg font-semibold">
+        Sources
+      </h2>
+      <ol class="space-y-2 text-sm">
+        {sources.map((s, i) => (
+          <li id={`source-${i + 1}`} class="flex gap-3">
+            <span class="w-5 shrink-0 text-right text-muted">{i + 1}.</span>
+            <span>
+              <a
+                href={s.href}
+                {...ext}
+                class="print-url font-medium hover:text-accent"
+              >
+                {s.title}
+                <span class="sr-only">(opens in new tab)</span>
+              </a>
+              <span class="text-muted">
+                {" "}
+                · {s.publisher}, accessed 14 September 2026
+              </span>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  </div>
+</Base>

@@ -122,6 +122,17 @@ first30Days:
   - Clean up stale tasks and ownerless tickets in your plan before switching on any AI status or risk feature.
   - Turn on AI meeting summaries for one recurring meeting and check the suggested action items against your own notes for two weeks.
   - Review any AI-flagged risks with the owner before adding them to the RAID log, and keep the escalation decision with a person.
+agentSkills:
+  - skill: internal-comms
+    useFor: "Writing status reports and other internal communications in your organisation's formats."
+  - skill: notion-meeting-intelligence
+    useFor: "Preparing meeting agendas and pre-reads with context from Notion."
+  - skill: linear
+    useFor: "Reading, creating and updating issues and projects in Linear."
+starterSkills:
+  - weekly-status-report
+  - raid-log-triage
+  - meeting-actions-followup
 sources:
   - id: apm-ai-survey-2025
     title: AI use in Project Management nearly doubles in just two years, APM survey finds

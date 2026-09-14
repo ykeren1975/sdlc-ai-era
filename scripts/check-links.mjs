@@ -1,4 +1,4 @@
-// Checks that every external URL in the content (role sources + tools.yaml) resolves.
+// Checks that every external URL in the content (role sources, data files, guide pages) resolves.
 // Usage: npm run check:links [-- path/to/role.md ...]
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
@@ -6,7 +6,10 @@ import { parse } from "yaml";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const ROLES_DIR = path.join(ROOT, "src/content/roles");
-const TOOLS_FILE = path.join(ROOT, "src/data/tools.yaml");
+const DATA_FILES = ["tools.yaml", "agent-skills.yaml"].map((f) =>
+  path.join(ROOT, "src/data", f),
+);
+const PAGES_WITH_LINKS = [path.join(ROOT, "src/pages/agent-skills.astro")];
 const CONCURRENCY = 8;
 const TIMEOUT_MS = 15000;
 // Some sites block non-browser clients; 401/403/429 means the page exists but refused us.
@@ -30,11 +33,20 @@ async function collectUrls(roleFiles) {
     for (const s of data.sources ?? [])
       add(s.url, `${path.basename(file)} → source ${s.id}`);
   }
-  try {
-    const tools = parse(await readFile(TOOLS_FILE, "utf8")) ?? [];
-    for (const t of tools) add(t.url, `tools.yaml → ${t.id}`);
-  } catch (err) {
-    if (err.code !== "ENOENT") throw err;
+  for (const dataFile of DATA_FILES) {
+    try {
+      const entries = parse(await readFile(dataFile, "utf8")) ?? [];
+      for (const e of entries)
+        add(e.url, `${path.basename(dataFile)} → ${e.id}`);
+    } catch (err) {
+      if (err.code !== "ENOENT") throw err;
+    }
+  }
+  // Hardcoded external links in pages (e.g. the Agent skills guide).
+  for (const page of PAGES_WITH_LINKS) {
+    const text = await readFile(page, "utf8");
+    for (const [href] of text.matchAll(/https:\/\/[^\s"'`)<>]+/g))
+      add(href, path.relative(ROOT, page));
   }
   return urls;
 }

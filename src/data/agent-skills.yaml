@@ -1,0 +1,139 @@
+# Ready-made Agent Skills from public catalogs. Descriptions paraphrase each skill's own SKILL.md.
+# License verified from the skill folder's LICENSE.txt (or its absence). Only the main session edits this file.
+
+# anthropics/skills
+- id: doc-coauthoring
+  name: doc-coauthoring
+  catalog: anthropics/skills
+  url: https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring
+  description: Guides a structured workflow for co-writing documentation, proposals, technical specs and decision docs, iterating until the doc works for readers.
+  license: unspecified
+  lastVerified: 2026-09-14
+- id: internal-comms
+  name: internal-comms
+  catalog: anthropics/skills
+  url: https://github.com/anthropics/skills/tree/main/skills/internal-comms
+  description: Resources for writing internal communications such as status reports in the formats your company uses.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: mcp-builder
+  name: mcp-builder
+  catalog: anthropics/skills
+  url: https://github.com/anthropics/skills/tree/main/skills/mcp-builder
+  description: Guide for building high-quality MCP servers that let LLMs use external APIs and services through well-designed tools.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: frontend-design
+  name: frontend-design
+  catalog: anthropics/skills
+  url: https://github.com/anthropics/skills/tree/main/skills/frontend-design
+  description: Guidance for distinctive, intentional visual design when building or reshaping UI, covering aesthetic direction and typography.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: webapp-testing
+  name: webapp-testing
+  catalog: anthropics/skills
+  url: https://github.com/anthropics/skills/tree/main/skills/webapp-testing
+  description: Toolkit for testing local web apps with Playwright, verifying frontend behaviour, capturing screenshots and reading browser logs.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: skill-creator
+  name: skill-creator
+  catalog: anthropics/skills
+  url: https://github.com/anthropics/skills/tree/main/skills/skill-creator
+  description: Creates, improves and evaluates skills, including running evals and optimising a skill's description so it triggers reliably.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: docx
+  name: docx
+  catalog: anthropics/skills
+  url: https://github.com/anthropics/skills/tree/main/skills/docx
+  description: Creates, reads and edits Word documents and templates.
+  license: source-available
+  lastVerified: 2026-09-14
+- id: pptx
+  name: pptx
+  catalog: anthropics/skills
+  url: https://github.com/anthropics/skills/tree/main/skills/pptx
+  description: Creates, reads and edits PowerPoint slide decks and templates.
+  license: source-available
+  lastVerified: 2026-09-14
+- id: xlsx
+  name: xlsx
+  catalog: anthropics/skills
+  url: https://github.com/anthropics/skills/tree/main/skills/xlsx
+  description: Opens, edits and creates spreadsheets such as .xlsx and .csv files.
+  license: source-available
+  lastVerified: 2026-09-14
+
+# openai/skills (curated catalog for Codex)
+- id: security-threat-model
+  name: security-threat-model
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/security-threat-model
+  description: Repository-grounded threat modeling of trust boundaries, assets, attacker capabilities, abuse paths and mitigations, written up as Markdown.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: security-best-practices
+  name: security-best-practices
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/security-best-practices
+  description: Language- and framework-specific security best-practice reviews with suggested improvements, for supported languages.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: gh-fix-ci
+  name: gh-fix-ci
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/gh-fix-ci
+  description: Debugs failing GitHub Actions checks on a pull request with gh, summarises the failure, drafts a fix plan and implements only after approval.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: sentry
+  name: sentry
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/sentry
+  description: Read-only inspection of Sentry issues and events, summarising recent production errors via the Sentry CLI.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: playwright
+  name: playwright
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/playwright
+  description: Automates a real browser from the terminal for navigation, form filling, screenshots, data extraction and UI-flow debugging.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: jupyter-notebook
+  name: jupyter-notebook
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/jupyter-notebook
+  description: Creates and edits Jupyter notebooks for experiments, explorations and tutorials, starting from bundled templates.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: notion-meeting-intelligence
+  name: notion-meeting-intelligence
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/notion-meeting-intelligence
+  description: Prepares meeting materials with Notion context, drafting agendas and pre-reads tailored to attendees.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: notion-spec-to-implementation
+  name: notion-spec-to-implementation
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/notion-spec-to-implementation
+  description: Turns Notion specs and PRDs into implementation plans, tasks and progress tracking in Notion.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: linear
+  name: linear
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/linear
+  description: Reads, creates and updates issues, projects and team workflows in Linear.
+  license: open-source
+  lastVerified: 2026-09-14
+- id: figma-implement-design
+  name: figma-implement-design
+  catalog: openai/skills
+  url: https://github.com/openai/skills/tree/main/skills/.curated/figma-implement-design
+  description: Translates Figma designs into application code matching the design, from Figma files or URLs.
+  license: vendor-terms
+  lastVerified: 2026-09-14

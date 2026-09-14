@@ -131,6 +131,15 @@ first30Days:
   - Agree with developers that no test is disabled, deleted or weakened by an agent without a human reviewing the change.
   - Run one exploratory session with an AI agent and one without on the same area, and compare what each found.
   - If your product has an LLM feature, collect a small set of real inputs, label good and bad outputs by hand, and turn them into your first eval.
+agentSkills:
+  - skill: webapp-testing
+    useFor: "Having an agent verify frontend behaviour of a local web app with Playwright and capture screenshots."
+  - skill: playwright
+    useFor: "Driving a real browser from the terminal for UI-flow debugging, form filling and screenshots."
+starterSkills:
+  - test-cases-from-acceptance-criteria
+  - agent-test-change-audit
+  - llm-feature-eval-plan
 sources:
   - id: wqr-2025-26
     title: "World Quality Report 2025: AI adoption surges in Quality Engineering, but enterprise-level scaling remains elusive"

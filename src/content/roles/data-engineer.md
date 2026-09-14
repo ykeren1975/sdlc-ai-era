@@ -125,6 +125,15 @@ first30Days:
   - Pick your five most-used metrics and make sure each has one written definition in your semantic layer or models, with an owner.
   - Review the last few AI-assisted changes to your pipelines and add tests where a wrong join or duplicate rows would go unnoticed.
   - Try an agent on one well-understood transformation task and compare its output row by row with the existing model.
+agentSkills:
+  - skill: jupyter-notebook
+    useFor: "Creating and editing Jupyter notebooks for explorations and experiments."
+  - skill: xlsx
+    useFor: "Opening, cleaning and creating spreadsheets and CSV files."
+starterSkills:
+  - sql-answer-sanity-check
+  - pipeline-change-review
+  - metric-definition-writeup
 sources:
   - id: dbt-state-of-analytics-engineering-2026
     title: 2026 State of Analytics Engineering Report

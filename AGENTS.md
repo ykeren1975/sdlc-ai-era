@@ -65,6 +65,14 @@ Order follows the SDLC flow on the home page.
   - Each shift's `headline` (≤80 chars) condenses **that shift's own `aiEra` text**.
   - Neither may add facts, names, numbers, digits, "%" or comparatives that aren't in the text it condenses.
   - Exactly 3 shifts per role have `highlight: true`: the ones that matter most for day-to-day work.
+- **Agent skills:**
+  - Ready-made skills live in `src/data/agent-skills.yaml`. Each description paraphrases that skill's own `SKILL.md`, and each license comes from its folder.
+  - Starter skills are real skill folders at `src/starter-skills/<role>/<skill-name>/SKILL.md` and must follow the agentskills.io spec:
+    - `name` is lowercase-hyphenated, ≤64 characters and matches its folder;
+    - `description` is ≤1024 characters and says what the skill does **and when to use it** ("Use when…");
+    - the body stays under 150 lines.
+  - A starter skill's body covers: purpose, inputs to gather, numbered steps, output format, edge cases, and a closing "Before you finish" check that flags what needs human review.
+  - Starter skills are editorial: no statistics or factual claims, no `allowed-tools`, no instructions to send data to external services, and no vendor lock-in unless the skill is inherently about that tool.
 - The site is a snapshot as of `lastReviewed`; do not write "latest" or "new" without a date.
 - Research subagents never edit `src/data/tools.yaml`; they propose tools and the main session merges them (avoids parallel write conflicts).
 
@@ -84,6 +92,10 @@ Order follows the SDLC flow on the home page.
 
   Keep the subject ("In Veracode's tests…", "At Google…") and only use an imperative when the source recommends it.
 
+- **Test a skill by running it, not just linting it.** Smoke tests gave 3 skills only their `SKILL.md` and a realistic input (Agent skills batch). They found problems no linter or reviewer caught: nowhere in the output to record assumptions, a numbered step glued onto a bullet, and confidence rules that contradicted the template.
+  - Every starter skill now ends its output with `### Assumptions and open questions`.
+  - "What to gather first" says: ask once, then proceed and record assumptions.
+- **Skills that read code, logs, data or tickets must say "never reproduce secrets or personal data in the output"**, and skills must not overlap in triggers. Where two roles need related skills, each description states the boundary (e.g. team working agreement vs manager-owned AI policy).
 - **Wrap frontmatter strings containing `: ` or `#` in double quotes.** An unquoted colon in a `quote` broke YAML parsing for the whole site (DevOps batch). Run `npm run check` before reporting a role as written.
 - **Don't generalise from one company or a niche group.** Findings about one vendor's own staff (e.g. Anthropic's internal study) are written as "At <company>, …", not as industry-wide truths. Use surveys for "most developers".
 - **Don't use `astro preview` from Claude sessions or tests.** Astro 7 detects AI agents and backgrounds the preview with a lock file, which breaks Playwright's `webServer`. Tests serve `dist/` with `node scripts/serve-dist.mjs <port>`. For a manual look, run the same script in the background.

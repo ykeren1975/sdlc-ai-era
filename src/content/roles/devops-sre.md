@@ -143,6 +143,15 @@ first30Days:
   - List the actions any agent can take in production, and classify each as read-only, reversible or destructive before granting access.
   - Add an IaC scanner such as Checkov to the pipeline for every infrastructure pull request, whether a person or an AI wrote the change.
   - If your team runs LLM features, add token usage, latency and error metrics to your dashboards and agree who owns quality alerts.
+agentSkills:
+  - skill: gh-fix-ci
+    useFor: "Debugging failing GitHub Actions checks, summarising the failure and fixing only after approval."
+  - skill: sentry
+    useFor: "Read-only summaries of recent production errors from Sentry."
+starterSkills:
+  - incident-postmortem-draft
+  - iac-change-review
+  - mitigation-safety-check
 sources:
   - id: dora-2025
     title: Announcing the 2025 DORA Report

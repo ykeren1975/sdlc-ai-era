@@ -19,6 +19,45 @@ const tools = defineCollection({
   }),
 });
 
+// Ready-made Agent Skills from public catalogs.
+const agentSkills = defineCollection({
+  loader: file("src/data/agent-skills.yaml"),
+  schema: z.object({
+    id: z.string().regex(idPattern),
+    name: z.string(),
+    catalog: z.string(),
+    url: z.url(),
+    description: z.string().max(160),
+    license: z.enum([
+      "open-source",
+      "source-available",
+      "vendor-terms",
+      "unspecified",
+    ]),
+    lastVerified: z.coerce.date(),
+  }),
+});
+
+// Starter skills: real skill folders, validated against the agentskills.io spec.
+// Strict object, so fields outside our allowed subset (e.g. allowed-tools) fail the build.
+const starterSkills = defineCollection({
+  loader: glob({
+    pattern: "*/*/SKILL.md",
+    base: "./src/starter-skills",
+    generateId: ({ entry }) => entry.replace(/\/SKILL\.md$/, ""), // "<role>/<skill-name>"
+  }),
+  schema: z.strictObject({
+    name: z
+      .string()
+      .min(1)
+      .max(64)
+      .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
+    description: z.string().min(1).max(1024),
+    license: z.string().optional(),
+    metadata: z.record(z.string(), z.string()).optional(),
+  }),
+});
+
 const sourceIds = z.array(z.string().regex(idPattern));
 
 const roles = defineCollection({
@@ -66,6 +105,11 @@ const roles = defineCollection({
       .array(z.object({ text: z.string(), sourceIds: sourceIds.optional() }))
       .min(2),
     first30Days: z.array(z.string()).optional(),
+    agentSkills: z
+      .array(z.object({ skill: reference("agentSkills"), useFor: z.string() }))
+      .max(3)
+      .optional(),
+    starterSkills: z.array(z.string().regex(idPattern)).max(3).optional(),
     sources: z
       .array(
         z.object({
@@ -83,4 +127,4 @@ const roles = defineCollection({
   }),
 });
 
-export const collections = { tools, roles };
+export const collections = { tools, agentSkills, starterSkills, roles };

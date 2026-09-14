@@ -130,6 +130,17 @@ first30Days:
   - Build one throwaway prototype of an idea on your roadmap and show it to three customers before writing the full spec.
   - Take a recent AI summary of customer feedback and spot-check a sample of its claims against the original tickets or transcripts.
   - If your product has an AI feature, read about 100 real interactions, write down what went wrong, and agree pass/fail criteria with engineering.
+agentSkills:
+  - skill: doc-coauthoring
+    useFor: "Co-writing PRDs, proposals and decision docs in a structured, iterative workflow."
+  - skill: notion-spec-to-implementation
+    useFor: "Turning a PRD in Notion into an implementation plan with tasks and progress tracking."
+  - skill: pptx
+    useFor: "Creating and editing slide decks for reviews and roadmap presentations."
+starterSkills:
+  - customer-feedback-synthesis
+  - ai-feature-eval-criteria
+  - prototype-to-product-gap
 sources:
   - id: productboard-ai-pm-report
     title: The New Reality of AI in Product Management

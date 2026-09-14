@@ -12,6 +12,7 @@ const flagged = data.shifts.filter((s) => s.highlight);
 const highlights = (flagged.length ? flagged : data.shifts).slice(0, 3);
 const topTools = (await resolveTools(data.tools)).slice(0, 3);
 const topSkills = data.skills.new.slice(0, 2);
+const firstSkill = data.starterSkills?.[0];
 ---
 
 <section
@@ -75,12 +76,21 @@ const topSkills = data.skills.new.slice(0, 2);
     </div>
   </dl>
 
-  {!!data.first30Days?.length && (
-    <a
-      href="#start"
-      class="no-print mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent"
-    >
-      See your first steps <ArrowRight class="size-4" aria-hidden="true" />
-    </a>
-  )}
+  <div class="no-print mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+    {firstSkill && (
+      <a
+        href={`#skill-${firstSkill}`}
+        class="inline-flex items-center gap-1.5 text-accent"
+        data-testid="try-skill"
+      >
+        Try an agent skill: <code class="font-mono">{firstSkill}</code>
+        <ArrowRight class="size-4" aria-hidden="true" />
+      </a>
+    )}
+    {!!data.first30Days?.length && (
+      <a href="#start" class="inline-flex items-center gap-1.5 text-accent">
+        See your first steps <ArrowRight class="size-4" aria-hidden="true" />
+      </a>
+    )}
+  </div>
 </section>

@@ -1,0 +1,159 @@
+---
+import { ChevronDown, Copy, Download, ExternalLink } from "@lucide/astro";
+import type { CollectionEntry } from "astro:content";
+import {
+  getStarterSkills,
+  LICENSE_LABELS,
+  resolveAgentSkills,
+} from "../lib/role";
+import { url } from "../lib/url";
+
+interface Props {
+  roleId: string;
+  data: CollectionEntry<"roles">["data"];
+}
+
+const { roleId, data } = Astro.props;
+const readyMade = await resolveAgentSkills(data.agentSkills);
+const starters = await getStarterSkills(roleId, data.starterSkills);
+---
+
+<div class="space-y-6" data-agent-skills>
+  <p class="text-muted">
+    Agent Skills are folders of instructions an AI agent loads when a task needs
+    them. It's an open format supported by Claude, GitHub Copilot, Cursor,
+    Codex, Gemini CLI and more.{" "}
+    <a href={url("/agent-skills")} class="font-medium text-accent">
+      How to install a skill
+    </a>
+  </p>
+
+  {starters.length > 0 && (
+    <div data-disclosure-group>
+      <div class="mb-2 flex flex-wrap items-baseline gap-3">
+        <h3 class="font-semibold">Starter skills to copy</h3>
+        <span class="rounded-full border border-line px-2.5 py-0.5 text-xs text-muted">
+          Editorial
+        </span>
+      </div>
+      <p class="mb-3 text-sm text-muted">
+        Written for this role from the changes above. Read and adapt before you
+        use one.
+      </p>
+      <ul class="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
+        {starters.map(({ entry, raw, name }) => (
+          <li
+            id={`skill-${name}`}
+            class="scroll-mt-16"
+            data-testid="starter-skill"
+          >
+            <details class="group">
+              <summary class="flex items-start gap-3 px-5 py-3.5 hover:bg-accent-soft">
+                <span class="min-w-0 flex-1">
+                  <code class="block font-mono text-sm font-semibold text-accent">
+                    {entry.data.name}
+                  </code>
+                  <span class="mt-0.5 block text-sm text-muted">
+                    {entry.data.description}
+                  </span>
+                </span>
+                <ChevronDown
+                  class="no-print mt-1 size-4 shrink-0 text-muted transition-transform group-open:rotate-180"
+                  aria-hidden="true"
+                />
+              </summary>
+              <div class="border-t border-line px-5 py-4">
+                <div class="no-print mb-3 flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    data-copy-skill
+                    class="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-medium hover:border-accent"
+                  >
+                    <Copy class="size-4" aria-hidden="true" /> Copy SKILL.md
+                  </button>
+                  <a
+                    href={url(`/skills/${roleId}/${name}/SKILL.md`)}
+                    download="SKILL.md"
+                    class="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-medium no-underline hover:border-accent"
+                  >
+                    <Download class="size-4" aria-hidden="true" /> Download
+                  </a>
+                  <span
+                    class="text-sm text-accent"
+                    role="status"
+                    aria-live="polite"
+                    data-copy-skill-status
+                  />
+                </div>
+                <p class="mb-2 text-xs text-muted">
+                  Save as <code class="font-mono">{name}/SKILL.md</code> in your
+                  agent's skills folder.
+                </p>
+                <pre
+                  class="max-h-96 overflow-auto rounded-xl bg-before p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap"
+                  tabindex="0"
+                  aria-label={`${name} SKILL.md`}
+                  data-skill-source
+                >{raw}</pre>
+              </div>
+            </details>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {readyMade.length > 0 && (
+    <div>
+      <h3 class="font-semibold">Ready-made skills</h3>
+      <p class="mb-3 text-sm text-muted">
+        Published in public skill catalogs. Check the license before use.
+      </p>
+      <ul class="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
+        {readyMade.map(({ entry, useFor }) => (
+          <li class="print-break-avoid px-4 py-3" data-testid="ready-skill">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+              <a
+                href={entry.data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="print-url inline-flex items-center gap-1.5 font-mono text-sm font-semibold hover:text-accent"
+              >
+                {entry.data.name}
+                <ExternalLink class="no-print size-3.5" aria-hidden="true" />
+                <span class="sr-only">(opens in new tab)</span>
+              </a>
+              <span class="flex items-center gap-2 text-xs text-muted">
+                {entry.data.catalog}
+                <span class="rounded-full border border-line px-2 py-0.5">
+                  {LICENSE_LABELS[entry.data.license]}
+                </span>
+              </span>
+            </div>
+            <p class="mt-0.5 text-sm leading-relaxed text-muted">{useFor}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</div>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-copy-skill]")
+    .forEach((button) => {
+      const panel = button.closest("li");
+      const source = panel?.querySelector("[data-skill-source]");
+      const status = panel?.querySelector("[data-copy-skill-status]");
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(source?.textContent ?? "");
+          if (status) status.textContent = "Copied";
+        } catch {
+          if (status)
+            status.textContent = "Couldn't copy; select the text below";
+        }
+        setTimeout(() => status && (status.textContent = ""), 3000);
+      });
+    });
+</script>

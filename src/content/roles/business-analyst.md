@@ -123,6 +123,17 @@ first30Days:
   - On one upcoming epic, draft stories and acceptance criteria with AI, then compare them with your own draft for missed edge cases and invented rules.
   - When AI rewords a stakeholder's requirement, send the rewrite back to that stakeholder to confirm the meaning.
   - Ask QA how they use your stories with AI test generation, and state non-functional requirements explicitly where they are missing.
+agentSkills:
+  - skill: doc-coauthoring
+    useFor: "Co-writing specs, proposals and decision docs in a structured, iterative workflow."
+  - skill: notion-spec-to-implementation
+    useFor: "Turning a spec or PRD in Notion into an implementation plan and tasks."
+  - skill: docx
+    useFor: "Creating and editing requirements documents as Word files."
+starterSkills:
+  - epic-to-stories-and-criteria
+  - stakeholder-requirement-rewrite
+  - requirements-quality-review
 sources:
   - id: ai4re-practitioner-survey-2025
     title: "AI for Requirements Engineering: Industry adoption and Practitioner perspectives"
