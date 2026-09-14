@@ -38,10 +38,12 @@ const groups = [
               <a
                 href={entry.data.url}
                 class="print-url inline-flex items-center gap-1.5 font-medium hover:text-accent"
-                rel="noopener"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {entry.data.name}
                 <ExternalLink class="no-print size-3.5" aria-hidden="true" />
+                <span class="sr-only">(opens in new tab)</span>
               </a>
               <span class="text-xs text-muted">
                 {entry.data.vendor} ·{" "}

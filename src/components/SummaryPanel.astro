@@ -1,5 +1,5 @@
 ---
-import { ArrowRight } from "@lucide/astro";
+import { ArrowRight, ExternalLink } from "@lucide/astro";
 import type { CollectionEntry } from "astro:content";
 import { resolveTools } from "../lib/role";
 
@@ -47,10 +47,16 @@ const topSkills = data.skills.new.slice(0, 2);
         {topTools.map(({ entry }) => (
           <a
             href={entry.data.url}
-            rel="noopener"
-            class="print-url rounded-full border border-line bg-surface px-3 py-1 no-underline hover:border-accent"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="print-url inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 no-underline hover:border-accent"
           >
             {entry.data.name}
+            <ExternalLink
+              class="no-print size-3 text-muted"
+              aria-hidden="true"
+            />
+            <span class="sr-only">(opens in new tab)</span>
           </a>
         ))}
       </dd>

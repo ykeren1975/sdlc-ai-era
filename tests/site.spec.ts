@@ -288,3 +288,25 @@ test("every internal link resolves", async ({ page, request }) => {
   }
   expect(broken).toEqual([]);
 });
+
+test("external links open in a new tab safely", async ({ page }) => {
+  const problems: string[] = [];
+  for (const path of ["./", ...roles.map((r) => `roles/${r.id}`)]) {
+    await page.goto(path);
+    const links = await page.locator('a[href^="http"]').evaluateAll((els) =>
+      els
+        .filter((a) => new URL((a as HTMLAnchorElement).href).origin !== location.origin)
+        .map((a) => ({
+          href: a.getAttribute("href"),
+          target: a.getAttribute("target"),
+          rel: a.getAttribute("rel") ?? "",
+          label: a.textContent ?? "",
+        })),
+    );
+    for (const l of links) {
+      if (l.target !== "_blank" || !l.rel.includes("noopener") || !l.label.includes("opens in new tab"))
+        problems.push(`${path}: ${l.href}`);
+    }
+  }
+  expect(problems).toEqual([]);
+});

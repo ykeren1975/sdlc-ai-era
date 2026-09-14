@@ -1,5 +1,5 @@
 ---
-import { ArrowLeft, ChevronDown } from "@lucide/astro";
+import { ArrowLeft, ChevronDown, ExternalLink } from "@lucide/astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import RoleIcon from "../../components/RoleIcon.astro";
 import ShareActions from "../../components/ShareActions.astro";
@@ -248,10 +248,16 @@ const h2 = "text-2xl font-semibold tracking-tight";
                 <div class="min-w-0">
                   <a
                     href={source.url}
-                    rel="noopener"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="print-url font-medium break-words hover:text-accent"
                   >
                     {source.title}
+                    <ExternalLink
+                      class="no-print ml-1 inline size-3.5 align-[-2px] text-muted"
+                      aria-hidden="true"
+                    />
+                    <span class="sr-only">(opens in new tab)</span>
                   </a>
                   <p class="text-muted">
                     {source.publisher}
