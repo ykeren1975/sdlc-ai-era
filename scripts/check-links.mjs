@@ -52,7 +52,7 @@ async function request(url, method) {
   });
 }
 
-async function check(url) {
+async function check(url, retries = 1) {
   try {
     let res = await request(url, "HEAD");
     if (!res.ok && !SOFT_FAIL.has(res.status)) res = await request(url, "GET");
@@ -60,6 +60,11 @@ async function check(url) {
     if (SOFT_FAIL.has(res.status)) return { status: "warn", code: res.status };
     return { status: "fail", code: res.status };
   } catch (err) {
+    // Network errors (DNS, timeouts) are often transient; retry before failing.
+    if (retries > 0) {
+      await new Promise((r) => setTimeout(r, 2000));
+      return check(url, retries - 1);
+    }
     return { status: "fail", code: err.cause?.code ?? err.name };
   }
 }

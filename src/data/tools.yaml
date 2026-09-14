@@ -279,3 +279,103 @@
   description: Incident management platform with on-call, Slack and Teams response, status pages, and AI investigations that suggest root causes.
   status: active
   lastVerified: 2026-09-14
+
+# Data and analytics
+- id: dbt
+  name: dbt
+  vendor: dbt Labs
+  url: https://www.getdbt.com/
+  category: data-and-analytics
+  description: Data transformation framework and platform with tests, docs and a Semantic Layer, plus dbt Copilot and an open-source MCP server.
+  status: active
+  lastVerified: 2026-09-14
+- id: snowflake-cortex-analyst
+  name: Cortex Analyst
+  vendor: Snowflake
+  url: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst
+  category: data-and-analytics
+  description: Managed LLM feature in Snowflake that answers business questions in natural language over structured data, using semantic views.
+  status: active
+  lastVerified: 2026-09-14
+- id: databricks-genie
+  name: Genie
+  vendor: Databricks
+  url: https://www.databricks.com/product/business-intelligence/genie
+  category: data-and-analytics
+  description: Conversational analytics in Databricks where users ask data questions in natural language, tuned by subject matter experts and governed through Unity Catalog.
+  status: active
+  lastVerified: 2026-09-14
+- id: hex
+  name: Hex
+  vendor: Hex Technologies
+  url: https://hex.tech/
+  category: data-and-analytics
+  description: AI analytics platform with agentic notebooks, plain-language Threads for business users and semantic models to govern AI answers. Free tier available.
+  status: active
+  lastVerified: 2026-09-14
+- id: monte-carlo
+  name: Monte Carlo
+  vendor: Monte Carlo
+  url: https://montecarlo.ai/
+  category: observability
+  description: Data and agent observability platform with table monitors that learn normal patterns and a Troubleshooting Agent (preview) for root causes.
+  status: active
+  lastVerified: 2026-09-14
+
+# Project and team management
+- id: asana
+  name: Asana
+  vendor: Asana
+  url: https://asana.com/product/ai
+  category: project-management
+  description: Work management platform with AI on paid plans, including AI Studio workflow automations for intake, routing and updates.
+  status: active
+  lastVerified: 2026-09-14
+- id: smartsheet
+  name: Smartsheet
+  vendor: Smartsheet
+  url: https://www.smartsheet.com/platform/features/ai
+  category: project-management
+  description: Spreadsheet-style work management platform with AI to generate formulas, summaries and stakeholder updates, and build charts from sheet data.
+  status: active
+  lastVerified: 2026-09-14
+- id: miro
+  name: Miro
+  vendor: Miro
+  url: https://miro.com/
+  category: collaboration
+  description: Visual collaboration whiteboard with AI features, including clustering retrospective sticky notes by theme, keyword and sentiment.
+  status: active
+  lastVerified: 2026-09-14
+- id: parabol
+  name: Parabol
+  vendor: Parabol
+  url: https://www.parabol.co/
+  category: collaboration
+  description: Retrospective and meeting tool with anonymous input, plus AI-suggested groups and AI summaries on paid plans.
+  status: active
+  lastVerified: 2026-09-14
+- id: dx
+  name: DX
+  vendor: DX
+  url: https://getdx.com/
+  category: data-and-analytics
+  description: Engineering intelligence platform that measures developer productivity and experience, and tracks AI-generated code by team, agent and repo.
+  status: active
+  lastVerified: 2026-09-14
+- id: linearb
+  name: LinearB
+  vendor: LinearB
+  url: https://linearb.io/
+  category: data-and-analytics
+  description: Engineering productivity platform that tracks the impact of AI coding tools on delivery and automates PR routing with policy-based workflows.
+  status: active
+  lastVerified: 2026-09-14
+- id: jellyfish
+  name: Jellyfish
+  vendor: Jellyfish
+  url: https://jellyfish.co/
+  category: data-and-analytics
+  description: Engineering management platform that shows where AI and engineering effort goes, using data from Git, Jira and AI coding assistants.
+  status: active
+  lastVerified: 2026-09-14
