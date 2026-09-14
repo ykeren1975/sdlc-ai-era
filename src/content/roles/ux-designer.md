@@ -3,6 +3,7 @@ title: UX/UI Designer
 order: 30
 icon: pen-tool
 summary: AI speeds up research analysis, UI drafts and working prototypes, so design judgement, real-user research and defining good output for AI features matter more than producing screens.
+tagline: AI speeds up drafts; design judgement and real research matter more
 lastReviewed: 2026-09-14
 sdlcPhases:
   - plan
@@ -12,18 +13,22 @@ sdlcPhases:
 shifts:
   - phase: plan
     activity: Analysing user research
+    headline: Let AI speed up transcripts and summaries, but never rely on it for all analysis
     traditional: Designers and researchers transcribed sessions, tagged notes and grouped observations into themes by hand, often on sticky notes or in spreadsheets.
     aiEra: Nielsen Norman Group (article from 2024, reviewed January 2026) finds AI currently most helpful in the planning and analysis stages of research, and suggests AI transcription, summarisation and coding features to speed up the initial steps of analysis. It warns never to rely on AI for all of the analysis, and says context-informed questions, such as whether the interviewer accidentally primed a participant, are beyond the capacity of current AI tools.
     sourceIds:
       - nng-research-with-ai
   - phase: plan
     activity: Learning about users before a study
+    headline: Synthetic users may help pilot a study; treat their answers as hypotheses
     traditional: Designers relied on desk research, stakeholder knowledge and pilot sessions to prepare, then learned from real participants in interviews and usability tests.
     aiEra: Synthetic-user products generate AI users and interview transcripts within seconds from a user group and study goal. In a 2024 test, NN/g used the Synthetic Users product and ChatGPT to recreate three of its studies with real users. Real learners often started online training without completing it, while a synthetic user said it completed all its courses. NN/g suggests synthetic users could help prepare for research with real users, such as piloting an interview guide, and says to treat their data as hypotheses that need testing.
     sourceIds:
       - nng-synthetic-users
   - phase: design
     activity: Producing UI layouts and screens
+    headline: Give AI your users and standards as context, or expect an average screen
+    highlight: true
     traditional: Designers built wireframes and high-fidelity screens by hand, assembling components from a design system.
     aiEra: NN/g expects that as AI design tools improve, anyone will be able to make a decent-looking UI, at least from a distance. NN/g's Tony Alicea explains that a model asked for a search screen produces an average one, because it does not know your users, domain or design standards unless that knowledge is in its context. He argues that as more interface work is AI-generated, the output of research and design shifts from documents written for humans to curated context that guides AI.
     sourceIds:
@@ -31,24 +36,30 @@ shifts:
       - nng-ux-context-design
   - phase: design
     activity: Prototyping and testing complex interactions
+    headline: Build a working prototype from a detailed prompt and test with users earlier
+    highlight: true
     traditional: Clickable prototypes were usually linked static screens, which made complex interactions hard to test with users before engineers built them.
     aiEra: NN/g reports that tools like Cursor, v0 and Figma Make can take a detailed prompt and return a working, interactive prototype, so designers can create a realistic one in a day and test with users earlier. The tools don't inherently understand content layout or visual hierarchy, so the design decisions remain the designer's, and the first output probably won't get everything right.
     sourceIds:
       - nng-test-earlier-with-ai
   - phase: build
     activity: Working with developers
+    headline: Figma's survey shows designers joining development and developers doing design
     traditional: Designers handed off specs, redlines and design files, and developers turned them into code.
     aiEra: In Figma's 2026 AI report, based on survey responses from designers, developers and product managers, the number of designers participating in development doubled to 41% in the last year, and the number of developers doing design work rose from 44% to 60%. Separately, 41% of respondents said AI meaningfully changes how teams work together, compared to 7% two years earlier.
     sourceIds:
       - figma-ai-report-2026
   - phase: design
     activity: Designing AI-powered features
+    headline: Design AI features for trust, with transparency, control and help when they fail
     traditional: Designers mapped out fixed screens, flows and states that behaved the same way each time.
     aiEra: NN/g observes that in many products people spend less time navigating the UI and more time delegating to a layer sitting on top of it. It expects trust to be a major design problem for AI experiences in 2026, growing as AI agents are rolled out, often before they're ready. It names transparency, control, consistency and support when the system fails as the fundamentals.
     sourceIds:
       - nng-state-of-ux-2026
   - phase: test
     activity: Defining what good output looks like
+    headline: Define what good AI output looks like instead of specifying exact behaviours
+    highlight: true
     traditional: Designers wrote specs describing exact behaviours, and engineering and QA checked that the build matched them.
     aiEra: NN/g's Adam Elman points out that in AI-powered systems the AI makes design decisions about what to include in a response and how to phrase it. He argues designers should reframe their task from specifying exact behaviours to defining what "good" looks (and doesn't look) like, so engineering and data-science partners can evaluate the model against the design intent. That definition still comes from user research and design expertise. In his own team's practice, the process starts with judging criteria for whether a model output is acceptable.
     sourceIds:

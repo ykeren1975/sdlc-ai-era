@@ -1,0 +1,34 @@
+---
+import { Moon, Sun } from "@lucide/astro";
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  class="no-print inline-flex size-9 items-center justify-center rounded-lg border border-line text-muted hover:text-ink"
+  aria-label="Dark mode"
+  aria-pressed="false"
+>
+  <Sun class="size-4 dark:hidden" aria-hidden="true" />
+  <Moon class="hidden size-4 dark:block" aria-hidden="true" />
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(
+    "[data-theme-toggle]",
+  );
+  const root = document.documentElement;
+  const sync = () =>
+    button?.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
+  sync();
+  button?.addEventListener("click", () => {
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      /* storage unavailable: theme still applies for this page view */
+    }
+    sync();
+  });
+</script>

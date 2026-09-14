@@ -1,0 +1,209 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { PHASES, PHASE_LABELS, ROLE_GROUPS } from "../lib/taxonomy";
+import { url } from "../lib/url";
+import RoleIcon from "./RoleIcon.astro";
+
+interface Props {
+  roles: CollectionEntry<"roles">[];
+}
+
+const byId = new Map(Astro.props.roles.map((r) => [r.id, r]));
+
+// Where each role works: number of shifts per phase, derived from the content.
+const phaseCounts = (role: CollectionEntry<"roles">) =>
+  Object.fromEntries(
+    PHASES.map((p) => [
+      p,
+      role.data.shifts.filter((s) => s.phase === p).length,
+    ]),
+  ) as Record<(typeof PHASES)[number], number>;
+
+const groups = ROLE_GROUPS.map((g) => ({
+  label: g.label,
+  roles: g.roles
+    .map((id) => byId.get(id))
+    .filter((r): r is CollectionEntry<"roles"> => !!r)
+    .map((role) => ({ role, counts: phaseCounts(role) })),
+})).filter((g) => g.roles.length > 0);
+
+const dotSize = (n: number) =>
+  n >= 3 ? "size-4" : n === 2 ? "size-3" : "size-2";
+const tagline = (r: CollectionEntry<"roles">) =>
+  r.data.tagline ?? r.data.summary;
+---
+
+<section aria-labelledby="map-heading" data-sdlc-map>
+  <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
+    <div>
+      <h2 id="map-heading" class="text-xl font-semibold tracking-tight">
+        Find your role in the lifecycle
+      </h2>
+      <p class="text-sm text-muted">
+        Dots show where AI changes each role's work. Bigger dot, more changes.
+      </p>
+    </div>
+    <p
+      class="hidden text-xs text-muted lg:block"
+      aria-live="polite"
+      data-map-status
+    >
+      Select a phase to highlight the roles it affects.
+    </p>
+  </div>
+
+  <!-- Desktop / tablet: matrix -->
+  <div class="hidden overflow-hidden rounded-2xl border border-line bg-surface lg:block">
+    <div class="grid grid-cols-[minmax(19rem,2.6fr)_repeat(7,minmax(0,1fr))] items-center border-b border-line bg-before px-4 py-3">
+      <span class="text-xs font-medium tracking-wide text-muted uppercase">
+        Role
+      </span>
+      {PHASES.map((phase, i) => (
+        <div class="relative flex justify-center">
+          {i > 0 && (
+            <span
+              class="pointer-events-none absolute top-1/2 right-1/2 z-0 h-px w-full -translate-y-1/2 bg-line"
+              aria-hidden="true"
+            />
+          )}
+          <button
+            type="button"
+            data-phase-filter={phase}
+            aria-pressed="false"
+            class="relative z-10 rounded-full border border-line bg-surface px-2.5 py-1 text-xs font-medium text-muted hover:border-accent hover:text-ink aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-on-accent"
+          >
+            {PHASE_LABELS[phase]}
+          </button>
+        </div>
+      ))}
+    </div>
+
+    {groups.map((group) => (
+      <div role="group" aria-label={group.label}>
+        <p class="border-b border-line px-4 pt-4 pb-1.5 text-xs font-semibold tracking-wide text-accent uppercase">
+          {group.label}
+        </p>
+        <ul>
+          {group.roles.map(({ role, counts }) => (
+            <li
+              data-map-role={role.id}
+              data-phases={PHASES.filter((p) => counts[p] > 0).join(" ")}
+              class="border-b border-line transition-opacity last:border-b-0 data-dim:opacity-30"
+            >
+              <a
+                href={url(`/roles/${role.id}`)}
+                class="group grid grid-cols-[minmax(19rem,2.6fr)_repeat(7,minmax(0,1fr))] items-center px-4 py-2.5 no-underline hover:bg-accent-soft"
+              >
+                <span class="flex min-w-0 items-center gap-3">
+                  <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent group-hover:bg-surface">
+                    <RoleIcon name={role.data.icon} class="size-4" />
+                  </span>
+                  <span class="min-w-0">
+                    <span class="block font-medium group-hover:text-accent">
+                      {role.data.title}
+                    </span>
+                    <span class="block text-xs text-muted">
+                      {tagline(role)}
+                    </span>
+                  </span>
+                </span>
+                {PHASES.map((phase) => (
+                  <span class="flex justify-center" aria-hidden="true">
+                    {counts[phase] > 0 ? (
+                      <span
+                        class:list={[
+                          "rounded-full bg-accent",
+                          dotSize(counts[phase]),
+                        ]}
+                      />
+                    ) : (
+                      <span class="size-1 rounded-full bg-line" />
+                    )}
+                  </span>
+                ))}
+                <span class="sr-only">
+                  Changes in:{" "}
+                  {PHASES.filter((p) => counts[p] > 0)
+                    .map((p) => PHASE_LABELS[p])
+                    .join(", ")}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <!-- Mobile: grouped cards -->
+  <div class="space-y-6 lg:hidden">
+    {groups.map((group) => (
+      <div>
+        <h3 class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase">
+          {group.label}
+        </h3>
+        <ul class="grid gap-2 sm:grid-cols-2">
+          {group.roles.map(({ role, counts }) => (
+            <li data-testid="role-card">
+              <a
+                href={url(`/roles/${role.id}`)}
+                class="flex items-center gap-3 rounded-xl border border-line bg-surface p-3 no-underline"
+              >
+                <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                  <RoleIcon name={role.data.icon} class="size-5" />
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block font-medium">{role.data.title}</span>
+                  <span class="block text-sm text-muted">{tagline(role)}</span>
+                  <span class="mt-1.5 flex gap-1" aria-hidden="true">
+                    {PHASES.map((phase) => (
+                      <span
+                        title={PHASE_LABELS[phase]}
+                        class:list={[
+                          "h-1.5 flex-1 rounded-full",
+                          counts[phase] > 0 ? "bg-accent" : "bg-line",
+                        ]}
+                      />
+                    ))}
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+    <p class="text-xs text-muted">
+      The bar under each role shows the lifecycle from Plan to Operate; filled
+      segments are phases where AI changes the work.
+    </p>
+  </div>
+</section>
+
+<script>
+  const map = document.querySelector("[data-sdlc-map]");
+  const buttons =
+    map?.querySelectorAll<HTMLButtonElement>("[data-phase-filter]") ?? [];
+  const rows = map?.querySelectorAll<HTMLElement>("[data-map-role]") ?? [];
+  const status = map?.querySelector("[data-map-status]");
+
+  buttons.forEach((button) =>
+    button.addEventListener("click", () => {
+      const phase = button.dataset.phaseFilter!;
+      const active = button.getAttribute("aria-pressed") !== "true";
+      buttons.forEach((b) =>
+        b.setAttribute("aria-pressed", String(active && b === button)),
+      );
+      let shown = 0;
+      rows.forEach((row) => {
+        const match = !active || row.dataset.phases!.split(" ").includes(phase);
+        row.toggleAttribute("data-dim", !match);
+        if (match) shown++;
+      });
+      if (status)
+        status.textContent = active
+          ? `${shown} roles change in ${button.textContent?.trim()}. Select it again to clear.`
+          : "Select a phase to highlight the roles it affects.";
+    }),
+  );
+</script>

@@ -3,6 +3,7 @@ title: Software Developer / Engineer
 order: 50
 icon: code
 summary: Less time typing code, more time specifying work, directing coding agents, and reviewing and testing what they produce. Judgement, tests and code review matter more, not less.
+tagline: Less typing, more specifying, directing and reviewing agents
 lastReviewed: 2026-09-14
 sdlcPhases:
   - design
@@ -12,6 +13,8 @@ sdlcPhases:
 shifts:
   - phase: build
     activity: Writing code
+    headline: Describe a change, let AI draft it, then review and revise the result
+    highlight: true
     traditional: Developers wrote most code by hand in an editor, helped by autocomplete, documentation and search engines.
     aiEra: Developers increasingly describe a change and let an AI assistant or agent draft it, then review and revise the result. Adoption is uneven. Many developers still write most of their code themselves, while one Anthropic engineer estimated their work had shifted "70%+" to reviewing and revising rather than writing new code.
     sourceIds:
@@ -19,6 +22,7 @@ shifts:
       - so-survey-2025-ai
   - phase: design
     activity: Planning a change before implementation
+    headline: For larger changes, write or review a spec, plan and tasks for the agent
     traditional: Intent lived in a ticket, a design doc or the developer's head, and was refined while coding.
     aiEra: For larger changes, developers write or review a structured spec, a technical plan and a task list that the agent works from. The spec step helps on bigger features but can be overkill for small fixes and adds documents to review.
     sourceIds:
@@ -26,18 +30,22 @@ shifts:
       - fowler-sdd-tools
   - phase: build
     activity: Understanding unfamiliar code and debugging
+    headline: Ask an assistant to explain code or trace a bug, then check its answer
     traditional: Reading source, stepping through a debugger, searching the codebase and asking colleagues who knew the area.
     aiEra: Developers ask an assistant to explain a module, trace a bug or propose a fix, then check the explanation and the fix themselves. At Anthropic, debugging and code understanding are the most common uses.
     sourceIds:
       - anthropic-work-study
   - phase: build
     activity: Keeping project context usable
+    headline: Write docs an agent can use to call APIs without reading that code first
     traditional: Conventions and architecture knowledge were shared through wikis, onboarding and code review comments.
     aiEra: Developers write documentation that can be handed to an agent, so it can use APIs from other parts of the codebase without reading that code first.
     sourceIds:
       - willison-vibe-engineering
   - phase: test
     activity: Automated testing
+    headline: Treat a reliable test suite as the main guardrail for agent-written code
+    highlight: true
     traditional: Developers wrote unit and integration tests alongside features, with coverage often uneven.
     aiEra: A reliable test suite becomes the main guardrail for agent-written code. Without one, an agent may claim something works without having tested it. Developers still need strong manual testing skills, including digging into edge cases.
     sourceIds:
@@ -45,6 +53,8 @@ shifts:
       - dora-2025
   - phase: build
     activity: Code review
+    headline: Working with agents can mean lots of code review, including their output
+    highlight: true
     traditional: Peers reviewed pull requests written by other people, mostly for design, correctness and readability.
     aiEra: Working effectively with agents can mean, in Simon Willison's words, "spending so much time on code review", including reviewing your own agents' output. Output that is almost right, but not quite, still needs careful human review and debugging.
     sourceIds:
@@ -53,6 +63,7 @@ shifts:
       - willison-vibe-engineering
   - phase: deploy
     activity: Shipping changes safely
+    headline: Lean on version control, tests and fast feedback as more code arrives faster
     traditional: Teams balanced delivery speed against stability with CI, version control and release practices.
     aiEra: More code arrives faster, so mature version control, strong automated testing and fast feedback loops matter more to keep higher change volume from causing instability.
     sourceIds:

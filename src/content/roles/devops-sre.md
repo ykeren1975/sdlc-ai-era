@@ -3,6 +3,7 @@ title: DevOps / SRE Engineer
 order: 80
 icon: server-cog
 summary: AI agents now triage alerts, draft postmortems and generate infrastructure code. The job shifts toward setting guardrails for agents in production, checking their output and running AI workloads.
+tagline: Set guardrails for agents in production and check what they produce
 lastReviewed: 2026-09-14
 sdlcPhases:
   - build
@@ -11,6 +12,8 @@ sdlcPhases:
 shifts:
   - phase: operate
     activity: Triaging alerts
+    headline: "At Google, AI agents group and enrich alerts and can mitigate many issues"
+    highlight: true
     traditional: The on-call engineer was paged for each alert, then grouped related alerts and gathered context from dashboards, logs and runbooks by hand.
     aiEra: A 2026 Dynatrace survey of 919 leaders and managers responsible for SRE, platform engineering or IT operations at enterprises with annual revenues of $500 million or more reports that half of SREs now use AI-powered capabilities for automated incident response. At Google, an SRE AI alerting agent groups alerts and enriches them with context, and autonomous alert handlers can address or mitigate many issues. Google notes this does not necessarily remove people from the process, especially for higher-risk services and features.
     sourceIds:
@@ -18,12 +21,15 @@ shifts:
       - google-sre-agentic-ai
   - phase: operate
     activity: Investigating and mitigating an incident
+    headline: At Google, an agent proposes a mitigation and a human authorises it
+    highlight: true
     traditional: Responders read dashboards, logs and recent changes, formed hypotheses together and ran mitigation steps from runbooks or by hand.
     aiEra: In a Google walkthrough of a simulated outage, Gemini CLI fetches the incident details and playbook, runs log analysis and time-series correlation tools, and recommends a mitigation. The agent selects only from strictly typed tools whose definitions record potential impact, a policy layer checks whether an action is allowed in the current context, and a human authorises the proposed mutation. The tools come from Google's internal agent framework, not stock Gemini CLI. What the AI proposed and what the human approved are logged.
     sourceIds:
       - google-sre-gemini-cli
   - phase: operate
     activity: Writing postmortems
+    headline: AI can draft postmortems, but a wrong one can look right
     traditional: After an incident, responders rebuilt the timeline from chat, metrics and logs, then wrote a blameless postmortem and filed action items.
     aiEra: In the same Google walkthrough, a custom command scrapes the conversation history, metrics and logs, builds a timeline, drafts the postmortem from a standard template, suggests action items and files them as bugs with owners. Lorin Hochstein warns that the consequences of a poor LLM-written report are not immediately apparent, so reports can have the right form but be incorrect, with no obvious test for correctness.
     sourceIds:
@@ -31,24 +37,29 @@ shifts:
       - hochstein-llm-incident-reports
   - phase: operate
     activity: Maintaining runbooks
+    headline: At Google, agents monitor and improve playbooks based on incident use
     traditional: Engineers wrote runbooks and production documentation by hand and updated them when someone noticed a gap, often after an incident.
     aiEra: Google SRE has built AI agents that continuously monitor and improve playbooks and production documentation based on how they are used during incidents. Its agents can also generate new playbooks from incidents.
     sourceIds:
       - google-sre-agentic-ai
   - phase: build
     activity: Writing infrastructure as code
+    headline: Scan AI-written Terraform; well-formed code is not necessarily secure
+    highlight: true
     traditional: Engineers wrote Terraform, CloudFormation or Kubernetes manifests by hand and reviewed them in pull requests.
     aiEra: A 2026 benchmark (accepted at SBSeg 2026) of seven language models, including Claude Opus 4 and Gemini 2.5 Pro, generating AWS Terraform across 17 scenarios found that syntactic validity and security compliance are largely separate properties, so a model that reliably writes well-formed Terraform does not necessarily write secure Terraform. The authors, who ran Checkov and Trivy scanners in a GitLab CI/CD pipeline, conclude that prompt engineering alone is insufficient and that automated multi-tool scanning is still needed.
     sourceIds:
       - text-to-terraform-security
   - phase: operate
     activity: Reducing toil
+    headline: AI cut toil for some respondents but may move it into new kinds of work
     traditional: SREs cut repetitive operational work by automating it with scripts and tooling.
     aiEra: In Catchpoint's SRE Report 2026, based on 418 responses from practitioners, 49% of respondents said AI decreased their workload, 35% saw no change and 16% said it increased toil. Directors were more likely than individual contributors to say AI reduced toil. One explanation Catchpoint offers is that AI redistributed toil, adding work such as prompt engineering, model monitoring, explaining AI-generated recommendations and managing incidents caused by AI.
     sourceIds:
       - catchpoint-sre-report-2026
   - phase: operate
     activity: Running and monitoring AI workloads
+    headline: "Monitor AI models; OpenTelemetry's GenAI conventions omit prompts by default"
     traditional: SREs set service-level objectives and monitored latency, errors and resource use for conventional services.
     aiEra: Dynatrace reports that 67% of SREs name AI model monitoring as their top use case, and says demand for AI evaluation is outpacing the tools built to handle it. OpenTelemetry's GenAI semantic conventions, in use and under active development, cover telemetry for LLM calls. By default only metadata such as model names, token counts and durations is included, and prompt content and tool arguments are not captured because they can contain sensitive data.
     sourceIds:
@@ -56,6 +67,7 @@ shifts:
       - otel-genai-observability
   - phase: deploy
     activity: Building the delivery platform
+    headline: Invest in a high-quality internal platform; DORA links it to AI value
     traditional: Operations and platform teams maintained CI/CD pipelines, environments and shared tooling that development teams used to ship.
     aiEra: DORA's 2025 report, drawing on nearly 5,000 technology professionals, found that 90% of organizations have adopted at least one platform, and a direct correlation between a high-quality internal platform and an organization's ability to unlock the value of AI. AI adoption still has a negative relationship with delivery stability. Without strong automated testing, mature version control and fast feedback loops, more change volume leads to instability.
     sourceIds:

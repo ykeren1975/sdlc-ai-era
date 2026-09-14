@@ -3,6 +3,7 @@ title: Product Manager / Owner
 order: 10
 icon: compass
 summary: AI drafts documents and builds quick prototypes, so deciding what to build becomes the constraint. User empathy, fast judgement and defining quality for AI features matter more.
+tagline: AI drafts and prototypes, so deciding what to build is the constraint
 lastReviewed: 2026-09-14
 sdlcPhases:
   - plan
@@ -13,6 +14,8 @@ sdlcPhases:
 shifts:
   - phase: requirements
     activity: Writing PRDs and product documentation
+    headline: Draft PRDs and product docs with AI, a common use on product teams
+    highlight: true
     traditional: Product managers wrote requirement documents, user stories and presentations by hand, then refined them with design and engineering.
     aiEra: Atlassian's State of Product 2026 found product documentation among the most common AI use cases on product teams. In Productboard's survey of enterprise product professionals, writing PRDs was among the top time-savers, alongside presentations, competitive research and roadmap creation.
     sourceIds:
@@ -20,6 +23,8 @@ shifts:
       - productboard-ai-pm-report
   - phase: design
     activity: Communicating a product idea
+    headline: Turn a prompt or design into a working prototype and get customer feedback
+    highlight: true
     traditional: Ideas were described in documents and slides, and turning them into mockups or clickable prototypes usually depended on a designer or engineer.
     aiEra: Product managers can use tools such as v0, Bolt, Replit and Lovable to turn a prompt or a Figma design into a working prototype and get customers' direct feedback on it. Across Atlassian's product teams, prototyping "has shifted from a specialist skill to a default starting point."
     sourceIds:
@@ -27,18 +32,21 @@ shifts:
       - atlassian-product-craft
   - phase: build
     activity: Moving from a validated prototype to a real product
+    headline: Prototypes are for learning; products must also handle scale and security
     traditional: Discovery produced specs, designs and prototypes that engineers then built into the product.
     aiEra: Marty Cagan separates discovery, where teams are "building to learn", from delivery, where they are "building to earn". A learning prototype may cover just a few important use cases. A commercial product often has dozens or hundreds, and must also handle reliability, telemetry, performance at scale, data security and compliance.
     sourceIds:
       - svpg-prototypes-vs-products
   - phase: plan
     activity: Understanding customer needs
+    headline: One PM team replaced a research cycle with an agent synthesising feedback
     traditional: Product managers read interview notes, support tickets and survey comments themselves, or waited for a scheduled research study to summarise them.
     aiEra: At Atlassian, one PM team replaced a two-week research cycle with an agent that synthesised support data, NPS feedback and in-product behaviour.
     sourceIds:
       - atlassian-product-craft
   - phase: plan
     activity: Deciding what to build
+    headline: Deciding what to build may become the bottleneck as agents speed up coding
     traditional: Roadmaps and prioritisation were planned around limited engineering capacity.
     aiEra: Andrew Ng argues that agentic coding speeds up writing software to a given specification, so deciding what to build becomes the bottleneck, especially in early-stage projects. He values PMs with high user empathy who can make product decisions quickly. Atlassian's State of Product 2026 found that AI is not yet helping with prioritisation and planning.
     sourceIds:
@@ -46,6 +54,8 @@ shifts:
       - atlassian-state-of-product-2026
   - phase: test
     activity: Defining quality for AI features
+    headline: "Define good AI output with evals; have a domain expert judge real interactions"
+    highlight: true
     traditional: Product managers wrote acceptance criteria, and testers checked that features behaved as specified.
     aiEra: Aman Khan writes that evals are quickly becoming a core skill for anyone building AI products. Evals define what good output looks like, using human feedback, code-based checks or an LLM acting as judge. For most small and medium-size companies, Hamel Husain and Shreya Shankar recommend one principal domain expert, in many situations the product manager, who reviews around 100 real user interactions and gives each a pass/fail judgement and critique.
     sourceIds:

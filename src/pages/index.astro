@@ -1,40 +1,46 @@
 ---
 import { getCollection } from "astro:content";
-import RoleCard from "../components/RoleCard.astro";
+import SdlcMap from "../components/SdlcMap.astro";
 import Base from "../layouts/Base.astro";
 
-const roles = (await getCollection("roles")).sort(
-  (a, b) => a.data.order - b.data.order,
-);
+const roles = await getCollection("roles");
+const tools = await getCollection("tools");
+const sourceCount = roles.reduce((n, r) => n + r.data.sources.length, 0);
 ---
 
 <Base
   title="SDLC in the AI Era"
   description="Pick your role in the software development lifecycle and see what changes for you with AI: how the work shifts, which tools to use, and which skills matter now."
 >
-  <section class="mb-12 max-w-3xl">
+  <section class="mb-10 max-w-3xl">
     <p class="mb-3 text-sm font-medium text-accent">
       A role-by-role guide, with sources
     </p>
-    <h1 class="mb-5 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+    <h1 class="mb-4 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
       What changes for <em class="text-accent not-italic">you</em> when software
       is built with AI?
     </h1>
     <p class="text-lg leading-relaxed text-pretty text-muted">
-      Choose your role to see how your day-to-day work shifts from the
-      traditional SDLC to an AI-assisted one, which tools are worth using, which
-      skills to build, and what to watch out for.
+      Pick your role to get the short answer in 30 seconds: how your work
+      shifts, which tools to start with and which skills to build. The evidence
+      is one click away.
     </p>
-  </section>
-
-  <section aria-labelledby="roles-heading">
-    <h2 id="roles-heading" class="mb-5 text-xl font-semibold">
-      Choose your role
-    </h2>
-    <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {roles.map((role) => (
-        <RoleCard role={role} />
-      ))}
+    <ul
+      class="mt-5 flex flex-wrap gap-x-5 gap-y-1 text-sm text-muted"
+      aria-label="Site at a glance"
+    >
+      <li>
+        <strong class="font-semibold text-ink">{roles.length}</strong> roles
+      </li>
+      <li>
+        <strong class="font-semibold text-ink">{tools.length}</strong> tools
+      </li>
+      <li>
+        <strong class="font-semibold text-ink">{sourceCount}</strong> cited
+        sources
+      </li>
     </ul>
   </section>
+
+  <SdlcMap roles={roles} />
 </Base>

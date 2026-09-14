@@ -3,6 +3,7 @@ title: Software Architect
 order: 40
 icon: layers
 summary: AI speeds up documentation, codebase analysis and code output, so architects spend more time encoding constraints that agents can check, designing LLM components and keeping the team's understanding current.
+tagline: Encode constraints agents check; keep team understanding current
 lastReviewed: 2026-09-14
 sdlcPhases:
   - plan
@@ -13,18 +14,21 @@ sdlcPhases:
 shifts:
   - phase: design
     activity: Documenting the architecture with diagrams and decision records
+    headline: In one survey, some architects use AI for diagrams and ADRs; many don't yet
     traditional: Architects drew diagrams and wrote architecture decision records (ADRs) by hand, and keeping them in step with the running system was a manual, often neglected task.
     aiEra: In IcePanel's State of Software Architecture survey (75 responses, published January 2026), 37% said AI is used in some aspects of their workflow or tooling. Uses respondents described include generating Mermaid diagrams, going from code to diagrams, automating diagram updates with code changes, creating ADRs and summarising architectures. The same survey found many have yet to use AI at all and are cautious about fully trusting its output.
     sourceIds:
       - icepanel-state-of-architecture-2025
   - phase: design
     activity: Testing design ideas and trade-offs
+    headline: Some architects use AI as a thinking partner to gut-check designs and trade-offs
     traditional: Architects tested ideas in design reviews, whiteboard sessions and conversations with senior colleagues.
     aiEra: Respondents to IcePanel's survey (75 responses) described using AI as a thinking partner, for example "rubber ducking" designs, sanity checking decisions, asking for a second opinion and exploring potential designs and trade-offs. The report's general theme was AI as an assistant for brainstorming and gut-checks.
     sourceIds:
       - icepanel-state-of-architecture-2025
   - phase: design
     activity: Designing systems that include LLM components
+    headline: "LLMs can vary output for one input; evals matter unless users stay sceptical"
     traditional: Architects designed for deterministic components, where the same input gives the same output and conventional tests can confirm behaviour.
     aiEra: InfoQ's 2025 architecture trends report calls RAG the most common technique for getting higher-quality results from an LLM, notes that effective implementation still requires effort, and says architects are adapting systems to provide data that RAG can consume more easily. It suggests agentic workflows can follow some microservices patterns, with each agent having clearly defined boundaries. Bharani Subramaniam and Martin Fowler note that an LLM-based system can give different outputs to the same inputs, see evals as crucial unless users can be relied on to treat its output with healthy scepticism, and consider fine-tuning only if eval metrics stay unsatisfactory after optimising RAG.
     sourceIds:
@@ -32,12 +36,15 @@ shifts:
       - fowler-genai-patterns
   - phase: design
     activity: Deciding how AI agents connect to other systems
+    headline: Don't default to MCP; a well-designed CLI often gives agents what they need
     traditional: Architects chose integration styles such as APIs, messaging or command-line tools, weighing interoperability against the complexity each layer adds.
     aiEra: Thoughtworks' Technology Radar (Vol. 34, April 2026) cautions against using the Model Context Protocol (MCP) by default. It says MCP adds real value for structured tool contracts, OAuth-based authentication boundaries and governed multi-tenant access, but a well-designed CLI with good help output, structured JSON responses and predictable error handling often gives agents what they need. Teams should first ask whether their system actually requires protocol-level interoperability.
     sourceIds:
       - thoughtworks-radar-mcp-by-default
   - phase: build
     activity: Setting architecture standards for code that AI writes
+    headline: Guide agents with prompts and check architecture rules with automated sensors
+    highlight: true
     traditional: Standards lived in wiki pages, templates and code review, and architects relied on developers reading and following them.
     aiEra: InfoQ's 2025 trends report says architects are finding ways to provide good prompts that help ensure coding and architectural guidelines are upheld, while tooling for this is not yet at the level of linting or EditorConfig. Birgitta Böckeler describes a harness of guides and sensors around coding agents. One category, "basically" fitness functions, defines and checks the application's architecture characteristics. Among her example sensors is a pre-commit or coding agent hook running ArchUnit tests that check for violations of module boundaries.
     sourceIds:
@@ -45,18 +52,23 @@ shifts:
       - fowler-harness-engineering
   - phase: test
     activity: Checking that the codebase still matches the intended architecture
+    headline: Agents can speed up drift; some teams pair deterministic tools with LLM checks
+    highlight: true
     traditional: Architects found drift through periodic reviews, dependency analysis and, where teams had them, architecture tests such as fitness functions.
     aiEra: Thoughtworks' Radar (Vol. 34, ring Assess) warns that AI coding agents can accelerate drift from the intended architecture, as agents and humans copy existing patterns, including degraded ones. Some Thoughtworks teams combine deterministic tools such as Spectral, ArchUnit or Spring Modulith with LLM-powered evaluation to find structural and semantic violations, then use LLMs to help fix them. Their lessons are that initial scans can surface many violations to triage, small agent-produced fixes are easier to review, and an extra verification loop is essential.
     sourceIds:
       - thoughtworks-radar-architecture-drift
   - phase: plan
     activity: Understanding a legacy system before modernising it
+    headline: Use AI tools to surface business rules and dependencies in legacy code
     traditional: Architects reverse-engineered legacy systems by reading code, tracing dependencies and interviewing the few people who still knew how they worked.
     aiEra: Thoughtworks moved "using GenAI to understand legacy codebases" to Adopt in Radar Vol. 33 (November 2025), saying its experience across multiple clients shows this is now a practical default rather than an experiment. Tools it names, including Cursor, Claude Code and Copilot, help developers surface business rules, summarise logic and identify dependencies.
     sourceIds:
       - thoughtworks-radar-legacy-codebases
   - phase: operate
     activity: Keeping the team's understanding of the system current
+    headline: Guard against losing design intent as AI increases the pace of change
+    highlight: true
     traditional: Shared understanding built up through design discussions, code review and the people who wrote the code staying with the system.
     aiEra: Thoughtworks' Radar (Vol. 34, ring Caution) describes codebase cognitive debt as the growing gap between a system's implementation and a team's shared understanding of how and why it works. As AI increases change velocity, teams can lose track of design intent and hidden coupling, which makes it harder to steer agents away from architectural pitfalls. It recommends feedback sensors for coding agents, tracking team cognitive load and architectural fitness functions.
     sourceIds:

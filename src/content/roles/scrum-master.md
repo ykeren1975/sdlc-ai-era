@@ -3,6 +3,7 @@ title: Scrum Master / Agile Coach
 order: 110
 icon: refresh-cw
 summary: AI takes on drafting and retro prep, and agents raise questions about cadence and accountability. Facilitating how the team uses AI, keeping humans accountable and protecting quality become core work.
+tagline: Facilitate how the team uses AI and keep humans accountable
 lastReviewed: 2026-09-14
 sdlcPhases:
   - plan
@@ -12,6 +13,8 @@ sdlcPhases:
 shifts:
   - phase: plan
     activity: Facilitating Sprint Planning
+    headline: Plan which tasks use AI and set aside time to validate its output
+    highlight: true
     traditional: The Scrum Master ensured that Scrum events, including Sprint Planning, took place, were productive and stayed within their timebox.
     aiEra: The AI and Scrum guidance in the Scrum Guide Expansion Pack suggests that Sprint Planning covers which tasks the AI will be used for, and sets aside time to validate AI outputs.
     sourceIds:
@@ -19,6 +22,7 @@ shifts:
       - scrum-expansion-ai
   - phase: plan
     activity: Questioning the cadence
+    headline: "AWS's AI-DLC replaces sprints with bolts measured in hours or days"
     traditional: Sprints were fixed-length events of one month or less, to create consistency.
     aiEra: AWS's AI-Driven Development Life Cycle replaces sprints with "bolts", work cycles measured in hours or days rather than weeks. In a debate covered by InfoQ, Steve Jones, executive VP at Capgemini, argued that agentic SDLCs are "too fast for Agile". Agile coach Rolf Läderach countered that Agile is not the Manifesto or frameworks, but about creating adaptive and learning organisations.
     sourceIds:
@@ -27,6 +31,7 @@ shifts:
       - infoq-agile-manifesto-debate
   - phase: requirements
     activity: Facilitating backlog refinement
+    headline: "In AWS's AI-DLC, AI drafts requirements and the whole team validates them"
     traditional: Refinement meant breaking down and further defining Product Backlog items into smaller, more precise items.
     aiEra: In AWS's AI-DLC, AI turns business intent into requirements, stories and units of work through "Mob Elaboration", where the entire team validates the AI's questions and proposals. In Stefan Wolpers' survey of 289 agile practitioners, simplifying complex requirements for different audiences and generating first drafts were among the strongest use cases.
     sourceIds:
@@ -35,6 +40,7 @@ shifts:
       - ai4agile-report-2026
   - phase: build
     activity: Running retrospectives
+    headline: "Use AI for retro prep, and have the team inspect how AI helped or hindered"
     traditional: The Scrum Master made sure the Sprint Retrospective took place, with the purpose of planning ways to increase quality and effectiveness.
     aiEra: Preparing for Retrospectives and clustering qualitative feedback were among the strongest use cases in Wolpers' survey. The Expansion Pack says the Scrum Master can prompt the team to inspect how AI helped or hindered during the Sprint and identify areas for improvement.
     sourceIds:
@@ -43,6 +49,8 @@ shifts:
       - scrum-expansion-ai
   - phase: build
     activity: Coaching team working agreements and dynamics
+    headline: Agree that AI may generate or perform work, but humans stay accountable
+    highlight: true
     traditional: The Scrum Master coached team members in self-management and cross-functionality and caused the removal of impediments to the team's progress.
     aiEra: The Expansion Pack describes working agreements in which AI tools and autonomous agents may generate or perform work, but humans remain accountable. Scrum Masters also keep an eye on over-reliance or under-utilisation. If one team member becomes the "AI guru" and others disengage, the Scrum Master might encourage knowledge sharing or pair programming with AI.
     sourceIds:
@@ -50,12 +58,15 @@ shifts:
       - scrum-expansion-ai
   - phase: build
     activity: Keeping work in small batches
+    headline: Keep AI-generated changes small and avoid massive pull requests
     traditional: Teams worked in small batches to shorten feedback loops, test hypotheses quickly and course-correct.
     aiEra: DORA research shows that working in small batches amplifies the positive impact of AI adoption on product performance. DORA notes that AI tools are often optimised for generating large, complete features, and advises avoiding massive pull requests. It adds that reviewing a small chunk of machine-generated code may take more cognitive load per line than reviewing human-written code.
     sourceIds:
       - dora-small-batches
   - phase: test
     activity: Protecting the Definition of Done
+    headline: Review AI-generated code as rigorously as a teammate's, and don't skip tests
+    highlight: true
     traditional: The Scrum Master helped the team create high-value Increments that meet the Definition of Done. Work that did not meet it could not be considered part of an Increment.
     aiEra: The Expansion Pack says every piece of AI-generated code must be reviewed with the same rigour as if a teammate wrote it. It warns against letting the team sacrifice quality or skip testing in the rush to capitalise on AI speed, because technical debt accumulated now will almost certainly nullify future gains.
     sourceIds:
@@ -63,6 +74,7 @@ shifts:
       - scrum-expansion-ai
   - phase: plan
     activity: Coaching AI adoption across teams
+    headline: "Most surveyed agile practitioners use AI, but few had formal training"
     traditional: The Scrum Master led, trained and coached the organisation in its Scrum adoption, and advised on Scrum implementations.
     aiEra: Digital.ai's 18th State of Agile survey (published October 2025), of nearly 350 participants who were primarily agile coaches and consultants at enterprises with over 20,000 employees, found AI adoption rose from 68% to 84%, with 41% implementing tools in a coordinated way across teams. In Wolpers' survey, 83% use AI tools, but 55% spend 10% or less of their work time with AI, and only 15% have had any formal training on using AI in agile contexts.
     sourceIds:

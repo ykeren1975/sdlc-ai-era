@@ -3,6 +3,7 @@ title: Security Engineer
 order: 70
 icon: shield-check
 summary: AI tools find vulnerabilities and suggest fixes, so more of the work moves to verifying and patching. AI-generated code and agents with tool access add new attack surface to review.
+tagline: AI finds vulnerabilities; more of the work is verifying and patching
 lastReviewed: 2026-09-14
 sdlcPhases:
   - design
@@ -12,6 +13,8 @@ sdlcPhases:
 shifts:
   - phase: design
     activity: Threat modeling new features
+    headline: Cover agent risks such as goal hijack and tool misuse in threat models
+    highlight: true
     traditional: Security engineers reviewed designs and data flows with the team, listed likely threats to the application and its users, and agreed controls before build.
     aiEra: When a system includes AI agents, the threat model also has to cover agent-specific risks. The OWASP Top 10 for Agentic Applications (December 2025) lists ten, including agent goal hijack, tool misuse, identity and privilege abuse, memory and context poisoning, and rogue agents. Simon Willison names a "lethal trifecta" of agent capabilities, namely access to private data, exposure to untrusted content and the ability to communicate externally. When all three are present, an attacker can manipulate the agent into sending that data out.
     sourceIds:
@@ -19,6 +22,7 @@ shifts:
       - willison-lethal-trifecta
   - phase: design
     activity: Reviewing integrations and tool permissions
+    headline: Avoid MCP setups that mix private data, untrusted content and external comms
     traditional: Security engineers reviewed third-party integrations, API scopes and service accounts before they were connected to production systems.
     aiEra: Willison warns that mixing tools from different sources through the Model Context Protocol (MCP) is particularly risky, because such tools often provide private data access, untrusted content and a way to communicate externally, sometimes within a single tool. He advises avoiding that combination. His example is a GitHub MCP server that could access private repositories, read publicly filed issues and create pull requests. OWASP's agentic list also includes agentic supply chain vulnerabilities.
     sourceIds:
@@ -26,18 +30,23 @@ shifts:
       - owasp-agentic-top-10-2026
   - phase: build
     activity: Reviewing code for security flaws
+    headline: "In Veracode's tests, AI code was syntactically correct but often failed security"
+    highlight: true
     traditional: Developers wrote most code by hand, and security engineers ran static analysis and reviewed high-risk changes such as authentication, input handling and cryptography.
     aiEra: AI models now write more of the code. In Veracode's 2026 tests, models generated syntactically correct code nearly 100% of the time, but the average security pass rate was 56%, barely changed from 55% in its first report. Results varied by weakness, with pass rates of 15% on cross-site scripting and 12% on log injection.
     sourceIds:
       - veracode-genai-2026
   - phase: test
     activity: Getting scanner findings fixed
+    headline: Evaluate each Autofix suggestion; it may miss or add vulnerabilities
+    highlight: true
     traditional: Static analysis alerts went into backlogs. Security engineers triaged them and explained the issue, and developers researched and wrote each fix.
     aiEra: GitHub's Copilot Autofix generates code change suggestions for CodeQL alerts on pull requests and the default branch. GitHub's documentation warns that a suggestion may fail to fix the vulnerability, introduce new vulnerabilities or change the program's semantics, and says developers must evaluate each suggestion and check that CI tests pass.
     sourceIds:
       - github-autofix-docs
   - phase: test
     activity: Finding vulnerabilities
+    headline: "AI finds vulnerabilities; Anthropic argues verifying and patching is the limit"
     traditional: Specialists found vulnerabilities through manual code review, penetration testing and fuzzing.
     aiEra: In the final of DARPA's AI Cyber Challenge (August 2025), competitors' automated systems analysed more than 54 million lines of code, found 54 unique synthetic vulnerabilities across 63 challenges and patched 43. They also found 18 real, non-synthetic vulnerabilities, which were being responsibly disclosed to open source maintainers. Anthropic reports that it and about 50 partners used Claude Mythos Preview, a model it has not released to the public, to find more than ten thousand high- or critical-severity vulnerabilities. Anthropic argues that security progress is now limited by how quickly vulnerabilities found by AI can be verified, disclosed and patched.
     sourceIds:
@@ -45,12 +54,14 @@ shifts:
       - anthropic-glasswing-update
   - phase: operate
     activity: Handling incoming vulnerability reports
+    headline: "At curl, nearly all reports use some AI; quality is back up, but so is volume"
     traditional: Security teams and open source maintainers triaged reports from researchers and bug bounty programs, checked whether each was a real vulnerability, and coordinated fixes and disclosure.
     aiEra: At curl, Daniel Stenberg wrote in April 2026 that almost every security report now uses AI to some degree. Junk submissions to the curl bug bounty grew intense during 2025 and early 2026, and the project shut the bounty down on 1 February 2026. By April, he found report quality higher, with the rate of confirmed vulnerabilities back to the 2024 pre-AI level, around 15–16%. Reports were arriving at about double the 2025 rate, and he expects this to make maintainer overload worse.
     sourceIds:
       - curl-high-quality-chaos
   - phase: operate
     activity: Monitoring and investigating alerts
+    headline: "Some surveyed practitioners already use or test AI tools in their operations"
     traditional: Analysts and security engineers worked through alerts, logs and network monitoring largely by hand, with rules and scripts to cut noise.
     aiEra: In ISC2's 2025 workforce study of 16,029 cybersecurity practitioners and decision-makers, 28% of respondents had already integrated AI tools into their operations, 19% were actively testing them and 22% were in early evaluation. ISC2 notes that AI-driven tools offer the promise of automating repetitive tasks such as monitoring network traffic, identifying anomalies and flagging suspicious behaviour.
     sourceIds:

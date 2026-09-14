@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
@@ -9,14 +11,29 @@
   --color-ink: oklch(22% 0.02 260);
   --color-muted: oklch(46% 0.02 260);
   --color-line: oklch(90% 0.01 260);
-  --color-before: oklch(95% 0.008 260);
+  --color-before: oklch(96% 0.006 260);
   --color-accent: oklch(48% 0.13 185);
   --color-accent-soft: oklch(95% 0.035 185);
+  --color-on-accent: oklch(100% 0 0);
 }
 
 @layer base {
+  /* Dark tokens. data-theme is set before paint by the script in Base.astro;
+     the media query is the no-JS fallback. */
+  :root[data-theme="dark"] {
+    --color-paper: oklch(18% 0.015 260);
+    --color-surface: oklch(22% 0.018 260);
+    --color-ink: oklch(94% 0.01 260);
+    --color-muted: oklch(74% 0.015 260);
+    --color-line: oklch(32% 0.02 260);
+    --color-before: oklch(25% 0.015 260);
+    --color-accent: oklch(78% 0.12 185);
+    --color-accent-soft: oklch(30% 0.05 185);
+    --color-on-accent: oklch(18% 0.015 260);
+  }
+
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme]) {
       --color-paper: oklch(18% 0.015 260);
       --color-surface: oklch(22% 0.018 260);
       --color-ink: oklch(94% 0.01 260);
@@ -25,11 +42,15 @@
       --color-before: oklch(25% 0.015 260);
       --color-accent: oklch(78% 0.12 185);
       --color-accent-soft: oklch(30% 0.05 185);
+      --color-on-accent: oklch(18% 0.015 260);
     }
   }
 
-  html {
-    color-scheme: light dark;
+  :root {
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
   }
 
   body {
@@ -42,5 +63,52 @@
 
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-accent;
+  }
+
+  summary {
+    @apply cursor-pointer list-none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+/* Shareable one-page summary: Print / Save as PDF */
+@media print {
+  :root,
+  :root[data-theme="dark"] {
+    --color-paper: #fff;
+    --color-surface: #fff;
+    --color-ink: #111;
+    --color-muted: #444;
+    --color-line: #ccc;
+    --color-before: #f4f4f4;
+    --color-accent: #0b6e66;
+    --color-accent-soft: #e6f4f2;
+    --color-on-accent: #fff;
+    color-scheme: light;
+  }
+
+  @page {
+    margin: 1.5cm;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-break-avoid {
+    break-inside: avoid;
+  }
+
+  a.print-url[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: var(--color-muted);
+    word-break: break-all;
   }
 }

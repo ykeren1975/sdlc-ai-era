@@ -3,6 +3,7 @@ title: Business Analyst
 order: 20
 icon: clipboard-list
 summary: AI drafts, rewords and checks requirements, stories and test ideas. The analyst supplies the context, keeps stakeholders in the loop and catches what the draft gets subtly wrong.
+tagline: AI drafts requirements; you add context and catch subtle errors
 lastReviewed: 2026-09-14
 sdlcPhases:
   - requirements
@@ -11,42 +12,52 @@ sdlcPhases:
 shifts:
   - phase: requirements
     activity: Eliciting and clarifying stakeholder needs
+    headline: Have an LLM reword rough needs, then let stakeholders confirm the meaning
+    highlight: true
     traditional: Analysts ran interviews and workshops, took notes and turned what stakeholders said into written requirements, going back to them to confirm meaning.
     aiEra: An LLM can reword a stakeholder's rough statement into a clearer requirement for the stakeholder to confirm. In a 2026 study, participants rated LLM revisions of their own statements higher than their originals, but the authors saw occasional meaning drift and say stakeholders must stay in the validation loop.
     sourceIds:
       - llm-stakeholder-revisions-2026
   - phase: requirements
     activity: Using AI across requirements work
+    headline: "In one small survey, human-AI collaboration led; full automation was rare"
     traditional: Elicitation, analysis, specification and validation were done by people, with documents, spreadsheets and requirements tools.
     aiEra: In a 2025 survey of 55 software practitioners, 58.2% already used AI in requirements work. Human-AI collaboration accounted for 54.4% of requirements techniques, while full AI automation was 5.4%.
     sourceIds:
       - ai4re-practitioner-survey-2025
   - phase: requirements
     activity: Writing user stories
+    headline: "In one study, LLM stories were similar to human ones but less diverse"
     traditional: Analysts wrote user stories by hand from interview notes and workshop outputs, using templates such as "As a… I want… so that…".
     aiEra: In a 2025 study, 10 LLMs available in 2024 generated user stories from emulated customer interviews. The stories were similar to human-written ones in coverage and style, but less diverse and creative, and met acceptance quality criteria less often.
     sourceIds:
       - llm-user-stories-2025
   - phase: requirements
     activity: Breaking epics into stories and acceptance criteria
+    headline: One pilot gave AI written domain context, then had it split epics into stories
+    highlight: true
     traditional: The analyst split epics into stories and wrote acceptance criteria, and missed edge cases often led to rework later in development.
     aiEra: In one Thoughtworks pilot, the team first wrote a reusable description of the domain and architecture for the AI, then used an AI assistant to break three epics into stories. The team estimated about 20% less analysis time, including the time to create that context, though three epics is too few for firm conclusions. The team's QA estimated about 10% fewer bugs and reasons for rework, because edge cases were better covered in the stories.
     sourceIds:
       - thoughtworks-ra-case-study
   - phase: requirements
     activity: Reviewing requirement quality
+    headline: In one study, LLMs reliably judged user story quality given clear criteria
     traditional: Tools could check the syntax of requirements, but judging clarity and internal consistency stayed a manual, time-consuming review.
     aiEra: In a 2025 study, LLMs reliably assessed the semantic quality of user stories when given clear evaluation criteria, with the potential to reduce human effort in large-scale reviews.
     sourceIds:
       - llm-user-stories-2025
   - phase: test
     activity: Handing acceptance criteria to testing
+    headline: Generate test cases from stories with AI, but they may miss non-functional needs
+    highlight: true
     traditional: Testers read stories and acceptance criteria and wrote test cases by hand, asking the analyst about gaps.
     aiEra: AI can generate test cases from user stories. In a Thoughtworks experiment, generated test cases covered 98.67% of acceptance criteria, yet roughly a quarter needed clarification. The biggest limitation was heavy reliance on input quality, and the tools tended to overlook non-functional requirements.
     sourceIds:
       - thoughtworks-testcases-2025
   - phase: design
     activity: Writing specifications for coding agents
+    headline: "Kiro frames requirements as stories with acceptance criteria before agents code"
     traditional: Requirements documents and backlog items were written for developers, who interpreted them while designing and coding.
     aiEra: Kiro, a spec-driven development tool, structures requirements as user stories with GIVEN/WHEN/THEN acceptance criteria before a coding agent designs and implements them. Demos of such tools present it as a given that a developer does this analysis, and do not make explicit whether developers should pair with product people on it.
     sourceIds:

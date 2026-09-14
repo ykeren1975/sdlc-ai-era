@@ -1,0 +1,78 @@
+---
+import { Link, Printer } from "@lucide/astro";
+---
+
+<div class="no-print flex flex-wrap items-center gap-2" data-share>
+  <button
+    type="button"
+    data-print
+    class="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-medium hover:border-accent"
+  >
+    <Printer class="size-4" aria-hidden="true" /> Print / Save as PDF
+  </button>
+  <button
+    type="button"
+    data-copy-link
+    class="inline-flex items-center gap-2 rounded-lg border border-line bg-surface px-3 py-1.5 text-sm font-medium hover:border-accent"
+  >
+    <Link class="size-4" aria-hidden="true" /> Copy link
+  </button>
+  <span
+    class="text-sm text-accent"
+    role="status"
+    aria-live="polite"
+    data-copy-status
+  ></span>
+</div>
+
+<script>
+  document
+    .querySelector("[data-print]")
+    ?.addEventListener("click", () => window.print());
+
+  const status = document.querySelector("[data-copy-status]");
+  document
+    .querySelector("[data-copy-link]")
+    ?.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(location.href.split("#")[0]);
+        if (status) status.textContent = "Link copied";
+      } catch {
+        if (status) status.textContent = "Couldn't copy; use the address bar";
+      }
+      setTimeout(() => status && (status.textContent = ""), 3000);
+    });
+
+  // Open every disclosure for printing, and restore afterwards.
+  let closed: HTMLDetailsElement[] = [];
+  addEventListener("beforeprint", () => {
+    closed = [
+      ...document.querySelectorAll<HTMLDetailsElement>("details:not([open])"),
+    ];
+    closed.forEach((d) => (d.open = true));
+  });
+  addEventListener("afterprint", () => closed.forEach((d) => (d.open = false)));
+
+  // "Expand all / Collapse all" for each disclosure group.
+  document
+    .querySelectorAll<HTMLElement>("[data-disclosure-group]")
+    .forEach((group) => {
+      const button =
+        group.querySelector<HTMLButtonElement>("[data-toggle-all]");
+      const all = () => [
+        ...group.querySelectorAll<HTMLDetailsElement>("details"),
+      ];
+      const sync = () => {
+        if (button)
+          button.textContent = all().every((d) => d.open)
+            ? "Collapse all"
+            : "Expand all";
+      };
+      button?.addEventListener("click", () => {
+        const open = !all().every((d) => d.open);
+        all().forEach((d) => (d.open = open));
+        sync();
+      });
+      all().forEach((d) => d.addEventListener("toggle", sync));
+    });
+</script>

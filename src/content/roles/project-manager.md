@@ -3,6 +3,7 @@ title: Project Manager
 order: 100
 icon: chart-gantt
 summary: AI tools draft status reports, meeting summaries and risk flags from plan and tracker data. Checking those drafts, deciding what to escalate and keeping stakeholders aligned stay with the project manager.
+tagline: AI drafts reports and risk flags; you check, escalate and align
 lastReviewed: 2026-09-14
 sdlcPhases:
   - plan
@@ -10,6 +11,7 @@ sdlcPhases:
 shifts:
   - phase: plan
     activity: Building the plan and schedule
+    headline: "Microsoft's Planner Agent can generate plan tasks from a goal and files"
     traditional: Project managers broke the scope into tasks, estimated durations and dependencies, and built the schedule in a scheduling tool or spreadsheet, then updated it by hand as work moved.
     aiEra: Microsoft's Planner Agent can generate tasks for a plan based on a given goal and relevant files. APM's 2025 survey of 1,000 project professionals asked which project functions had benefited most from AI. Task and schedule automation was one of the main responses, cited by 50% of project professionals using AI who had seen a benefit.
     sourceIds:
@@ -17,6 +19,8 @@ shifts:
       - apm-ai-survey-2025
   - phase: build
     activity: Writing status reports
+    headline: Agents can draft status reports; review them and give feedback
+    highlight: true
     traditional: Project managers chased updates from team members, pulled progress figures from the plan and tracker, and wrote the weekly status report by hand.
     aiEra: Planner Agent can generate a customised status report based on the current state of work and your reporting needs. Atlassian's Jira Delivery Agent creates a daily status digest and end-of-cycle summaries of completed work. Atlassian recommends reviewing the agent's summaries regularly and giving feedback to improve their accuracy and usefulness.
     sourceIds:
@@ -24,6 +28,8 @@ shifts:
       - atlassian-jira-delivery-agent
   - phase: plan
     activity: Maintaining the risk and issue log
+    headline: "Agents can flag stale work; one trial user says escalating needs judgement"
+    highlight: true
     traditional: Risks, assumptions, issues and dependencies were raised in workshops and status meetings and kept in a RAID log that the project manager reviewed and updated by hand.
     aiEra: Jira Delivery Agent identifies risks such as stale work, blocked items or slipping deadlines, and follows up with assignees on work items that haven't moved for a specified period. In APM's 2025 survey, risk analysis and forecasting was cited by 50% of project professionals using AI who had seen a benefit. In a late-2024 UK government trial of Microsoft 365 Copilot, one project delivery participant said the tool can identify trends, but decisions about which risks to escalate still require deep understanding and human judgement.
     sourceIds:
@@ -32,6 +38,8 @@ shifts:
       - ukgov-m365-copilot-experiment
   - phase: build
     activity: Running meetings and tracking actions
+    headline: "Copilot suggests meeting actions; accept or discard Rovo's Jira updates"
+    highlight: true
     traditional: Project managers took minutes, wrote up decisions and action items after the meeting, and updated the tracker themselves.
     aiEra: Copilot in Teams meetings summarises key discussion points, including who spoke and what they said, and suggests action items. When a Loom meeting is connected to a Jira space, Rovo analyses the transcript and recommends updates such as reassigning work items, changing priority or status, or adding a comment. You can accept or discard each suggestion, or accept all.
     sourceIds:
@@ -39,6 +47,7 @@ shifts:
       - atlassian-loom-jira-suggestions
   - phase: plan
     activity: Allocating resources and forecasting outcomes
+    headline: "Some UK project professionals say AI aids forecasting and scheduling"
     traditional: Resource plans and forecasts were built in spreadsheets from team availability and the project manager's own estimates of remaining work.
     aiEra: In APM's 2026 research with 1,000 UK project professionals, 27% said AI was fully embedded in their workflows. The activities it supported included predicting project outcomes and improving forecasting accuracy, assisting with resource allocation and supporting task scheduling. In APM's 2025 survey, resource allocation was cited by 50% of project professionals using AI who had seen a benefit.
     sourceIds:
@@ -46,6 +55,7 @@ shifts:
       - apm-ai-survey-2025
   - phase: build
     activity: Communicating with stakeholders
+    headline: "Jira's agent drafts updates per audience; Capterra says AI can't build trust"
     traditional: Project managers tailored updates for sponsors, steering groups and delivery teams, and handled alignment, negotiation and conflict in conversation.
     aiEra: Jira Delivery Agent produces delivery artefacts for different audiences, including team stand-ups and executive summaries. In APM's 2025 survey, stakeholder communications was cited by 43% of project professionals using AI who had seen a benefit. Capterra, which surveyed 2,545 management-level respondents responsible for project management software decisions in 11 countries in July 2025, writes that AI "can't build trust or resolve conflict". In that survey, 60% of PMs said they had increased their use of emotional intelligence since adopting AI.
     sourceIds:

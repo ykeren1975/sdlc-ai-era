@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import ThemeToggle from "../components/ThemeToggle.astro";
 import { url } from "../lib/url";
 
 interface Props {
@@ -10,7 +11,7 @@ interface Props {
 const { title, description } = Astro.props;
 const siteName = "SDLC in the AI Era";
 const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
-const nav = [{ href: url("/"), label: "Roles" }];
+const nav = [{ href: url("/"), label: "All roles" }];
 ---
 
 <!doctype html>
@@ -23,6 +24,21 @@ const nav = [{ href: url("/"), label: "Roles" }];
     <meta name="description" content={description} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
+    <script is:inline>
+      // Set the theme before first paint to avoid a flash.
+      (() => {
+        let theme;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch {}
+        if (theme !== "dark" && theme !== "light") {
+          theme = matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
   </head>
   <body class="min-h-screen">
     <a
@@ -31,25 +47,28 @@ const nav = [{ href: url("/"), label: "Roles" }];
     >
       Skip to content
     </a>
-    <header class="border-b border-line">
-      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+    <header class="no-print border-b border-line">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a href={url("/")} class="font-semibold tracking-tight no-underline">
           SDLC <span class="text-accent">in the AI Era</span>
         </a>
-        <nav aria-label="Main">
-          <ul class="flex gap-5 text-sm">
-            {nav.map((item) => (
-              <li>
-                <a href={item.href} class="text-muted hover:text-ink">
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div class="flex items-center gap-4">
+          <nav aria-label="Main">
+            <ul class="flex gap-5 text-sm">
+              {nav.map((item) => (
+                <li>
+                  <a href={item.href} class="text-muted hover:text-ink">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
-    <main id="main" class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+    <main id="main" class="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
       <slot />
     </main>
     <footer class="border-t border-line">

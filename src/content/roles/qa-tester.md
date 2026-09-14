@@ -3,6 +3,7 @@ title: QA Engineer / Tester
 order: 60
 icon: flask-conical
 summary: AI tools can draft test cases, generate and repair automation, and run exploratory sessions. The tester directs and checks that work, and tests AI features that have no single right answer.
+tagline: AI can draft and repair tests; testers direct and check the work
 lastReviewed: 2026-09-14
 sdlcPhases:
   - plan
@@ -12,6 +13,8 @@ sdlcPhases:
 shifts:
   - phase: requirements
     activity: Test analysis and test case design
+    headline: Prompt AI for test analysis and design, now an ISTQB-certified skill
+    highlight: true
     traditional: Testers read requirements and user stories, identified test conditions and wrote test cases by hand, often in a test management tool.
     aiEra: Since July 2025, ISTQB certifies testers in applying prompt engineering to test analysis, design, automation and reporting. One Ministry of Testing author treats AI output "as a starting signal rather than a final answer". In the World Quality Report 2025-26, test case design and requirements refinement lead generative AI adoption in quality engineering, and in PractiTest's 2026 State of Testing report, 70% use AI for test case creation.
     sourceIds:
@@ -21,12 +24,16 @@ shifts:
       - practitest-sot-2026
   - phase: build
     activity: Writing UI test automation
+    headline: Give Playwright's agents a request and seed test; they plan and write tests
+    highlight: true
     traditional: Automation engineers hand-coded browser tests in frameworks such as Selenium or Playwright, finding locators and writing assertions step by step.
     aiEra: With Playwright's test agents, a planner explores the app and writes a Markdown test plan, and a generator turns that plan into executable tests, verifying selectors and assertions live as it runs the scenarios. The tester supplies a request, a seed test that sets up the environment and, optionally, a product requirements document.
     sourceIds:
       - playwright-test-agents
   - phase: test
     activity: Maintaining broken and brittle tests
+    headline: Let Playwright's healer suggest fixes for failing tests and re-run them
+    highlight: true
     traditional: When the UI changed, engineers debugged failing tests and updated locators, waits and test data by hand.
     aiEra: Playwright's healer agent replays the failing steps, inspects the current UI for equivalent elements and suggests a patch such as a locator update, wait adjustment or data fix, then re-runs the test. The outcome is a passing test or, if the agent believes the functionality is broken, a skipped test. Script maintenance is a common AI use among State of Testing respondents.
     sourceIds:
@@ -34,24 +41,28 @@ shifts:
       - practitest-sot-2026
   - phase: test
     activity: Exploratory testing
+    headline: One tester runs exploratory charters with an AI agent and steers it
     traditional: Testers ran time-boxed sessions guided by charters and heuristics, took notes and wrote up what they found.
     aiEra: One practitioner, Callum Akehurst-Ryan, runs exploratory charters with an AI agent. His agents look for risks in each feature request using quality heuristics, then navigate the app and report findings, naming the heuristic that found each issue. He argues the AI needs help deciding what is worth exploring, what good enough looks like and when to stop, and he steers or interrupts it during the session, which he calls "botsitting".
     sourceIds:
       - akehurst-ryan-exploratory-ai
   - phase: test
     activity: Checking tests written alongside AI-generated code
+    headline: When an agent writes the code, watch for disabled or deleted tests
     traditional: Developers and testers wrote tests themselves, and a passing suite was treated as evidence that the code behaved as intended.
     aiEra: When a coding agent writes the code, the tests need watching too. Kent Beck treats "any indication that the genie was cheating, for example by disabling or deleting tests" as a warning sign, and instructs his agent to always follow the TDD cycle of red, green, refactor.
     sourceIds:
       - beck-augmented-coding
   - phase: test
     activity: Testing features built on large language models
+    headline: Test LLM features with structured evals; the same input can vary in output
     traditional: Test cases compared actual output with a single expected result, on the assumption that the same input gives the same output.
     aiEra: Generative AI can produce different output from the same input, which makes traditional software testing methods insufficient. OpenAI's guidance recommends structured evals, combining metrics with human judgement, validating an LLM judge against human labels, and running evals on every change.
     sourceIds:
       - openai-evals-best-practices
   - phase: plan
     activity: Test planning and reporting
+    headline: One author uses AI to draft test plans and summaries, not risk assessment
     traditional: Test leads wrote test plans, status updates and summary reports by hand from notes, logs and defect data.
     aiEra: One Ministry of Testing author uses AI to turn rough notes into structured test plans and to summarise test results, defects and feedback for stakeholders, but advises avoiding it for risk assessment, test analysis and the first version of a test strategy. In PractiTest's 2026 survey, far fewer respondents use AI for risk identification than for test case creation.
     sourceIds:

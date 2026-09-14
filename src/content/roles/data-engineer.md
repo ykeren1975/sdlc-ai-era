@@ -3,6 +3,7 @@ title: Data Engineer / Analyst
 order: 90
 icon: database
 summary: AI tools draft SQL and pipeline code and answer business questions in plain language. The job shifts toward defining business meaning, testing AI output and checking numbers before they reach stakeholders.
+tagline: AI drafts the SQL; you define meaning and check the numbers
 lastReviewed: 2026-09-14
 sdlcPhases:
   - design
@@ -12,6 +13,8 @@ sdlcPhases:
 shifts:
   - phase: build
     activity: Writing SQL, transformation models and pipeline code
+    headline: Most surveyed practitioners now use AI tools daily; organisations lag behind
+    highlight: true
     traditional: Data engineers, analytics engineers and analysts wrote SQL, transformation models, pipeline code, tests and documentation by hand, and teammates reviewed the changes.
     aiEra: In Joe Reis's 2026 State of Data Engineering Survey (about 1,100 responses; the post gives both 1,101 and 1,001), 82% use AI tools daily or more and only 3.7% find them unhelpful. Organisational adoption lags behind, with 64% still experimenting or using AI for tactical tasks only. In dbt Labs' 2026 State of Analytics Engineering survey of 363 data practitioners and leaders, 72% prioritise AI-assisted coding within their development process.
     sourceIds:
@@ -19,18 +22,22 @@ shifts:
       - dbt-state-of-analytics-engineering-2026
   - phase: build
     activity: Building ELT pipelines with AI agents
+    headline: On a benchmark, agents largely solve extract and load; transformation improves
     traditional: Engineers built Extract-Load-Transform pipelines by hand, which is labour-intensive work, setting up extraction and loading from source systems and then writing the transformation models.
     aiEra: On ELT-Bench, the first benchmark for end-to-end ELT pipeline construction, AI agents initially showed low success rates. A 2026 re-evaluation with upgraded language models found that the extraction and loading stage is largely solved, while transformation performance improves significantly. The same study found that most failed transformation tasks contained benchmark errors, including rigid evaluation scripts, ambiguous specifications and incorrect ground truth, that penalised correct agent output.
     sourceIds:
       - elt-bench-verified
   - phase: test
     activity: Testing and monitoring pipelines
+    headline: "In dbt's survey, validation investment isn't keeping pace with AI output"
     traditional: Teams added data tests and monitoring to pipelines and investigated failures when a check or a stakeholder flagged bad data.
     aiEra: In dbt Labs' 2026 survey, only 24% prioritise AI-assisted pipeline management, including testing, observability and quality controls. The report says AI is scaling engineering throughput and stakeholder-facing outputs, but investment in validation, testing and governance mechanisms isn't scaling at the same rate. 71% of respondents are concerned about hallucinated or incorrect data reaching stakeholders.
     sourceIds:
       - dbt-state-of-analytics-engineering-2026
   - phase: operate
     activity: Answering business questions
+    headline: Check AI-generated SQL that might run fine yet return wrong results
+    highlight: true
     traditional: Business users sent questions to analysts, who found the right tables, wrote the SQL and returned a number, chart or dashboard.
     aiEra: With text-to-SQL, a language model generates the SQL from the question. dbt Labs notes that the model might join tables incorrectly, misinterpret a column's meaning, or produce a query that runs successfully but returns wrong results. A 2026 research paper argues that NL2SQL agents still make mistakes on large-scale real-world databases because they lack knowledge of how to use the underlying data, such as the intent of each column, and form misconceptions about the data when querying it.
     sourceIds:
@@ -38,6 +45,8 @@ shifts:
       - tribal-knowledge-data-agents
   - phase: design
     activity: Defining metrics and business meaning
+    headline: Write down business definitions, which can improve AI query accuracy
+    highlight: true
     traditional: Analytics engineers defined metrics and business logic in data models, BI tools and documentation so that reports used the same definitions.
     aiEra: A 2026 preprint (not peer reviewed) tested Claude Opus 4.7, Claude Sonnet 4.6 and GPT-5.4 single-shot on 100 questions over one retail dataset. Adding a 4 KB hand-written document describing measures, conventions and disambiguation rules improved accuracy by 17 to 23 percentage points, to 67.7–68.7%. In dbt Labs' own 2026 benchmark update (11 questions, each run 20 times), adding three models let its Semantic Layer cover every question on its single ACME Insurance dataset, and text-to-SQL improved too. Snowflake's documentation says schemas lack knowledge like business process definitions and metrics handling, and Cortex Analyst uses a semantic model to bridge that gap.
     sourceIds:
@@ -46,6 +55,7 @@ shifts:
       - snowflake-cortex-analyst-docs
   - phase: test
     activity: Choosing and evaluating an AI query tool
+    headline: "Two text-to-SQL benchmarks had high annotation error rates that moved rankings"
     traditional: Teams compared query and BI tools on features, performance and fit with their existing data stack.
     aiEra: The research community depends on public text-to-SQL benchmarks and leaderboards to compare techniques and select one for deployment. A 2026 expert analysis found annotation error rates of 52.8% in BIRD Mini-Dev and 62.8% in Spider 2.0-Snow. When the authors re-evaluated 16 open-source agents from the BIRD leaderboard on a corrected subset of the BIRD Dev set, relative performance changed by −7% to 31% and rankings moved by up to nine positions. Snowflake's documentation describes evaluating a semantic view by running your verified queries against Cortex Analyst.
     sourceIds:

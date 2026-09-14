@@ -3,6 +3,7 @@ title: Engineering Manager
 order: 120
 icon: users
 summary: AI tools change how teams write, review and ship code. Measuring real impact, managing tool policy and spend, protecting delivery stability and growing junior engineers become core parts of the job.
+tagline: Measure AI's real impact, manage tool spend and grow junior engineers
 lastReviewed: 2026-09-14
 sdlcPhases:
   - plan
@@ -10,6 +11,8 @@ sdlcPhases:
 shifts:
   - phase: plan
     activity: Measuring team productivity
+    headline: Track AI utilization, impact and cost against solid baseline measurements
+    highlight: true
     traditional: Managers tracked delivery with engineering metrics such as PR throughput, cycle time, deployment frequency and change failure rate, alongside developer experience surveys.
     aiEra: DX's AI Measurement Framework tracks three dimensions, utilization, impact and cost, and treats agents as extensions of the developers and teams that oversee their work. In the Pragmatic Engineer's overview of the metrics 18 companies use to measure AI impact, the advice is to track metrics that keep each other in check and to start with solid baseline measurements.
     sourceIds:
@@ -17,6 +20,7 @@ shifts:
       - pragmatic-measure-ai-impact
   - phase: plan
     activity: Setting AI tool policy and choosing tools
+    headline: Clarify and socialise AI policies; procurement can shape tool choice
     traditional: Developer tools were chosen by teams or platform groups, and paid tools went through normal procurement.
     aiEra: DORA's 2025 report advises leaders to start by clarifying and socialising their AI policies. In the Pragmatic Engineer's 2026 survey of 906 participants, tool choice differed by company size, with GitHub Copilot overtaking Claude Code at large companies; the authors suggest enterprise procurement, not individual preference, is behind the difference.
     sourceIds:
@@ -24,6 +28,7 @@ shifts:
       - pragmatic-ai-tooling-2026
   - phase: plan
     activity: Budgeting for AI tools and making the case for them
+    headline: Track AI spend and plan for a possible temporary productivity dip
     traditional: Tooling budgets were mostly per-seat licences, planned alongside headcount.
     aiEra: DX's framework tracks AI spend, total and per developer, and net time gain per developer (time savings minus AI spend). DORA's ROI of AI-assisted Software Development report, as summarised by InfoQ, argues most organisations will see a temporary productivity dip before long-term gains, caused by the learning curve, the verification tax of reviewing AI-generated code and adapting downstream processes such as testing and change approval. The report strongly discourages headcount reduction as a strategy.
     sourceIds:
@@ -31,18 +36,23 @@ shifts:
       - dora-roi-infoq
   - phase: build
     activity: Keeping delivery stable as change volume grows
+    headline: Back AI-driven change volume with strong testing and fast feedback loops
+    highlight: true
     traditional: Teams relied on code review, automated tests and release processes to keep a steady flow of changes safe.
     aiEra: DORA's 2025 report, based on survey responses from nearly 5,000 technology professionals, found a positive relationship between AI adoption and software delivery throughput, but a continuing negative relationship with delivery stability. DORA's explanation is that without strong automated testing, mature version control practices and fast feedback loops, an increase in change volume leads to instability.
     sourceIds:
       - dora-2025-report
   - phase: plan
     activity: Hiring engineers
+    headline: Canva piloted AI-assisted interviews checking candidates can fix AI code
     traditional: At Canva, for example, technical interviews tested coding without AI tools, including a Computer Science Fundamentals interview focused on algorithms and data structures.
     aiEra: Canva piloted an AI-Assisted Coding interview that replaces that screen for backend and frontend roles. Candidates use their preferred AI tools on realistic product challenges, and interviewers check, among other things, whether they can identify and fix issues in AI-generated code. Canva found candidates with minimal AI experience often struggled because they lacked the judgement to guide AI effectively, and says code fluency and technical depth are still absolute requirements.
     sourceIds:
       - canva-ai-interviews
   - phase: plan
     activity: Growing junior engineers
+    headline: Consider pairing juniors with seniors and giving them small real projects
+    highlight: true
     traditional: Junior engineers learned by doing the work themselves and with others, and by getting feedback from more experienced colleagues.
     aiEra: In LeadDev's Engineering Leadership Report 2026, based on 600 survey responses from engineering leaders, 84% believe AI will make it harder for junior developers to enter and grow in the profession. James Stanier argues that the tasks that used to be training ground are being absorbed by AI, and suggests pairing juniors with seniors on complex problems, giving them ownership of small but real projects and letting them lead incident retrospectives.
     sourceIds:
@@ -50,6 +60,7 @@ shifts:
       - stanier-senior-engineers-2035
   - phase: build
     activity: Staying hands-on
+    headline: "In LeadDev's survey, some leaders are doing more hands-on technical work"
     traditional: Managers balanced people management and delivery with varying amounts of technical work.
     aiEra: LeadDev describes engineering leaders being asked to do more, technically, strategically and managerially, as organisations flatten and AI reshapes how code gets written, reviewed and shipped. In its 2026 survey, 37% of engineering leaders are doing more hands-on technical work. In the Pragmatic Engineer's 2026 survey, engineering managers used AI agents regularly at a lower rate than staff+ engineers.
     sourceIds:

@@ -1,4 +1,5 @@
 ---
+import { ChevronDown } from "@lucide/astro";
 import type { CollectionEntry } from "astro:content";
 import { PHASE_LABELS } from "../lib/taxonomy";
 import SourceRefs from "./SourceRefs.astro";
@@ -11,35 +12,59 @@ interface Props {
 const { shifts, sourceNumbers } = Astro.props;
 ---
 
-<ol class="space-y-4">
-  {shifts.map((shift) => (
-    <li
-      class="overflow-hidden rounded-xl border border-line bg-surface"
-      data-testid="shift"
+<div data-disclosure-group>
+  <div class="no-print mb-3 flex justify-end">
+    <button
+      type="button"
+      data-toggle-all
+      class="rounded-lg px-2 py-1 text-sm font-medium text-accent hover:bg-accent-soft"
     >
-      <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-line px-5 py-3">
-        <span class="text-xs font-medium tracking-wide text-muted uppercase">
-          {PHASE_LABELS[shift.phase]}
-        </span>
-        <h3 class="font-semibold">{shift.activity}</h3>
-      </div>
-      <div class="grid md:grid-cols-2">
-        <div class="bg-before px-5 py-4">
-          <p class="mb-1 text-xs font-medium tracking-wide text-muted uppercase">
-            Traditional
-          </p>
-          <p class="text-sm leading-relaxed text-muted">{shift.traditional}</p>
-        </div>
-        <div class="px-5 py-4">
-          <p class="mb-1 text-xs font-medium tracking-wide text-accent uppercase">
-            AI era
-          </p>
-          <p class="text-sm leading-relaxed">
-            {shift.aiEra}
-            <SourceRefs ids={shift.sourceIds} sourceNumbers={sourceNumbers} />
-          </p>
-        </div>
-      </div>
-    </li>
-  ))}
-</ol>
+      Expand all
+    </button>
+  </div>
+  <ul class="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-surface">
+    {shifts.map((shift) => (
+      <li data-testid="shift" class="print-break-avoid">
+        <details class="group">
+          <summary class="flex items-start gap-3 px-4 py-3.5 hover:bg-accent-soft sm:gap-4 sm:px-5">
+            <span class="mt-0.5 w-24 shrink-0 text-xs font-medium tracking-wide text-muted uppercase max-sm:hidden">
+              {PHASE_LABELS[shift.phase]}
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-semibold">{shift.activity}</span>
+              <span class="block text-sm text-muted">
+                {shift.headline ?? shift.aiEra}
+              </span>
+            </span>
+            <ChevronDown
+              class="no-print mt-1 size-4 shrink-0 text-muted transition-transform group-open:rotate-180"
+              aria-hidden="true"
+            />
+          </summary>
+          <div class="grid gap-px border-t border-line bg-line sm:grid-cols-2">
+            <div class="bg-before px-5 py-4">
+              <p class="mb-1 text-xs font-medium tracking-wide text-muted uppercase">
+                Before
+              </p>
+              <p class="text-sm leading-relaxed text-muted">
+                {shift.traditional}
+              </p>
+            </div>
+            <div class="bg-surface px-5 py-4">
+              <p class="mb-1 text-xs font-medium tracking-wide text-accent uppercase">
+                Now
+              </p>
+              <p class="text-sm leading-relaxed">
+                {shift.aiEra}
+                <SourceRefs
+                  ids={shift.sourceIds}
+                  sourceNumbers={sourceNumbers}
+                />
+              </p>
+            </div>
+          </div>
+        </details>
+      </li>
+    ))}
+  </ul>
+</div>

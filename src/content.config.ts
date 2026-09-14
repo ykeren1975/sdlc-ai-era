@@ -28,6 +28,8 @@ const roles = defineCollection({
     order: z.number().int(),
     icon: z.enum(ROLE_ICONS),
     summary: z.string().max(220),
+    // Skimmable layer: condensed from `summary` / each shift's `aiEra`, never new claims.
+    tagline: z.string().max(70),
     lastReviewed: z.coerce.date(),
     sdlcPhases: z.array(z.enum(PHASES)).min(1),
     shifts: z
@@ -35,6 +37,8 @@ const roles = defineCollection({
         z.object({
           phase: z.enum(PHASES),
           activity: z.string(),
+          headline: z.string().max(80),
+          highlight: z.boolean().optional(),
           traditional: z.string(),
           aiEra: z.string(),
           sourceIds: sourceIds.min(1),

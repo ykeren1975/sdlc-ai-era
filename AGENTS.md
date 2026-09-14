@@ -60,6 +60,11 @@ Order follows the SDLC flow on the home page.
 - Caps per role: 5–8 shifts, 4–8 tools, 3–8 sources.
 - Neutral, practical tone. No vendor hype, no "revolutionize". Write for a practitioner, in plain English.
 - `first30Days` and the Markdown body are editorial opinion and are labeled as such on the page.
+- **Skimmable layer:**
+  - `tagline` (≤70 chars) condenses the role `summary`.
+  - Each shift's `headline` (≤80 chars) condenses **that shift's own `aiEra` text**.
+  - Neither may add facts, names, numbers, digits, "%" or comparatives that aren't in the text it condenses.
+  - Exactly 3 shifts per role have `highlight: true`: the ones that matter most for day-to-day work.
 - The site is a snapshot as of `lastReviewed`; do not write "latest" or "new" without a date.
 - Research subagents never edit `src/data/tools.yaml`; they propose tools and the main session merges them (avoids parallel write conflicts).
 
@@ -73,6 +78,12 @@ Order follows the SDLC flow on the home page.
 - **Keep caveats the source gives about itself.** Small samples ("three epics", "55 respondents"), model vintage ("LLMs available in 2024") and the base of a percentage stay in the text; don't write "of respondents" unless the page says so (QA batch).
 - **Tool `useFor` lines describe only what the cited source or official page says.** No added capabilities ("hosted"), no comparisons with other tools ("more control than…"), no invented causes ("which is why…") (UX, DevOps batch).
 - **WebFetch summarises pages and can garble exact wording.** When a verbatim quote is disputed, check the raw page: `curl -sL <url> | sed 's/<[^>]*>/ /g' | grep -o "<phrase>.\{0,120\}"` (Engineering Manager batch: WebFetch said "deploy them", the page says "oversee their work").
+- **Short headlines drift in two predictable ways** (redesign, 22 of 90 flagged):
+  - They turn a description into advice ("Review…", "Coach…", "Let agents…").
+  - They turn one product, company or study into a general claim ("agents can…" when only Jira's agent does).
+
+  Keep the subject ("In Veracode's tests…", "At Google…") and only use an imperative when the source recommends it.
+
 - **Wrap frontmatter strings containing `: ` or `#` in double quotes.** An unquoted colon in a `quote` broke YAML parsing for the whole site (DevOps batch). Run `npm run check` before reporting a role as written.
 - **Don't generalise from one company or a niche group.** Findings about one vendor's own staff (e.g. Anthropic's internal study) are written as "At <company>, …", not as industry-wide truths. Use surveys for "most developers".
 - **Don't use `astro preview` from Claude sessions or tests.** Astro 7 detects AI agents and backgrounds the preview with a lock file, which breaks Playwright's `webServer`. Tests serve `dist/` with `node scripts/serve-dist.mjs <port>`. For a manual look, run the same script in the background.

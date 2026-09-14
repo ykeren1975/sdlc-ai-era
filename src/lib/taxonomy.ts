@@ -21,6 +21,27 @@ export const PHASE_LABELS: Record<Phase, string> = {
   operate: "Operate",
 };
 
+export const ROLE_GROUPS = [
+  {
+    label: "Product & Design",
+    roles: ["product-manager", "business-analyst", "ux-designer"],
+  },
+  {
+    label: "Engineering",
+    roles: [
+      "software-architect",
+      "developer",
+      "qa-tester",
+      "security-engineer",
+    ],
+  },
+  { label: "Operations & Data", roles: ["devops-sre", "data-engineer"] },
+  {
+    label: "Leadership & Delivery",
+    roles: ["project-manager", "scrum-master", "engineering-manager"],
+  },
+] as const;
+
 export const ROLE_ICONS = [
   "clipboard-list",
   "chart-gantt",

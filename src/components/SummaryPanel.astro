@@ -1,0 +1,80 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import type { CollectionEntry } from "astro:content";
+import { resolveTools } from "../lib/role";
+
+interface Props {
+  data: CollectionEntry<"roles">["data"];
+}
+
+const { data } = Astro.props;
+const flagged = data.shifts.filter((s) => s.highlight);
+const highlights = (flagged.length ? flagged : data.shifts).slice(0, 3);
+const topTools = (await resolveTools(data.tools)).slice(0, 3);
+const topSkills = data.skills.new.slice(0, 2);
+---
+
+<section
+  aria-labelledby="summary-heading"
+  class="print-break-avoid rounded-2xl border border-accent/30 bg-accent-soft p-5 sm:p-6"
+  data-testid="summary"
+>
+  <h2
+    id="summary-heading"
+    class="mb-4 text-xs font-semibold tracking-wide text-accent uppercase"
+  >
+    In 30 seconds
+  </h2>
+
+  <ol class="grid gap-3 sm:grid-cols-3">
+    {highlights.map((shift, i) => (
+      <li class="rounded-xl bg-surface p-4" data-testid="highlight">
+        <span class="mb-2 flex size-6 items-center justify-center rounded-full bg-accent text-xs font-semibold text-on-accent">
+          {i + 1}
+        </span>
+        <p class="font-semibold leading-snug">{shift.activity}</p>
+        <p class="mt-1 text-sm leading-relaxed text-muted">
+          {shift.headline ?? shift.aiEra}
+        </p>
+      </li>
+    ))}
+  </ol>
+
+  <dl class="mt-5 grid gap-4 text-sm sm:grid-cols-2">
+    <div>
+      <dt class="mb-1.5 font-medium">Start with these tools</dt>
+      <dd class="flex flex-wrap gap-2">
+        {topTools.map(({ entry }) => (
+          <a
+            href={entry.data.url}
+            rel="noopener"
+            class="print-url rounded-full border border-line bg-surface px-3 py-1 no-underline hover:border-accent"
+          >
+            {entry.data.name}
+          </a>
+        ))}
+      </dd>
+    </div>
+    <div>
+      <dt class="mb-1.5 font-medium">Build these skills</dt>
+      <dd>
+        <ul class="flex flex-wrap gap-2">
+          {topSkills.map((skill) => (
+            <li class="rounded-full border border-line bg-surface px-3 py-1">
+              {skill}
+            </li>
+          ))}
+        </ul>
+      </dd>
+    </div>
+  </dl>
+
+  {!!data.first30Days?.length && (
+    <a
+      href="#start"
+      class="no-print mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent"
+    >
+      See your first steps <ArrowRight class="size-4" aria-hidden="true" />
+    </a>
+  )}
+</section>
