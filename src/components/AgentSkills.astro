@@ -1,6 +1,7 @@
 ---
 import { ChevronDown, Copy, Download, ExternalLink } from "@lucide/astro";
 import type { CollectionEntry } from "astro:content";
+import { track } from "../lib/analytics";
 import {
   getStarterSkills,
   LICENSE_LABELS,
@@ -74,6 +75,7 @@ const btn =
                   <button
                     type="button"
                     data-copy-skill
+                    {...track("copy-instructions", `${roleId}/${name}`)}
                     class={`${btn} bg-accent text-on-accent hover:opacity-90`}
                   >
                     <Copy class="size-4" aria-hidden="true" /> Copy instructions
@@ -83,6 +85,7 @@ const btn =
                     download={`${name}.zip`}
                     class={`${btn} border border-line bg-surface hover:border-accent`}
                     data-download-zip
+                    {...track("download-instructions", `${roleId}/${name}`)}
                   >
                     <Download class="size-4" aria-hidden="true" /> Download .zip
                   </a>

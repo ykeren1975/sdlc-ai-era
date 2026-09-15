@@ -26,6 +26,7 @@ import Base from "../../layouts/Base.astro";
 import { riskIds } from "../../lib/anchors";
 import { formatDate, sourceMix } from "../../lib/role";
 import { SOURCE_TYPE_LABELS, sourceTypeCount } from "../../lib/taxonomy";
+import { track } from "../../lib/analytics";
 import { url } from "../../lib/url";
 
 export async function getStaticPaths() {
@@ -398,6 +399,7 @@ const sectionAttrs = {
                 <div class="min-w-0">
                   <a
                     href={source.url}
+                    {...track("source", `${role.id}/${source.id}`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="print-url font-medium break-words hover:text-accent"

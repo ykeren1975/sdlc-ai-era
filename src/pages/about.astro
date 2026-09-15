@@ -79,6 +79,7 @@ const card = "rounded-2xl border border-line bg-surface p-5 sm:p-6";
         ["reviews", "Review dates"],
         ["sources", "Sources"],
         ["limitations", "Limitations"],
+        ["privacy", "Privacy"],
         ["corrections", "Corrections"],
       ].map(([id, label]) => (
         <li>
@@ -376,6 +377,33 @@ const card = "rounded-2xl border border-line bg-surface p-5 sm:p-6";
           patterns, not how every team works.
         </li>
       </ul>
+    </section>
+
+    <section
+      data-reveal
+      id="privacy"
+      aria-labelledby="privacy-heading"
+      class="scroll-mt-24"
+    >
+      <h2 id="privacy-heading" class={h2}>
+        Privacy
+      </h2>
+      <p class="text-muted" data-testid="privacy-text">
+        The published site counts page views and a few clicks, such as copying
+        an AI instruction or opening a source, with GoatCounter, an open-source
+        analytics service. According to{" "}
+        <a
+          href="https://www.goatcounter.com/help/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GoatCounter's privacy policy
+          <span class="sr-only"> (opens in new tab)</span>
+        </a>
+        , it doesn't store IP addresses, the full browser User-Agent or any
+        tracker ID, and it doesn't store anything in your browser with cookies
+        or local storage. That is why this site has no cookie banner.
+      </p>
     </section>
 
     <section

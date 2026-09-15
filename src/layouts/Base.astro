@@ -3,6 +3,11 @@ import "../styles/global.css";
 import Logo from "../components/Logo.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import { ogSlug } from "../lib/og-path";
+import {
+  ANALYTICS_HOST,
+  GOATCOUNTER_ENDPOINT,
+  GOATCOUNTER_SCRIPT,
+} from "../lib/analytics";
 import { url } from "../lib/url";
 
 interface Props {
@@ -66,6 +71,20 @@ const section = path.startsWith(`${base}/agent-skills`)
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <script
+      is:inline
+      data-analytics-loader
+      define:vars={{ ANALYTICS_HOST, GOATCOUNTER_ENDPOINT, GOATCOUNTER_SCRIPT }}
+    >
+      // Privacy-friendly page and click counts (GoatCounter), only on the published site.
+      if (location.hostname === ANALYTICS_HOST) {
+        const s = document.createElement("script");
+        s.async = true;
+        s.src = GOATCOUNTER_SCRIPT;
+        s.dataset.goatcounter = GOATCOUNTER_ENDPOINT;
+        document.head.appendChild(s);
+      }
+    </script>
     {canonical && <link rel="canonical" href={canonical} />}
     <script is:inline>
       // Set the theme before first paint to avoid a flash.

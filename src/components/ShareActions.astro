@@ -20,6 +20,7 @@ const btn =
       <button
         type="button"
         data-print="summary"
+        data-goatcounter-click="print/summary"
         class="focus-inset flex min-h-11 w-full flex-col items-start rounded-lg px-3 py-2 text-left hover:bg-accent-soft"
       >
         <span class="text-sm font-medium">Summary</span>
@@ -28,6 +29,7 @@ const btn =
       <button
         type="button"
         data-print="full"
+        data-goatcounter-click="print/full"
         class="focus-inset flex min-h-11 w-full flex-col items-start rounded-lg px-3 py-2 text-left hover:bg-accent-soft"
       >
         <span class="text-sm font-medium">Full page</span>
@@ -37,7 +39,12 @@ const btn =
       </button>
     </div>
   </details>
-  <button type="button" data-copy-link class={btn}>
+  <button
+    type="button"
+    data-copy-link
+    data-goatcounter-click="copy-page-link"
+    class={btn}
+  >
     <Link class="size-4" aria-hidden="true" />
     <span class="max-sm:sr-only">Copy page link</span>
   </button>

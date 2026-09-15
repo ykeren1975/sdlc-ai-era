@@ -3,6 +3,7 @@
 // how many roles change there; a highlight travels around the loop (off with reduced motion).
 import type { CollectionEntry } from "astro:content";
 import { PHASES, PHASE_LABELS } from "../lib/taxonomy";
+import { track } from "../lib/analytics";
 import { url } from "../lib/url";
 
 interface Props {
@@ -100,6 +101,7 @@ const arc = circumference / PHASES.length;
       >
         <a
           href={url(`/phases/${n.phase}`)}
+          {...track("hero-phase", n.phase)}
           class="ring-node group flex min-h-11 min-w-[5.5rem] flex-col items-center rounded-2xl border border-line bg-surface px-3 py-1.5 text-center no-underline shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md"
           style={`animation-delay:${n.delay}s`}
           aria-label={`${n.label}: ${n.count} roles change. See all changes in ${n.label}`}

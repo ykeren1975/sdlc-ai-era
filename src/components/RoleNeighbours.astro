@@ -2,6 +2,7 @@
 import { ArrowLeft, ArrowRight } from "@lucide/astro";
 import { getCollection } from "astro:content";
 import { relatedRoles } from "../lib/taxonomy";
+import { track } from "../lib/analytics";
 import { url } from "../lib/url";
 import OurSuggestion from "./OurSuggestion.astro";
 import RoleIcon from "./RoleIcon.astro";
@@ -36,6 +37,7 @@ const related = relatedRoles(roleId)
             href={url(`/roles/${role.id}`)}
             class="focus-inset group flex h-full min-h-11 items-center gap-2 rounded-xl border border-line bg-surface px-3 py-1.5 no-underline hover:border-accent sm:gap-3 sm:p-3"
             data-testid="related-role"
+            {...track("related-role", `${roleId}/${role.id}`)}
           >
             <span class="hidden size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent sm:flex">
               <RoleIcon name={role.data.icon} class="size-4" />

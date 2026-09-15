@@ -36,6 +36,7 @@ A static website: a visitor picks their SDLC role and sees what changes for them
 - Before → Now (`ShiftList.astro`): side by side from `sm`, a Before AI / With AI switch on phones; both sides show without JS and in print.
 - Link previews: `src/pages/og/[...slug].png.ts` renders 1200×630 PNGs at build with satori + resvg (fonts must be .woff, not .woff2); `Base.astro` picks the image via `src/lib/og-path.ts`, falling back to the home image.
 - `src/pages/404.astro` is served by GitHub Pages for unknown paths; `scripts/serve-dist.mjs` does the same locally.
+- Analytics: GoatCounter (`src/lib/analytics.ts`), loaded only when the hostname is the live GitHub Pages host, so local builds and tests send nothing. Tag new key interactions with `{...track("event", "detail")}` (`data-goatcounter-click`); the About page's Privacy section says what is counted.
 - Phone role pages have a length budget (tests/polish.spec.ts); anything added to a role page must be checked at 390px.
 
 ## Project layout
