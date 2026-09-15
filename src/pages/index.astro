@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import SdlcMap from "../components/SdlcMap.astro";
 import Base from "../layouts/Base.astro";
+import { url } from "../lib/url";
 
 const roles = await getCollection("roles");
 const tools = await getCollection("tools");
@@ -36,8 +37,10 @@ const sourceCount = roles.reduce((n, r) => n + r.data.sources.length, 0);
         <strong class="font-semibold text-ink">{tools.length}</strong> tools
       </li>
       <li>
-        <strong class="font-semibold text-ink">{sourceCount}</strong> cited
-        sources
+        <a href={url("/about#sources")} class="text-muted hover:text-ink">
+          <strong class="font-semibold text-ink">{sourceCount}</strong> cited
+          sources
+        </a>
       </li>
     </ul>
   </section>

@@ -1,7 +1,12 @@
 import { defineCollection, reference } from "astro:content";
 import { file, glob } from "astro/loaders";
 import { z } from "astro/zod";
-import { PHASES, ROLE_ICONS, TOOL_CATEGORIES } from "./lib/taxonomy";
+import {
+  PHASES,
+  ROLE_ICONS,
+  SOURCE_TYPES,
+  TOOL_CATEGORIES,
+} from "./lib/taxonomy";
 
 const idPattern = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
@@ -128,6 +133,9 @@ const roles = defineCollection({
           published: z.coerce.date().optional(),
           accessed: z.coerce.date(),
           quote: z.string().optional(),
+          // What kind of evidence this is (rubric in CLAUDE.md), and whether the publisher sells in this space.
+          type: z.enum(SOURCE_TYPES),
+          vendorAffiliated: z.boolean(),
         }),
       )
       .min(3)
@@ -135,4 +143,24 @@ const roles = defineCollection({
   }),
 });
 
-export const collections = { tools, agentSkills, starterSkills, roles };
+// Editorial links between two changes on different role pages that cover the same handoff or work.
+const handoffEnd = z.object({
+  role: z.string().regex(idPattern),
+  activity: z.string(),
+});
+const handoffs = defineCollection({
+  loader: file("src/data/handoffs.yaml"),
+  schema: z.object({
+    id: z.string().regex(idPattern),
+    a: handoffEnd,
+    b: handoffEnd,
+  }),
+});
+
+export const collections = {
+  tools,
+  agentSkills,
+  starterSkills,
+  roles,
+  handoffs,
+};

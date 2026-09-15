@@ -11,6 +11,7 @@ import AgentSkills from "../../components/AgentSkills.astro";
 import CopyItemLink from "../../components/CopyItemLink.astro";
 import OurSuggestion from "../../components/OurSuggestion.astro";
 import PageEnhancements from "../../components/PageEnhancements.astro";
+import RoleNeighbours from "../../components/RoleNeighbours.astro";
 import RoleIcon from "../../components/RoleIcon.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import ShareActions from "../../components/ShareActions.astro";
@@ -21,7 +22,8 @@ import SummaryPanel from "../../components/SummaryPanel.astro";
 import ToolList from "../../components/ToolList.astro";
 import Base from "../../layouts/Base.astro";
 import { riskIds } from "../../lib/anchors";
-import { formatDate } from "../../lib/role";
+import { formatDate, sourceMix } from "../../lib/role";
+import { SOURCE_TYPE_LABELS, sourceTypeCount } from "../../lib/taxonomy";
 import { url } from "../../lib/url";
 
 export async function getStaticPaths() {
@@ -40,6 +42,7 @@ const { Content } = await render(role);
 const sourceNumbers = new Map(data.sources.map((s, i) => [s.id, i + 1]));
 const hasStart = !!data.first30Days?.length;
 const riskAnchors = riskIds(data.risks);
+const mix = sourceMix(data.sources);
 
 // Order follows the visitor's questions: what changes → what to watch → what to learn → what to use → how to start.
 const sections = [
@@ -79,7 +82,9 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
     </div>
     <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
       <p class="text-sm text-muted" data-testid="last-reviewed">
-        Last reviewed {formatDate(data.lastReviewed)}
+        <a href={url("/about#reviews")} class="text-muted hover:text-accent">
+          Last reviewed {formatDate(data.lastReviewed)}
+        </a>
       </p>
       <ShareActions />
     </div>
@@ -137,7 +142,11 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
           Open any item to see before and now, with sources.
         </p>
         <div class="mt-3">
-          <ShiftList shifts={data.shifts} sourceNumbers={sourceNumbers} />
+          <ShiftList
+            roleId={role.id}
+            shifts={data.shifts}
+            sourceNumbers={sourceNumbers}
+          />
         </div>
       </section>
 
@@ -301,6 +310,35 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
       </section>
 
       <section
+        aria-labelledby="neighbours-heading"
+        data-print-hide="summary"
+        class="no-print"
+      >
+        <details
+          class="group rounded-2xl border border-line bg-surface md:border-0 md:bg-transparent"
+          data-open-from-md
+        >
+          <summary class="flex min-h-12 items-center justify-between gap-3 px-5 py-3 md:pointer-events-none md:mb-4 md:p-0">
+            <div>
+              <h2
+                id="neighbours-heading"
+                class="text-lg font-semibold md:text-2xl md:tracking-tight"
+              >
+                Related roles
+              </h2>
+            </div>
+            <ChevronDown
+              class="size-4 shrink-0 text-muted transition-transform group-open:rotate-180 md:hidden"
+              aria-hidden="true"
+            />
+          </summary>
+          <div class="border-t border-line px-4 py-4 md:border-0 md:p-0">
+            <RoleNeighbours roleId={role.id} />
+          </div>
+        </details>
+      </section>
+
+      <section
         id="sources"
         aria-labelledby="sources-heading"
         data-print-hide="summary"
@@ -308,21 +346,34 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
       >
         <details class="group rounded-2xl border border-line bg-surface">
           <summary class="flex min-h-12 items-center justify-between gap-3 px-5 py-4">
-            <h2 id="sources-heading" class="text-lg font-semibold">
-              Sources{" "}
-              <span class="font-normal text-muted">
-                ({data.sources.length})
-              </span>
-            </h2>
+            <div>
+              <h2 id="sources-heading" class="text-lg font-semibold">
+                Sources{" "}
+                <span class="font-normal text-muted">
+                  ({data.sources.length})
+                </span>
+              </h2>
+              <p class="text-sm text-muted" data-testid="source-mix">
+                {mix.byType
+                  .map(([type, n]) =>
+                    sourceTypeCount(type as keyof typeof SOURCE_TYPE_LABELS, n),
+                  )
+                  .join(", ")}
+                {" · "}
+                {mix.vendorAffiliated} vendor-affiliated
+              </p>
+            </div>
             <ChevronDown
               class="no-print size-4 text-muted transition-transform group-open:rotate-180"
               aria-hidden="true"
             />
           </summary>
-          <ol
-            class="space-y-2 border-t border-line px-3 py-3 text-sm"
-            data-testid="sources"
-          >
+          <p class="no-print border-t border-line px-5 pt-3 text-sm text-muted">
+            Each source is labelled by what the page is and whether its
+            publisher sells in this space.{" "}
+            <a href={url("/about#sources")}>How we label sources</a>
+          </p>
+          <ol class="space-y-2 px-3 py-3 text-sm" data-testid="sources">
             {data.sources.map((source, i) => (
               <li
                 id={`source-${source.id}`}
@@ -346,6 +397,22 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
                   <p class="text-muted">
                     {source.publisher}
                     {source.published && <> · {formatDate(source.published)}</>}
+                  </p>
+                  <p
+                    class="mt-1 flex flex-wrap gap-1.5"
+                    data-testid="source-type"
+                  >
+                    <span class="rounded-full border border-line px-2 py-0.5 text-xs text-muted">
+                      {SOURCE_TYPE_LABELS[source.type].label}
+                    </span>
+                    {source.vendorAffiliated && (
+                      <span
+                        class="rounded-full border border-line px-2 py-0.5 text-xs text-muted"
+                        data-testid="vendor-affiliated"
+                      >
+                        Vendor-affiliated
+                      </span>
+                    )}
                   </p>
                   {source.quote && (
                     <blockquote class="mt-1 border-l-2 border-line pl-3 text-muted italic">

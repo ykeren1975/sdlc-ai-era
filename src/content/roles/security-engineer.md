@@ -146,6 +146,8 @@ sources:
     url: https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/
     published: 2025-12-09
     accessed: 2026-09-14
+    type: official
+    vendorAffiliated: false
     quote: Hidden prompts turned copilots into silent exfiltration engines (ASI01 – Agent Goal Hijack, e.g EchoLeak).
   - id: willison-lethal-trifecta
     title: "The lethal trifecta for AI agents: private data, untrusted content, and external communication"
@@ -153,18 +155,24 @@ sources:
     url: https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/
     published: 2025-06-16
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: false
   - id: veracode-genai-2026
     title: "2026 GenAI Code Security Report: AI Is Writing More of Your Code but Security Hasn't Caught Up"
     publisher: Veracode
     url: https://www.veracode.com/blog/2026-genai-code-security-report-ai-risk/
     published: 2026-07-28
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: But performance fell sharply on cross-site scripting at 15% and log injection at 12%.
   - id: github-autofix-docs
     title: "Application card: GitHub security and quality AI features"
     publisher: GitHub Docs
     url: https://docs.github.com/en/code-security/responsible-use/responsible-use-autofix-code-scanning
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: Copilot Autofix automatically generates code change suggestions for CodeQL alerts found on pull requests and on the default branch.
   - id: darpa-aixcc-results
     title: AI Cyber Challenge marks pivotal inflection point for cyber defense
@@ -172,6 +180,8 @@ sources:
     url: https://www.darpa.mil/news/2025/aixcc-results
     published: 2025-08-08
     accessed: 2026-09-14
+    type: official
+    vendorAffiliated: false
     quote: In total, competitors' systems discovered 54 unique synthetic vulnerabilities in the Final Competition's 63 challenges. Of those, they patched 43.
   - id: anthropic-glasswing-update
     title: "Project Glasswing: An initial update"
@@ -179,6 +189,8 @@ sources:
     url: https://www.anthropic.com/research/glasswing-initial-update
     published: 2026-05-22
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: Progress on software security used to be limited by how quickly we could find new vulnerabilities. Now it's limited by how quickly we can verify, disclose, and patch the large numbers of vulnerabilities found by AI.
   - id: curl-high-quality-chaos
     title: High-Quality Chaos
@@ -186,6 +198,8 @@ sources:
     url: https://daniel.haxx.se/blog/2026/04/22/high-quality-chaos/
     published: 2026-04-22
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: false
     quote: The quality is higher. The rate of confirmed vulnerabilities is back to and even surpassing the 2024 pre-AI level, meaning somewhere in the 15-16% range.
   - id: isc2-workforce-2025
     title: 2025 ISC2 Cybersecurity Workforce Study
@@ -193,6 +207,8 @@ sources:
     url: https://www.isc2.org/Insights/2025/12/2025-ISC2-Cybersecurity-Workforce-Study
     published: 2025-12-04
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: false
     quote: Adoption is progressing, with 28% of respondents having already integrated AI tools into their operations, with a further 19% actively testing them and another 22% in the early evaluation phase.
 ---
 

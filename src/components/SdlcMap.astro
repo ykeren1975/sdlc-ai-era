@@ -28,6 +28,14 @@ const groups = ROLE_GROUPS.map((g) => ({
     .map((role) => ({ role, counts: phaseCounts(role) })),
 })).filter((g) => g.roles.length > 0);
 
+// Phases with at least one listed change get their own page.
+const activePhases = PHASES.filter((p) =>
+  Astro.props.roles.some((r) => r.data.shifts.some((s) => s.phase === p)),
+);
+const rolesIn = (p: (typeof PHASES)[number]) =>
+  Astro.props.roles.filter((r) => r.data.shifts.some((s) => s.phase === p))
+    .length;
+
 const dotSize = (n: number) =>
   n >= 3 ? "size-4" : n === 2 ? "size-3" : "size-2";
 const tagline = (r: CollectionEntry<"roles">) =>
@@ -71,6 +79,25 @@ const tagline = (r: CollectionEntry<"roles">) =>
       >
         Select a phase to highlight the roles it affects.
       </p>
+      <nav
+        aria-label="Browse by phase"
+        class="mt-3 flex items-center gap-2"
+        data-testid="phase-links"
+      >
+        <span class="shrink-0 text-sm text-muted">Browse by phase:</span>
+        <ul class="flex min-w-0 gap-1.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {activePhases.map((phase) => (
+            <li class="shrink-0">
+              <a
+                href={url(`/phases/${phase}`)}
+                class="inline-flex min-h-10 items-center rounded-full px-3 text-sm font-medium text-accent hover:bg-accent-soft"
+              >
+                {PHASE_LABELS[phase]}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   </div>
 
@@ -162,6 +189,33 @@ const tagline = (r: CollectionEntry<"roles">) =>
     ))}
   </div>
 
+  <!-- Desktop: shown when a phase filter is pressed -->
+  {PHASES.map((phase) => (
+    <p
+      hidden
+      data-phase-panel={phase}
+      class="mt-3 hidden flex-wrap items-center gap-x-2 gap-y-1 rounded-xl border border-line bg-accent-soft px-4 py-3 text-sm lg:flex"
+    >
+      <span>
+        {rolesIn(phase)} roles change in {PHASE_LABELS[phase]}
+      </span>
+      {activePhases.includes(phase) && (
+        <>
+          <span aria-hidden="true" class="text-muted">
+            ·
+          </span>
+          <a
+            href={url(`/phases/${phase}`)}
+            class="inline-flex min-h-10 items-center gap-1 font-medium text-accent"
+          >
+            See all changes in {PHASE_LABELS[phase]}
+            <ArrowRight class="size-4" aria-hidden="true" />
+          </a>
+        </>
+      )}
+    </p>
+  ))}
+
   <!-- Mobile: grouped cards -->
   <div class="space-y-6 lg:hidden">
     {groups.map((group) => (
@@ -209,6 +263,7 @@ const tagline = (r: CollectionEntry<"roles">) =>
     map?.querySelectorAll<HTMLButtonElement>("[data-phase-filter]") ?? [];
   const rows = map?.querySelectorAll<HTMLElement>("[data-map-role]") ?? [];
   const status = map?.querySelector("[data-map-status]");
+  const panels = map?.querySelectorAll<HTMLElement>("[data-phase-panel]") ?? [];
 
   buttons.forEach((button) =>
     button.addEventListener("click", () => {
@@ -222,6 +277,9 @@ const tagline = (r: CollectionEntry<"roles">) =>
         const match = !active || row.dataset.phases!.split(" ").includes(phase);
         row.toggleAttribute("data-dim", !match);
         if (match) shown++;
+      });
+      panels.forEach((panel) => {
+        panel.hidden = !(active && panel.dataset.phasePanel === phase);
       });
       if (status)
         status.textContent = active

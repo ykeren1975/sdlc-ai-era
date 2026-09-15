@@ -164,12 +164,16 @@ sources:
     url: https://scrumexpansion.org/ai-and-scrum/
     published: 2026-01-18
     accessed: 2026-09-14
+    type: official
+    vendorAffiliated: false
     quote: They also keep an eye on over-reliance or under-utilization – for example, if one team member becomes the 'AI guru' and others disengage, the Scrum Master might encourage knowledge sharing or pair programming with AI to spread skills.
   - id: scrum-guide-2020
     title: The 2020 Scrum Guide
     publisher: Ken Schwaber and Jeff Sutherland
     url: https://scrumguides.org/scrum-guide.html
     accessed: 2026-09-14
+    type: official
+    vendorAffiliated: false
     quote: The purpose of the Sprint Retrospective is to plan ways to increase quality and effectiveness.
   - id: ai4agile-report-2026
     title: The AI4Agile Practitioners Report 2026
@@ -177,6 +181,8 @@ sources:
     url: https://dzone.com/articles/ai4agile-practitioners-report
     published: 2026-02-24
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: "83% of respondents use AI tools. That number sounds impressive until you look closer: 55% spend 10% or less of their work time with AI."
   - id: digital-ai-state-of-agile-18
     title: "Digital.ai's 18th State of Agile Report Marks the Start of the Fourth Wave of Software Delivery: AI Is Transforming Agile from a Team Practice into an Enterprise-Wide Advantage"
@@ -184,6 +190,8 @@ sources:
     url: https://digital.ai/press-releases/digital-ais-18th-state-of-agile-report-marks-the-start-of-the-fourth-wave-of-software-delivery/
     published: 2025-10-28
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: Yet only 49% have governance guardrails in place, creating risk as automation advances faster than oversight.
   - id: aws-ai-dlc
     title: "AI-Driven Development Life Cycle: Reimagining Software Engineering"
@@ -191,6 +199,8 @@ sources:
     url: https://aws.amazon.com/blogs/devops/ai-driven-development-life-cycle/
     published: 2025-07-31
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: Traditional 'sprints' are replaced by 'bolts' – shorter, more intense work cycles measured in hours or days rather than weeks; Epics are replaced by Units of Work.
   - id: infoq-agile-manifesto-debate
     title: Does AI Make the Agile Manifesto Obsolete?
@@ -198,6 +208,8 @@ sources:
     url: https://www.infoq.com/news/2026/02/ai-agile-manifesto-debate
     published: 2026-02-17
     accessed: 2026-09-14
+    type: news
+    vendorAffiliated: false
     quote: Agile is not the Manifesto, and it is certainly not about frameworks. Agile is about creating adaptive and learning organisations that can respond to change and deliver outcomes.
   - id: dora-small-batches
     title: "Capabilities: Working in small batches"
@@ -205,12 +217,16 @@ sources:
     url: https://dora.dev/capabilities/working-in-small-batches/
     published: 2025-12-08
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: DORA research shows that working in small batches amplifies the positive impact of AI adoption on product performance and helps turn AI's neutral effect on organizational friction into a net positive.
   - id: parabol-ai-summaries
     title: AI Summaries FAQ
     publisher: Parabol
     url: https://www.parabol.co/support/ai-summaries-faq/
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: We send reflections, comments, and tasks to OpenAI, and it returns a summary.
 ---
 

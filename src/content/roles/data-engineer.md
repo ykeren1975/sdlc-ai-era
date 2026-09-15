@@ -147,6 +147,8 @@ sources:
     url: https://www.getdbt.com/resources/state-of-analytics-engineering-2026
     published: 2026-04-10
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: While 72% prioritize AI-assisted coding, only 24% prioritize AI-assisted pipeline management, including testing, observability, and quality controls.
   - id: reis-state-of-data-engineering-2026
     title: The 2026 State of Data Engineering Survey (Interactive)
@@ -154,6 +156,8 @@ sources:
     url: https://joereis.substack.com/p/the-2026-state-of-data-engineering
     published: 2026-02-10
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: "82% of you use AI tools daily or more. Only 3.7% find them unhelpful. But organizational adoption lags way behind."
   - id: dbt-semantic-layer-vs-text-to-sql-2026
     title: "Semantic Layer vs. Text-to-SQL: 2026 Benchmark Update"
@@ -161,6 +165,8 @@ sources:
     url: https://docs.getdbt.com/blog/semantic-layer-vs-text-to-sql-2026
     published: 2026-04-07
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: With text-to-SQL, failure looks like a plausible but incorrect answer.
   - id: semantic-layer-paired-benchmark
     title: "Semantic Layers for Reliable LLM-Powered Data Analytics: A Paired Benchmark of Accuracy and Hallucination Across Three Frontier Models"
@@ -168,6 +174,8 @@ sources:
     url: https://arxiv.org/abs/2604.25149
     published: 2026-04-28
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: true
     quote: Adding the document improves accuracy by +17 to +23 percentage points across all three models.
   - id: text-to-sql-annotation-errors
     title: Pervasive Annotation Errors Break Text-to-SQL Benchmarks and Leaderboards
@@ -175,6 +183,8 @@ sources:
     url: https://arxiv.org/abs/2601.08778
     published: 2026-01-13
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
     quote: Through expert analysis, we show that BIRD Mini-Dev and Spider 2.0-Snow have error rates of 52.8% and 62.8%, respectively.
   - id: elt-bench-verified
     title: "ELT-Bench-Verified: Benchmark Quality Issues Underestimate AI Agent Capabilities"
@@ -182,6 +192,8 @@ sources:
     url: https://arxiv.org/abs/2603.29399
     published: 2026-03-31
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
     quote: First, re-evaluating ELT-Bench with upgraded large language models reveals that the extraction and loading stage is largely solved, while transformation performance improves significantly.
   - id: tribal-knowledge-data-agents
     title: Arming Data Agents with Tribal Knowledge
@@ -189,12 +201,16 @@ sources:
     url: https://arxiv.org/abs/2602.13521
     published: 2026-02-13
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
     quote: Nonetheless, NL2SQL agents still make mistakes when faced with large-scale real-world databases because they lack knowledge of how to correctly leverage the underlying data (e.g., knowledge about the intent of each column) and form misconceptions about the data when querying it, leading to errors.
   - id: snowflake-cortex-analyst-docs
     title: Cortex Analyst
     publisher: Snowflake Documentation
     url: https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: Generic AI solutions often struggle with text-to-SQL conversions when given only a database schema, as schemas lack critical knowledge like business process definitions and metrics handling.
 ---
 

@@ -5,16 +5,37 @@ const roles = loadRoles();
 const PHONE = { width: 390, height: 844 };
 
 test.describe("phone: page length and tap targets (package F)", () => {
+  // Max was 7.0 after package F; D+E added the source-mix line and a collapsed "Related roles" row (~130px).
+  // The average guard keeps pages from creeping up one by one.
   for (const role of roles) {
-    test(`${role.id}: at most 7 screens tall on a phone (was 9.6)`, async ({ page }) => {
+    test(`${role.id}: at most 7.25 screens tall on a phone (was 9.6)`, async ({
+      page,
+    }) => {
       await page.setViewportSize(PHONE);
       await page.goto(`roles/${role.id}`);
       const screens = await page.evaluate(
         () => document.documentElement.scrollHeight / innerHeight,
       );
-      expect(screens, `${screens.toFixed(1)} screens`).toBeLessThanOrEqual(7);
+      expect(screens, `${screens.toFixed(1)} screens`).toBeLessThanOrEqual(
+        7.25,
+      );
     });
   }
+
+  test("role pages average at most 6.75 screens on a phone", async ({
+    page,
+  }) => {
+    await page.setViewportSize(PHONE);
+    let total = 0;
+    for (const role of roles) {
+      await page.goto(`roles/${role.id}`);
+      total += await page.evaluate(
+        () => document.documentElement.scrollHeight / innerHeight,
+      );
+    }
+    const average = total / roles.length;
+    expect(average, `${average.toFixed(2)} screens`).toBeLessThanOrEqual(6.75);
+  });
 
   test("primary controls are at least 40px tall and citations at least 24px", async ({
     page,
@@ -67,7 +88,8 @@ test.describe("phone: page length and tap targets (package F)", () => {
     await page.setViewportSize(PHONE);
     await page.goto("roles/developer");
     const skillGroups = page.getByTestId("skills-group");
-    for (let i = 0; i < 3; i++) await expect(skillGroups.nth(i)).not.toHaveAttribute("open", "");
+    for (let i = 0; i < 3; i++)
+      await expect(skillGroups.nth(i)).not.toHaveAttribute("open", "");
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto("roles/developer");
     for (let i = 0; i < 3; i++)
@@ -88,7 +110,9 @@ test.describe("phone: page length and tap targets (package F)", () => {
 test.describe("navigation state (package F)", () => {
   test("desktop sidebar marks the section in view", async ({ page }) => {
     await page.goto("roles/developer");
-    await page.evaluate(() => document.querySelector("#risks")!.scrollIntoView({ block: "start" }));
+    await page.evaluate(() =>
+      document.querySelector("#risks")!.scrollIntoView({ block: "start" }),
+    );
     await page.evaluate(() => scrollBy(0, 1));
     const link = page
       .getByTestId("section-nav")
@@ -99,7 +123,9 @@ test.describe("navigation state (package F)", () => {
   test("phone chip marks the section in view", async ({ page }) => {
     await page.setViewportSize(PHONE);
     await page.goto("roles/developer");
-    await page.evaluate(() => document.querySelector("#tools")!.scrollIntoView({ block: "start" }));
+    await page.evaluate(() =>
+      document.querySelector("#tools")!.scrollIntoView({ block: "start" }),
+    );
     await page.evaluate(() => scrollBy(0, 1));
     await expect(
       page.locator('[data-chip-scroller] a[href="#tools"]'),
@@ -144,7 +170,9 @@ test.describe("sharing and citations (package G)", () => {
     await expect(page.locator(`#${id}`)).toBeInViewport();
   });
 
-  test("a link pasted while already on the page opens its item", async ({ page }) => {
+  test("a link pasted while already on the page opens its item", async ({
+    page,
+  }) => {
     await page.goto("roles/developer");
     const id = (await page.getByTestId("shift").nth(3).getAttribute("id"))!;
     await page.evaluate((h) => (location.hash = h), id);
@@ -232,10 +260,9 @@ test.describe("sharing and citations (package G)", () => {
   }) => {
     const dev = roles.find((r) => r.id === "developer")!;
     const { text } = await pdfFor(page, "full");
-    await expect(page.getByTestId("shift").first().locator("> details")).toHaveAttribute(
-      "open",
-      "",
-    );
+    await expect(
+      page.getByTestId("shift").first().locator("> details"),
+    ).toHaveAttribute("open", "");
     expect(text).toContain("Skills to build");
     expect(text).not.toContain(
       `name: ${(dev.data as unknown as { starterSkills: string[] }).starterSkills[0]}`,

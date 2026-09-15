@@ -152,12 +152,16 @@ sources:
     url: https://www.capgemini.com/news/press-releases/world-quality-report-2025-ai-adoption-surges-in-quality-engineering-but-enterprise-level-scaling-remains-elusive/
     published: 2025-11-13
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: Top challenges experienced by respondents include integration complexity (64%), data privacy risks (67%), and hallucination and reliability concerns (60%)
   - id: practitest-sot-2026
     title: The 2026 State of Testing Report
     publisher: PractiTest
     url: https://www.practitest.com/state-of-testing/
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: 70% use AI for Test Case Creation (generating more scripts), while only 19.9% use it for Risk Identification
   - id: istqb-ct-genai
     title: ISTQB Certified Tester – Testing with Generative AI (CT-GenAI) Press Release
@@ -165,12 +169,16 @@ sources:
     url: https://istqb.org/istqb-certified-tester-specialist-level-testing-with-generative-ai-ct-genai-press-release/
     published: 2025-07-29
     accessed: 2026-09-14
+    type: official
+    vendorAffiliated: false
     quote: Identify and mitigate risks such as hallucinations, biases, and data privacy concerns
   - id: playwright-test-agents
     title: Test agents
     publisher: Playwright
     url: https://playwright.dev/docs/test-agents
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: A passing test, or a skipped test if the healer believes that functionality is broken.
   - id: akehurst-ryan-exploratory-ai
     title: Yes you can run exploratory testing with AI
@@ -178,6 +186,8 @@ sources:
     url: https://cakehurstryan.com/2026/07/02/yes-you-can-run-exploratory-testing-with-ai/
     published: 2026-07-02
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: false
     quote: AI can actually run your exploratory testing… it just needs some help deciding what's worth exploring, what good enough looks like and when to stop.
   - id: beck-augmented-coding
     title: "Augmented Coding: Beyond the Vibes"
@@ -185,12 +195,16 @@ sources:
     url: https://newsletter.kentbeck.com/p/augmented-coding-beyond-the-vibes
     published: 2025-06-25
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: false
     quote: Any indication that the genie was cheating, for example by disabling or deleting tests.
   - id: openai-evals-best-practices
     title: Evaluation best practices
     publisher: OpenAI
     url: https://developers.openai.com/api/docs/guides/evaluation-best-practices
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: Generative AI is variable. Models sometimes produce different output from the same input, which makes traditional software testing methods insufficient for AI architectures.
   - id: mot-back-to-basics
     title: "Back to the basics: Rethinking how we use AI in testing"
@@ -198,6 +212,8 @@ sources:
     url: https://www.ministryoftesting.com/insights/back-to-the-basics-rethinking-how-we-use-ai-in-testing
     published: 2026-01-06
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: AI becomes genuinely useful only when we treat its output as a starting signal rather than a final answer.
 ---
 

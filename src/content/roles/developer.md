@@ -159,6 +159,8 @@ sources:
     publisher: Stack Overflow
     url: https://survey.stackoverflow.co/2025/ai
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: 'The biggest single frustration, cited by 66% of developers, is dealing with "AI solutions that are almost right, but not quite," which often leads to the second-biggest frustration: "Debugging AI-generated code is more time-consuming" (45%)'
   - id: dora-2025
     title: Announcing the 2025 DORA Report
@@ -166,6 +168,8 @@ sources:
     url: https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report
     published: 2025-09-23
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: However, AI adoption does continue to have a negative relationship with software delivery stability.
   - id: metr-2025-study
     title: Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity
@@ -173,6 +177,8 @@ sources:
     url: https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/
     published: 2025-07-10
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
     quote: When developers are allowed to use AI tools, they take 19% longer to complete issues—a significant slowdown that goes against developer beliefs and expert forecasts.
   - id: anthropic-work-study
     title: How AI is transforming work at Anthropic
@@ -180,6 +186,8 @@ sources:
     url: https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic
     published: 2025-12-02
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: One reason that the atrophy of coding skills is concerning is the “paradox of supervision”—as mentioned above, effectively using Claude requires supervision, and supervising Claude requires the very coding skills that may atrophy from AI overuse.
   - id: veracode-genai-2026
     title: "2026 GenAI Code Security Report: AI Is Writing More of Your Code but Security Hasn't Caught Up"
@@ -187,6 +195,8 @@ sources:
     url: https://www.veracode.com/blog/2026-genai-code-security-report-ai-risk/
     published: 2026-07-28
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: The average security pass rate across models is 56% – barely changed from 55% in the first report.
   - id: github-spec-kit-blog
     title: "Spec-driven development with AI: Get started with a new open source toolkit"
@@ -194,18 +204,24 @@ sources:
     url: https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/
     published: 2025-09-02
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
   - id: fowler-sdd-tools
     title: "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl"
     publisher: martinfowler.com (Birgitta Böckeler)
     url: https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html
     published: 2025-10-15
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
   - id: willison-vibe-engineering
     title: Vibe engineering
     publisher: Simon Willison's Weblog
     url: https://simonwillison.net/2025/Oct/7/vibe-engineering/
     published: 2025-10-07
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: false
 ---
 
 A typical week now starts with shaping work more than typing it. You break a ticket into a short plan, point an agent at the relevant part of the codebase, and let it draft the change while you look at something else. Much of the rest of the day goes on reading diffs, running the app, tightening tests, and sending the agent back with corrections. Small fixes are often faster to do by hand; well-defined, well-tested chunks of work are where delegation pays off.

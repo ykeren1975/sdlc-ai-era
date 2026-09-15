@@ -1,0 +1,145 @@
+---
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import RoleIcon from "../../components/RoleIcon.astro";
+import Base from "../../layouts/Base.astro";
+import { changeIds } from "../../lib/anchors";
+import { PHASES, PHASE_LABELS, type Phase } from "../../lib/taxonomy";
+import { url } from "../../lib/url";
+
+export async function getStaticPaths() {
+  const roles = (await getCollection("roles")).sort(
+    (a, b) => a.data.order - b.data.order,
+  );
+  const phases = PHASES.filter((p) =>
+    roles.some((r) => r.data.shifts.some((s) => s.phase === p)),
+  );
+  return phases.map((phase) => ({
+    params: { phase },
+    props: { phase, phases, roles },
+  }));
+}
+
+interface Props {
+  phase: Phase;
+  phases: Phase[];
+  roles: CollectionEntry<"roles">[];
+}
+
+const { phase, phases, roles } = Astro.props;
+const label = PHASE_LABELS[phase];
+
+const entries = roles
+  .map((role) => {
+    const anchors = changeIds(role.data.shifts);
+    const changes = role.data.shifts
+      .map((shift, i) => ({ shift, anchor: anchors[i] }))
+      .filter(({ shift }) => shift.phase === phase);
+    return { role, changes };
+  })
+  .filter((e) => e.changes.length > 0);
+---
+
+<Base
+  title={`What changes in ${label}`}
+  description={`Every change this guide lists for the ${label} phase, across all roles.`}
+>
+  <a
+    href={url("/")}
+    class="mb-2 inline-flex min-h-11 items-center gap-1.5 text-sm text-muted no-underline hover:text-ink sm:mb-6"
+  >
+    <ArrowLeft class="size-4" aria-hidden="true" /> All roles
+  </a>
+
+  <header class="mb-6">
+    <p class="text-xs font-semibold tracking-wide text-accent uppercase">
+      Lifecycle phase
+    </p>
+    <h1 class="mt-1 text-3xl font-semibold tracking-tight sm:text-4xl">
+      What changes in {label}
+    </h1>
+    <p class="mt-2 max-w-2xl text-lg text-pretty text-muted">
+      Every change this guide lists for the {label} phase, across all roles.
+      Open one to see before and now, with sources, on the role page.
+    </p>
+  </header>
+
+  <nav aria-label="Lifecycle phases" class="mb-8">
+    <ul
+      data-phase-switcher
+      class="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0 [&::-webkit-scrollbar]:hidden"
+    >
+      {phases.map((p) => (
+        <li class="shrink-0">
+          <a
+            href={url(`/phases/${p}`)}
+            aria-current={p === phase ? "page" : undefined}
+            class="inline-flex min-h-10 items-center rounded-full border border-line bg-surface px-4 text-sm font-medium text-muted no-underline hover:border-accent hover:text-ink aria-[current=page]:border-accent aria-[current=page]:bg-accent aria-[current=page]:text-on-accent"
+          >
+            {PHASE_LABELS[p]}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <ul class="grid gap-4 md:grid-cols-2">
+    {entries.map(({ role, changes }) => (
+      <li
+        data-testid="phase-role"
+        class="rounded-2xl border border-line bg-surface p-4 sm:p-5"
+      >
+        <h2 class="mb-3">
+          <a
+            href={url(`/roles/${role.id}`)}
+            class="group flex items-center gap-3 no-underline"
+          >
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
+              <RoleIcon name={role.data.icon} class="size-5" />
+            </span>
+            <span class="min-w-0 text-lg font-semibold tracking-tight group-hover:text-accent">
+              {role.data.title}
+            </span>
+          </a>
+        </h2>
+        <ul class="space-y-1">
+          {changes.map(({ shift, anchor }) => (
+            <li>
+              <a
+                href={url(`/roles/${role.id}#${anchor}`)}
+                data-testid="phase-change"
+                class="group flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 no-underline hover:bg-accent-soft focus-visible:bg-accent-soft"
+              >
+                <span class="min-w-0 flex-1">
+                  <span class="block font-medium group-hover:text-accent">
+                    {shift.activity}
+                  </span>
+                  <span class="block text-sm text-muted">{shift.headline}</span>
+                </span>
+                <ArrowRight
+                  class="size-4 shrink-0 text-muted group-hover:text-accent"
+                  aria-hidden="true"
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+
+  <a
+    href={url("/")}
+    class="mt-8 inline-flex min-h-11 items-center gap-1.5 text-sm text-muted no-underline hover:text-ink"
+  >
+    <ArrowLeft class="size-4" aria-hidden="true" /> All roles
+  </a>
+</Base>
+
+<script>
+  // On phones, keep the current phase visible in the scrolling switcher.
+  const list = document.querySelector<HTMLElement>("[data-phase-switcher]");
+  const current = list?.querySelector<HTMLElement>('[aria-current="page"]');
+  if (list && current && list.scrollWidth > list.clientWidth)
+    list.scrollLeft = current.offsetLeft - list.offsetLeft - 16;
+</script>

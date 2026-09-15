@@ -146,6 +146,8 @@ sources:
     url: https://arxiv.org/abs/2511.01324
     published: 2025-11-03
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
     quote: Our data show that 58.2% of respondents already use AI in RE, and 69.1% view its impact as positive or very positive. HAIC dominates practice, accounting for 54.4% of all RE techniques, while full AI automation remains minimal at 5.4%.
   - id: llm-stakeholder-revisions-2026
     title: "Supporting Stakeholder Requirements Expression with LLM Revisions: An Empirical Evaluation"
@@ -153,18 +155,24 @@ sources:
     url: https://arxiv.org/abs/2601.16699
     published: 2026-01-23
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
   - id: llm-user-stories-2025
     title: Can LLMs Generate User Stories and Assess Their Quality?
     publisher: arXiv (Quattrocchi, Pasquale, Spoletini, Baresi)
     url: https://arxiv.org/abs/2507.15157
     published: 2025-07-20
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
   - id: thoughtworks-ra-case-study
     title: "Using AI for requirements analysis: A case study"
     publisher: Thoughtworks
     url: https://www.thoughtworks.com/en-gb/insights/blog/generative-ai/using-ai-requirements-analysis-case-study
     published: 2024-09-17
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: the team estimates that there was a reduction in analysis time of ~20%, despite the time required to create the context.
   - id: thoughtworks-testcases-2025
     title: Can we use generative AI to generate test cases from user stories?
@@ -172,6 +180,8 @@ sources:
     url: https://www.thoughtworks.com/en-us/insights/blog/generative-ai/can-we-use-generative-AI-to-generate-test-cases-from-user-stories
     published: 2025-07-30
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: The AI achieved 98.67% acceptance criteria coverage and maintained a low duplication rate of only 4.22%.
   - id: genai-re-slr
     title: "Generative AI for Requirements Engineering: A Systematic Literature Review"
@@ -179,6 +189,8 @@ sources:
     url: https://arxiv.org/abs/2409.06741
     published: 2025-10-14
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
     quote: Industrial adoption remains nascent, with over 90% of studies corresponding to early stage development and only 1.3% reaching production level integration.
   - id: fowler-sdd-tools
     title: "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl"
@@ -186,6 +198,8 @@ sources:
     url: https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html
     published: 2025-10-15
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
 ---
 
 A typical week still revolves around people: workshops, interviews and sessions to confirm what was agreed. What changes is the paperwork around them. A transcribed workshop gives you a first set of notes to correct instead of a blank page. A rough epic becomes a draft list of stories and acceptance criteria quickly, and you spend your time on what is missing, wrong or invented. Before any of that works well, you give the assistant a solid description of the domain, and you keep it up to date.

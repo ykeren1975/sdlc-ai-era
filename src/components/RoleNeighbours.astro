@@ -1,0 +1,101 @@
+---
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import { getCollection } from "astro:content";
+import { relatedRoles } from "../lib/taxonomy";
+import { url } from "../lib/url";
+import OurSuggestion from "./OurSuggestion.astro";
+import RoleIcon from "./RoleIcon.astro";
+
+interface Props {
+  roleId: string;
+}
+
+const { roleId } = Astro.props;
+const roles = (await getCollection("roles")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const index = roles.findIndex((r) => r.id === roleId);
+const previous = index > 0 ? roles[index - 1] : undefined;
+const next = index < roles.length - 1 ? roles[index + 1] : undefined;
+const related = relatedRoles(roleId)
+  .map((id) => roles.find((r) => r.id === id))
+  .filter((r) => !!r)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<div class="space-y-4 sm:space-y-6" data-testid="role-neighbours">
+  <div>
+    <div class="mb-3 flex flex-wrap items-center gap-2">
+      <h3 class="text-lg font-semibold">Works closely with</h3>
+      <OurSuggestion />
+    </div>
+    <ul class="flex flex-wrap gap-2 sm:grid sm:grid-cols-2 sm:gap-3">
+      {related.map((role) => (
+        <li>
+          <a
+            href={url(`/roles/${role.id}`)}
+            class="focus-inset group flex h-full min-h-11 items-center gap-2 rounded-xl border border-line bg-surface px-3 py-1.5 no-underline hover:border-accent sm:gap-3 sm:p-3"
+            data-testid="related-role"
+          >
+            <span class="hidden size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent sm:flex">
+              <RoleIcon name={role.data.icon} class="size-4" />
+            </span>
+            <span class="min-w-0 flex-1">
+              <span class="block font-medium group-hover:text-accent">
+                {role.data.title}
+              </span>
+              <span class="hidden text-sm text-muted sm:block">
+                {role.data.tagline}
+              </span>
+            </span>
+            <ArrowRight
+              class="hidden size-4 shrink-0 text-muted group-hover:text-accent sm:block"
+              aria-hidden="true"
+            />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <nav aria-label="Previous and next role in the lifecycle" class="no-print">
+    <ul class="grid grid-cols-2 gap-2 sm:gap-3">
+      <li>
+        {previous && (
+          <a
+            href={url(`/roles/${previous.id}`)}
+            rel="prev"
+            class="focus-inset flex h-full min-h-11 flex-col rounded-xl border border-line p-2.5 text-sm no-underline sm:p-3 sm:text-base hover:border-accent"
+            data-testid="previous-role"
+          >
+            <span class="inline-flex items-center gap-1 text-xs text-muted sm:text-sm">
+              <ArrowLeft class="size-4" aria-hidden="true" />
+              <span>
+                Earlier<span class="hidden sm:inline"> in the lifecycle</span>
+              </span>
+            </span>
+            <span class="font-medium">{previous.data.title}</span>
+          </a>
+        )}
+      </li>
+      <li>
+        {next && (
+          <a
+            href={url(`/roles/${next.id}`)}
+            rel="next"
+            class="focus-inset flex h-full min-h-11 flex-col items-end rounded-xl border border-line p-2.5 text-right text-sm no-underline sm:p-3 sm:text-base hover:border-accent"
+            data-testid="next-role"
+          >
+            <span class="inline-flex items-center gap-1 text-xs text-muted sm:text-sm">
+              <span>
+                Later<span class="hidden sm:inline"> in the lifecycle</span>
+              </span>
+              <ArrowRight class="size-4" aria-hidden="true" />
+            </span>
+            <span class="font-medium">{next.data.title}</span>
+          </a>
+        )}
+      </li>
+    </ul>
+  </nav>
+</div>

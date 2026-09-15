@@ -165,6 +165,8 @@ sources:
     url: https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report
     published: 2025-09-23
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: Our data shows that 90% of organizations have adopted at least one platform and there is a direct correlation between a high quality internal platform and an organization's ability to unlock the value of AI, making it an essential foundation for success.
   - id: google-sre-agentic-ai
     title: How Google SRE is using agentic AI to improve operations
@@ -172,6 +174,8 @@ sources:
     url: https://cloud.google.com/blog/products/devops-sre/how-google-sre-is-using-agentic-ai-to-improve-operations
     published: 2026-05-29
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: An agentic approach does not necessarily imply removing people from the process, specifically for higher-risk services and features, but it does significantly reduce the time people need to spend, as a number of issues can be detected and auto-addressed before they need to be reviewed by a person.
   - id: google-sre-gemini-cli
     title: How Google SREs Use Gemini CLI to Solve Real-World Outages
@@ -179,6 +183,8 @@ sources:
     url: https://cloud.google.com/blog/topics/developers-practitioners/how-google-sres-use-gemini-cli-to-solve-real-world-outages
     published: 2026-01-22
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: The agent proposes the mutation, but Ramón authorizes it. This allows us to move at AI speed while maintaining human accountability.
   - id: hochstein-llm-incident-reports
     title: I am dreading our LLM-written incident report future
@@ -186,6 +192,8 @@ sources:
     url: https://surfingcomplexity.blog/2026/06/19/i-am-dreading-our-llm-written-incident-report-future/
     published: 2026-06-19
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: false
     quote: The consequences of a poor report aren't immediately apparent the way incorrect code or an incorrect operational diagnosis are in the moment. Instead, we get incident reports that have the superficially correct form, but are actually incorrect, with no obvious test for correctness.
   - id: catchpoint-sre-report-2026
     title: "SRE Report 2026: What surprised us, what didn't, and why the gaps matter most"
@@ -193,6 +201,8 @@ sources:
     url: https://www.catchpoint.com/blog/sre-report-2026-what-surprised-us-what-didnt-and-why-the-gaps-matter-most
     published: 2026-01-22
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: AI reduced some toil. Nearly half (49%) of respondents said it decreased their workload. But 35% saw no change, and 16% said it increased toil.
   - id: dynatrace-state-of-sre-2026
     title: As AI Scales Across Enterprises, Breaking Points Emerge
@@ -200,6 +210,8 @@ sources:
     url: https://www.dynatrace.com/news/press-release/state-of-sre-platform-engineering-2026/
     published: 2026-08-25
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: Half of SREs now use AI‑powered capabilities for automated incident response, signaling a shift toward agentic operations where observability must act as the control plane that governs when and how autonomous actions are taken.
   - id: text-to-terraform-security
     title: "Security-First Evaluation of Text-to-Terraform: Benchmarking LLMs and SLMs for Secure IaC Generation"
@@ -207,6 +219,8 @@ sources:
     url: https://arxiv.org/abs/2608.02672
     published: 2026-08-02
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
     quote: "Consequently, prompt engineering alone is insufficient: automated multi-tool scanning remains a necessary complement to LLM-assisted IaC generation regardless of model family or prompt strategy."
   - id: otel-genai-observability
     title: "Inside the LLM Call: GenAI Observability with OpenTelemetry"
@@ -214,6 +228,8 @@ sources:
     url: https://opentelemetry.io/blog/2026/genai-observability/
     published: 2026-05-14
     accessed: 2026-09-14
+    type: official
+    vendorAffiliated: false
     quote: By default, no prompt content or tool arguments are captured with GenAI telemetry, as these can contain sensitive data.
 ---
 

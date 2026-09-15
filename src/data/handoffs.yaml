@@ -1,0 +1,83 @@
+# Editorial links between changes on different role pages that cover the same handoff or work.
+# Written by the main session from a subagent proposal; activities must match a shift's `activity` exactly.
+# Each shift appears in at most 2 pairs.
+
+- id: dev-automated-testing-to-qa-agent-tests
+  a: { role: developer, activity: "Automated testing" }
+  b:
+    {
+      role: qa-tester,
+      activity: "Checking tests written alongside AI-generated code",
+    }
+
+- id: ba-acceptance-criteria-to-qa-test-design
+  a:
+    {
+      role: business-analyst,
+      activity: "Handing acceptance criteria to testing",
+    }
+  b: { role: qa-tester, activity: "Test analysis and test case design" }
+
+- id: ba-agent-specs-to-dev-planning
+  a:
+    {
+      role: business-analyst,
+      activity: "Writing specifications for coding agents",
+    }
+  b: { role: developer, activity: "Planning a change before implementation" }
+
+- id: pm-ai-quality-to-ux-good-output
+  a: { role: product-manager, activity: "Defining quality for AI features" }
+  b: { role: ux-designer, activity: "Defining what good output looks like" }
+
+- id: pm-ai-quality-to-qa-llm-testing
+  a: { role: product-manager, activity: "Defining quality for AI features" }
+  b:
+    {
+      role: qa-tester,
+      activity: "Testing features built on large language models",
+    }
+
+- id: dev-code-review-to-sec-code-flaws
+  a: { role: developer, activity: "Code review" }
+  b: { role: security-engineer, activity: "Reviewing code for security flaws" }
+
+- id: sm-definition-of-done-to-dev-code-review
+  a: { role: scrum-master, activity: "Protecting the Definition of Done" }
+  b: { role: developer, activity: "Code review" }
+
+- id: architect-agent-connections-to-sec-tool-permissions
+  a:
+    {
+      role: software-architect,
+      activity: "Deciding how AI agents connect to other systems",
+    }
+  b:
+    {
+      role: security-engineer,
+      activity: "Reviewing integrations and tool permissions",
+    }
+
+- id: dev-shipping-to-sre-delivery-platform
+  a: { role: developer, activity: "Shipping changes safely" }
+  b: { role: devops-sre, activity: "Building the delivery platform" }
+
+- id: ba-epics-to-stories-to-sm-backlog-refinement
+  a:
+    {
+      role: business-analyst,
+      activity: "Breaking epics into stories and acceptance criteria",
+    }
+  b: { role: scrum-master, activity: "Facilitating backlog refinement" }
+
+- id: pm-prototype-to-ux-prototyping
+  a: { role: product-manager, activity: "Communicating a product idea" }
+  b:
+    {
+      role: ux-designer,
+      activity: "Prototyping and testing complex interactions",
+    }
+
+- id: pm-customer-needs-to-ux-research-analysis
+  a: { role: product-manager, activity: "Understanding customer needs" }
+  b: { role: ux-designer, activity: "Analysing user research" }

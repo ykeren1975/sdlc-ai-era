@@ -145,6 +145,8 @@ sources:
     url: https://www.apm.org.uk/news/ai-use-in-project-management-nearly-doubles-in-just-two-years-apm-survey-finds/
     published: 2025-09-09
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: false
     quote: Task and schedule automation – 50% of project professionals using AI who have seen a benefit
   - id: apm-ai-embedded-2026
     title: AI becomes increasingly embedded in project delivery, new APM research reveals
@@ -152,6 +154,8 @@ sources:
     url: https://www.apm.org.uk/news/ai-becomes-increasingly-embedded-in-project-delivery-new-apm-research-reveals-1/
     published: 2026-03-31
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: false
     quote: "Findings from the research show that over a quarter (27%) of project professionals across industry sectors say that AI is fully embedded into their workflows and is used to support a wide range of activities including:"
   - id: capterra-pm-trends-2025
     title: "AI in Project Management: 2025 Software Trends Report"
@@ -159,6 +163,8 @@ sources:
     url: https://www.capterra.com/resources/2025-pm-software-trends/
     published: 2025-09-04
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: AI can generate plans, but it can't build trust or resolve conflict. That's why 60% of PMs say they've increased their use of emotional intelligence (EI) since adopting AI.
   - id: ukgov-m365-copilot-experiment
     title: "Microsoft 365 Copilot Experiment: Cross-Government Findings Report"
@@ -166,30 +172,40 @@ sources:
     url: https://www.gov.uk/government/publications/microsoft-365-copilot-experiment-cross-government-findings-report/microsoft-365-copilot-experiment-cross-government-findings-report-html
     published: 2025-06-02
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: false
     quote: For risk mitigation, M365 Copilot can identify trends, but decisions about which risks to escalate or how to approach them still require deep understanding and human judgment.
   - id: microsoft-planner-agent-faq
     title: Frequently asked questions about Planner agent
     publisher: Microsoft Support
     url: https://support.microsoft.com/en-us/planner/copilot/frequently-asked-questions-about-planner-agent
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: The Planner Agent can generate a customized status report for your plan based on the current state of work and your reporting needs.
   - id: atlassian-jira-delivery-agent
     title: Work with Jira Delivery agent
     publisher: Atlassian Support
     url: https://support.atlassian.com/rovo/docs/work-with-jira-delivery-agent/
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: This agent identifies risks, such as stale work, blocked items, or slipping deadlines, and produces tailored delivery artefacts for different audiences, including team stand ups and executive summaries.
   - id: atlassian-loom-jira-suggestions
     title: Get AI-suggested work updates from Loom meetings in Jira
     publisher: Atlassian Support
     url: https://support.atlassian.com/loom/docs/get-ai-suggested-work-item-updates-from-loom-meetings-in-jira/
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: Rovo analyzes the meeting transcript and recommends updates such as reassigning work items, changing priority or status, or adding a comment.
   - id: microsoft-teams-copilot-meetings
     title: Get started with Copilot in Microsoft Teams meetings
     publisher: Microsoft Support
     url: https://support.microsoft.com/en-us/office/get-started-with-copilot-in-microsoft-teams-meetings-0bf9dd3c-96f7-44e2-8bb8-790bedf066b1
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: Copilot summarizes key discussion points, including who spoke and what they said. It also suggests action items and answers any questions you have, in real time during or after a meeting.
 ---
 

@@ -156,6 +156,8 @@ sources:
     url: https://www.nngroup.com/articles/research-with-ai/
     published: 2024-09-27
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: That level of complex, context-informed consideration is beyond the capacity of current AI tools.
   - id: nng-synthetic-users
     title: 'Synthetic Users: If, When, and How to Use AI-Generated "Research"'
@@ -163,6 +165,8 @@ sources:
     url: https://www.nngroup.com/articles/synthetic-users/
     published: 2024-06-21
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: Treat the data you acquire from synthetic users as hypotheses that need testing.
   - id: nng-state-of-ux-2026
     title: "State of UX 2026: Design Deeper to Differentiate"
@@ -170,6 +174,8 @@ sources:
     url: https://www.nngroup.com/articles/state-of-ux-2026/
     published: 2026-01-16
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: In 2026, trust will be a major design problem for AI experiences. This challenge will only grow as more and more AI agents are rolled out, often before they're ready.
   - id: nng-ux-context-design
     title: "UX-Context Design: Using UX Knowledge to Inform AI-Generated Design"
@@ -177,6 +183,8 @@ sources:
     url: https://www.nngroup.com/articles/ux-context-design/
     published: 2026-07-24
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: Similarly, the difference between generic AI output and AI output that fits your users and matches your organization's standards is mostly a difference in context.
   - id: nng-test-earlier-with-ai
     title: Test Complex Interactions Earlier with AI Prototyping
@@ -184,6 +192,8 @@ sources:
     url: https://www.nngroup.com/articles/test-earlier-with-ai/
     published: 2026-09-11
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: AI tools bring speed to the design process, enabling designers to create a realistic working prototype in a day.
   - id: figma-ai-report-2026
     title: "Figma's 2026 AI Report: Can AI Help Us Collaborate Better?"
@@ -191,6 +201,8 @@ sources:
     url: https://www.figma.com/blog/2026-ai-report/
     published: 2026-06-24
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: In the last year, the number of designers participating in development doubled to 41%, and the number of developers doing design work rose from 44% to 60%.
   - id: nng-ai-era-critique
     title: "The Core Skill of Design in the AI Era: Critique"
@@ -198,6 +210,8 @@ sources:
     url: https://www.nngroup.com/articles/ai-era-critique/
     published: 2026-06-12
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: If we reframe our task as designers from specifying exact behaviors to defining what "good" looks (and doesn't look) like, we can create mechanisms by which our engineering and data-science partners can evaluate how closely the model's behavior adheres to our intentions.
   - id: codea11y-chi-2025
     title: "CodeA11y: Making AI Coding Assistants Useful for Accessible Web Development"
@@ -205,6 +219,8 @@ sources:
     url: https://arxiv.org/abs/2502.10884
     published: 2025-02-15
     accessed: 2026-09-14
+    type: research
+    vendorAffiliated: false
     quote: "Our formative study with 16 developers without accessibility training revealed three key issues in AI-assisted coding: failure to prompt AI for accessibility, omitting crucial manual steps like replacing placeholder attributes, and the inability to verify compliance."
 ---
 

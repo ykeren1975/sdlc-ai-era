@@ -118,10 +118,9 @@ risks:
     sourceIds:
       - productboard-ai-pm-report
   - headline: Time saved is not the same as better decisions
-    text: Time saved is not the same as better decisions. Atlassian found the most common AI uses are routine tasks and documentation, while AI is not yet helping with prioritisation or planning. Only 40% of Productboard's respondents measure AI ROI through business outcomes such as ARR.
+    text: Time saved is not the same as better decisions. Atlassian found the most common AI uses are routine tasks and documentation, while AI is not yet helping with prioritisation or planning.
     sourceIds:
       - atlassian-state-of-product-2026
-      - productboard-ai-pm-report
   - headline: Trying a few prompts by hand does not show how an AI feature fails
     text: Trying a few prompts by hand does not show how an AI feature fails. Husain and Shankar argue you cannot know what to measure until you systematically find out how the product fails in specific contexts.
     sourceIds:
@@ -154,6 +153,8 @@ sources:
     url: https://www.productboard.com/blog/ai-in-product-management-report/
     published: 2025-10-22
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: While 100% of respondents use AI tools, only 65% say their company has a documented AI policy.
   - id: atlassian-state-of-product-2026
     title: "The State of Product in 2026: Navigating Change, Challenge, and Opportunity"
@@ -161,6 +162,8 @@ sources:
     url: https://www.atlassian.com/blog/announcements/state-of-product-2026
     published: 2025-09-03
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: AI isn't yet helping with the complex, high-value work product teams crave, like prioritization, planning, and advanced analytics.
   - id: atlassian-product-craft
     title: "The future of product craft: Why AI-native PMs build better products"
@@ -168,6 +171,8 @@ sources:
     url: https://www.atlassian.com/blog/how-we-build/the-future-of-product-craft
     published: 2026-05-28
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: Across our product teams, prototyping has shifted from a specialist skill to a default starting point.
   - id: svpg-prototypes-vs-products
     title: Prototypes vs Products
@@ -175,18 +180,24 @@ sources:
     url: https://www.svpg.com/prototypes-vs-products/
     published: 2025-11-07
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
   - id: lenny-ai-prototyping
     title: A guide to AI prototyping for product managers
     publisher: Lenny's Newsletter (Colin Matthews)
     url: https://www.lennysnewsletter.com/p/a-guide-to-ai-prototyping-for-product
     published: 2025-01-07
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
   - id: lenny-evals-guide
     title: "Beyond vibe checks: A PM's complete guide to evals"
     publisher: Lenny's Newsletter (Aman Khan)
     url: https://www.lennysnewsletter.com/p/beyond-vibe-checks-a-pms-complete
     published: 2025-04-08
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: Writing evals is quickly becoming a core skill for anyone building AI products (which will soon be everyone).
   - id: husain-shankar-eval-systems
     title: Building eval systems that improve your AI product
@@ -194,6 +205,8 @@ sources:
     url: https://www.lennysnewsletter.com/p/building-eval-systems-that-improve
     published: 2025-09-09
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: In many situations, the product manager is the principal domain expert.
   - id: ng-pm-bottleneck
     title: How to Get Through the Product Management Bottleneck
@@ -201,6 +214,8 @@ sources:
     url: https://www.deeplearning.ai/the-batch/how-to-get-through-the-product-management-bottleneck
     published: 2025-07-16
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: I increasingly value product managers (PMs) who have very high user empathy and can make product decisions quickly, so the speed of product decision-making matches the speed of coding.
 ---
 

@@ -143,6 +143,8 @@ sources:
     url: https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report
     published: 2025-09-23
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: However, AI adoption does continue to have a negative relationship with software delivery stability.
   - id: dora-roi-infoq
     title: New DORA Report Claims Strong Engineering Foundations Drive AI Return on Investment
@@ -150,6 +152,8 @@ sources:
     url: https://www.infoq.com/news/2026/05/dora-roi-ai-assisted-dev-report/
     published: 2026-05-11
     accessed: 2026-09-14
+    type: news
+    vendorAffiliated: false
     quote: The report strongly discourages headcount reduction as a strategy, arguing that retaining and training existing staff is more cost-effective and preserves institutional knowledge.
   - id: dx-ai-measurement-framework
     title: "AI measurement framework: Complete guide for engineering leaders"
@@ -157,6 +161,8 @@ sources:
     url: https://getdx.com/blog/ai-measurement-framework-guide/
     published: 2026-05-20
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: true
     quote: treat agents as extensions of the developers and teams that oversee their work
   - id: pragmatic-measure-ai-impact
     title: How tech companies measure the impact of AI on software development
@@ -164,6 +170,8 @@ sources:
     url: https://newsletter.pragmaticengineer.com/p/how-tech-companies-measure-the-impact-of-ai
     published: 2025-09-16
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: Track metrics that keep each other in check.
   - id: pragmatic-ai-tooling-2026
     title: AI Tooling for Software Engineers in 2026
@@ -171,12 +179,16 @@ sources:
     url: https://newsletter.pragmaticengineer.com/p/ai-tooling-2026
     published: 2026-03-03
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: false
     quote: It seems like enterprise procurement, not individual preference, is behind this divergence.
   - id: leaddev-engineering-leadership-2026
     title: The Engineering Leadership Report 2026
     publisher: LeadDev
     url: https://leaddev.com/the-engineering-leadership-report-2026
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: 84% believe AI will make it harder for junior developers to enter and grow in the profession
   - id: stanier-senior-engineers-2035
     title: Who will be the senior engineers of 2035?
@@ -184,6 +196,8 @@ sources:
     url: https://theengineeringmanager.substack.com/p/who-will-be-the-senior-engineers
     published: 2026-04-13
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: false
     quote: Frame it as risk mitigation, not charity.
   - id: canva-ai-interviews
     title: Yes, You Can Use AI in Our Interviews. In fact, we insist
@@ -191,6 +205,8 @@ sources:
     url: https://www.canva.dev/blog/engineering/yes-you-can-use-ai-in-our-interviews/
     published: 2025-06-11
     accessed: 2026-09-14
+    type: vendor
+    vendorAffiliated: false
     quote: We've piloted a new competency we called 'AI-Assisted Coding' that replaces our traditional Computer Science Fundamentals screening for backend and frontend engineering roles.
 ---
 

@@ -11,10 +11,16 @@ interface Props {
 
 const { roleId, data } = Astro.props;
 const shiftAnchors = changeIds(data.shifts);
-const indexed = data.shifts.map((shift, i) => ({ shift, anchor: shiftAnchors[i] }));
+const indexed = data.shifts.map((shift, i) => ({
+  shift,
+  anchor: shiftAnchors[i],
+}));
 const flagged = indexed.filter(({ shift }) => shift.highlight);
 const highlights = (flagged.length ? flagged : indexed).slice(0, 3);
-const topTools = (await resolveTools(data.tools)).slice(0, 3);
+// Same tools as "Start here" in the Tools section; fall back to the first tools if a role has none.
+const allTools = await resolveTools(data.tools);
+const startHere = allTools.filter((t) => t.recommendation === "should");
+const topTools = (startHere.length ? startHere : allTools).slice(0, 3);
 const topSkills = data.skills.new.slice(0, 2);
 const riskIndex = Math.max(
   0,
@@ -50,7 +56,9 @@ const [firstSkill] = await getStarterSkills(
             {i + 1}
           </span>
           <span class="min-w-0 flex-1 sm:flex sm:flex-col">
-            <span class="block font-semibold leading-snug">{shift.activity}</span>
+            <span class="block font-semibold leading-snug">
+              {shift.activity}
+            </span>
             <span class="mt-0.5 block flex-1 text-sm leading-relaxed text-muted sm:mt-1">
               {shift.headline}
             </span>

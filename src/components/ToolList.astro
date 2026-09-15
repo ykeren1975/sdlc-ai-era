@@ -23,7 +23,8 @@ const ext = { target: "_blank", rel: "noopener noreferrer" };
 
 <div class="space-y-6">
   <p class="flex flex-wrap items-center gap-2 text-sm text-muted">
-    Grouped by how widely each tool is used for this role. <OurSuggestion />
+    "Start here" tools are the editor's pick of where to begin for this role.{" "}
+    <OurSuggestion />
   </p>
 
   {startHere.length > 0 && (
@@ -46,7 +47,7 @@ const ext = { target: "_blank", rel: "noopener noreferrer" };
               <span class="sr-only">(opens in new tab)</span>
             </a>
             <p class="hidden text-sm text-muted sm:block">
- · {TOOL_CATEGORY_LABELS[entry.data.category]}
+              · {TOOL_CATEGORY_LABELS[entry.data.category]}
             </p>
             <p
               class="mt-2 text-[15px] leading-relaxed sm:text-sm"
@@ -108,9 +109,7 @@ const ext = { target: "_blank", rel: "noopener noreferrer" };
               <span class="group-open/more:hidden">
                 Show {items.length} tools
               </span>
-              <span class="hidden group-open/more:inline">
-                Hide tools
-              </span>
+              <span class="hidden group-open/more:inline">Hide tools</span>
               <ChevronDown
                 class="size-4 transition-transform group-open/more:rotate-180"
                 aria-hidden="true"

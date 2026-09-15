@@ -20,7 +20,13 @@ export interface RoleFile {
     }[];
     tools: { sourceIds?: string[] }[];
     risks: { sourceIds?: string[] }[];
-    sources: { id: string }[];
+    order: number;
+    sources: {
+      id: string;
+      url: string;
+      type: string;
+      vendorAffiliated: boolean;
+    }[];
   };
 }
 

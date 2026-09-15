@@ -164,6 +164,8 @@ sources:
     url: https://icepanel.io/blog/state-of-software-architecture-survey-2025
     published: 2026-01-22
     accessed: 2026-09-14
+    type: survey
+    vendorAffiliated: true
     quote: 37% said it's used in some aspects of their workflow/tooling.
   - id: infoq-architecture-trends-2025
     title: InfoQ Software Architecture and Design Trends Report - 2025
@@ -171,6 +173,8 @@ sources:
     url: https://www.infoq.com/articles/architecture-trends-2025/
     published: 2025-04-28
     accessed: 2026-09-14
+    type: news
+    vendorAffiliated: false
     quote: Architects are finding ways to provide good prompts which help ensure coding and architectural guidelines are upheld.
   - id: fowler-genai-patterns
     title: Emerging Patterns in Building GenAI Products
@@ -178,6 +182,8 @@ sources:
     url: https://martinfowler.com/articles/gen-ai-patterns/
     published: 2025-02-25
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: Only if we find ourselves in a situation where the eval metrics are not satisfactory even after optimizing RAG, do we consider fine-tuning the model.
   - id: fowler-harness-engineering
     title: Harness engineering for coding agent users
@@ -185,6 +191,8 @@ sources:
     url: https://martinfowler.com/articles/harness-engineering.html
     published: 2026-04-02
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: A good harness should not necessarily aim to fully eliminate human input, but to direct it to where our input is most important.
   - id: thoughtworks-radar-architecture-drift
     title: Architecture drift reduction with LLMs (Technology Radar Vol. 34)
@@ -192,6 +200,8 @@ sources:
     url: https://www.thoughtworks.com/en-us/radar/techniques/architecture-drift-reduction-with-llms
     published: 2026-04-15
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: Increased use of AI coding agents can accelerate drift from the intended codebase and architecture designs.
   - id: thoughtworks-radar-cognitive-debt
     title: Codebase cognitive debt (Technology Radar Vol. 34)
@@ -199,6 +209,8 @@ sources:
     url: https://www.thoughtworks.com/en-us/radar/techniques/codebase-cognitive-debt
     published: 2026-04-15
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: Codebase cognitive debt is the growing gap between a system's implementation and a team's shared understanding of how and why it works.
   - id: thoughtworks-radar-mcp-by-default
     title: MCP by default (Technology Radar Vol. 34)
@@ -206,6 +218,8 @@ sources:
     url: https://www.thoughtworks.com/en-us/radar/techniques/mcp-by-default
     published: 2026-04-15
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: MCP adds real value for structured tool contracts, OAuth-based authentication boundaries and governed multi-tenant access.
   - id: thoughtworks-radar-legacy-codebases
     title: Using GenAI to understand legacy codebases (Technology Radar Vol. 33)
@@ -213,6 +227,8 @@ sources:
     url: https://www.thoughtworks.com/en-us/radar/techniques/using-genai-to-understand-legacy-codebases
     published: 2025-11-05
     accessed: 2026-09-14
+    type: practitioner
+    vendorAffiliated: true
     quote: Our experience across multiple clients shows that GenAI-assisted understanding of legacy systems is now a practical default rather than an experiment.
 ---
 

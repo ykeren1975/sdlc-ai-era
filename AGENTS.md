@@ -77,6 +77,17 @@ Order follows the SDLC flow on the home page.
     - the body stays under 150 lines.
   - A starter skill's body covers: purpose, inputs to gather, numbered steps, output format, edge cases, and a closing "Before you finish" check that flags what needs human review.
   - Starter skills are editorial: no statistics or factual claims, no `allowed-tools`, no instructions to send data to external services, and no vendor lock-in unless the skill is inherently about that tool.
+- **Source types:** every source has a `type` and `vendorAffiliated`.
+  - `type` is judged by what the cited page _is_, not who wrote it:
+    - `research`: an academic paper or preprint (arXiv, conference, journal).
+    - `survey`: a report built on questionnaire or interview responses from many people.
+    - `official`: guidance from a standards body, professional association, government, framework authors (e.g. Scrum Guide), or an open-source foundation or project documenting its own standard.
+    - `vendor`: a company's documentation, product page, blog or case study about its own product, customers or internal practice.
+    - `practitioner`: an individual expert's or consultancy's article, newsletter, blog or technology radar.
+    - `news`: journalism or news analysis (e.g. InfoQ).
+  - `vendorAffiliated: true` when the publisher sells products or services in the topic's space. For example, a Productboard survey about PM tools is `survey` plus affiliated, and a Thoughtworks Radar entry is `practitioner` plus affiliated (consultancy). Academic papers, standards bodies, journalists and independent individuals are `false`.
+  - When unsure, choose the more cautious label (`vendor` over `practitioner`, `vendorAffiliated: true`).
+- **Deploy checklist:** when the site is published to GitHub Pages, remove the "available once published" note on the About page and add `https://github.com/ykeren1975/sdlc-ai-era/issues` to `check:links`.
 - The site is a snapshot as of `lastReviewed`; do not write "latest" or "new" without a date.
 - Research subagents never edit `src/data/tools.yaml`; they propose tools and the main session merges them (avoids parallel write conflicts).
 
@@ -106,3 +117,4 @@ Order follows the SDLC flow on the home page.
 - **Don't generalise from one company or a niche group.** Findings about one vendor's own staff (e.g. Anthropic's internal study) are written as "At <company>, …", not as industry-wide truths. Use surveys for "most developers".
 - **Don't use `astro preview` from Claude sessions or tests.** Astro 7 detects AI agents and backgrounds the preview with a lock file, which breaks Playwright's `webServer`. Tests serve `dist/` with `node scripts/serve-dist.mjs <port>`. For a manual look, run the same script in the background.
 - **Recheck vendor reports for a newer edition.** Annual reports (Veracode, DORA, Stack Overflow, State of DevOps) get updated. Before citing one, search for a newer edition, and date claims from older studies ("early-2025 tools").
+- **One `quote` backs one statistic.** A source has a single `quote` field, so a second figure from the same page ("only 40%…") has no quoted passage, even if the page says it. Cite a second figure only if it's in the same continuous quote; otherwise drop it (Product Manager risk, found by a persona walkthrough after fact-checking passed).
