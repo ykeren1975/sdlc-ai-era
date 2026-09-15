@@ -12,6 +12,8 @@ import CopyItemLink from "../../components/CopyItemLink.astro";
 import OurSuggestion from "../../components/OurSuggestion.astro";
 import PageEnhancements from "../../components/PageEnhancements.astro";
 import RoleNeighbours from "../../components/RoleNeighbours.astro";
+import EvidenceBadge from "../../components/EvidenceBadge.astro";
+import SourceTypeIcon from "../../components/SourceTypeIcon.astro";
 import RoleIcon from "../../components/RoleIcon.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import ShareActions from "../../components/ShareActions.astro";
@@ -81,11 +83,14 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
       </div>
     </div>
     <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
-      <p class="text-sm text-muted" data-testid="last-reviewed">
-        <a href={url("/about#reviews")} class="text-muted hover:text-accent">
-          Last reviewed {formatDate(data.lastReviewed)}
-        </a>
-      </p>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
+        <p class="text-sm text-muted" data-testid="last-reviewed">
+          <a href={url("/about#reviews")} class="text-muted hover:text-accent">
+            Last reviewed {formatDate(data.lastReviewed)}
+          </a>
+        </p>
+        <EvidenceBadge sources={data.sources} />
+      </div>
       <ShareActions />
     </div>
   </header>
@@ -322,7 +327,7 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
             <div>
               <h2
                 id="neighbours-heading"
-                class="text-lg font-semibold md:text-2xl md:tracking-tight"
+                class="font-display text-lg font-semibold md:text-2xl md:tracking-tight"
               >
                 Related roles
               </h2>
@@ -347,7 +352,7 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
         <details class="group rounded-2xl border border-line bg-surface">
           <summary class="flex min-h-12 items-center justify-between gap-3 px-5 py-4">
             <div>
-              <h2 id="sources-heading" class="text-lg font-semibold">
+              <h2 id="sources-heading" class="font-display text-lg font-semibold">
                 Sources{" "}
                 <span class="font-normal text-muted">
                   ({data.sources.length})
@@ -402,7 +407,8 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
                     class="mt-1 flex flex-wrap gap-1.5"
                     data-testid="source-type"
                   >
-                    <span class="rounded-full border border-line px-2 py-0.5 text-xs text-muted">
+                    <span class="inline-flex items-center gap-1 rounded-full bg-before px-2 py-0.5 text-xs text-muted">
+                      <SourceTypeIcon type={source.type} class="size-3.5" />
                       {SOURCE_TYPE_LABELS[source.type].label}
                     </span>
                     {source.vendorAffiliated && (

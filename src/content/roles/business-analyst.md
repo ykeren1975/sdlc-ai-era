@@ -13,6 +13,7 @@ shifts:
   - phase: requirements
     activity: Eliciting and clarifying stakeholder needs
     headline: Have an LLM reword rough needs, then let stakeholders confirm the meaning
+    takeaway: AI can tidy up rough needs, but stakeholders must confirm
     highlight: true
     traditional: Analysts ran interviews and workshops, took notes and turned what stakeholders said into written requirements, going back to them to confirm meaning.
     aiEra: An LLM can reword a stakeholder's rough statement into a clearer requirement for the stakeholder to confirm. In a 2026 study, participants rated LLM revisions of their own statements higher than their originals, but the authors saw occasional meaning drift and say stakeholders must stay in the validation loop.
@@ -35,6 +36,7 @@ shifts:
   - phase: requirements
     activity: Breaking epics into stories and acceptance criteria
     headline: One pilot gave AI written domain context, then had it split epics into stories
+    takeaway: With written domain context, AI can help split epics
     highlight: true
     traditional: The analyst split epics into stories and wrote acceptance criteria, and missed edge cases often led to rework later in development.
     aiEra: In one Thoughtworks pilot, the team first wrote a reusable description of the domain and architecture for the AI, then used an AI assistant to break three epics into stories. The team estimated about 20% less analysis time, including the time to create that context, though three epics is too few for firm conclusions. The team's QA estimated about 10% fewer bugs and reasons for rework, because edge cases were better covered in the stories.
@@ -50,6 +52,7 @@ shifts:
   - phase: test
     activity: Handing acceptance criteria to testing
     headline: Generate test cases from stories with AI, but they may miss non-functional needs
+    takeaway: Test cases made from stories may miss non-functional needs
     highlight: true
     traditional: Testers read stories and acceptance criteria and wrote test cases by hand, asking the analyst about gaps.
     aiEra: AI can generate test cases from user stories. In a Thoughtworks experiment, generated test cases covered 98.67% of acceptance criteria, yet roughly a quarter needed clarification. The biggest limitation was heavy reliance on input quality, and the tools tended to overlook non-functional requirements.

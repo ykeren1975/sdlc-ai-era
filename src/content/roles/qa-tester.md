@@ -14,6 +14,7 @@ shifts:
   - phase: requirements
     activity: Test analysis and test case design
     headline: Prompt AI for test analysis and design, now an ISTQB-certified skill
+    takeaway: Prompting AI for test design is a certified skill
     highlight: true
     traditional: Testers read requirements and user stories, identified test conditions and wrote test cases by hand, often in a test management tool.
     aiEra: Since July 2025, ISTQB certifies testers in applying prompt engineering to test analysis, design, automation and reporting. One Ministry of Testing author treats AI output "as a starting signal rather than a final answer". In the World Quality Report 2025-26, test case design and requirements refinement lead generative AI adoption in quality engineering, and in PractiTest's 2026 State of Testing report, 70% use AI for test case creation.
@@ -25,6 +26,7 @@ shifts:
   - phase: build
     activity: Writing UI test automation
     headline: Give Playwright's agents a request and seed test; they plan and write tests
+    takeaway: Tests can be planned and written by Playwright's agents
     highlight: true
     traditional: Automation engineers hand-coded browser tests in frameworks such as Selenium or Playwright, finding locators and writing assertions step by step.
     aiEra: With Playwright's test agents, a planner explores the app and writes a Markdown test plan, and a generator turns that plan into executable tests, verifying selectors and assertions live as it runs the scenarios. The tester supplies a request, a seed test that sets up the environment and, optionally, a product requirements document.
@@ -33,6 +35,7 @@ shifts:
   - phase: test
     activity: Maintaining broken and brittle tests
     headline: Let Playwright's healer suggest fixes for failing tests and re-run them
+    takeaway: Playwright's healer suggests fixes and re-runs failing tests
     highlight: true
     traditional: When the UI changed, engineers debugged failing tests and updated locators, waits and test data by hand.
     aiEra: Playwright's healer agent replays the failing steps, inspects the current UI for equivalent elements and suggests a patch such as a locator update, wait adjustment or data fix, then re-runs the test. The outcome is a passing test or, if the agent believes the functionality is broken, a skipped test. Script maintenance is a common AI use among State of Testing respondents.

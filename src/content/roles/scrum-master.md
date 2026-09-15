@@ -14,6 +14,7 @@ shifts:
   - phase: plan
     activity: Facilitating Sprint Planning
     headline: Plan which tasks use AI and set aside time to validate its output
+    takeaway: Sprint Planning can cover AI tasks and time to check output
     highlight: true
     traditional: The Scrum Master ensured that Scrum events, including Sprint Planning, took place, were productive and stayed within their timebox.
     aiEra: The AI and Scrum guidance in the Scrum Guide Expansion Pack suggests that Sprint Planning covers which tasks the AI will be used for, and sets aside time to validate AI outputs.
@@ -50,6 +51,7 @@ shifts:
   - phase: build
     activity: Coaching team working agreements and dynamics
     headline: Agree that AI may generate or perform work, but humans stay accountable
+    takeaway: AI may do the work, but humans stay accountable
     highlight: true
     traditional: The Scrum Master coached team members in self-management and cross-functionality and caused the removal of impediments to the team's progress.
     aiEra: The Expansion Pack describes working agreements in which AI tools and autonomous agents may generate or perform work, but humans remain accountable. Scrum Masters also keep an eye on over-reliance or under-utilisation. If one team member becomes the "AI guru" and others disengage, the Scrum Master might encourage knowledge sharing or pair programming with AI.
@@ -66,6 +68,7 @@ shifts:
   - phase: test
     activity: Protecting the Definition of Done
     headline: Review AI-generated code as rigorously as a teammate's, and don't skip tests
+    takeaway: Review AI code as rigorously as a teammate's
     highlight: true
     traditional: The Scrum Master helped the team create high-value Increments that meet the Definition of Done. Work that did not meet it could not be considered part of an Increment.
     aiEra: The Expansion Pack says every piece of AI-generated code must be reviewed with the same rigour as if a teammate wrote it. It warns against letting the team sacrifice quality or skip testing in the rush to capitalise on AI speed, because technical debt accumulated now will almost certainly nullify future gains.

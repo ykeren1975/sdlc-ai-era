@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import { PHASES, PHASE_LABELS, ROLE_GROUPS } from "../lib/taxonomy";
 import { url } from "../lib/url";
 import { ArrowRight } from "@lucide/astro";
+import EvidenceBadge from "./EvidenceBadge.astro";
 import RoleIcon from "./RoleIcon.astro";
 
 interface Props {
@@ -148,8 +149,15 @@ const tagline = (r: CollectionEntry<"roles">) =>
                     <RoleIcon name={role.data.icon} class="size-4" />
                   </span>
                   <span class="min-w-0">
-                    <span class="block font-medium group-hover:text-accent group-focus-visible:text-accent">
-                      {role.data.title}
+                    <span class="flex flex-wrap items-center gap-x-2">
+                      <span class="font-medium group-hover:text-accent group-focus-visible:text-accent">
+                        {role.data.title}
+                      </span>
+                      <EvidenceBadge
+                        sources={role.data.sources}
+                        href={null}
+                        size="sm"
+                      />
                     </span>
                     <span class="block text-xs text-muted">
                       {tagline(role)}

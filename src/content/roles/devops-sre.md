@@ -13,6 +13,7 @@ shifts:
   - phase: operate
     activity: Triaging alerts
     headline: "At Google, AI agents group and enrich alerts and can mitigate many issues"
+    takeaway: AI can group and enrich alerts and mitigate many issues
     highlight: true
     traditional: The on-call engineer was paged for each alert, then grouped related alerts and gathered context from dashboards, logs and runbooks by hand.
     aiEra: A 2026 Dynatrace survey of 919 leaders and managers responsible for SRE, platform engineering or IT operations at enterprises with annual revenues of $500 million or more reports that half of SREs now use AI-powered capabilities for automated incident response. At Google, an SRE AI alerting agent groups alerts and enriches them with context, and autonomous alert handlers can address or mitigate many issues. Google notes this does not necessarily remove people from the process, especially for higher-risk services and features.
@@ -22,6 +23,7 @@ shifts:
   - phase: operate
     activity: Investigating and mitigating an incident
     headline: At Google, an agent proposes a mitigation and a human authorises it
+    takeaway: An agent can propose a mitigation for a human to authorise
     highlight: true
     traditional: Responders read dashboards, logs and recent changes, formed hypotheses together and ran mitigation steps from runbooks or by hand.
     aiEra: In a Google walkthrough of a simulated outage, Gemini CLI fetches the incident details and playbook, runs log analysis and time-series correlation tools, and recommends a mitigation. The agent selects only from strictly typed tools whose definitions record potential impact, a policy layer checks whether an action is allowed in the current context, and a human authorises the proposed mutation. The tools come from Google's internal agent framework, not stock Gemini CLI. What the AI proposed and what the human approved are logged.
@@ -45,6 +47,7 @@ shifts:
   - phase: build
     activity: Writing infrastructure as code
     headline: Scan AI-written Terraform; well-formed code is not necessarily secure
+    takeaway: Well-formed AI Terraform isn't necessarily secure
     highlight: true
     traditional: Engineers wrote Terraform, CloudFormation or Kubernetes manifests by hand and reviewed them in pull requests.
     aiEra: A 2026 benchmark (accepted at SBSeg 2026) of seven language models, including Claude Opus 4 and Gemini 2.5 Pro, generating AWS Terraform across 17 scenarios found that syntactic validity and security compliance are largely separate properties, so a model that reliably writes well-formed Terraform does not necessarily write secure Terraform. The authors, who ran Checkov and Trivy scanners in a GitLab CI/CD pipeline, conclude that prompt engineering alone is insufficient and that automated multi-tool scanning is still needed.

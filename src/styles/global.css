@@ -1,10 +1,12 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
+@import "@fontsource-variable/fraunces/opsz.css";
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, "Times New Roman", serif;
 
   --color-paper: oklch(98.5% 0.006 85);
   --color-surface: oklch(100% 0 0);
@@ -60,6 +62,15 @@
     @apply bg-paper font-sans text-ink antialiased;
   }
 
+  /* Display face for page titles and major section headings. */
+  h1,
+  .font-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
   a {
     @apply underline-offset-4;
   }
@@ -92,6 +103,18 @@
     [data-flash] {
       transition: none;
     }
+  }
+
+  /* Home hero: soft accent glow over a faint dot grid, fading out at the edges. */
+  .hero-backdrop {
+    background:
+      radial-gradient(
+        60% 70% at 78% 45%,
+        color-mix(in oklab, var(--color-accent) 14%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(var(--color-line) 1px, transparent 1.2px) 0 0 / 22px 22px;
+    mask-image: radial-gradient(90% 90% at 60% 45%, black 40%, transparent 85%);
   }
 
   /* Hide the right-edge fade once a horizontal scroller reaches its end. */

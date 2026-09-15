@@ -15,6 +15,7 @@ shifts:
   - phase: requirements
     activity: Writing PRDs and product documentation
     headline: In Atlassian's survey, documentation is among the most common AI uses
+    takeaway: Product docs are a common AI task for product teams
     highlight: true
     traditional: Product managers wrote requirement documents, user stories and presentations by hand, then refined them with design and engineering.
     aiEra: Atlassian's State of Product 2026 found product documentation among the most common AI use cases on product teams.
@@ -23,6 +24,7 @@ shifts:
   - phase: design
     activity: Communicating a product idea
     headline: "One study: high-fidelity AI prototypes helped participants win buy-in faster"
+    takeaway: Working prototypes in hours can help win stakeholder buy-in
     highlight: true
     traditional: Ideas were described in documents and slides, and turning them into mockups or clickable prototypes usually depended on a designer or engineer.
     aiEra: In one CHI 2026 study of how technical and non-technical people build products with AI tools (a survey of 85 people, plus interviews with 31 hackathon participants and 8 practitioners), participants said teams could now assemble working front-end versions in hours. They described a shift toward throw-away prototypes, valued for immediate exploration or demonstration. Participants used prototypes built with tools such as Lovable to persuade customers, investors and partners. The authors conclude that the unusually high fidelity of these early prototypes helped participants secure buy-in from stakeholders much faster than with traditional methods such as wireframes or paper prototypes.
@@ -55,6 +57,7 @@ shifts:
   - phase: test
     activity: Defining quality for AI features
     headline: LLM evaluators need human validation; Husain and Shankar suggest expert grading
+    takeaway: You may be the expert grading AI outputs pass or fail
     highlight: true
     traditional: Product managers wrote acceptance criteria, and testers checked that features behaved as specified.
     aiEra: A 2024 study notes that LLMs are increasingly used to help humans evaluate LLM outputs, but LLM-generated evaluators inherit the problems of the LLMs they evaluate and need further human validation. In its qualitative study with nine industry practitioners, users needed criteria to grade outputs, but grading outputs helped them define those criteria. For most small and medium-size companies, Hamel Husain and Shreya Shankar recommend one principal domain expert, in many situations the product manager, who reviews a representative set of around 100 user interactions and gives each a pass/fail judgement and critique.

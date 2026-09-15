@@ -56,12 +56,20 @@ const [firstSkill] = await getStarterSkills(
             {i + 1}
           </span>
           <span class="min-w-0 flex-1 sm:flex sm:flex-col">
-            <span class="block font-semibold leading-snug">
+            <span class="block text-[11px] font-semibold tracking-wide text-accent uppercase">
               {shift.activity}
             </span>
-            <span class="mt-0.5 block flex-1 text-sm leading-relaxed text-muted sm:mt-1">
-              {shift.headline}
+            <span class="font-display mt-0.5 block text-[1.05rem] leading-snug font-semibold sm:text-lg">
+              {shift.takeaway ?? shift.headline}
             </span>
+            {shift.takeaway && (
+              <span
+                class="mt-1 hidden flex-1 text-sm leading-relaxed text-muted sm:block"
+                data-testid="highlight-evidence"
+              >
+                {shift.headline}
+              </span>
+            )}
           </span>
           <span class="no-print mt-3 hidden items-center gap-1 text-sm font-medium text-accent sm:inline-flex">
             See before &amp; now{" "}

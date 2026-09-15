@@ -44,6 +44,7 @@ shifts:
   - phase: build
     activity: Setting architecture standards for code that AI writes
     headline: Guide agents with prompts and check architecture rules with automated sensors
+    takeaway: Prompts can guide agents; hooks can check architecture rules
     highlight: true
     traditional: Standards lived in wiki pages, templates and code review, and architects relied on developers reading and following them.
     aiEra: InfoQ's 2025 trends report says architects are finding ways to provide good prompts that help ensure coding and architectural guidelines are upheld, while tooling for this is not yet at the level of linting or EditorConfig. Birgitta Böckeler describes a harness of guides and sensors around coding agents. One category, "basically" fitness functions, defines and checks the application's architecture characteristics. Among her example sensors is a pre-commit or coding agent hook running ArchUnit tests that check for violations of module boundaries.
@@ -53,6 +54,7 @@ shifts:
   - phase: test
     activity: Checking that the codebase still matches the intended architecture
     headline: Agents can speed up drift; some teams pair deterministic tools with LLM checks
+    takeaway: AI coding agents can speed up drift from the architecture
     highlight: true
     traditional: Architects found drift through periodic reviews, dependency analysis and, where teams had them, architecture tests such as fitness functions.
     aiEra: Thoughtworks' Radar (Vol. 34, ring Assess) warns that AI coding agents can accelerate drift from the intended architecture, as agents and humans copy existing patterns, including degraded ones. Some Thoughtworks teams combine deterministic tools such as Spectral, ArchUnit or Spring Modulith with LLM-powered evaluation to find structural and semantic violations, then use LLMs to help fix them. Their lessons are that initial scans can surface many violations to triage, small agent-produced fixes are easier to review, and an extra verification loop is essential.
@@ -68,6 +70,7 @@ shifts:
   - phase: operate
     activity: Keeping the team's understanding of the system current
     headline: Storey argues AI can write code faster than teams build shared understanding
+    takeaway: Shared understanding may lag behind AI-written code
     highlight: true
     traditional: Shared understanding built up through design discussions, code review and the people who wrote the code staying with the system.
     aiEra: Margaret-Anne Storey argues that as AI generates code faster than teams can understand it, two forms of debt accumulate. Cognitive debt is the erosion of shared understanding across a team, and intent debt is the absence of externalised rationale that developers and AI agents need to work safely with code. She suggests generative AI may reduce technical debt while accelerating both. She proposes treating shared understanding as a deliverable, with time for practices such as walkthroughs and retrospectives, and capturing intent early in ADRs, specifications and decision rationales that ground human understanding and that AI agents will require to do useful work.

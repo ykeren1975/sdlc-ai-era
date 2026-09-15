@@ -20,6 +20,7 @@ shifts:
   - phase: build
     activity: Writing status reports
     headline: Agents can draft status reports; review them and give feedback
+    takeaway: Status reports can be drafted by agents for you to review
     highlight: true
     traditional: Project managers chased updates from team members, pulled progress figures from the plan and tracker, and wrote the weekly status report by hand.
     aiEra: Planner Agent can generate a customised status report based on the current state of work and your reporting needs. Atlassian's Jira Delivery Agent creates a daily status digest and end-of-cycle summaries of completed work. Atlassian recommends reviewing the agent's summaries regularly and giving feedback to improve their accuracy and usefulness.
@@ -29,6 +30,7 @@ shifts:
   - phase: plan
     activity: Maintaining the risk and issue log
     headline: "Agents can flag stale work; one trial user says escalating needs judgement"
+    takeaway: Agents can flag stale work; escalating may need judgement
     highlight: true
     traditional: Risks, assumptions, issues and dependencies were raised in workshops and status meetings and kept in a RAID log that the project manager reviewed and updated by hand.
     aiEra: Jira Delivery Agent identifies risks such as stale work, blocked items or slipping deadlines, and follows up with assignees on work items that haven't moved for a specified period. In APM's 2025 survey, risk analysis and forecasting was cited by 50% of project professionals using AI who had seen a benefit. In a late-2024 UK government trial of Microsoft 365 Copilot, one project delivery participant said the tool can identify trends, but decisions about which risks to escalate still require deep understanding and human judgement.
@@ -39,6 +41,7 @@ shifts:
   - phase: build
     activity: Running meetings and tracking actions
     headline: "Copilot suggests meeting actions; accept or discard Rovo's Jira updates"
+    takeaway: AI can suggest actions and updates to accept or discard
     highlight: true
     traditional: Project managers took minutes, wrote up decisions and action items after the meeting, and updated the tracker themselves.
     aiEra: Copilot in Teams meetings summarises key discussion points, including who spoke and what they said, and suggests action items. When a Loom meeting is connected to a Jira space, Rovo analyses the transcript and recommends updates such as reassigning work items, changing priority or status, or adding a comment. You can accept or discard each suggestion, or accept all.

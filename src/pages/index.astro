@@ -1,48 +1,89 @@
 ---
 import { getCollection } from "astro:content";
+import { ArrowDown } from "@lucide/astro";
+import LifecycleRing from "../components/LifecycleRing.astro";
 import SdlcMap from "../components/SdlcMap.astro";
 import Base from "../layouts/Base.astro";
+import { evidence } from "../lib/role";
 import { url } from "../lib/url";
 
 const roles = await getCollection("roles");
 const tools = await getCollection("tools");
-const sourceCount = roles.reduce((n, r) => n + r.data.sources.length, 0);
+const allSources = roles.flatMap((r) => r.data.sources);
+const sourceCount = allSources.length;
+const { independent } = evidence(allSources);
 ---
 
 <Base
   title="SDLC in the AI Era"
   description="Pick your role in the software development lifecycle and see what changes for you with AI: how the work shifts, which tools to use, and which skills matter now."
 >
-  <section class="mb-10 max-w-3xl">
-    <p class="mb-3 text-sm font-medium text-accent">
-      A role-by-role guide, with sources
-    </p>
-    <h1 class="mb-4 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-      What changes for <em class="text-accent not-italic">you</em> when software
-      is built with AI?
-    </h1>
-    <p class="text-lg leading-relaxed text-pretty text-muted">
-      Pick your role to get the short answer in 30 seconds: how your work
-      shifts, which tools to start with and which skills to build. The evidence
-      is one click away.
-    </p>
-    <ul
-      class="mt-5 flex flex-wrap gap-x-5 gap-y-1 text-sm text-muted"
-      aria-label="Site at a glance"
-    >
-      <li>
-        <strong class="font-semibold text-ink">{roles.length}</strong> roles
-      </li>
-      <li>
-        <strong class="font-semibold text-ink">{tools.length}</strong> tools
-      </li>
-      <li>
-        <a href={url("/about#sources")} class="text-muted hover:text-ink">
-          <strong class="font-semibold text-ink">{sourceCount}</strong> cited
-          sources
+  <section
+    class="relative mb-12 grid items-center gap-10 lg:mb-16 lg:grid-cols-[1.15fr_0.85fr]"
+    aria-labelledby="hero-heading"
+  >
+    <div
+      class="hero-backdrop pointer-events-none absolute -inset-x-4 -top-12 -bottom-6 -z-10 sm:-inset-x-6"
+      aria-hidden="true"
+    ></div>
+    <div>
+      <p class="mb-3 text-sm font-medium text-accent">
+        A role-by-role guide, with sources
+      </p>
+      <h1
+        id="hero-heading"
+        class="mb-5 text-[2.6rem] leading-[1.05] text-balance sm:text-6xl"
+      >
+        What changes for <em class="text-accent italic">you</em> when software
+        is built with AI?
+      </h1>
+      <p class="max-w-2xl text-lg leading-relaxed text-pretty text-muted">
+        Pick your role to get the short answer in 30 seconds: how your work
+        shifts, which tools to start with and which skills to build. The
+        evidence is one click away.
+      </p>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <a
+          href="#map-heading"
+          class="inline-flex min-h-11 items-center gap-2 rounded-full bg-accent px-5 font-medium text-on-accent no-underline shadow-sm hover:opacity-90"
+        >
+          Find your role
+          <ArrowDown class="size-4" aria-hidden="true" />
         </a>
-      </li>
-    </ul>
+        <a
+          href={url("/about#process")}
+          class="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line bg-surface px-5 font-medium text-ink no-underline hover:border-accent"
+        >
+          How every claim is checked
+        </a>
+      </div>
+      <ul
+        class="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted"
+        aria-label="Site at a glance"
+      >
+        <li>
+          <strong class="font-semibold text-ink">{roles.length}</strong> roles
+        </li>
+        <li>
+          <strong class="font-semibold text-ink">{tools.length}</strong> tools
+        </li>
+        <li>
+          <a href={url("/about#sources")} class="text-muted hover:text-ink">
+            <strong class="font-semibold text-ink">{sourceCount}</strong> cited
+            sources
+          </a>
+        </li>
+        <li data-testid="home-independent">
+          <a href={url("/about#sources")} class="text-muted hover:text-ink">
+            <strong class="font-semibold text-ink">{independent}</strong> from
+            independent publishers
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="hidden md:block">
+      <LifecycleRing roles={roles} />
+    </div>
   </section>
 
   <SdlcMap roles={roles} />

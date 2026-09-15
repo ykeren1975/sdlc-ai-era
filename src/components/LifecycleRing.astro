@@ -1,0 +1,172 @@
+---
+// Home hero visual: the SDLC as a loop. Each phase links to its phase page and shows
+// how many roles change there; a highlight travels around the loop (off with reduced motion).
+import type { CollectionEntry } from "astro:content";
+import { PHASES, PHASE_LABELS } from "../lib/taxonomy";
+import { url } from "../lib/url";
+
+interface Props {
+  roles: CollectionEntry<"roles">[];
+}
+
+const { roles } = Astro.props;
+const STEP = 2; // seconds each phase stays highlighted
+const cycle = STEP * PHASES.length;
+const R = 40; // node centre radius, % of the box half-width
+const nodes = PHASES.map((phase, i) => {
+  const angle = (-90 + (i * 360) / PHASES.length) * (Math.PI / 180);
+  return {
+    phase,
+    label: PHASE_LABELS[phase],
+    count: roles.filter((r) => r.data.shifts.some((s) => s.phase === phase))
+      .length,
+    left: 50 + R * Math.cos(angle),
+    top: 50 + R * Math.sin(angle),
+    delay: i * STEP,
+  };
+});
+// Ring drawn in a 200×200 viewBox, same radius as the nodes.
+const circumference = 2 * Math.PI * 80;
+const arc = circumference / PHASES.length;
+---
+
+<div
+  class="lifecycle-ring relative mx-auto aspect-square w-full max-w-[26rem]"
+  style={`--cycle:${cycle}s`}
+  data-testid="lifecycle-ring"
+>
+  <svg
+    viewBox="0 0 200 200"
+    class="absolute inset-0 size-full"
+    aria-hidden="true"
+  >
+    <defs>
+      <radialGradient id="ring-glow" cx="50%" cy="50%" r="50%">
+        <stop
+          offset="0%"
+          stop-color="var(--color-accent)"
+          stop-opacity="0.18"
+        />
+        <stop offset="70%" stop-color="var(--color-accent)" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <circle cx="100" cy="100" r="96" fill="url(#ring-glow)" />
+    <circle
+      cx="100"
+      cy="100"
+      r="80"
+      fill="none"
+      stroke="var(--color-line)"
+      stroke-width="1.5"
+      stroke-dasharray="2 4"
+    />
+    <circle
+      class="ring-sweep"
+      cx="100"
+      cy="100"
+      r="80"
+      fill="none"
+      stroke="var(--color-accent)"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-dasharray={`${arc * 0.55} ${circumference}`}
+      transform="rotate(-130 100 100)"
+      style={`--arc:${arc}px;--c:${circumference}`}
+    />
+  </svg>
+
+  <div class="absolute top-1/2 left-1/2 flex w-[42%] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center">
+    <svg
+      viewBox="0 0 32 32"
+      class="mb-1 size-10 text-accent"
+      aria-hidden="true"
+    >
+      <path
+        class="ring-spark fill-current"
+        d="M16 4.5c1 6 5.5 10.5 11.5 11.5-6 1-10.5 5.5-11.5 11.5-1-6-5.5-10.5-11.5-11.5 6-1 10.5-5.5 11.5-11.5Z"
+      />
+    </svg>
+    <p class="font-display text-lg leading-tight font-semibold">
+      AI across the lifecycle
+    </p>
+    <p class="mt-1 text-xs text-muted">Pick a phase to see what changes</p>
+  </div>
+
+  <ul class="contents">
+    {nodes.map((n) => (
+      <li
+        class="absolute -translate-x-1/2 -translate-y-1/2"
+        style={`left:${n.left}%;top:${n.top}%`}
+      >
+        <a
+          href={url(`/phases/${n.phase}`)}
+          class="ring-node group flex min-h-11 min-w-[5.5rem] flex-col items-center rounded-2xl border border-line bg-surface px-3 py-1.5 text-center no-underline shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md"
+          style={`animation-delay:${n.delay}s`}
+          aria-label={`${n.label}: ${n.count} roles change. See all changes in ${n.label}`}
+        >
+          <span class="text-sm font-semibold text-ink">{n.label}</span>
+          <span class="text-[11px] text-muted">{n.count} roles</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .ring-sweep {
+      display: none;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .ring-sweep {
+      animation: ring-sweep var(--cycle) steps(7, jump-none) infinite;
+      transform-origin: 100px 100px;
+    }
+    .ring-node {
+      animation: ring-node var(--cycle) infinite;
+    }
+    .ring-spark {
+      animation: ring-spark 4s ease-in-out infinite;
+      transform-origin: 16px 16px;
+      transform-box: view-box;
+    }
+  }
+  /* The sweep jumps phase to phase, in step with the node highlight, arriving from the previous phase
+     (-130deg = -90deg start at the top, minus ~0.78 of one phase). */
+  @keyframes ring-sweep {
+    from {
+      transform: rotate(-130deg);
+    }
+    to {
+      transform: rotate(calc(-130deg + 360deg * 6 / 7));
+    }
+  }
+  /* Each node is highlighted for its share of the cycle (1/7 ≈ 14%). */
+  @keyframes ring-node {
+    0%,
+    13% {
+      border-color: var(--color-accent);
+      background-color: var(--color-accent-soft);
+      box-shadow: 0 0 0 4px
+        color-mix(in oklab, var(--color-accent) 18%, transparent);
+    }
+    15%,
+    100% {
+      border-color: var(--color-line);
+      background-color: var(--color-surface);
+      box-shadow: none;
+    }
+  }
+  @keyframes ring-spark {
+    0%,
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(0.82) rotate(45deg);
+      opacity: 0.75;
+    }
+  }
+</style>

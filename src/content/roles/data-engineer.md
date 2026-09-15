@@ -14,6 +14,7 @@ shifts:
   - phase: build
     activity: Writing SQL, transformation models and pipeline code
     headline: Most surveyed practitioners now use AI tools daily; organisations lag behind
+    takeaway: Daily AI use is common; organisational adoption lags
     highlight: true
     traditional: Data engineers, analytics engineers and analysts wrote SQL, transformation models, pipeline code, tests and documentation by hand, and teammates reviewed the changes.
     aiEra: In Joe Reis's 2026 State of Data Engineering Survey (about 1,100 responses; the post gives both 1,101 and 1,001), 82% use AI tools daily or more and only 3.7% find them unhelpful. Organisational adoption lags behind, with 64% still experimenting or using AI for tactical tasks only. In dbt Labs' 2026 State of Analytics Engineering survey of 363 data practitioners and leaders, 72% prioritise AI-assisted coding within their development process.
@@ -37,6 +38,7 @@ shifts:
   - phase: operate
     activity: Answering business questions
     headline: Check AI-generated SQL that might run fine yet return wrong results
+    takeaway: Generated SQL can run fine yet return wrong results
     highlight: true
     traditional: Business users sent questions to analysts, who found the right tables, wrote the SQL and returned a number, chart or dashboard.
     aiEra: With text-to-SQL, a language model generates the SQL from the question. dbt Labs notes that the model might join tables incorrectly, misinterpret a column's meaning, or produce a query that runs successfully but returns wrong results. A 2026 research paper argues that NL2SQL agents still make mistakes on large-scale real-world databases because they lack knowledge of how to use the underlying data, such as the intent of each column, and form misconceptions about the data when querying it.
@@ -46,6 +48,7 @@ shifts:
   - phase: design
     activity: Defining metrics and business meaning
     headline: Write down business definitions, which can improve AI query accuracy
+    takeaway: Written business definitions can improve AI accuracy
     highlight: true
     traditional: Analytics engineers defined metrics and business logic in data models, BI tools and documentation so that reports used the same definitions.
     aiEra: A 2026 preprint (not peer reviewed) tested Claude Opus 4.7, Claude Sonnet 4.6 and GPT-5.4 single-shot on 100 questions over one retail dataset. Adding a 4 KB hand-written document describing measures, conventions and disambiguation rules improved accuracy by 17 to 23 percentage points, to 67.7–68.7%. In dbt Labs' own 2026 benchmark update (11 questions, each run 20 times), adding three models let its Semantic Layer cover every question on its single ACME Insurance dataset, and text-to-SQL improved too. Snowflake's documentation says schemas lack knowledge like business process definitions and metrics handling, and Cortex Analyst uses a semantic model to bridge that gap.

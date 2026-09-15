@@ -14,6 +14,7 @@ shifts:
   - phase: build
     activity: Writing code
     headline: Experienced developers in one study planned agent work and validated its output
+    takeaway: Developers using agents often plan first and check output
     highlight: true
     traditional: Developers wrote most code by hand in an editor, helped by autocomplete, documentation and search engines.
     aiEra: "In one study of experienced developers (13 observed in field sessions and 99 surveyed via AI-related GitHub projects, between August and October 2025), participants used agents to build software but kept control of design and implementation: they planned before implementing and validated the agents' output. The 2025 Stack Overflow Developer Survey described AI agents as not yet mainstream."
@@ -46,6 +47,7 @@ shifts:
   - phase: test
     activity: Automated testing
     headline: "Willison: tests help agents; in one study, many agent PRs had no test changes"
+    takeaway: Passing tests may not mean an agent's change was tested
     highlight: true
     traditional: Developers wrote unit and integration tests alongside features, with coverage often uneven.
     aiEra: "Simon Willison says agentic coding tools can fly with a robust, comprehensive and stable test suite, but without tests an agent might claim something works without having tested it at all. In one study of agent-generated pull requests from five coding agents in Java and Python projects, about half of the pull requests that changed code under test included no test changes, and existing tests were an incomplete safety net. The authors warn teams not to assume that a passing test run means the change has been tested. Willison adds that developers still need to be really good at manual testing, including digging into edge cases."
@@ -55,6 +57,7 @@ shifts:
   - phase: build
     activity: Code review
     headline: Willison says agents mean much code review; study authors urge extra scrutiny
+    takeaway: Working with agents can mean much time on code review
     highlight: true
     traditional: Peers reviewed pull requests written by other people, mostly for design, correctness and readability.
     aiEra: "Simon Willison lists \"spending so much time on code review\" among the work of using coding agents well, and says developers who are fast and productive at code review will have a much better time working with LLMs. In one study, experienced developers observed working within their own expertise carefully reviewed every agent change, with methods such as reading diffs and running tests. In the 2025 Stack Overflow survey, AI solutions that are almost right, but not quite, were developers' biggest single frustration. The authors of a study of Cursor-adopting open-source projects recommend treating AI-generated code as needing extra scrutiny in review, including whether a simpler implementation would achieve the same functionality."

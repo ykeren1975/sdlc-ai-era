@@ -28,6 +28,7 @@ shifts:
   - phase: design
     activity: Producing UI layouts and screens
     headline: NN/g expects anyone to make decent-looking UI; judgement isn't easy to automate
+    takeaway: As AI tools improve, decent UI gets easy; judgement doesn't
     highlight: true
     traditional: Designers built wireframes and high-fidelity screens by hand, assembling components from a design system.
     aiEra: NN/g expects that as AI design tools improve, anyone will be able to make a decent-looking UI, at least from a distance, while curated taste, research-informed contextual understanding, critical thinking and careful judgment are not easy to automate. In one case study, a three-person university team gave v0 and Bolt.new a conceptual data structure and a design goal, and got diverse layout alternatives, including an interaction pattern the team had not explored. The authors warn that generative UI can lead a team to unintentionally converge on conventional design patterns.
@@ -37,6 +38,7 @@ shifts:
   - phase: design
     activity: Prototyping and testing complex interactions
     headline: Build a working prototype from a detailed prompt and test with users earlier
+    takeaway: You can prototype in a day and test with users earlier
     highlight: true
     traditional: Clickable prototypes were usually linked static screens, which made complex interactions hard to test with users before engineers built them.
     aiEra: NN/g reports that tools like Cursor, v0 and Figma Make can take a detailed prompt and return a working, interactive prototype, so designers can create a realistic one in a day and test with users earlier. The tools don't inherently understand content layout or visual hierarchy, so the design decisions remain the designer's, and the first output probably won't get everything right.
@@ -59,6 +61,7 @@ shifts:
   - phase: test
     activity: Defining what good output looks like
     headline: Define what good AI output looks like instead of specifying exact behaviours
+    takeaway: Define what good AI output looks like, not exact behaviours
     highlight: true
     traditional: Designers wrote specs describing exact behaviours, and engineering and QA checked that the build matched them.
     aiEra: NN/g's Adam Elman points out that in AI-powered systems the AI makes design decisions about what to include in a response and how to phrase it. He argues designers should reframe their task from specifying exact behaviours to defining what "good" looks (and doesn't look) like, so engineering and data-science partners can evaluate the model against the design intent. That definition still comes from user research and design expertise. In his own team's practice, the process starts with judging criteria for whether a model output is acceptable.

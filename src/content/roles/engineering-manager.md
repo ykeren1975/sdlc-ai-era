@@ -12,6 +12,7 @@ shifts:
   - phase: plan
     activity: Measuring team productivity
     headline: Track AI utilization, impact and cost against solid baseline measurements
+    takeaway: AI use, impact and cost can be tracked from a baseline
     highlight: true
     traditional: Managers tracked delivery with engineering metrics such as PR throughput, cycle time, deployment frequency and change failure rate, alongside developer experience surveys.
     aiEra: DX's AI Measurement Framework tracks three dimensions, utilization, impact and cost, and treats agents as extensions of the developers and teams that oversee their work. In the Pragmatic Engineer's overview of the metrics 18 companies use to measure AI impact, the advice is to track metrics that keep each other in check and to start with solid baseline measurements.
@@ -37,6 +38,7 @@ shifts:
   - phase: build
     activity: Keeping delivery stable as change volume grows
     headline: Back AI-driven change volume with strong testing and fast feedback loops
+    takeaway: Without strong testing, more changes can mean instability
     highlight: true
     traditional: Teams relied on code review, automated tests and release processes to keep a steady flow of changes safe.
     aiEra: DORA's 2025 report, based on survey responses from nearly 5,000 technology professionals, found a positive relationship between AI adoption and software delivery throughput, but a continuing negative relationship with delivery stability. DORA's explanation is that without strong automated testing, mature version control practices and fast feedback loops, an increase in change volume leads to instability.
@@ -52,6 +54,7 @@ shifts:
   - phase: plan
     activity: Growing junior engineers
     headline: Consider pairing juniors with seniors and giving them small real projects
+    takeaway: Junior growth may get harder as AI absorbs training tasks
     highlight: true
     traditional: Junior engineers learned by doing the work themselves and with others, and by getting feedback from more experienced colleagues.
     aiEra: In LeadDev's Engineering Leadership Report 2026, based on 600 survey responses from engineering leaders, 84% believe AI will make it harder for junior developers to enter and grow in the profession. James Stanier argues that the tasks that used to be training ground are being absorbed by AI, and suggests pairing juniors with seniors on complex problems, giving them ownership of small but real projects and letting them lead incident retrospectives.

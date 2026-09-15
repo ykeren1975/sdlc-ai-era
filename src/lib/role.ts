@@ -86,7 +86,8 @@ type Source = RoleData["sources"][number];
 /** Counts by source type, most common first, plus vendor-affiliated count. */
 export function sourceMix(sources: Source[]) {
   const counts = new Map<string, number>();
-  for (const s of sources) if (s.type) counts.set(s.type, (counts.get(s.type) ?? 0) + 1);
+  for (const s of sources)
+    if (s.type) counts.set(s.type, (counts.get(s.type) ?? 0) + 1);
   return {
     byType: [...counts.entries()].sort((a, b) => b[1] - a[1]),
     vendorAffiliated: sources.filter((s) => s.vendorAffiliated).length,
@@ -95,7 +96,10 @@ export function sourceMix(sources: Source[]) {
 
 /** Handoff links for one change: the other end of every pair that includes this role + activity. */
 export async function handoffsFor(roleId: string, activity: string) {
-  const [pairs, roles] = await Promise.all([getCollection("handoffs"), getCollection("roles")]);
+  const [pairs, roles] = await Promise.all([
+    getCollection("handoffs"),
+    getCollection("roles"),
+  ]);
   return pairs
     .flatMap(({ data }) =>
       data.a.role === roleId && data.a.activity === activity
@@ -106,9 +110,25 @@ export async function handoffsFor(roleId: string, activity: string) {
     )
     .map((end) => {
       const role = roles.find((r) => r.id === end.role);
-      if (!role) throw new Error(`Handoff points to unknown role "${end.role}"`);
-      const index = role.data.shifts.findIndex((s) => s.activity === end.activity);
-      if (index < 0) throw new Error(`Handoff activity "${end.activity}" not found on ${end.role}`);
+      if (!role)
+        throw new Error(`Handoff points to unknown role "${end.role}"`);
+      const index = role.data.shifts.findIndex(
+        (s) => s.activity === end.activity,
+      );
+      if (index < 0)
+        throw new Error(
+          `Handoff activity "${end.activity}" not found on ${end.role}`,
+        );
       return { role, shift: role.data.shifts[index], index };
     });
+}
+
+/** Sources not labelled vendor-affiliated count as independent (see About › Sources). */
+export function evidence(sources: Pick<Source, "vendorAffiliated">[]) {
+  const independent = sources.filter((s) => !s.vendorAffiliated).length;
+  return {
+    total: sources.length,
+    independent,
+    affiliated: sources.length - independent,
+  };
 }

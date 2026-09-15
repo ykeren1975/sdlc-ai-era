@@ -14,6 +14,7 @@ shifts:
   - phase: design
     activity: Threat modeling new features
     headline: Cover agent risks such as goal hijack and tool misuse in threat models
+    takeaway: Threat models for AI agents must cover agent-specific risks
     highlight: true
     traditional: Security engineers reviewed designs and data flows with the team, listed likely threats to the application and its users, and agreed controls before build.
     aiEra: When a system includes AI agents, the threat model also has to cover agent-specific risks. The OWASP Top 10 for Agentic Applications (December 2025) lists ten, including agent goal hijack, tool misuse, identity and privilege abuse, memory and context poisoning, and rogue agents. Simon Willison names a "lethal trifecta" of agent capabilities, namely access to private data, exposure to untrusted content and the ability to communicate externally. When all three are present, an attacker can manipulate the agent into sending that data out.
@@ -31,6 +32,7 @@ shifts:
   - phase: build
     activity: Reviewing code for security flaws
     headline: "In Veracode's tests, AI code was syntactically correct but often failed security"
+    takeaway: In tests, AI code was usually valid but often insecure
     highlight: true
     traditional: Developers wrote most code by hand, and security engineers ran static analysis and reviewed high-risk changes such as authentication, input handling and cryptography.
     aiEra: AI models now write more of the code. In Veracode's 2026 tests, models generated syntactically correct code nearly 100% of the time, but the average security pass rate was 56%, barely changed from 55% in its first report. Results varied by weakness, with pass rates of 15% on cross-site scripting and 12% on log injection.
@@ -39,6 +41,7 @@ shifts:
   - phase: test
     activity: Getting scanner findings fixed
     headline: Evaluate each Autofix suggestion; it may miss or add vulnerabilities
+    takeaway: Autofix suggestions may miss or add vulnerabilities
     highlight: true
     traditional: Static analysis alerts went into backlogs. Security engineers triaged them and explained the issue, and developers researched and wrote each fix.
     aiEra: GitHub's Copilot Autofix generates code change suggestions for CodeQL alerts on pull requests and the default branch. GitHub's documentation warns that a suggestion may fail to fix the vulnerability, introduce new vulnerabilities or change the program's semantics, and says developers must evaluate each suggestion and check that CI tests pass.

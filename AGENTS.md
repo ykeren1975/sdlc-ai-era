@@ -24,6 +24,15 @@ A static website: a visitor picks their SDLC role and sees what changes for them
 
 `check`, `build`, `check:links`, and `test` all pass, and the change was looked at in a browser (screenshots at desktop and 360px).
 
+## Design system
+
+- Body text is Inter; page titles (`h1`) and major section headings use Fraunces via `.font-display` (set in `src/styles/global.css`). Small labels and eyebrows stay Inter.
+- Colours come only from the tokens in `global.css` (paper, surface, raised, ink, muted, line, before, accent, accent-soft, on-accent), so light, dark and print all work.
+- The mark is `src/components/Logo.astro` (seven phase segments + AI spark); `public/favicon.svg` is the same drawing.
+- Trust signals: `EvidenceBadge` (independent = not `vendorAffiliated`) on role headers and home rows; `SourceTypeIcon` on source chips.
+- Motion is decorative only and must stop under `prefers-reduced-motion` (see `LifecycleRing.astro`).
+- Phone role pages have a length budget (tests/polish.spec.ts); anything added to a role page must be checked at 390px.
+
 ## Project layout
 
 - `src/data/tools.yaml` — the single list of tools (id, name, vendor, url, category, status, lastVerified)
@@ -69,6 +78,7 @@ Order follows the SDLC flow on the home page.
   - Each shift's `headline` (≤80 chars) condenses **that shift's own `aiEra` text**.
   - Neither may add facts, names, numbers, digits, "%" or comparatives that aren't in the text it condenses.
   - Exactly 3 shifts per role have `highlight: true`: the ones that matter most for day-to-day work.
+  - Each highlighted shift has a `takeaway` (≤60 chars): the plain-language card title in the role summary. It says what changes in the reader's work, in everyday words ("you" is fine). The attributed `headline` is always shown directly beneath it, so the takeaway may leave out who found it, but it must not add facts, numbers, digits or comparatives, must not state as certain what the text hedges ("can", "may", "in one study" → keep the hedge as "can"/"may"/"often"), and must not give advice the text doesn't give.
 - **Agent skills:**
   - Ready-made skills live in `src/data/agent-skills.yaml`. Each description paraphrases that skill's own `SKILL.md`, and each license comes from its folder.
   - Starter skills are real skill folders at `src/starter-skills/<role>/<skill-name>/SKILL.md` and must follow the agentskills.io spec:

@@ -1,0 +1,52 @@
+---
+// How a page is sourced, at a glance: one segment per source, independent ones first.
+import { evidence } from "../lib/role";
+
+interface Props {
+  sources: { vendorAffiliated: boolean }[];
+  /** Where the badge links: the page's own source list, or null for no link. */
+  href?: string | null;
+  size?: "sm" | "md";
+}
+const { sources, href = "#sources", size = "md" } = Astro.props;
+const { total, independent } = evidence(sources);
+const title =
+  "Independent: not published by a company that sells in this space. See how sources are labelled on the About page.";
+const Tag = href ? "a" : "span";
+---
+
+<Tag
+  href={href ?? undefined}
+  title={title}
+  class:list={[
+    "inline-flex items-center gap-2 text-muted no-underline",
+    href && "rounded-full hover:text-ink",
+    size === "sm" ? "text-xs" : "min-h-8 text-sm",
+  ]}
+  data-testid="evidence-badge"
+  data-independent={independent}
+  data-total={total}
+>
+  <span class="flex items-center gap-0.5" aria-hidden="true">
+    {Array.from({ length: total }, (_, i) => (
+      <span
+        class:list={[
+          "rounded-full",
+          size === "sm" ? "h-1.5 w-2" : "h-2 w-3",
+          i < independent ? "bg-accent" : "bg-line",
+        ]}
+      />
+    ))}
+  </span>
+  {size === "sm" ? (
+    <span>
+      <strong class="font-semibold text-ink">{independent}</strong>/{total}{" "}
+      independent
+    </span>
+  ) : (
+    <span>
+      <strong class="font-semibold text-ink">{independent}</strong> of {total}{" "}
+      sources independent
+    </span>
+  )}
+</Tag>

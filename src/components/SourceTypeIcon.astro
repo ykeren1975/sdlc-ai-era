@@ -1,0 +1,27 @@
+---
+import {
+  Building,
+  ChartColumn,
+  GraduationCap,
+  Landmark,
+  Newspaper,
+  UserPen,
+} from "@lucide/astro";
+import type { SourceType } from "../lib/taxonomy";
+
+interface Props {
+  type: SourceType;
+  class?: string;
+}
+const { type, class: className = "size-3.5" } = Astro.props;
+const Icon = {
+  research: GraduationCap,
+  survey: ChartColumn,
+  official: Landmark,
+  vendor: Building,
+  practitioner: UserPen,
+  news: Newspaper,
+}[type];
+---
+
+<Icon class={className} aria-hidden="true" />

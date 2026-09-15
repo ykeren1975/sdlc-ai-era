@@ -83,6 +83,8 @@ const roles = defineCollection({
           activity: z.string(),
           headline: z.string().max(80),
           highlight: z.boolean().optional(),
+          // Plain-language card title for highlighted shifts; the attributed headline is shown under it.
+          takeaway: z.string().max(60).optional(),
           traditional: z.string(),
           aiEra: z.string(),
           sourceIds: sourceIds.min(1),
