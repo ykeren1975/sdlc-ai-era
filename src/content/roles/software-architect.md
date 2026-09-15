@@ -14,26 +14,26 @@ sdlcPhases:
 shifts:
   - phase: design
     activity: Documenting the architecture with diagrams and decision records
-    headline: In one survey, some architects use AI for diagrams and ADRs; many don't yet
+    headline: "One study: developers rated LLM-made architecture docs useful; diagrams limited"
     traditional: Architects drew diagrams and wrote architecture decision records (ADRs) by hand, and keeping them in step with the running system was a manual, often neglected task.
-    aiEra: In IcePanel's State of Software Architecture survey (75 responses, published January 2026), 37% said AI is used in some aspects of their workflow or tooling. Uses respondents described include generating Mermaid diagrams, going from code to diagrams, automating diagram updates with code changes, creating ADRs and summarising architectures. The same survey found many have yet to use AI at all and are cautious about fully trusting its output.
+    aiEra: In one study, the authors' LLM-based workflow (CIAO, using GPT-5 by default) generated system-level architecture documentation from GitHub repositories, following a template derived from ISO/IEC/IEEE 42010, SEI Views & Beyond and the C4 model. The 22 developers who each reviewed documentation for a repository they had contributed to, mostly from academic settings, generally perceived it as valuable, comprehensible and broadly accurate, while highlighting limitations in diagram quality, high-level context modelling and deployment views. The study measured perceptions rather than objective architectural correctness. A 2025 literature review found the use of GenAI tools in software architecture predominantly oriented towards documentation and code generation.
     sourceIds:
-      - icepanel-state-of-architecture-2025
+      - deluca-ciao-architecture-docs
+      - esposito-genai-software-architecture
   - phase: design
     activity: Testing design ideas and trade-offs
-    headline: Some architects use AI as a thinking partner to gut-check designs and trade-offs
+    headline: "A review: AI is studied most for architecture decisions; few trade-off examples"
     traditional: Architects tested ideas in design reviews, whiteboard sessions and conversations with senior colleagues.
-    aiEra: Respondents to IcePanel's survey (75 responses) described using AI as a thinking partner, for example "rubber ducking" designs, sanity checking decisions, asking for a second opinion and exploring potential designs and trade-offs. The report's general theme was AI as an assistant for brainstorming and gut-checks.
+    aiEra: A multivocal literature review of 46 papers (36 peer-reviewed and 10 grey literature), searched in February 2025, found architectural decision support was the purpose most frequently investigated for generative AI in software architecture. Most studies involved some form of human interaction with the model, which the authors read as fully autonomous AI-driven architectural decisions not yet being prevalent. They conclude that GenAI's integration into complex, high-stakes architectural decision-making remains limited, with few examples addressing system-level reasoning or trade-off analysis, and that rigorous testing of GenAI outputs was typically missing from the studies.
     sourceIds:
-      - icepanel-state-of-architecture-2025
+      - esposito-genai-software-architecture
   - phase: design
     activity: Designing systems that include LLM components
-    headline: "LLMs can vary output for one input; evals matter unless users stay sceptical"
+    headline: "InfoQ: RAG is common but takes effort, and agents need ongoing testing"
     traditional: Architects designed for deterministic components, where the same input gives the same output and conventional tests can confirm behaviour.
-    aiEra: InfoQ's 2025 architecture trends report calls RAG the most common technique for getting higher-quality results from an LLM, notes that effective implementation still requires effort, and says architects are adapting systems to provide data that RAG can consume more easily. It suggests agentic workflows can follow some microservices patterns, with each agent having clearly defined boundaries. Bharani Subramaniam and Martin Fowler note that an LLM-based system can give different outputs to the same inputs, see evals as crucial unless users can be relied on to treat its output with healthy scepticism, and consider fine-tuning only if eval metrics stay unsatisfactory after optimising RAG.
+    aiEra: InfoQ's 2025 architecture trends report calls RAG the most common technique for getting higher-quality results from an LLM, notes that effective implementation still requires effort, and says architects are adapting systems to provide data that RAG can consume more easily. It suggests agentic workflows can follow some microservices patterns, with each agent having clearly defined boundaries, and says ongoing testing must be performed as the agent or its possible actions evolve. It says an architect needs to understand how an AI element relates to other parts of the system, including its inputs and outputs and how to measure its performance, scalability and cost.
     sourceIds:
       - infoq-architecture-trends-2025
-      - fowler-genai-patterns
   - phase: design
     activity: Deciding how AI agents connect to other systems
     headline: Don't default to MCP; a well-designed CLI often gives agents what they need
@@ -67,12 +67,12 @@ shifts:
       - thoughtworks-radar-legacy-codebases
   - phase: operate
     activity: Keeping the team's understanding of the system current
-    headline: Guard against losing design intent as AI increases the pace of change
+    headline: Storey argues AI can write code faster than teams build shared understanding
     highlight: true
     traditional: Shared understanding built up through design discussions, code review and the people who wrote the code staying with the system.
-    aiEra: Thoughtworks' Radar (Vol. 34, ring Caution) describes codebase cognitive debt as the growing gap between a system's implementation and a team's shared understanding of how and why it works. As AI increases change velocity, teams can lose track of design intent and hidden coupling, which makes it harder to steer agents away from architectural pitfalls. It recommends feedback sensors for coding agents, tracking team cognitive load and architectural fitness functions.
+    aiEra: Margaret-Anne Storey argues that as AI generates code faster than teams can understand it, two forms of debt accumulate. Cognitive debt is the erosion of shared understanding across a team, and intent debt is the absence of externalised rationale that developers and AI agents need to work safely with code. She suggests generative AI may reduce technical debt while accelerating both. She proposes treating shared understanding as a deliverable, with time for practices such as walkthroughs and retrospectives, and capturing intent early in ADRs, specifications and decision rationales that ground human understanding and that AI agents will require to do useful work.
     sourceIds:
-      - thoughtworks-radar-cognitive-debt
+      - storey-triple-debt
 tools:
   - tool: github-copilot
     useFor: Asking questions about an unfamiliar codebase, tracing dependencies and summarising logic. Free tier available.
@@ -126,10 +126,10 @@ risks:
     text: Drift can compound. Thoughtworks warns that when agents and humans replicate existing patterns, including degraded ones, poor code begets poorer code.
     sourceIds:
       - thoughtworks-radar-architecture-drift
-  - headline: Unmanaged cognitive debt can reach a tipping point where small changes cause failures
-    text: Cognitive debt left unmanaged can reach a tipping point. Thoughtworks describes teams where small changes trigger unexpected failures, fixes introduce regressions and cleanup efforts increase risk instead of reducing it.
+  - headline: A review warns blind trust in AI recommendations risks architectural degradation
+    text: Over-trusting AI recommendations can degrade the architecture. A 2025 literature review warns that architectural degradation risks due to overuse or blind trust in AI-generated recommendations necessitate rigorous human oversight and verification processes.
     sourceIds:
-      - thoughtworks-radar-cognitive-debt
+      - esposito-genai-software-architecture
   - headline: Automated and LLM-based checks may miss some higher-impact problems, Böckeler notes
     text: Automated checks do not catch everything. Böckeler notes that neither deterministic checks nor LLM-based checks reliably catch some higher-impact problems, such as misdiagnosis of issues, overengineering and unnecessary features, and misunderstood instructions.
     sourceIds:
@@ -138,10 +138,10 @@ risks:
     text: Adding protocol layers by default has a cost. Thoughtworks, citing Justin Poehnelt, notes that every protocol layer between an agent and an API loses fidelity, and for complex APIs those losses compound.
     sourceIds:
       - thoughtworks-radar-mcp-by-default
-  - headline: "LLM components are not deterministic: the same input can give different outputs"
-    text: LLM components are not deterministic. Subramaniam and Fowler note that such a system will give different outputs to the same inputs on repeated requests, and they see evals as crucial unless users can be relied on to treat its output with healthy scepticism.
+  - headline: Nondeterministic software may not be trusted with key decisions, InfoQ notes
+    text: Nondeterministic software may not be trusted with important decisions. InfoQ's 2025 trends report keeps agentic AI an innovator trend because there is a sizable gap for companies to trust nondeterministic software to make important decisions.
     sourceIds:
-      - fowler-genai-patterns
+      - infoq-architecture-trends-2025
 first30Days:
   - Check your company's AI policy for which tools may read your repositories, architecture documents and internal data.
   - Pick one module you know poorly and ask an AI coding tool to summarise its dependencies and business rules, then check the answer against the code and a colleague who knows it.
@@ -158,15 +158,6 @@ starterSkills:
   - architecture-drift-review
   - llm-component-design-review
 sources:
-  - id: icepanel-state-of-architecture-2025
-    title: State of Software Architecture Report — 2025
-    publisher: IcePanel
-    url: https://icepanel.io/blog/state-of-software-architecture-survey-2025
-    published: 2026-01-22
-    accessed: 2026-09-14
-    type: survey
-    vendorAffiliated: true
-    quote: 37% said it's used in some aspects of their workflow/tooling.
   - id: infoq-architecture-trends-2025
     title: InfoQ Software Architecture and Design Trends Report - 2025
     publisher: InfoQ (Thomas Betts, Sarah Wells, Eran Stiller, Daniel Bryant)
@@ -176,15 +167,6 @@ sources:
     type: news
     vendorAffiliated: false
     quote: Architects are finding ways to provide good prompts which help ensure coding and architectural guidelines are upheld.
-  - id: fowler-genai-patterns
-    title: Emerging Patterns in Building GenAI Products
-    publisher: martinfowler.com (Bharani Subramaniam and Martin Fowler)
-    url: https://martinfowler.com/articles/gen-ai-patterns/
-    published: 2025-02-25
-    accessed: 2026-09-14
-    type: practitioner
-    vendorAffiliated: true
-    quote: Only if we find ourselves in a situation where the eval metrics are not satisfactory even after optimizing RAG, do we consider fine-tuning the model.
   - id: fowler-harness-engineering
     title: Harness engineering for coding agent users
     publisher: martinfowler.com (Birgitta Böckeler)
@@ -203,15 +185,6 @@ sources:
     type: practitioner
     vendorAffiliated: true
     quote: Increased use of AI coding agents can accelerate drift from the intended codebase and architecture designs.
-  - id: thoughtworks-radar-cognitive-debt
-    title: Codebase cognitive debt (Technology Radar Vol. 34)
-    publisher: Thoughtworks
-    url: https://www.thoughtworks.com/en-us/radar/techniques/codebase-cognitive-debt
-    published: 2026-04-15
-    accessed: 2026-09-14
-    type: practitioner
-    vendorAffiliated: true
-    quote: Codebase cognitive debt is the growing gap between a system's implementation and a team's shared understanding of how and why it works.
   - id: thoughtworks-radar-mcp-by-default
     title: MCP by default (Technology Radar Vol. 34)
     publisher: Thoughtworks
@@ -230,6 +203,33 @@ sources:
     type: practitioner
     vendorAffiliated: true
     quote: Our experience across multiple clients shows that GenAI-assisted understanding of legacy systems is now a practical default rather than an experiment.
+  - id: esposito-genai-software-architecture
+    title: Generative AI for Software Architecture. Applications, Challenges, and Future Directions
+    publisher: arXiv (Esposito, Li, Moreschini, Ahmad, Cerny, Vaidhyanathan, Lenarduzzi, Taibi; Journal of Systems and Software)
+    url: https://arxiv.org/html/2503.13310v2
+    published: 2025-06-27
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: Our results reveal that, while GenAI excels at automating tasks grounded in natural language and structured templates, its integration into complex, high-stakes architectural decision-making remains limited.
+  - id: deluca-ciao-architecture-docs
+    title: "CIAO - Code In Architecture Out - Automated Software Architecture Documentation with Large Language Models"
+    publisher: arXiv (De Luca, Santilli, Amalfitano, Fasolino, Pelliccione; ICSA 2026)
+    url: https://arxiv.org/html/2604.08293v1
+    published: 2026-04-09
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: The evaluation shows that developers generally perceive the produced documentation as valuable, comprehensible, and broadly accurate with respect to the source code, while also highlighting limitations in diagram quality, high-level context modeling, and deployment views.
+  - id: storey-triple-debt
+    title: "From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in the Age of AI"
+    publisher: arXiv (Margaret-Anne Storey)
+    url: https://arxiv.org/abs/2603.22106v4
+    published: 2026-04-06
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: "As AI generates code faster than teams can understand it, two under appreciated forms of debt accumulate: cognitive debt, the erosion of shared understanding across a team, and intent debt, the absence of externalized rationale that developers and AI agents need to work safely with code."
 ---
 
 A typical week now starts less often from a blank page. You might have an assistant draft a decision record or a diagram from the code, then spend your time correcting what it misread about the constraints and the history behind them. When a team inherits an unfamiliar system, the first pass at mapping its dependencies and business rules can come from an AI tool, but you still check the findings against the code and the people who know it before planning any change.

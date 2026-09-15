@@ -206,7 +206,7 @@ sources:
     published: 2026-05-01
     accessed: 2026-09-15
     type: research
-    vendorAffiliated: false
+    vendorAffiliated: true
     quote: Participants described that while vibe coding works effectively for early-stage prototyping, breakdowns emerge as projects move toward production, where reliability, integration, and coordination become critical.
   - id: shankar-evalgen-validators
     title: "Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences"

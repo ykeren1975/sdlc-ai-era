@@ -20,20 +20,20 @@ shifts:
       - nng-research-with-ai
   - phase: plan
     activity: Learning about users before a study
-    headline: Synthetic users may help pilot a study; treat their answers as hypotheses
+    headline: "One study: designers said AI personas should complement, not replace, real users"
     traditional: Designers relied on desk research, stakeholder knowledge and pilot sessions to prepare, then learned from real participants in interviews and usability tests.
-    aiEra: Synthetic-user products generate AI users and interview transcripts within seconds from a user group and study goal. In a 2024 test, NN/g used the Synthetic Users product and ChatGPT to recreate three of its studies with real users. Real learners often started online training without completing it, while a synthetic user said it completed all its courses. NN/g suggests synthetic users could help prepare for research with real users, such as piloting an interview guide, and says to treat their data as hypotheses that need testing.
+    aiEra: In one study, eight professional UX designers (a small sample, the authors note) used a voice-based persona built on GPT-4, a simulated fictional user, for user research, ideation and prototype evaluation. The authors found it could speed up information gathering, inspire design solutions and give rapid user-like feedback. The designers raised concerns about biases, over-optimism, authenticity without real stakeholder input, and the persona's inability to fully replicate the nuances of human interaction, and emphasised that such personas should complement, not replace, real user engagement.
     sourceIds:
-      - nng-synthetic-users
+      - deep-interactive-virtual-personas
   - phase: design
     activity: Producing UI layouts and screens
-    headline: Give AI your users and standards as context, or expect an average screen
+    headline: NN/g expects anyone to make decent-looking UI; judgement isn't easy to automate
     highlight: true
     traditional: Designers built wireframes and high-fidelity screens by hand, assembling components from a design system.
-    aiEra: NN/g expects that as AI design tools improve, anyone will be able to make a decent-looking UI, at least from a distance. NN/g's Tony Alicea explains that a model asked for a search screen produces an average one, because it does not know your users, domain or design standards unless that knowledge is in its context. He argues that as more interface work is AI-generated, the output of research and design shifts from documents written for humans to curated context that guides AI.
+    aiEra: NN/g expects that as AI design tools improve, anyone will be able to make a decent-looking UI, at least from a distance, while curated taste, research-informed contextual understanding, critical thinking and careful judgment are not easy to automate. In one case study, a three-person university team gave v0 and Bolt.new a conceptual data structure and a design goal, and got diverse layout alternatives, including an interaction pattern the team had not explored. The authors warn that generative UI can lead a team to unintentionally converge on conventional design patterns.
     sourceIds:
       - nng-state-of-ux-2026
-      - nng-ux-context-design
+      - li-vibe-coding-ucd-case-study
   - phase: design
     activity: Prototyping and testing complex interactions
     headline: Build a working prototype from a detailed prompt and test with users earlier
@@ -44,11 +44,11 @@ shifts:
       - nng-test-earlier-with-ai
   - phase: build
     activity: Working with developers
-    headline: Figma's survey shows designers joining development and developers doing design
+    headline: "Case study: AI code from screenshots matched static designs, not interactions"
     traditional: Designers handed off specs, redlines and design files, and developers turned them into code.
-    aiEra: In Figma's 2026 AI report, based on survey responses from designers, developers and product managers, the number of designers participating in development doubled to 41% in the last year, and the number of developers doing design work rose from 44% to 60%. Separately, 41% of respondents said AI meaningfully changes how teams work together, compared to 7% two years earlier.
+    aiEra: In one case study, a three-person university team, whose members each worked as designer, developer and researcher, uploaded screenshots of Figma frames to v0 and Bolt.new to generate code. The results reproduced the designs accurately as static web pages but did not correctly implement the desired interactions, and the tools' Figma connections required each design on a separate page. The authors, who used the tools mainly for design probes and prototypes, say incorporating AI-generated code directly into development demands careful consideration and rigorous testing.
     sourceIds:
-      - figma-ai-report-2026
+      - li-vibe-coding-ucd-case-study
   - phase: design
     activity: Designing AI-powered features
     headline: Design AI features for trust, with transparency, control and help when they fail
@@ -118,10 +118,10 @@ risks:
     text: "A polished AI prototype can hide design problems. NN/g warns that AI-generated prototypes may look complete while using the wrong design pattern, creating a confusing hierarchy or repeating elements unnecessarily."
     sourceIds:
       - nng-test-earlier-with-ai
-  - headline: Synthetic users are not a substitute for research with real users
-    text: "Synthetic users are not a substitute for research with real users. In NN/g's test, synthetic users viewed discussion forums favourably while real participants found the interactions contrived, and NN/g notes that because AI loves to please, every idea is often seen as a good one."
+  - headline: An AI persona tended to agree uncritically with design proposals, one study found
+    text: "Simulated users can be over-optimistic. In one study of eight UX designers using a GPT-4 persona, the authors found it showed a consistent tendency to agree uncritically with design proposals, suppressing critical feedback and potentially misleading designers towards unviable design directions."
     sourceIds:
-      - nng-synthetic-users
+      - deep-interactive-virtual-personas
   - headline: AI coding assistants may not make UI accessible on their own, a small study found
     text: "AI coding assistants may not make UI accessible on their own. A CHI 2025 formative study using GitHub Copilot, with 16 developers without accessibility training (almost all students), found three issues in AI-assisted coding: not prompting the AI for accessibility, omitting manual steps such as replacing placeholder attributes, and being unable to verify compliance."
     sourceIds:
@@ -134,6 +134,10 @@ risks:
     text: "Surface-level UI work is exposed to automation. NN/g writes that if you're just slapping together components from a design system, you're already replaceable by AI, and that entry-level UX positions remain scarce and highly competitive."
     sourceIds:
       - nng-state-of-ux-2026
+  - headline: Relying on AI may erode design skills, a concern UX practitioners raised in one analysis
+    text: "Relying on AI may erode design skills. In one analysis of over 120 articles and discussions from UX-focused subreddits, practitioners were optimistic about AI reducing repetitive work but also raised concerns about over-reliance, cognitive offloading and the erosion of critical design skills. The authors note the data are self-reported opinions, not interviews or controlled studies."
+    sourceIds:
+      - shukla-ironies-ai-assisted-design
 first30Days:
   - Check your company's AI policy for which design and prototyping tools you may use and what research or product data may go into them.
   - Pick one complex interaction on your roadmap, build a working prototype of it with an approved AI tool, and test it with five real users.
@@ -159,15 +163,6 @@ sources:
     type: practitioner
     vendorAffiliated: true
     quote: That level of complex, context-informed consideration is beyond the capacity of current AI tools.
-  - id: nng-synthetic-users
-    title: 'Synthetic Users: If, When, and How to Use AI-Generated "Research"'
-    publisher: Nielsen Norman Group (Maria Rosala and Kate Moran)
-    url: https://www.nngroup.com/articles/synthetic-users/
-    published: 2024-06-21
-    accessed: 2026-09-14
-    type: practitioner
-    vendorAffiliated: true
-    quote: Treat the data you acquire from synthetic users as hypotheses that need testing.
   - id: nng-state-of-ux-2026
     title: "State of UX 2026: Design Deeper to Differentiate"
     publisher: Nielsen Norman Group (Kate Moran, Raluca Budiu and Sarah Gibbons)
@@ -177,15 +172,6 @@ sources:
     type: practitioner
     vendorAffiliated: true
     quote: In 2026, trust will be a major design problem for AI experiences. This challenge will only grow as more and more AI agents are rolled out, often before they're ready.
-  - id: nng-ux-context-design
-    title: "UX-Context Design: Using UX Knowledge to Inform AI-Generated Design"
-    publisher: Nielsen Norman Group (Tony Alicea)
-    url: https://www.nngroup.com/articles/ux-context-design/
-    published: 2026-07-24
-    accessed: 2026-09-14
-    type: practitioner
-    vendorAffiliated: true
-    quote: Similarly, the difference between generic AI output and AI output that fits your users and matches your organization's standards is mostly a difference in context.
   - id: nng-test-earlier-with-ai
     title: Test Complex Interactions Earlier with AI Prototyping
     publisher: Nielsen Norman Group (Megan Chan)
@@ -195,15 +181,6 @@ sources:
     type: practitioner
     vendorAffiliated: true
     quote: AI tools bring speed to the design process, enabling designers to create a realistic working prototype in a day.
-  - id: figma-ai-report-2026
-    title: "Figma's 2026 AI Report: Can AI Help Us Collaborate Better?"
-    publisher: Figma
-    url: https://www.figma.com/blog/2026-ai-report/
-    published: 2026-06-24
-    accessed: 2026-09-14
-    type: survey
-    vendorAffiliated: true
-    quote: In the last year, the number of designers participating in development doubled to 41%, and the number of developers doing design work rose from 44% to 60%.
   - id: nng-ai-era-critique
     title: "The Core Skill of Design in the AI Era: Critique"
     publisher: Nielsen Norman Group (Adam Elman)
@@ -222,8 +199,35 @@ sources:
     type: research
     vendorAffiliated: false
     quote: "Our formative study with 16 developers without accessibility training revealed three key issues in AI-assisted coding: failure to prompt AI for accessibility, omitting crucial manual steps like replacing placeholder attributes, and the inability to verify compliance."
+  - id: deep-interactive-virtual-personas
+    title: '"She was useful, but a bit too optimistic": Augmenting Design with Interactive Virtual Personas'
+    publisher: arXiv (Deep, Bharadhidasan, Kocaballi; International Journal of Human-Computer Studies 2025)
+    url: https://arxiv.org/abs/2508.19463v2
+    published: 2025-09-26
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: Our participants emphasised that IVPs should be viewed as a complement to, not a replacement for, real user engagement.
+  - id: li-vibe-coding-ucd-case-study
+    title: 'User-Centered Design with AI in the Loop: A Case Study of Rapid User Interface Prototyping with "Vibe Coding"'
+    publisher: arXiv (Li, Maheshwari, Voelker; ACM Collective Intelligence 2025)
+    url: https://arxiv.org/html/2507.21012v1
+    published: 2025-07-28
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: The results transformed the design accurately with static web pages, but did not correctly implement the desired interactions.
+  - id: shukla-ironies-ai-assisted-design
+    title: "De-skilling, Cognitive Offloading, and Misplaced Responsibilities: Potential Ironies of AI-Assisted Design"
+    publisher: arXiv (Shukla, Bui, Levy, Kowalski, Baigelenov, Parsons; CHI 2025 Extended Abstracts)
+    url: https://arxiv.org/html/2503.03924v1
+    published: 2025-03-05
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: Our findings indicate that while practitioners express optimism about AI reducing repetitive work and augmenting creativity, they also highlight concerns about over-reliance, cognitive offloading, and the erosion of critical design skills.
 ---
 
-A typical week now has less time spent pushing pixels and more time directing and checking. You might generate several layout directions or a working prototype of a tricky interaction in a day, then spend the rest of the week putting it in front of real users and fixing the hierarchy and pattern choices the tool got wrong. Research sessions come back transcribed and pre-tagged, but you still reread the raw notes before a theme goes into a deck, and you keep synthetic users for rehearsing an interview guide, not for answering it.
+A typical week now has less time spent pushing pixels and more time directing and checking. You might generate several layout directions or a working prototype of a tricky interaction in a day, then spend the rest of the week putting it in front of real users and fixing the hierarchy and pattern choices the tool got wrong. Research sessions come back transcribed and pre-tagged, but you still reread the raw notes before a theme goes into a deck, and an AI persona is a warm-up for talking to real users, not a stand-in for them.
 
 More of the week is shared with developers. You may edit the coded prototype yourself, or sit with an engineer while an agent reads your design file. If your product has AI features, part of the job is deciding what users see when the feature is unsure or fails, and writing down what a good response looks like so the team can test against it. Accessibility checks move earlier, because AI-built UI can look finished long before anyone has tried it with a keyboard or screen reader.
