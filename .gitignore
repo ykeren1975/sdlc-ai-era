@@ -30,3 +30,6 @@ playwright-report/
 
 # local claude settings
 .claude/settings.local.json
+
+# Claude Code session lock
+.claude/scheduled_tasks.lock

@@ -211,12 +211,11 @@ test.describe("about page", () => {
     await expect(page.getByTestId("review-explanation")).toContainText(
       "Last reviewed",
     );
-    await expect(page.getByTestId("issues-url")).toHaveText(
-      "github.com/ykeren1975/sdlc-ai-era/issues",
+    await expect(page.getByTestId("issues-url")).toHaveAttribute(
+      "href",
+      "https://github.com/ykeren1975/sdlc-ai-era/issues",
     );
-    await expect(page.getByTestId("issues-note")).toContainText(
-      "once the site is published",
-    );
+    await expect(page.getByText("once the site is published")).toHaveCount(0);
     await expect(page.locator("main")).toContainText("independent editor");
     await expect(page.getByTestId("process-steps").locator("li")).toHaveCount(
       4,

@@ -9,7 +9,10 @@ const ROLES_DIR = path.join(ROOT, "src/content/roles");
 const DATA_FILES = ["tools.yaml", "agent-skills.yaml"].map((f) =>
   path.join(ROOT, "src/data", f),
 );
-const PAGES_WITH_LINKS = [path.join(ROOT, "src/pages/agent-skills.astro")];
+const PAGES_WITH_LINKS = [
+  path.join(ROOT, "src/pages/agent-skills.astro"),
+  path.join(ROOT, "src/pages/about.astro"),
+];
 const CONCURRENCY = 8;
 const TIMEOUT_MS = 15000;
 // Some sites block non-browser clients; 401/403/429 means the page exists but refused us.

@@ -34,7 +34,7 @@ const perRole = roles.map((role) => ({
   affiliated: sourceMix(role.data.sources).vendorAffiliated,
 }));
 
-const ISSUES_URL = "github.com/ykeren1975/sdlc-ai-era/issues";
+const ISSUES_URL = "https://github.com/ykeren1975/sdlc-ai-era/issues";
 
 const typeDefinitions: Record<(typeof SOURCE_TYPES)[number], string> = {
   research: "An academic paper or preprint (arXiv, conference, journal).",
@@ -388,14 +388,17 @@ const card = "rounded-2xl border border-line bg-surface p-5 sm:p-6";
         Found a mistake?
       </h2>
       <p class="text-muted">
-        Open an issue on GitHub at{" "}
-        <code class="font-mono text-ink break-all" data-testid="issues-url">
-          {ISSUES_URL}
-        </code>{" "}
-        with the page, the claim and what the source actually says.{" "}
-        <span class="text-sm" data-testid="issues-note">
-          (Available once the site is published.)
-        </span>
+        <a
+          href={ISSUES_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium break-all"
+          data-testid="issues-url"
+        >
+          Open an issue on GitHub
+          <span class="sr-only"> (opens in new tab)</span>
+        </a>{" "}
+        with the page, the claim and what the source actually says.
       </p>
     </section>
   </div>
