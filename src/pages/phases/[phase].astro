@@ -94,7 +94,10 @@ const entries = roles
             href={url(`/roles/${role.id}`)}
             class="group flex items-center gap-3 no-underline"
           >
-            <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
+            <span
+              class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent"
+              style={`view-transition-name: role-${role.id}`}
+            >
               <RoleIcon name={role.data.icon} class="size-5" />
             </span>
             <span class="min-w-0 text-lg font-semibold tracking-tight group-hover:text-accent">

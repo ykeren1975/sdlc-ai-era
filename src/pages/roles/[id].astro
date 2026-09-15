@@ -56,7 +56,11 @@ const sections = [
   { id: "agent-skills", label: "AI instructions to copy" },
   { id: "sources", label: "Sources" },
 ];
-const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
+const sectionAttrs = {
+  "data-role-section": "",
+  "data-reveal": "",
+  class: "scroll-mt-24",
+};
 ---
 
 <Base title={data.title} description={data.summary}>
@@ -69,7 +73,10 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
 
   <header class="mb-6">
     <div class="flex flex-wrap items-start gap-4">
-      <span class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent">
+      <span
+        class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent"
+        style={`view-transition-name: role-${role.id}`}
+      >
         <RoleIcon name={data.icon} class="size-7" />
       </span>
       <div class="min-w-0 flex-1">
@@ -352,7 +359,10 @@ const sectionAttrs = { "data-role-section": "", class: "scroll-mt-24" };
         <details class="group rounded-2xl border border-line bg-surface">
           <summary class="flex min-h-12 items-center justify-between gap-3 px-5 py-4">
             <div>
-              <h2 id="sources-heading" class="font-display text-lg font-semibold">
+              <h2
+                id="sources-heading"
+                class="font-display text-lg font-semibold"
+              >
                 Sources{" "}
                 <span class="font-normal text-muted">
                   ({data.sources.length})

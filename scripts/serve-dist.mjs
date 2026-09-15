@@ -40,7 +40,14 @@ createServer(async (req, res) => {
   const { pathname } = new URL(req.url ?? "/", "http://localhost");
   const file = pathname.startsWith(BASE) ? await resolveFile(pathname) : null;
   if (!file) {
-    res.writeHead(404, { "content-type": "text/plain" }).end("Not found");
+    // Like GitHub Pages: unknown paths get the site's 404.html with a 404 status.
+    const notFound = path.join(DIST, "404.html");
+    const exists = await stat(notFound).catch(() => null);
+    res.writeHead(404, {
+      "content-type": exists ? TYPES[".html"] : "text/plain",
+    });
+    if (exists) createReadStream(notFound).pipe(res);
+    else res.end("Not found");
     return;
   }
   res.writeHead(200, {

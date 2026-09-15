@@ -5,6 +5,15 @@ import { loadRoles } from "./content";
 const roles = loadRoles();
 
 async function expectNoSeriousA11yViolations(page: Page) {
+  // Check the settled page: wait for finite animations (disclosure open, Before/Now) to finish.
+  await page.evaluate(() =>
+    Promise.all(
+      document
+        .getAnimations()
+        .filter((a) => a.effect?.getTiming().iterations !== Infinity)
+        .map((a) => a.finished.catch(() => {})),
+    ),
+  );
   const results = await new AxeBuilder({ page }).analyze();
   const serious = results.violations.filter((v) =>
     ["serious", "critical"].includes(v.impact ?? ""),

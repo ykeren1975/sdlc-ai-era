@@ -31,6 +31,11 @@ A static website: a visitor picks their SDLC role and sees what changes for them
 - The mark is `src/components/Logo.astro` (seven phase segments + AI spark); `public/favicon.svg` is the same drawing.
 - Trust signals: `EvidenceBadge` (independent = not `vendorAffiliated`) on role headers and home rows; `SourceTypeIcon` on source chips.
 - Motion is decorative only and must stop under `prefers-reduced-motion` (see `LifecycleRing.astro`).
+  - Animate position or scale, never the opacity of text: axe measures contrast mid-animation. Accessibility checks first wait for finite animations to finish (`document.getAnimations()`).
+  - Page transitions are CSS cross-document View Transitions (`@view-transition` in `global.css`); a role's icon tile carries `view-transition-name: role-<id>`, which must be unique among rendered elements on a page.
+- Before → Now (`ShiftList.astro`): side by side from `sm`, a Before AI / With AI switch on phones; both sides show without JS and in print.
+- Link previews: `src/pages/og/[...slug].png.ts` renders 1200×630 PNGs at build with satori + resvg (fonts must be .woff, not .woff2); `Base.astro` picks the image via `src/lib/og-path.ts`, falling back to the home image.
+- `src/pages/404.astro` is served by GitHub Pages for unknown paths; `scripts/serve-dist.mjs` does the same locally.
 - Phone role pages have a length budget (tests/polish.spec.ts); anything added to a role page must be checked at 390px.
 
 ## Project layout

@@ -43,7 +43,7 @@ const tagline = (r: CollectionEntry<"roles">) =>
   r.data.tagline ?? r.data.summary;
 ---
 
-<section aria-labelledby="map-heading" data-sdlc-map>
+<section aria-labelledby="map-heading" data-sdlc-map data-reveal>
   <div class="mb-4">
     <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
       <h2 id="map-heading" class="text-xl font-semibold tracking-tight">
@@ -145,7 +145,10 @@ const tagline = (r: CollectionEntry<"roles">) =>
                 class="group relative grid grid-cols-[minmax(19rem,2.6fr)_repeat(7,minmax(0,1fr))] items-center px-4 py-2.5 no-underline hover:bg-accent-soft focus-visible:bg-accent-soft focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none focus-visible:ring-inset"
               >
                 <span class="flex min-w-0 items-center gap-3">
-                  <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent group-hover:bg-surface group-focus-visible:bg-surface">
+                  <span
+                    class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent group-hover:bg-surface group-focus-visible:bg-surface"
+                    style={`view-transition-name: role-${role.id}`}
+                  >
                     <RoleIcon name={role.data.icon} class="size-4" />
                   </span>
                   <span class="min-w-0">
@@ -238,7 +241,10 @@ const tagline = (r: CollectionEntry<"roles">) =>
                 href={url(`/roles/${role.id}`)}
                 class="flex items-center gap-3 rounded-xl border border-line bg-surface p-3 no-underline"
               >
-                <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
+                <span
+                  class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent"
+                  style={`view-transition-name: role-${role.id}`}
+                >
                   <RoleIcon name={role.data.icon} class="size-5" />
                 </span>
                 <span class="min-w-0 flex-1">
