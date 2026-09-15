@@ -22,35 +22,36 @@ shifts:
       - atlassian-state-of-product-2026
   - phase: design
     activity: Communicating a product idea
-    headline: "One study: participants said AI let teams prototype without sequential handoffs"
+    headline: "One study: high-fidelity AI prototypes helped participants win buy-in faster"
     highlight: true
     traditional: Ideas were described in documents and slides, and turning them into mockups or clickable prototypes usually depended on a designer or engineer.
-    aiEra: In one interview study of 22 product team members, the authors describe vibe coding as team members expressing intent in natural language while AI translates it into functional prototypes and code. The two product managers in the study created early prototypes for features and interaction flows using Replit, V0 and Lovable. Participants reported that AI let individuals explore ideas on their own before engaging others, so designers, engineers and product managers could iterate on prototypes without relying on sequential handoffs.
+    aiEra: In one CHI 2026 study of how technical and non-technical people build products with AI tools (a survey of 85 people, plus interviews with 31 hackathon participants and 8 practitioners), participants said teams could now assemble working front-end versions in hours. They described a shift toward throw-away prototypes, valued for immediate exploration or demonstration. Participants used prototypes built with tools such as Lovable to persuade customers, investors and partners. The authors conclude that the unusually high fidelity of these early prototypes helped participants secure buy-in from stakeholders much faster than with traditional methods such as wireframes or paper prototypes.
     sourceIds:
-      - li-vibe-coding-product-teams
+      - kobiella-genai-prototyping-skill-levels
   - phase: build
     activity: Moving from a validated prototype to a real product
     headline: "Cagan: prototypes are for learning; products must also handle scale and security"
     traditional: Discovery produced specs, designs and prototypes that engineers then built into the product.
-    aiEra: Marty Cagan separates discovery, where teams are "building to learn", from delivery, where they are "building to earn". A learning prototype may cover just a few important use cases. A commercial product often has dozens or hundreds, and must also handle reliability, telemetry, performance at scale, data security and compliance. In one interview study of product team members, participants said vibe coding works well for early-stage prototyping, but breakdowns emerge as projects move toward production, where reliability, integration and coordination become critical.
+    aiEra: Marty Cagan separates discovery, where teams are "building to learn", from delivery, where they are "building to earn". A learning prototype may cover just a few important use cases. A commercial product often has dozens or hundreds, and must also handle reliability, telemetry, performance at scale, data security and compliance. In one study of people building products with AI tools, deployment and long-term maintainability still depended on technical expertise, and non-technical users consistently hit barriers when moving beyond prototyping. Participants noted that adding features was simple, but modifying or removing them proved far more complex than building something new.
     sourceIds:
       - svpg-prototypes-vs-products
-      - li-vibe-coding-product-teams
+      - kobiella-genai-prototyping-skill-levels
   - phase: plan
     activity: Understanding customer needs
-    headline: One PM team replaced a research cycle with an agent synthesising feedback
+    headline: "One study: LLMs sorted feedback; their specs sometimes fabricated requirements"
     traditional: Product managers read interview notes, support tickets and survey comments themselves, or waited for a scheduled research study to summarise them.
-    aiEra: At Atlassian, one PM team replaced a two-week research cycle with an agent that synthesised support data, NPS feedback and in-product behaviour.
+    aiEra: In one 2025 study, five lightweight open-source LLMs classified app store reviews by request type and non-functional requirement with moderate-to-high accuracy. They also generated requirement specifications that were generally complete and coherent but often verbose and sometimes included fabricated requirements; one evaluator rated these, and the authors note a limited sample and call their results exploratory. The authors warn that moderate accuracy may produce noisy classifications that mislead analysts, so important feedback can be missed, and conclude that these models still require human oversight.
     sourceIds:
-      - atlassian-product-craft
+      - mallya-llm-user-feedback-requirements
   - phase: plan
     activity: Deciding what to build
     headline: Deciding what to build may become the bottleneck as agents speed up coding
     traditional: Roadmaps and prioritisation were planned around limited engineering capacity.
-    aiEra: Andrew Ng argues that agentic coding speeds up writing software to a given specification, so deciding what to build becomes the bottleneck, especially in early-stage projects. He values PMs with high user empathy who can make product decisions quickly. Atlassian's State of Product 2026 found that AI is not yet helping with prioritisation and planning.
+    aiEra: Andrew Ng argues that agentic coding speeds up writing software to a given specification, so deciding what to build becomes the bottleneck, especially in early-stage projects. He values PMs with high user empathy who can make product decisions quickly. Atlassian's State of Product 2026 found that AI is not yet helping with prioritisation and planning. In one CHI 2026 study of people building products with AI tools, the authors argue that discovery and problem definition remain indispensable, and that tools promising instant results amplify the temptation to skip these early stages.
     sourceIds:
       - ng-pm-bottleneck
       - atlassian-state-of-product-2026
+      - kobiella-genai-prototyping-skill-levels
   - phase: test
     activity: Defining quality for AI features
     headline: LLM evaluators need human validation; Husain and Shankar suggest expert grading
@@ -73,16 +74,14 @@ tools:
     sourceIds:
       - svpg-prototypes-vs-products
   - tool: lovable
-    useFor: Creating early prototypes of features and interaction flows from a prompt.
+    useFor: Generating high-fidelity prototypes from a prompt to explore an idea or show it to stakeholders.
     recommendation: could
     sourceIds:
-      - li-vibe-coding-product-teams
+      - kobiella-genai-prototyping-skill-levels
       - svpg-prototypes-vs-products
   - tool: v0
-    useFor: Creating early prototypes of features and interaction flows from a prompt.
+    useFor: Generating web app prototypes from natural-language prompts.
     recommendation: could
-    sourceIds:
-      - li-vibe-coding-product-teams
   - tool: dovetail
     useFor: Collecting interviews, calls, surveys and feedback in one place and using AI to find themes, with links back to the source material.
     recommendation: could
@@ -155,15 +154,6 @@ sources:
     type: survey
     vendorAffiliated: true
     quote: AI isn't yet helping with the complex, high-value work product teams crave, like prioritization, planning, and advanced analytics.
-  - id: atlassian-product-craft
-    title: "The future of product craft: Why AI-native PMs build better products"
-    publisher: Atlassian (Tim Lelek)
-    url: https://www.atlassian.com/blog/how-we-build/the-future-of-product-craft
-    published: 2026-05-28
-    accessed: 2026-09-14
-    type: vendor
-    vendorAffiliated: true
-    quote: Across our product teams, prototyping has shifted from a specialist skill to a default starting point.
   - id: svpg-prototypes-vs-products
     title: Prototypes vs Products
     publisher: Silicon Valley Product Group (Marty Cagan)
@@ -199,15 +189,6 @@ sources:
     type: research
     vendorAffiliated: false
     quote: We find that uncertainty around responsible AI and a sense of diffused responsibility constrain ethical action, while leadership commitment and organizational principles enable ethical action
-  - id: li-vibe-coding-product-teams
-    title: "Vibe Coding in Product Teams: Reconfiguring AI-Assisted Workflows, Prototyping, and Collaboration"
-    publisher: arXiv (Li, Hou, Lin, Zhu, Cao, El Ali; CHIWORK 2026)
-    url: https://arxiv.org/html/2509.10652v3
-    published: 2026-05-01
-    accessed: 2026-09-15
-    type: research
-    vendorAffiliated: true
-    quote: Participants described that while vibe coding works effectively for early-stage prototyping, breakdowns emerge as projects move toward production, where reliability, integration, and coordination become critical.
   - id: shankar-evalgen-validators
     title: "Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences"
     publisher: arXiv (Shankar, Zamfirescu-Pereira, Hartmann, Parameswaran, Arawjo; UIST 2024)
@@ -217,6 +198,24 @@ sources:
     type: research
     vendorAffiliated: false
     quote: Yet LLM-generated evaluators simply inherit all the problems of the LLMs they evaluate, requiring further human validation.
+  - id: kobiella-genai-prototyping-skill-levels
+    title: "From Throw-Away to Takeaway: How GenAI and Vibe Coding Accelerate Prototyping Across Technical Skill Levels"
+    publisher: ACM CHI 2026 (Kobiella, Breidenstein, Schmidt; CDTM and LMU Munich)
+    url: https://dl.acm.org/doi/10.1145/3772318.3790757
+    published: 2026-04-13
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: This shows that prototypes were not only used as internal design artifacts but also as persuasive tools, and, with GenAI, their unusually high fidelity at an early stage enabled participants to build credibility and secure buy-in from stakeholders much faster than with traditional methods such as wireframes or paper prototypes.
+  - id: mallya-llm-user-feedback-requirements
+    title: "From Online User Feedback to Requirements: Evaluating Large Language Models for Classification and Specification Tasks"
+    publisher: arXiv (Mallya, Ferrari, Zadenoori, Dąbrowski; University of Limerick, UCD, University of Padova)
+    url: https://arxiv.org/html/2510.23055v1
+    published: 2025-10-27
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: Generated specifications were generally complete and coherent but often verbose and sometimes included fabricated requirements.
 ---
 
 A typical week now has less blank-page writing and more checking. You might ask an assistant for a first draft of a one-pager, then spend your time correcting what it got wrong about the customer and the constraints. When an idea is still fuzzy, you build a rough prototype in an afternoon and put it in front of a few customers or your engineers, instead of waiting for a mockup. Feedback summaries arrive faster, but you still open the underlying tickets and transcripts before acting on a theme.

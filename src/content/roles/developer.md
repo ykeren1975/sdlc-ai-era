@@ -13,28 +13,29 @@ sdlcPhases:
 shifts:
   - phase: build
     activity: Writing code
-    headline: Describe a change, let AI draft it, then review and revise the result
+    headline: Experienced developers in one study planned agent work and validated its output
     highlight: true
     traditional: Developers wrote most code by hand in an editor, helped by autocomplete, documentation and search engines.
-    aiEra: Developers increasingly describe a change and let an AI assistant or agent draft it, then review and revise the result. Adoption is uneven. Many developers still write most of their code themselves, while one Anthropic engineer estimated their work had shifted "70%+" to reviewing and revising rather than writing new code.
+    aiEra: "In one study of experienced developers (13 observed in field sessions and 99 surveyed via AI-related GitHub projects, between August and October 2025), participants used agents to build software but kept control of design and implementation: they planned before implementing and validated the agents' output. The 2025 Stack Overflow Developer Survey described AI agents as not yet mainstream."
     sourceIds:
-      - anthropic-work-study
+      - huang-devs-control-agents
       - so-survey-2025-ai
   - phase: design
     activity: Planning a change before implementation
-    headline: For larger changes, write or review a spec, plan and tasks for the agent
+    headline: "Willison: planning matters more with agents; Böckeler found spec tools overkill"
     traditional: Intent lived in a ticket, a design doc or the developer's head, and was refined while coding.
-    aiEra: For larger changes, developers write or review a structured spec, a technical plan and a task list that the agent works from. The spec step helps on bigger features but can be overkill for small fixes and adds documents to review.
+    aiEra: "Simon Willison notes that planning in advance is even more important with an agent: you can iterate on the plan first, then hand it off to write the code. In one study, every observed experienced developer whose task involved new features controlled the design, mostly by writing plans themselves or revising agent-drafted plans, and even long plans were run in small chunks. Spec-driven tools such as Kiro and spec-kit turn this into documents such as requirements, design and tasks, but Birgitta Böckeler found their workflows overkill for the problems she tried, with verbose markdown files that were tedious to review."
     sourceIds:
-      - github-spec-kit-blog
+      - willison-vibe-engineering
+      - huang-devs-control-agents
       - fowler-sdd-tools
   - phase: build
     activity: Understanding unfamiliar code and debugging
-    headline: Ask an assistant to explain code or trace a bug, then check its answer
+    headline: Study respondents found agents suited to explaining code; debugging views mixed
     traditional: Reading source, stepping through a debugger, searching the codebase and asking colleagues who knew the area.
-    aiEra: Developers ask an assistant to explain a module, trace a bug or propose a fix, then check the explanation and the fix themselves. At Anthropic, debugging and code understanding are the most common uses.
+    aiEra: "In one study of experienced developers, survey respondents who mentioned these uses mostly found agents suitable for explaining or analysing code, APIs and errors, and for simple debugging or fixes. Views were mixed on general debugging and on understanding project architecture: one respondent said debugging with LLMs often caused more problems than it found. Participants cited strong code comprehension and debugging skills as part of the expertise needed to use agents effectively."
     sourceIds:
-      - anthropic-work-study
+      - huang-devs-control-agents
   - phase: build
     activity: Keeping project context usable
     headline: Write docs an agent can use to call APIs without reading that code first
@@ -44,30 +45,32 @@ shifts:
       - willison-vibe-engineering
   - phase: test
     activity: Automated testing
-    headline: Treat a reliable test suite as the main guardrail for agent-written code
+    headline: "Willison: tests help agents; in one study, many agent PRs had no test changes"
     highlight: true
     traditional: Developers wrote unit and integration tests alongside features, with coverage often uneven.
-    aiEra: A reliable test suite becomes the main guardrail for agent-written code. Without one, an agent may claim something works without having tested it. Developers still need strong manual testing skills, including digging into edge cases.
+    aiEra: "Simon Willison says agentic coding tools can fly with a robust, comprehensive and stable test suite, but without tests an agent might claim something works without having tested it at all. In one study of agent-generated pull requests from five coding agents in Java and Python projects, about half of the pull requests that changed code under test included no test changes, and existing tests were an incomplete safety net. The authors warn teams not to assume that a passing test run means the change has been tested. Willison adds that developers still need to be really good at manual testing, including digging into edge cases."
     sourceIds:
       - willison-vibe-engineering
-      - dora-2025
+      - dipongkor-agentic-pr-coverage
   - phase: build
     activity: Code review
-    headline: Working with agents can mean lots of code review, including their output
+    headline: Willison says agents mean much code review; study authors urge extra scrutiny
     highlight: true
     traditional: Peers reviewed pull requests written by other people, mostly for design, correctness and readability.
-    aiEra: Working effectively with agents can mean, in Simon Willison's words, "spending so much time on code review", including reviewing your own agents' output. Output that is almost right, but not quite, still needs careful human review and debugging.
+    aiEra: "Simon Willison lists \"spending so much time on code review\" among the work of using coding agents well, and says developers who are fast and productive at code review will have a much better time working with LLMs. In one study, experienced developers observed working within their own expertise carefully reviewed every agent change, with methods such as reading diffs and running tests. In the 2025 Stack Overflow survey, AI solutions that are almost right, but not quite, were developers' biggest single frustration. The authors of a study of Cursor-adopting open-source projects recommend treating AI-generated code as needing extra scrutiny in review, including whether a simpler implementation would achieve the same functionality."
     sourceIds:
-      - anthropic-work-study
-      - so-survey-2025-ai
       - willison-vibe-engineering
+      - huang-devs-control-agents
+      - so-survey-2025-ai
+      - he-cursor-velocity-quality
   - phase: deploy
     activity: Shipping changes safely
-    headline: Lean on version control, tests and fast feedback as more code arrives faster
+    headline: In one study, Cursor sped projects up briefly but left lasting code complexity
     traditional: Teams balanced delivery speed against stability with CI, version control and release practices.
-    aiEra: More code arrives faster, so mature version control, strong automated testing and fast feedback loops matter more to keep higher change volume from causing instability.
+    aiEra: "In one study of open-source GitHub projects that adopted Cursor (most adoptions between August 2024 and March 2025), development velocity rose sharply but only briefly, while static analysis warnings and code complexity rose persistently and later slowed development. The authors call for quality assurance that scales with AI-era velocity, such as test coverage requirements that scale with lines of code added. Simon Willison notes that good version control habits matter even more when a coding agent might have made the changes, and that a preview environment lets you check an agent-built feature without deploying it straight to production."
     sourceIds:
-      - dora-2025
+      - he-cursor-velocity-quality
+      - willison-vibe-engineering
 tools:
   - tool: github-copilot
     useFor: Inline completions, chat, agent mode in the IDE, and assigning issues to a cloud agent that opens a pull request for review.
@@ -82,10 +85,9 @@ tools:
     useFor: Open-source terminal agent with a free tier for querying a codebase and automating development tasks.
     recommendation: could
   - tool: spec-kit
-    useFor: Structuring larger features as spec, plan and tasks before handing them to a coding agent.
+    useFor: Setting up a constitution and a specify, plan and tasks workflow that you run through slash commands in your coding assistant.
     recommendation: could
     sourceIds:
-      - github-spec-kit-blog
       - fowler-sdd-tools
   - tool: kiro
     useFor: Agentic IDE that turns a prompt into requirements, design and tasks before implementation.
@@ -114,26 +116,26 @@ skills:
     - Typing boilerplate and scaffolding by hand
     - Searching forums for common error messages
 risks:
-  - headline: Almost-right output can cost more time than it saves
-    text: Output that is almost right can cost more time than it saves. In one controlled study of early-2025 tools, experienced open-source developers took 19% longer with AI, yet still believed it had sped them up.
+  - headline: Almost-right output can take extra time to debug, and felt speedups can mislead
+    text: Output that is almost right can take extra time to debug. In the 2025 Stack Overflow survey, almost-right AI solutions were developers' biggest single frustration, often leading to debugging AI-generated code that takes more time. How much AI speeds you up is also hard to judge. METR, whose early-2025 study found experienced open-source developers slower with AI, now believes developers are likely more sped up in early 2026, but says its newer data is only very weak evidence for the size of this increase, and that self-reported speedups can be quite unreliable.
     sourceIds:
-      - metr-2025-study
       - so-survey-2025-ai
-  - headline: Generated code often carries security flaws, as Veracode's tests show
+      - metr-2026-uplift-update
+  - headline: Working AI code can still be exploitable, a benchmark study finds
+    text: Code that works can still be exploitable. In a 2026 benchmark study by University at Buffalo researchers, covering a limited set of models and coding-agent setups on function-level and web-application tasks, models usually knew the relevant security concepts, but that knowledge dropped substantially when it had to become functional, exploit-resistant code.
+    sourceIds:
+      - patir-sok-secure-code-generation
+  - headline: Faster output can leave lasting quality problems, a study of Cursor projects finds
     highlight: true
-    text: Generated code often carries security flaws. In Veracode's 2026 tests, AI-generated code passed security checks only 56% of the time, barely changed from its first report, even though syntax errors are now rare.
+    text: Faster output can leave lasting quality problems. In one study of open-source GitHub projects that adopted Cursor, static analysis warnings and code complexity rose persistently after adoption, and the authors found these increases were major factors in a later slowdown. They note the results may not generalise to other tools or to proprietary projects.
     sourceIds:
-      - veracode-genai-2026
-  - headline: More change volume without strong testing and feedback loops is linked to lower stability
-    text: Higher change volume without strong testing, version control and feedback loops is linked to lower delivery stability.
+      - he-cursor-velocity-quality
+  - headline: Agents may fall short on complex or legacy work, developers in one study said
+    text: Agents may fall short on harder work. In one 2025 survey of experienced developers, most respondents who mentioned these tasks judged agents unsuitable for complex tasks, business logic that needs domain knowledge, and integrating with existing or legacy code.
     sourceIds:
-      - dora-2025
-  - headline: "Anthropic's study flags AI overuse may weaken the skills needed to supervise agents"
-    text: Anthropic's study flags a "paradox of supervision". Coding skills may weaken from AI overuse, yet supervising an agent requires those same skills.
-    sourceIds:
-      - anthropic-work-study
-  - headline: Heavy spec workflows can create tedious documents, and agents do not always follow them
-    text: Heavy spec workflows can create long documents that are tedious to review, and agents do not always follow them.
+      - huang-devs-control-agents
+  - headline: Spec tools produced tedious documents agents did not always follow, Böckeler found
+    text: In Birgitta Böckeler's trials, spec-driven tools created verbose markdown files that were tedious to review, and agents sometimes ignored instructions or followed them too eagerly.
     sourceIds:
       - fowler-sdd-tools
 first30Days:
@@ -162,50 +164,15 @@ sources:
     type: survey
     vendorAffiliated: true
     quote: 'The biggest single frustration, cited by 66% of developers, is dealing with "AI solutions that are almost right, but not quite," which often leads to the second-biggest frustration: "Debugging AI-generated code is more time-consuming" (45%)'
-  - id: dora-2025
-    title: Announcing the 2025 DORA Report
-    publisher: Google Cloud
-    url: https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report
-    published: 2025-09-23
-    accessed: 2026-09-14
-    type: survey
-    vendorAffiliated: true
-    quote: However, AI adoption does continue to have a negative relationship with software delivery stability.
-  - id: metr-2025-study
-    title: Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity
-    publisher: METR
-    url: https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/
-    published: 2025-07-10
-    accessed: 2026-09-14
+  - id: metr-2026-uplift-update
+    title: We are Changing our Developer Productivity Experiment Design
+    publisher: METR (Becker, Rush, Cunningham, Rein, Mahamud)
+    url: https://metr.org/blog/2026-02-24-uplift-update/
+    published: 2026-02-24
+    accessed: 2026-09-15
     type: research
     vendorAffiliated: false
-    quote: When developers are allowed to use AI tools, they take 19% longer to complete issues—a significant slowdown that goes against developer beliefs and expert forecasts.
-  - id: anthropic-work-study
-    title: How AI is transforming work at Anthropic
-    publisher: Anthropic
-    url: https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic
-    published: 2025-12-02
-    accessed: 2026-09-14
-    type: vendor
-    vendorAffiliated: true
-    quote: One reason that the atrophy of coding skills is concerning is the “paradox of supervision”—as mentioned above, effectively using Claude requires supervision, and supervising Claude requires the very coding skills that may atrophy from AI overuse.
-  - id: veracode-genai-2026
-    title: "2026 GenAI Code Security Report: AI Is Writing More of Your Code but Security Hasn't Caught Up"
-    publisher: Veracode
-    url: https://www.veracode.com/blog/2026-genai-code-security-report-ai-risk/
-    published: 2026-07-28
-    accessed: 2026-09-14
-    type: vendor
-    vendorAffiliated: true
-    quote: The average security pass rate across models is 56% – barely changed from 55% in the first report.
-  - id: github-spec-kit-blog
-    title: "Spec-driven development with AI: Get started with a new open source toolkit"
-    publisher: GitHub Blog
-    url: https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/
-    published: 2025-09-02
-    accessed: 2026-09-14
-    type: vendor
-    vendorAffiliated: true
+    quote: Based on conversations with study participants, we believe it is likely that developers are more sped up from AI tools now — in early 2026 — compared to our estimates from early 2025. However, because of the selection effects in our experiment, our data is only very weak evidence for the size of this increase.
   - id: fowler-sdd-tools
     title: "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl"
     publisher: martinfowler.com (Birgitta Böckeler)
@@ -222,8 +189,44 @@ sources:
     accessed: 2026-09-14
     type: practitioner
     vendorAffiliated: false
+  - id: huang-devs-control-agents
+    title: "Professional Software Developers Don't Vibe, They Control: AI Agent Use for Coding in 2025"
+    publisher: arXiv (Huang, Reyna, Lerner, Xia, Hempel)
+    url: https://arxiv.org/html/2512.14012v2
+    published: 2026-08-18
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: Our most salient finding is that, indeed, professional developers do not vibe code. Instead, they carefully control the agents through planning and supervision.
+  - id: he-cursor-velocity-quality
+    title: "Speed at the Cost of Quality: How Cursor AI Increases Short-Term Velocity and Long-Term Complexity in Open-Source Projects"
+    publisher: arXiv (He, Miller, Agarwal, Kästner, Vasilescu; MSR 2026)
+    url: https://arxiv.org/html/2511.04427v3
+    published: 2026-01-26
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: We find that the adoption of Cursor leads to a statistically significant, large, but transient increase in project-level development velocity, along with a substantial and persistent increase in static analysis warnings and code complexity.
+  - id: dipongkor-agentic-pr-coverage
+    title: Test Coverage Analysis of Agentic Pull Requests
+    publisher: arXiv (Dipongkor, Baral, Lam, Moran)
+    url: https://arxiv.org/html/2607.18057v1
+    published: 2026-07-20
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: "Do not assume agents write tests: 50.4% of code under test-modifying PRs include no test changes at all, and the safety net provided by existing tests is incomplete in both languages."
+  - id: patir-sok-secure-code-generation
+    title: "SoK: AI Secure Code Generation: Progress, Pitfalls, and Paths Forward"
+    publisher: arXiv (Patir, Guo, Cai, Hu)
+    url: https://arxiv.org/html/2606.25195v1
+    published: 2026-06-23
+    accessed: 2026-09-15
+    type: research
+    vendorAffiliated: false
+    quote: The models usually know the relevant security concepts, but that knowledge drops substantially when it must become functional, exploit-resistant code.
 ---
 
 A typical week now starts with shaping work more than typing it. You break a ticket into a short plan, point an agent at the relevant part of the codebase, and let it draft the change while you look at something else. Much of the rest of the day goes on reading diffs, running the app, tightening tests, and sending the agent back with corrections. Small fixes are often faster to do by hand; well-defined, well-tested chunks of work are where delegation pays off.
 
-The core craft has not gone away. It has moved. Knowing what good code looks like, how the system fits together and what could break in production is what lets you review agent output quickly and catch the almost-right change before it ships. Teams that already had solid tests, small pull requests and a healthy review culture tend to get the most from these tools. Teams without them tend to get more code, and more problems.
+The core craft has not gone away. It has moved. Knowing what good code looks like, how the system fits together and what could break in production is what lets you review agent output quickly and catch the almost-right change before it ships. Solid tests, small pull requests and careful review are what make agent output safe to ship. Without them, you mostly get more code, and more problems.
