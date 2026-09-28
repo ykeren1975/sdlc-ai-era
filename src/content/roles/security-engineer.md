@@ -13,17 +13,17 @@ sdlcPhases:
 shifts:
   - phase: design
     activity: Threat modeling new features
-    headline: Cover agent risks such as goal hijack and tool misuse in threat models
-    takeaway: Threat models for AI agents must cover agent-specific risks
+    headline: OWASP lists agent risks such as goal hijack and tool misuse
+    takeaway: AI agents bring their own risks, such as tool misuse
     highlight: true
     traditional: Security engineers reviewed designs and data flows with the team, listed likely threats to the application and its users, and agreed controls before build.
-    aiEra: When a system includes AI agents, the threat model also has to cover agent-specific risks. The OWASP Top 10 for Agentic Applications (December 2025) lists ten, including agent goal hijack, tool misuse, identity and privilege abuse, memory and context poisoning, and rogue agents. Simon Willison names a "lethal trifecta" of agent capabilities, namely access to private data, exposure to untrusted content and the ability to communicate externally. When all three are present, an attacker can manipulate the agent into sending that data out.
+    aiEra: The OWASP Top 10 for Agentic Applications (December 2025) lists ten agent-specific risks, including agent goal hijack, tool misuse, identity and privilege abuse, memory and context poisoning, and rogue agents. Simon Willison names a "lethal trifecta" of agent capabilities, namely access to private data, exposure to untrusted content and the ability to communicate externally. When all three are present, an attacker can manipulate the agent into sending that data out.
     sourceIds:
       - owasp-agentic-top-10-2026
       - willison-lethal-trifecta
   - phase: design
     activity: Reviewing integrations and tool permissions
-    headline: Avoid MCP setups that mix private data, untrusted content and external comms
+    headline: "Willison: avoid MCP mixes of private data, untrusted content and external comms"
     traditional: Security engineers reviewed third-party integrations, API scopes and service accounts before they were connected to production systems.
     aiEra: Willison warns that mixing tools from different sources through the Model Context Protocol (MCP) is particularly risky, because such tools often provide private data access, untrusted content and a way to communicate externally, sometimes within a single tool. He advises avoiding that combination. His example is a GitHub MCP server that could access private repositories, read publicly filed issues and create pull requests. OWASP's agentic list also includes agentic supply chain vulnerabilities.
     sourceIds:
@@ -40,8 +40,8 @@ shifts:
       - veracode-genai-2026
   - phase: test
     activity: Getting scanner findings fixed
-    headline: Evaluate each Autofix suggestion; it may miss or add vulnerabilities
-    takeaway: Autofix suggestions may miss or add vulnerabilities
+    headline: "GitHub: evaluate each Autofix suggestion; it may fail to fix or add flaws"
+    takeaway: Autofix suggestions may fail to fix or add vulnerabilities
     highlight: true
     traditional: Static analysis alerts went into backlogs. Security engineers triaged them and explained the issue, and developers researched and wrote each fix.
     aiEra: GitHub's Copilot Autofix generates code change suggestions for CodeQL alerts on pull requests and the default branch. GitHub's documentation warns that a suggestion may fail to fix the vulnerability, introduce new vulnerabilities or change the program's semantics, and says developers must evaluate each suggestion and check that CI tests pass.
@@ -64,7 +64,7 @@ shifts:
       - curl-high-quality-chaos
   - phase: operate
     activity: Monitoring and investigating alerts
-    headline: "Some surveyed practitioners already use or test AI tools in their operations"
+    headline: "In one workforce survey, some practitioners already use or test AI tools"
     traditional: Analysts and security engineers worked through alerts, logs and network monitoring largely by hand, with rules and scripts to cut noise.
     aiEra: In ISC2's 2025 workforce study of 16,029 cybersecurity practitioners and decision-makers, 28% of respondents had already integrated AI tools into their operations, 19% were actively testing them and 22% were in early evaluation. ISC2 notes that AI-driven tools offer the promise of automating repetitive tasks such as monitoring network traffic, identifying anomalies and flagging suspicious behaviour.
     sourceIds:

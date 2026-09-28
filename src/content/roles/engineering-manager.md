@@ -3,7 +3,7 @@ title: Engineering Manager
 order: 120
 icon: users
 summary: AI tools change how teams write, review and ship code. Measuring real impact, managing tool policy and spend, protecting delivery stability and growing junior engineers become core parts of the job.
-tagline: Measure AI's real impact, manage tool spend and grow junior engineers
+tagline: The job covers measuring AI impact, tool spend and junior growth
 lastReviewed: 2026-09-14
 sdlcPhases:
   - plan
@@ -11,7 +11,7 @@ sdlcPhases:
 shifts:
   - phase: plan
     activity: Measuring team productivity
-    headline: Track AI utilization, impact and cost against solid baseline measurements
+    headline: DX tracks AI utilization, impact and cost; Pragmatic Engineer advises baselines
     takeaway: AI use, impact and cost can be tracked from a baseline
     highlight: true
     traditional: Managers tracked delivery with engineering metrics such as PR throughput, cycle time, deployment frequency and change failure rate, alongside developer experience surveys.
@@ -21,7 +21,7 @@ shifts:
       - pragmatic-measure-ai-impact
   - phase: plan
     activity: Setting AI tool policy and choosing tools
-    headline: Clarify and socialise AI policies; procurement can shape tool choice
+    headline: DORA advises clarifying AI policies; a survey links tool choice to procurement
     traditional: Developer tools were chosen by teams or platform groups, and paid tools went through normal procurement.
     aiEra: DORA's 2025 report advises leaders to start by clarifying and socialising their AI policies. In the Pragmatic Engineer's 2026 survey of 906 participants, tool choice differed by company size, with GitHub Copilot overtaking Claude Code at large companies; the authors suggest enterprise procurement, not individual preference, is behind the difference.
     sourceIds:
@@ -29,7 +29,7 @@ shifts:
       - pragmatic-ai-tooling-2026
   - phase: plan
     activity: Budgeting for AI tools and making the case for them
-    headline: Track AI spend and plan for a possible temporary productivity dip
+    headline: DX tracks AI spend; DORA expects most organisations to see a temporary dip
     traditional: Tooling budgets were mostly per-seat licences, planned alongside headcount.
     aiEra: DX's framework tracks AI spend, total and per developer, and net time gain per developer (time savings minus AI spend). DORA's ROI of AI-assisted Software Development report, as summarised by InfoQ, argues most organisations will see a temporary productivity dip before long-term gains, caused by the learning curve, the verification tax of reviewing AI-generated code and adapting downstream processes such as testing and change approval. The report strongly discourages headcount reduction as a strategy.
     sourceIds:
@@ -37,7 +37,7 @@ shifts:
       - dora-roi-infoq
   - phase: build
     activity: Keeping delivery stable as change volume grows
-    headline: Back AI-driven change volume with strong testing and fast feedback loops
+    headline: "DORA: without strong testing, more change volume leads to instability"
     takeaway: Without strong testing, more changes can mean instability
     highlight: true
     traditional: Teams relied on code review, automated tests and release processes to keep a steady flow of changes safe.
@@ -53,7 +53,7 @@ shifts:
       - canva-ai-interviews
   - phase: plan
     activity: Growing junior engineers
-    headline: Consider pairing juniors with seniors and giving them small real projects
+    headline: Stanier suggests senior pairing and small but real projects for juniors
     takeaway: Junior growth may get harder as AI absorbs training tasks
     highlight: true
     traditional: Junior engineers learned by doing the work themselves and with others, and by getting feedback from more experienced colleagues.
@@ -120,7 +120,7 @@ risks:
     text: Reading the early productivity dip as failure. According to InfoQ's summary of DORA's ROI report, leaders who misread the dip as failure risk pulling funding during it and losing the eventual return.
     sourceIds:
       - dora-roi-infoq
-  - headline: Cutting junior hiring can empty the future senior pipeline
+  - headline: Cutting junior hiring can empty the future senior pipeline, Stanier warns
     text: Cutting junior hiring can empty the future senior pipeline. James Stanier asks managers to make the case for junior hiring and frame it as risk mitigation, not charity.
     sourceIds:
       - stanier-senior-engineers-2035

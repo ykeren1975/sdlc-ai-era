@@ -47,7 +47,7 @@ shifts:
       - mallya-llm-user-feedback-requirements
   - phase: plan
     activity: Deciding what to build
-    headline: Deciding what to build may become the bottleneck as agents speed up coding
+    headline: Ng argues deciding what to build becomes the bottleneck as coding speeds up
     traditional: Roadmaps and prioritisation were planned around limited engineering capacity.
     aiEra: Andrew Ng argues that agentic coding speeds up writing software to a given specification, so deciding what to build becomes the bottleneck, especially in early-stage projects. He values PMs with high user empathy who can make product decisions quickly. Atlassian's State of Product 2026 found that AI is not yet helping with prioritisation and planning. In one CHI 2026 study of people building products with AI tools, the authors argue that discovery and problem definition remain indispensable, and that tools promising instant results amplify the temptation to skip these early stages.
     sourceIds:
@@ -56,7 +56,7 @@ shifts:
       - kobiella-genai-prototyping-skill-levels
   - phase: test
     activity: Defining quality for AI features
-    headline: LLM evaluators need human validation; Husain and Shankar suggest expert grading
+    headline: "A study: LLM judges need human checks; Husain and Shankar suggest expert grading"
     takeaway: You may be the expert grading AI outputs pass or fail
     highlight: true
     traditional: Product managers wrote acceptance criteria, and testers checked that features behaved as specified.

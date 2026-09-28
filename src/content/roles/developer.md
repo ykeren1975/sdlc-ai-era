@@ -39,9 +39,9 @@ shifts:
       - huang-devs-control-agents
   - phase: build
     activity: Keeping project context usable
-    headline: Write docs an agent can use to call APIs without reading that code first
+    headline: "Willison: good docs let an agent use APIs without reading that code first"
     traditional: Conventions and architecture knowledge were shared through wikis, onboarding and code review comments.
-    aiEra: Developers write documentation that can be handed to an agent, so it can use APIs from other parts of the codebase without reading that code first.
+    aiEra: Simon Willison recommends writing documentation that can be handed to an agent, so it can use APIs from other parts of the codebase without reading that code first.
     sourceIds:
       - willison-vibe-engineering
   - phase: test

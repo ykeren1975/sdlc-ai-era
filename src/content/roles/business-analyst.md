@@ -12,7 +12,7 @@ sdlcPhases:
 shifts:
   - phase: requirements
     activity: Eliciting and clarifying stakeholder needs
-    headline: Have an LLM reword rough needs, then let stakeholders confirm the meaning
+    headline: "One study: LLM rewrites of needs rated higher, but stakeholders must confirm"
     takeaway: AI can tidy up rough needs, but stakeholders must confirm
     highlight: true
     traditional: Analysts ran interviews and workshops, took notes and turned what stakeholders said into written requirements, going back to them to confirm meaning.
@@ -51,8 +51,8 @@ shifts:
       - llm-user-stories-2025
   - phase: test
     activity: Handing acceptance criteria to testing
-    headline: Generate test cases from stories with AI, but they may miss non-functional needs
-    takeaway: Test cases made from stories may miss non-functional needs
+    headline: "Thoughtworks: AI test cases from stories tended to miss non-functional needs"
+    takeaway: AI test cases from stories may miss non-functional needs
     highlight: true
     traditional: Testers read stories and acceptance criteria and wrote test cases by hand, asking the analyst about gaps.
     aiEra: AI can generate test cases from user stories. In a Thoughtworks experiment, generated test cases covered 98.67% of acceptance criteria, yet roughly a quarter needed clarification. The biggest limitation was heavy reliance on input quality, and the tools tended to overlook non-functional requirements.

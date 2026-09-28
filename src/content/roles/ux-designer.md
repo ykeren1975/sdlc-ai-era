@@ -13,7 +13,7 @@ sdlcPhases:
 shifts:
   - phase: plan
     activity: Analysing user research
-    headline: Let AI speed up transcripts and summaries, but never rely on it for all analysis
+    headline: "NN/g: use AI to speed up early analysis, but never rely on it for all of it"
     traditional: Designers and researchers transcribed sessions, tagged notes and grouped observations into themes by hand, often on sticky notes or in spreadsheets.
     aiEra: Nielsen Norman Group (article from 2024, reviewed January 2026) finds AI currently most helpful in the planning and analysis stages of research, and suggests AI transcription, summarisation and coding features to speed up the initial steps of analysis. It warns never to rely on AI for all of the analysis, and says context-informed questions, such as whether the interviewer accidentally primed a participant, are beyond the capacity of current AI tools.
     sourceIds:
@@ -28,7 +28,7 @@ shifts:
   - phase: design
     activity: Producing UI layouts and screens
     headline: NN/g expects anyone to make decent-looking UI; judgement isn't easy to automate
-    takeaway: As AI tools improve, decent UI gets easy; judgement doesn't
+    takeaway: AI may let anyone make decent-looking UI; not judgement
     highlight: true
     traditional: Designers built wireframes and high-fidelity screens by hand, assembling components from a design system.
     aiEra: NN/g expects that as AI design tools improve, anyone will be able to make a decent-looking UI, at least from a distance, while curated taste, research-informed contextual understanding, critical thinking and careful judgment are not easy to automate. In one case study, a three-person university team gave v0 and Bolt.new a conceptual data structure and a design goal, and got diverse layout alternatives, including an interaction pattern the team had not explored. The authors warn that generative UI can lead a team to unintentionally converge on conventional design patterns.
@@ -37,7 +37,7 @@ shifts:
       - li-vibe-coding-ucd-case-study
   - phase: design
     activity: Prototyping and testing complex interactions
-    headline: Build a working prototype from a detailed prompt and test with users earlier
+    headline: "NN/g: prototype from a detailed prompt and test with users earlier"
     takeaway: You can prototype in a day and test with users earlier
     highlight: true
     traditional: Clickable prototypes were usually linked static screens, which made complex interactions hard to test with users before engineers built them.
@@ -53,14 +53,14 @@ shifts:
       - li-vibe-coding-ucd-case-study
   - phase: design
     activity: Designing AI-powered features
-    headline: Design AI features for trust, with transparency, control and help when they fail
+    headline: NN/g expects trust to be a major design problem for AI experiences
     traditional: Designers mapped out fixed screens, flows and states that behaved the same way each time.
     aiEra: NN/g observes that in many products people spend less time navigating the UI and more time delegating to a layer sitting on top of it. It expects trust to be a major design problem for AI experiences in 2026, growing as AI agents are rolled out, often before they're ready. It names transparency, control, consistency and support when the system fails as the fundamentals.
     sourceIds:
       - nng-state-of-ux-2026
   - phase: test
     activity: Defining what good output looks like
-    headline: Define what good AI output looks like instead of specifying exact behaviours
+    headline: "NN/g's Elman: designers should define 'good' so partners can evaluate the model"
     takeaway: Define what good AI output looks like, not exact behaviours
     highlight: true
     traditional: Designers wrote specs describing exact behaviours, and engineering and QA checked that the build matched them.

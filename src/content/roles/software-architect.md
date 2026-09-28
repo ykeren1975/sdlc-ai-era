@@ -3,7 +3,7 @@ title: Software Architect
 order: 40
 icon: layers
 summary: AI speeds up documentation, codebase analysis and code output, so architects spend more time encoding constraints that agents can check, designing LLM components and keeping the team's understanding current.
-tagline: Encode constraints agents check; keep team understanding current
+tagline: More time on constraints agents check and shared understanding
 lastReviewed: 2026-09-14
 sdlcPhases:
   - plan
@@ -36,14 +36,14 @@ shifts:
       - infoq-architecture-trends-2025
   - phase: design
     activity: Deciding how AI agents connect to other systems
-    headline: Don't default to MCP; a well-designed CLI often gives agents what they need
+    headline: "Thoughtworks: don't default to MCP; a good CLI often gives agents what they need"
     traditional: Architects chose integration styles such as APIs, messaging or command-line tools, weighing interoperability against the complexity each layer adds.
     aiEra: Thoughtworks' Technology Radar (Vol. 34, April 2026) cautions against using the Model Context Protocol (MCP) by default. It says MCP adds real value for structured tool contracts, OAuth-based authentication boundaries and governed multi-tenant access, but a well-designed CLI with good help output, structured JSON responses and predictable error handling often gives agents what they need. Teams should first ask whether their system actually requires protocol-level interoperability.
     sourceIds:
       - thoughtworks-radar-mcp-by-default
   - phase: build
     activity: Setting architecture standards for code that AI writes
-    headline: Guide agents with prompts and check architecture rules with automated sensors
+    headline: "InfoQ: architects guide agents with prompts; Böckeler describes rule sensors"
     takeaway: Prompts can guide agents; hooks can check architecture rules
     highlight: true
     traditional: Standards lived in wiki pages, templates and code review, and architects relied on developers reading and following them.
@@ -53,7 +53,7 @@ shifts:
       - fowler-harness-engineering
   - phase: test
     activity: Checking that the codebase still matches the intended architecture
-    headline: Agents can speed up drift; some teams pair deterministic tools with LLM checks
+    headline: "Thoughtworks: agents can speed up drift; some of its teams add LLM checks"
     takeaway: AI coding agents can speed up drift from the architecture
     highlight: true
     traditional: Architects found drift through periodic reviews, dependency analysis and, where teams had them, architecture tests such as fitness functions.
@@ -62,7 +62,7 @@ shifts:
       - thoughtworks-radar-architecture-drift
   - phase: plan
     activity: Understanding a legacy system before modernising it
-    headline: Use AI tools to surface business rules and dependencies in legacy code
+    headline: "Thoughtworks: use AI to surface business rules and dependencies in legacy code"
     traditional: Architects reverse-engineered legacy systems by reading code, tracing dependencies and interviewing the few people who still knew how they worked.
     aiEra: Thoughtworks moved "using GenAI to understand legacy codebases" to Adopt in Radar Vol. 33 (November 2025), saying its experience across multiple clients shows this is now a practical default rather than an experiment. Tools it names, including Cursor, Claude Code and Copilot, help developers surface business rules, summarise logic and identify dependencies.
     sourceIds:
@@ -124,7 +124,7 @@ skills:
     - Writing first drafts of ADRs and summaries from a blank page
     - Reading large legacy codebases line by line to find where things live
 risks:
-  - headline: "Drift can compound: agents and humans copying degraded patterns can make code worse"
+  - headline: "Drift can compound when agents and humans copy degraded patterns, Thoughtworks warns"
     highlight: true
     text: Drift can compound. Thoughtworks warns that when agents and humans replicate existing patterns, including degraded ones, poor code begets poorer code.
     sourceIds:
