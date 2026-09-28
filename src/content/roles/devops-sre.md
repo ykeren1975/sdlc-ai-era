@@ -4,7 +4,7 @@ order: 80
 icon: server-cog
 summary: AI agents now triage alerts, draft postmortems and generate infrastructure code. The job shifts toward setting guardrails for agents in production, checking their output and running AI workloads.
 tagline: Set guardrails for agents in production and check what they produce
-lastReviewed: 2026-09-14
+lastReviewed: 2026-09-28
 sdlcPhases:
   - build
   - deploy
@@ -16,9 +16,8 @@ shifts:
     takeaway: AI can group and enrich alerts and mitigate many issues
     highlight: true
     traditional: The on-call engineer was paged for each alert, then grouped related alerts and gathered context from dashboards, logs and runbooks by hand.
-    aiEra: A 2026 Dynatrace survey of 919 leaders and managers responsible for SRE, platform engineering or IT operations at enterprises with annual revenues of $500 million or more reports that half of SREs now use AI-powered capabilities for automated incident response. At Google, an SRE AI alerting agent groups alerts and enriches them with context, and autonomous alert handlers can address or mitigate many issues. Google notes this does not necessarily remove people from the process, especially for higher-risk services and features.
+    aiEra: At Google, an SRE AI alerting agent groups alerts and enriches them with context, and autonomous alert handlers can address or mitigate many issues. Google notes this does not necessarily remove people from the process, especially for higher-risk services and features.
     sourceIds:
-      - dynatrace-state-of-sre-2026
       - google-sre-agentic-ai
   - phase: operate
     activity: Investigating and mitigating an incident
@@ -26,9 +25,10 @@ shifts:
     takeaway: An agent can propose a mitigation for a human to authorise
     highlight: true
     traditional: Responders read dashboards, logs and recent changes, formed hypotheses together and ran mitigation steps from runbooks or by hand.
-    aiEra: In a Google walkthrough of a simulated outage, Gemini CLI fetches the incident details and playbook, runs log analysis and time-series correlation tools, and recommends a mitigation. The agent selects only from strictly typed tools whose definitions record potential impact, a policy layer checks whether an action is allowed in the current context, and a human authorises the proposed mutation. The tools come from Google's internal agent framework, not stock Gemini CLI. What the AI proposed and what the human approved are logged.
+    aiEra: "In a Google walkthrough of a simulated outage, Gemini CLI fetches the incident details and playbook, runs log analysis and time-series correlation tools, and recommends a mitigation. The agent selects only from strictly typed tools whose definitions record potential impact, a policy layer checks whether an action is allowed in the current context, and a human authorises the proposed mutation. The tools come from Google's internal agent framework, not stock Gemini CLI. What the AI proposed and what the human approved are logged. A 2026 university preprint analysed 3,500 root-cause investigations by AI agents using early-2026 models on a public microservice benchmark, not live incidents. It found a disconnect between answer correctness and diagnostic quality: an agent may locate the faulty service yet fail to reconstruct how the fault spread. Failures arose when decisive evidence was omitted or misinterpreted, or when unsupported inference replaced missing evidence."
     sourceIds:
       - google-sre-gemini-cli
+      - rca-agent-trajectories
   - phase: operate
     activity: Writing postmortems
     headline: AI can draft postmortems, but a wrong one can look right
@@ -62,15 +62,14 @@ shifts:
       - catchpoint-sre-report-2026
   - phase: operate
     activity: Running and monitoring AI workloads
-    headline: "Monitor AI models; OpenTelemetry's GenAI conventions omit prompts by default"
+    headline: OpenTelemetry's GenAI conventions cover LLM calls but omit prompts by default
     traditional: SREs set service-level objectives and monitored latency, errors and resource use for conventional services.
-    aiEra: Dynatrace reports that 67% of SREs name AI model monitoring as their top use case, and says demand for AI evaluation is outpacing the tools built to handle it. OpenTelemetry's GenAI semantic conventions, in use and under active development, cover telemetry for LLM calls. By default only metadata such as model names, token counts and durations is included, and prompt content and tool arguments are not captured because they can contain sensitive data.
+    aiEra: OpenTelemetry's GenAI semantic conventions, in use and under active development, cover telemetry for LLM calls. By default only metadata such as model names, token counts and durations is included, and prompt content and tool arguments are not captured because they can contain sensitive data.
     sourceIds:
-      - dynatrace-state-of-sre-2026
       - otel-genai-observability
   - phase: deploy
     activity: Building the delivery platform
-    headline: Invest in a high-quality internal platform; DORA links it to AI value
+    headline: DORA links a high-quality internal platform to unlocking AI value
     traditional: Operations and platform teams maintained CI/CD pipelines, environments and shared tooling that development teams used to ship.
     aiEra: DORA's 2025 report, drawing on nearly 5,000 technology professionals, found that 90% of organizations have adopted at least one platform, and a direct correlation between a high-quality internal platform and an organization's ability to unlock the value of AI. AI adoption still has a negative relationship with delivery stability. Without strong automated testing, mature version control and fast feedback loops, more change volume leads to instability.
     sourceIds:
@@ -207,15 +206,15 @@ sources:
     type: survey
     vendorAffiliated: true
     quote: AI reduced some toil. Nearly half (49%) of respondents said it decreased their workload. But 35% saw no change, and 16% said it increased toil.
-  - id: dynatrace-state-of-sre-2026
-    title: As AI Scales Across Enterprises, Breaking Points Emerge
-    publisher: Dynatrace
-    url: https://www.dynatrace.com/news/press-release/state-of-sre-platform-engineering-2026/
-    published: 2026-08-25
-    accessed: 2026-09-14
-    type: survey
-    vendorAffiliated: true
-    quote: Half of SREs now use AI‑powered capabilities for automated incident response, signaling a shift toward agentic operations where observability must act as the control plane that governs when and how autonomous actions are taken.
+  - id: rca-agent-trajectories
+    title: "Beyond Fault Localization: A Trajectory-Level Study of LLM Agents for Microservice Root Cause Analysis"
+    publisher: arXiv (Qisheng Lu, Aoyang Fang, Junjielong Xu, Jin'ao Shang, Songhan Zhang, Yifan Yang, Xiaochuan Yan and Pinjia He)
+    url: https://arxiv.org/abs/2608.21310v1
+    published: 2026-08-21
+    accessed: 2026-09-28
+    type: research
+    vendorAffiliated: false
+    quote: "We find a disconnect between answer correctness and diagnostic quality: an agent may localize the fault source yet fail to reconstruct its propagation. Successful investigations stay on the fault-impact surface, act on retrieved evidence, and broaden their query repertoire as the search deepens. Failures arise when decisive evidence is omitted, retrieved evidence is misinterpreted, or unsupported inference substitutes for missing evidence."
   - id: text-to-terraform-security
     title: "Security-First Evaluation of Text-to-Terraform: Benchmarking LLMs and SLMs for Secure IaC Generation"
     publisher: arXiv (Francis Luis Santos Vargas, Rodrigo Brandão Mansilha, Diego Kreutz)
@@ -227,7 +226,7 @@ sources:
     quote: "Consequently, prompt engineering alone is insufficient: automated multi-tool scanning remains a necessary complement to LLM-assisted IaC generation regardless of model family or prompt strategy."
   - id: otel-genai-observability
     title: "Inside the LLM Call: GenAI Observability with OpenTelemetry"
-    publisher: OpenTelemetry (James Newton-King)
+    publisher: OpenTelemetry (James Newton-King, Microsoft)
     url: https://opentelemetry.io/blog/2026/genai-observability/
     published: 2026-05-14
     accessed: 2026-09-14

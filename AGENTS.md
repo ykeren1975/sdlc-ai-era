@@ -103,6 +103,7 @@ Order follows the SDLC flow on the home page.
     - `news`: journalism or news analysis (e.g. InfoQ).
   - `vendorAffiliated: true` when the publisher sells products or services in the topic's space. For example, a Productboard survey about PM tools is `survey` plus affiliated, and a Thoughtworks Radar entry is `practitioner` plus affiliated (consultancy). Academic papers, standards bodies, journalists and independent individuals are `false`.
   - When unsure, choose the more cautious label (`vendor` over `practitioner`, `vendorAffiliated: true`).
+  - An open-source project's own page about its own standard stays `official` and `vendorAffiliated: false` even when the author works at a vendor. Name the employer in `publisher` (e.g. "OpenTelemetry (James Newton-King, Microsoft)"). This applies only to claims about the standard itself.
 - **Deployment:** GitHub Pages from `.github/workflows/deploy.yml` (runs check, build and tests on every push to `main`, then publishes `dist/`). Live at https://ykeren1975.github.io/sdlc-ai-era/. The About page links to the repo's issues for corrections, and `check:links` covers that link.
 - The site is a snapshot as of `lastReviewed`; do not write "latest" or "new" without a date.
 - Research subagents never edit `src/data/tools.yaml`; they propose tools and the main session merges them (avoids parallel write conflicts).
