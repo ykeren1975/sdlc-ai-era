@@ -85,7 +85,7 @@ tools:
     useFor: AI-first editor with completions, an agent for multi-step changes, and pull request review.
     recommendation: could
   - tool: gemini-cli
-    useFor: Open-source terminal agent with a free tier for querying a codebase and automating development tasks.
+    useFor: Open-source terminal agent for querying a codebase and automating development tasks, used with a Gemini Code Assist licence, Google Cloud or a paid API key.
     recommendation: could
   - tool: spec-kit
     useFor: Setting up a constitution and a specify, plan and tasks workflow that you run through slash commands in your coding assistant.

@@ -25,6 +25,7 @@ Before writing, read:
 
 - `shifts`: 5–8 concrete activities the role actually does, each with `phase`, a factual `traditional` description, an `aiEra` description, and `sourceIds`.
 - `tools`: 4–8, real and active today, each referencing a tool id. For tools not yet in `tools.yaml`, still reference the id you propose.
+  - "Active" is more than a working product page. Search for `<tool> sunset`, `deprecated`, `acquired` and `free tier` news, and check the vendor's own announcements (for a GitHub-hosted tool, its Discussions and README). A product page can still load, or a README still advertise a free tier, after the vendor has announced the change.
 - `skills`: `new`, `amplified`, `lessImportant` — short phrases.
 - `risks`: 3–5, practical.
 - `first30Days`: 3–5 concrete first steps (editorial).

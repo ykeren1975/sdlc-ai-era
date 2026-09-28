@@ -92,6 +92,18 @@ const roleFiles = args.length
       .map((f) => path.join(ROLES_DIR, f));
 
 const urls = await collectUrls(roleFiles);
+
+// arXiv papers change between versions, so every arXiv link must pin one (/abs/<id>vN).
+const unpinned = [...urls.entries()].filter(
+  ([url]) =>
+    /arxiv\.org\/(abs|pdf)\//.test(url) &&
+    !/arxiv\.org\/(abs|pdf)\/[\w./-]+v\d+(\.pdf)?\/?$/.test(url),
+);
+for (const [url, where] of unpinned)
+  console.error(
+    `FAIL unpinned arXiv version ${url}\n     used in: ${where.join(", ")}`,
+  );
+
 const entries = [...urls.entries()];
 const results = [];
 for (let i = 0; i < entries.length; i += CONCURRENCY) {
@@ -116,4 +128,6 @@ for (const r of failed)
 console.log(
   `\nChecked ${results.length} URLs: ${results.length - failed.length - warned.length} ok, ${warned.length} blocked-but-exists, ${failed.length} failed.`,
 );
-process.exit(failed.length ? 1 : 0);
+if (unpinned.length)
+  console.error(`${unpinned.length} arXiv link(s) without a pinned version.`);
+process.exit(failed.length || unpinned.length ? 1 : 0);

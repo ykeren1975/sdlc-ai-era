@@ -219,7 +219,7 @@ sources:
   - id: text-to-terraform-security
     title: "Security-First Evaluation of Text-to-Terraform: Benchmarking LLMs and SLMs for Secure IaC Generation"
     publisher: arXiv (Francis Luis Santos Vargas, Rodrigo Brandão Mansilha, Diego Kreutz)
-    url: https://arxiv.org/abs/2608.02672
+    url: https://arxiv.org/abs/2608.02672v1
     published: 2026-08-02
     accessed: 2026-09-14
     type: research

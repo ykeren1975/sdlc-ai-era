@@ -80,7 +80,7 @@ tools:
     sourceIds:
       - snowflake-cortex-analyst-docs
   - tool: databricks-genie
-    useFor: Natural-language questions over Databricks data, with example queries, text snippets and parameterized SQL added by subject matter experts, governed through Unity Catalog.
+    useFor: Natural-language questions over Databricks data, with example queries, text snippets and SQL functions added by subject matter experts, governed through Unity Catalog.
     recommendation: could
   - tool: hex
     useFor: Notebooks with AI assistance for code-based analysis, Threads for business users to ask questions in plain language, and semantic models to govern AI answers.
@@ -174,7 +174,7 @@ sources:
   - id: semantic-layer-paired-benchmark
     title: "Semantic Layers for Reliable LLM-Powered Data Analytics: A Paired Benchmark of Accuracy and Hallucination Across Three Frontier Models"
     publisher: arXiv (Michael Rumiantsau and Ivan Fokeev)
-    url: https://arxiv.org/abs/2604.25149
+    url: https://arxiv.org/abs/2604.25149v1
     published: 2026-04-28
     accessed: 2026-09-14
     type: research
@@ -183,7 +183,7 @@ sources:
   - id: text-to-sql-annotation-errors
     title: Pervasive Annotation Errors Break Text-to-SQL Benchmarks and Leaderboards
     publisher: arXiv (Tengjun Jin, Yoojin Choi, Yuxuan Zhu and Daniel Kang)
-    url: https://arxiv.org/abs/2601.08778
+    url: https://arxiv.org/abs/2601.08778v3
     published: 2026-01-13
     accessed: 2026-09-14
     type: research
@@ -192,7 +192,7 @@ sources:
   - id: elt-bench-verified
     title: "ELT-Bench-Verified: Benchmark Quality Issues Underestimate AI Agent Capabilities"
     publisher: arXiv (Christopher Zanoli, Andrea Giovannini, Tengjun Jin, Ana Klimovic and Yotam Perlitz)
-    url: https://arxiv.org/abs/2603.29399
+    url: https://arxiv.org/abs/2603.29399v2
     published: 2026-03-31
     accessed: 2026-09-14
     type: research
@@ -201,7 +201,7 @@ sources:
   - id: tribal-knowledge-data-agents
     title: Arming Data Agents with Tribal Knowledge
     publisher: arXiv (Shubham Agarwal et al.)
-    url: https://arxiv.org/abs/2602.13521
+    url: https://arxiv.org/abs/2602.13521v2
     published: 2026-02-13
     accessed: 2026-09-14
     type: research

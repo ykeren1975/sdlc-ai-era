@@ -196,7 +196,7 @@ sources:
   - id: codea11y-chi-2025
     title: "CodeA11y: Making AI Coding Assistants Useful for Accessible Web Development"
     publisher: arXiv (Mowar, Peng, Wu, Steinfeld and Bigham; CHI 2025)
-    url: https://arxiv.org/abs/2502.10884
+    url: https://arxiv.org/abs/2502.10884v1
     published: 2025-02-15
     accessed: 2026-09-14
     type: research

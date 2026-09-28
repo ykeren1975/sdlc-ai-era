@@ -146,7 +146,7 @@ sources:
   - id: ai4re-practitioner-survey-2025
     title: "AI for Requirements Engineering: Industry adoption and Practitioner perspectives"
     publisher: arXiv (Rani, Berntsson Svensson, Feldt; ISE 2025 workshop at ASE 2025)
-    url: https://arxiv.org/abs/2511.01324
+    url: https://arxiv.org/abs/2511.01324v3
     published: 2025-11-03
     accessed: 2026-09-14
     type: research
@@ -155,7 +155,7 @@ sources:
   - id: llm-stakeholder-revisions-2026
     title: "Supporting Stakeholder Requirements Expression with LLM Revisions: An Empirical Evaluation"
     publisher: arXiv (Mircea, Gevrek, Schmid, Schneider; REFSQ 2026)
-    url: https://arxiv.org/abs/2601.16699
+    url: https://arxiv.org/abs/2601.16699v1
     published: 2026-01-23
     accessed: 2026-09-14
     type: research
@@ -163,7 +163,7 @@ sources:
   - id: llm-user-stories-2025
     title: Can LLMs Generate User Stories and Assess Their Quality?
     publisher: arXiv (Quattrocchi, Pasquale, Spoletini, Baresi)
-    url: https://arxiv.org/abs/2507.15157
+    url: https://arxiv.org/abs/2507.15157v1
     published: 2025-07-20
     accessed: 2026-09-14
     type: research
@@ -189,7 +189,7 @@ sources:
   - id: genai-re-slr
     title: "Generative AI for Requirements Engineering: A Systematic Literature Review"
     publisher: arXiv (Cheng et al.)
-    url: https://arxiv.org/abs/2409.06741
+    url: https://arxiv.org/abs/2409.06741v3
     published: 2025-10-14
     accessed: 2026-09-14
     type: research

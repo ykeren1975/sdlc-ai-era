@@ -19,20 +19,20 @@
   lastVerified: 2026-09-14
 - id: cursor
   name: Cursor
-  vendor: Anysphere
+  vendor: Anysphere (part of SpaceX)
   url: https://cursor.com/
   category: ai-coding-assistant
   description: AI code editor with tab completion, coding agents and Bugbot pull request review.
   status: active
-  lastVerified: 2026-09-14
+  lastVerified: 2026-09-28
 - id: gemini-cli
   name: Gemini CLI
   vendor: Google
   url: https://github.com/google-gemini/gemini-cli
   category: ai-agent
-  description: Open-source terminal AI agent using Gemini models to query codebases and automate tasks, with a free usage tier.
+  description: Open-source terminal AI agent using Gemini models. Free use ended June 18, 2026 (moved to Antigravity CLI); needs Code Assist, Google Cloud or a paid API key.
   status: active
-  lastVerified: 2026-09-14
+  lastVerified: 2026-09-28
 - id: spec-kit
   name: Spec Kit
   vendor: GitHub
@@ -78,11 +78,11 @@
 - id: microsoft-365-copilot
   name: Microsoft 365 Copilot
   vendor: Microsoft
-  url: https://www.microsoft.com/en-us/microsoft-365-copilot
+  url: https://www.microsoft.com/en-us/copilot
   category: ai-chat-assistant
   description: AI assistant across Microsoft 365 apps, with chat, agents, drafting in Word and Excel, and AI meeting recaps in Teams.
   status: active
-  lastVerified: 2026-09-14
+  lastVerified: 2026-09-28
 
 # Collaboration, requirements and process
 - id: atlassian-rovo
@@ -298,13 +298,13 @@
   status: active
   lastVerified: 2026-09-14
 - id: databricks-genie
-  name: Genie
+  name: Genie Agents
   vendor: Databricks
-  url: https://www.databricks.com/product/business-intelligence/genie
+  url: https://www.databricks.com/product/genie/agents
   category: data-and-analytics
-  description: Conversational analytics in Databricks where users ask data questions in natural language, tuned by subject matter experts and governed through Unity Catalog.
+  description: "Conversational analytics in Databricks: natural-language data questions to domain agents curated by subject matter experts, governed through Unity Catalog."
   status: active
-  lastVerified: 2026-09-14
+  lastVerified: 2026-09-28
 - id: hex
   name: Hex
   vendor: Hex Technologies
@@ -357,12 +357,12 @@
   lastVerified: 2026-09-14
 - id: dx
   name: DX
-  vendor: DX
+  vendor: DX (Atlassian)
   url: https://getdx.com/
   category: data-and-analytics
   description: Engineering intelligence platform that measures developer productivity and experience, and tracks AI-generated code by team, agent and repo.
   status: active
-  lastVerified: 2026-09-14
+  lastVerified: 2026-09-28
 - id: linearb
   name: LinearB
   vendor: LinearB
