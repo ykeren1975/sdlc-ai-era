@@ -58,13 +58,12 @@ shifts:
       - apm-ai-survey-2025
   - phase: build
     activity: Communicating with stakeholders
-    headline: "Jira's agent drafts updates per audience; Capterra says AI can't build trust"
+    headline: Jira's agent drafts delivery updates for different audiences
     traditional: Project managers tailored updates for sponsors, steering groups and delivery teams, and handled alignment, negotiation and conflict in conversation.
-    aiEra: Jira Delivery Agent produces delivery artefacts for different audiences, including team stand-ups and executive summaries. In APM's 2025 survey, stakeholder communications was cited by 43% of project professionals using AI who had seen a benefit. Capterra, which surveyed 2,545 management-level respondents responsible for project management software decisions in 11 countries in July 2025, writes that AI "can't build trust or resolve conflict". In that survey, 60% of PMs said they had increased their use of emotional intelligence since adopting AI.
+    aiEra: Jira Delivery Agent produces delivery artefacts for different audiences, including team stand-ups and executive summaries. In APM's 2025 survey, stakeholder communications was cited by 43% of project professionals using AI who had seen a benefit.
     sourceIds:
       - atlassian-jira-delivery-agent
       - apm-ai-survey-2025
-      - capterra-pm-trends-2025
 tools:
   - tool: microsoft-365-copilot
     useFor: Summarising Teams meetings, including who spoke and what they said, with suggested action items. With a Copilot license, Planner Agent generates status reports from a plan's current state of work.
@@ -105,9 +104,9 @@ skills:
     - Manually sweeping the tracker for stalled work
     - Building spreadsheet formulas and dashboards by hand
 risks:
-  - headline: AI output can be wrong or expose data, and a UK government trial required human oversight
+  - headline: AI output can be wrong and raises privacy concerns; a UK trial required human oversight
     highlight: true
-    text: AI output can be wrong or expose data. Among project professionals using AI in APM's 2025 survey, 44% cited security or data privacy and 41% inaccuracy or untrustworthiness of using AI at work as concerns. The UK government's late-2024 Copilot trial concluded that human oversight was required at all times.
+    text: AI output can be wrong, and it raises security and privacy concerns. In APM's 2025 survey, some project professionals using AI named security or data privacy, and inaccuracy or untrustworthiness of using AI at work, among the concerns they had encountered. The UK government's late-2024 Copilot trial concluded that human oversight was required at all times.
     sourceIds:
       - apm-ai-survey-2025
       - ukgov-m365-copilot-experiment
@@ -120,10 +119,10 @@ risks:
     sourceIds:
       - microsoft-planner-agent-faq
       - atlassian-jira-delivery-agent
-  - headline: Buying AI features is not the same as using them well, Capterra's survey suggests
-    text: Buying AI features is not the same as using them well. In Capterra's 2025 survey, 41% of respondents cited AI adoption issues as their top software challenge, driven by skill gaps, poor onboarding and workflow misalignment.
+  - headline: Faster tech and tool cycles can add complexity, nearly half in PMI's survey say
+    text: Faster tech and tool cycles can add complexity. In PMI's 2026 Pulse of the Profession survey, nearly half of project professionals (48%) pointed to faster tech and tool cycles as a key complexity driver. PMI writes that leaders often frame the AI moment as an external disruption, while project teams experience it as internal execution strain.
     sourceIds:
-      - capterra-pm-trends-2025
+      - pmi-pulse-2026
 first30Days:
   - Check your organisation's AI policy for which tools you may use, and whether meeting transcripts and project data may go into them.
   - Generate one status report with an AI feature in the tool your team already uses, compare it with the report you would have written, and note what it got wrong or left out.
@@ -150,7 +149,7 @@ sources:
     accessed: 2026-09-14
     type: survey
     vendorAffiliated: false
-    quote: Task and schedule automation – 50% of project professionals using AI who have seen a benefit
+    quote: "Task and schedule automation – 50% of project professionals using AI who have seen a benefit Recourse allocation – 50% Risk analysis and forecasting – 50% Reporting and dashboarding – 49% Stakeholder communications – 43%"
   - id: apm-ai-embedded-2026
     title: AI becomes increasingly embedded in project delivery, new APM research reveals
     publisher: Association for Project Management (APM)
@@ -160,15 +159,15 @@ sources:
     type: survey
     vendorAffiliated: false
     quote: "Findings from the research show that over a quarter (27%) of project professionals across industry sectors say that AI is fully embedded into their workflows and is used to support a wide range of activities including:"
-  - id: capterra-pm-trends-2025
-    title: "AI in Project Management: 2025 Software Trends Report"
-    publisher: Capterra (Olivia Montgomery and Caroline Rousseau)
-    url: https://www.capterra.com/resources/2025-pm-software-trends/
-    published: 2025-09-04
-    accessed: 2026-09-14
+  - id: pmi-pulse-2026
+    title: "Why Complex Projects Fail: Best Practices Are Not Enough, System Thinking Gives Your Team the Edge"
+    publisher: Project Management Institute (PMI)
+    url: https://www.pmi.org/about/press-media/2026/pulse-why-complex-projects-fail-best-practices-are-not-enough-system-thinking
+    published: 2026-05-12
+    accessed: 2026-09-28
     type: survey
-    vendorAffiliated: true
-    quote: AI can generate plans, but it can't build trust or resolve conflict. That's why 60% of PMs say they've increased their use of emotional intelligence (EI) since adopting AI.
+    vendorAffiliated: false
+    quote: "The AI boom, more than anything, is intensifying this environment: CEOs cite AI and automation as the leading driver of operating-model change (72%), while nearly half of project professionals (48%) point to faster tech and tool cycles as a key complexity driver—turning ‘AI transformation’ into an execution stress test."
   - id: ukgov-m365-copilot-experiment
     title: "Microsoft 365 Copilot Experiment: Cross-Government Findings Report"
     publisher: GOV.UK
