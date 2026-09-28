@@ -147,7 +147,7 @@ sources:
     title: "AI for Requirements Engineering: Industry adoption and Practitioner perspectives"
     publisher: arXiv (Rani, Berntsson Svensson, Feldt; ISE 2025 workshop at ASE 2025)
     url: https://arxiv.org/abs/2511.01324v3
-    published: 2025-11-03
+    published: 2025-11-05
     accessed: 2026-09-14
     type: research
     vendorAffiliated: false

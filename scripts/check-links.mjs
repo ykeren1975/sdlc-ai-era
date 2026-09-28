@@ -104,6 +104,41 @@ for (const [url, where] of unpinned)
     `FAIL unpinned arXiv version ${url}\n     used in: ${where.join(", ")}`,
   );
 
+// A pinned arXiv source is dated by the version it links to, not v1.
+const MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ");
+async function arxivVersionDate(url) {
+  const version = url.match(/v(\d+)(\.pdf)?\/?$/)[1];
+  const absUrl = url.replace("/pdf/", "/abs/").replace(/\.pdf$/, "");
+  const html = await (await request(absUrl, "GET")).text();
+  const m = html
+    .replace(/<[^>]+>/g, " ")
+    .match(
+      new RegExp(`\\[v${version}\\]\\s*\\w{3}, (\\d{1,2}) (\\w{3}) (\\d{4})`),
+    );
+  if (!m) return null;
+  const month = String(MONTHS.indexOf(m[2]) + 1).padStart(2, "0");
+  return `${m[3]}-${month}-${m[1].padStart(2, "0")}`;
+}
+const misdated = [];
+for (const file of roleFiles) {
+  const data = await frontmatter(file);
+  for (const s of data.sources ?? []) {
+    if (!/arxiv\.org\/(abs|pdf)\/[\w./-]+v\d+(\.pdf)?\/?$/.test(s.url))
+      continue;
+    const published =
+      s.published instanceof Date
+        ? s.published.toISOString().slice(0, 10)
+        : String(s.published ?? "");
+    const versionDate = await arxivVersionDate(s.url);
+    if (versionDate !== published) {
+      misdated.push(s.url);
+      console.error(
+        `FAIL arXiv date ${s.url}: published ${published || "(none)"}, but that version is dated ${versionDate ?? "(not found on the page)"}\n     used in: ${path.basename(file)} → source ${s.id}`,
+      );
+    }
+  }
+}
+
 const entries = [...urls.entries()];
 const results = [];
 for (let i = 0; i < entries.length; i += CONCURRENCY) {
@@ -130,4 +165,8 @@ console.log(
 );
 if (unpinned.length)
   console.error(`${unpinned.length} arXiv link(s) without a pinned version.`);
-process.exit(failed.length || unpinned.length ? 1 : 0);
+if (misdated.length)
+  console.error(
+    `${misdated.length} arXiv source(s) dated differently from their pinned version.`,
+  );
+process.exit(failed.length || unpinned.length || misdated.length ? 1 : 0);

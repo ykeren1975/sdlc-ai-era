@@ -4,7 +4,7 @@ order: 90
 icon: database
 summary: AI tools draft SQL and pipeline code and answer business questions in plain language. The job shifts toward defining business meaning, testing AI output and checking numbers before they reach stakeholders.
 tagline: AI drafts the SQL; you define meaning and check the numbers
-lastReviewed: 2026-09-14
+lastReviewed: 2026-09-28
 sdlcPhases:
   - design
   - build
@@ -32,28 +32,29 @@ shifts:
     activity: Testing and monitoring pipelines
     headline: "In dbt's survey, validation investment isn't keeping pace with AI output"
     traditional: Teams added data tests and monitoring to pipelines and investigated failures when a check or a stakeholder flagged bad data.
-    aiEra: In dbt Labs' 2026 survey, only 24% prioritise AI-assisted pipeline management, including testing, observability and quality controls. The report says AI is scaling engineering throughput and stakeholder-facing outputs, but investment in validation, testing and governance mechanisms isn't scaling at the same rate. 71% of respondents are concerned about hallucinated or incorrect data reaching stakeholders.
+    aiEra: In dbt Labs' 2026 survey, only 24% prioritise AI-assisted pipeline management, including testing, observability and quality controls. The report says AI is scaling engineering throughput and stakeholder-facing outputs, but investment in validation, testing and governance mechanisms isn't scaling at the same rate. A significant majority of respondents are concerned about hallucinated or incorrect data reaching stakeholders.
     sourceIds:
       - dbt-state-of-analytics-engineering-2026
   - phase: operate
     activity: Answering business questions
-    headline: Check AI-generated SQL that might run fine yet return wrong results
+    headline: AI-generated SQL might run fine yet return wrong results
     takeaway: Generated SQL can run fine yet return wrong results
     highlight: true
     traditional: Business users sent questions to analysts, who found the right tables, wrote the SQL and returned a number, chart or dashboard.
-    aiEra: With text-to-SQL, a language model generates the SQL from the question. dbt Labs notes that the model might join tables incorrectly, misinterpret a column's meaning, or produce a query that runs successfully but returns wrong results. A 2026 research paper argues that NL2SQL agents still make mistakes on large-scale real-world databases because they lack knowledge of how to use the underlying data, such as the intent of each column, and form misconceptions about the data when querying it.
+    aiEra: "With text-to-SQL, a language model generates the SQL from the question. dbt Labs notes that the model might join tables incorrectly, misinterpret a column's meaning, or produce a query that runs successfully but returns wrong results. A 2026 research paper argues that NL2SQL agents still make mistakes on large-scale real-world databases because they lack knowledge of how to use the underlying data, such as the intent of each column, and form misconceptions about the data when querying it. In a small NYU study (a preprint; 20 SQL-literate professionals and graduate students, using a GPT-4o-backed tool in spring 2025), the natural-language interface reallocated the work of querying rather than removing it: users still had to verify the generated SQL."
     sourceIds:
       - dbt-semantic-layer-vs-text-to-sql-2026
       - tribal-knowledge-data-agents
+      - nyu-nlidb-sql-users
   - phase: design
     activity: Defining metrics and business meaning
-    headline: Write down business definitions, which can improve AI query accuracy
-    takeaway: Written business definitions can improve AI accuracy
+    headline: In dbt's benchmark, added modeling helped both semantic layer and text-to-SQL
+    takeaway: Better data modeling can help AI answer more questions
     highlight: true
     traditional: Analytics engineers defined metrics and business logic in data models, BI tools and documentation so that reports used the same definitions.
-    aiEra: A 2026 preprint (not peer reviewed) tested Claude Opus 4.7, Claude Sonnet 4.6 and GPT-5.4 single-shot on 100 questions over one retail dataset. Adding a 4 KB hand-written document describing measures, conventions and disambiguation rules improved accuracy by 17 to 23 percentage points, to 67.7–68.7%. In dbt Labs' own 2026 benchmark update (11 questions, each run 20 times), adding three models let its Semantic Layer cover every question on its single ACME Insurance dataset, and text-to-SQL improved too. Snowflake's documentation says schemas lack knowledge like business process definitions and metrics handling, and Cortex Analyst uses a semantic model to bridge that gap.
+    aiEra: A 2026 research paper argues that NL2SQL agents make mistakes on large real-world databases partly because they lack knowledge of how to use the data, such as the intent of each column. In dbt Labs' own 2026 benchmark update (11 questions, each run 20 times), adding three models let its Semantic Layer cover every question on its single ACME Insurance dataset, and text-to-SQL improved too. Snowflake's documentation says schemas lack knowledge like business process definitions and metrics handling, and Cortex Analyst uses a semantic model to bridge that gap.
     sourceIds:
-      - semantic-layer-paired-benchmark
+      - tribal-knowledge-data-agents
       - dbt-semantic-layer-vs-text-to-sql-2026
       - snowflake-cortex-analyst-docs
   - phase: test
@@ -121,11 +122,11 @@ risks:
     sourceIds:
       - text-to-sql-annotation-errors
   - headline: Output can grow faster than checking, dbt Labs' survey suggests
-    text: Output can grow faster than checking. In dbt Labs' 2026 survey, 72% prioritise AI-assisted coding but only 24% prioritise AI-assisted pipeline management, and 71% are concerned about hallucinated or incorrect data reaching stakeholders.
+    text: Output can grow faster than checking. In dbt Labs' 2026 survey, 72% prioritise AI-assisted coding but only 24% prioritise AI-assisted pipeline management, and a significant majority are concerned about hallucinated or incorrect data reaching stakeholders.
     sourceIds:
       - dbt-state-of-analytics-engineering-2026
   - headline: Sensitive data can end up in AI tools, a concern raised in dbt Labs' survey
-    text: Sensitive data can end up in AI tools. In dbt Labs' survey, practitioners showed a 7-percentage-point higher level of concern than leaders about exposing sensitive data to LLMs.
+    text: Sensitive data can end up in AI tools. In dbt Labs' survey, practitioners showed a higher level of concern than leaders about exposing sensitive data to LLMs.
     sourceIds:
       - dbt-state-of-analytics-engineering-2026
 first30Days:
@@ -161,7 +162,7 @@ sources:
     accessed: 2026-09-14
     type: survey
     vendorAffiliated: true
-    quote: "82% of you use AI tools daily or more. Only 3.7% find them unhelpful. But organizational adoption lags way behind."
+    quote: "82% of you use AI tools daily or more. Only 3.7% find them unhelpful. But organizational adoption lags way behind. 64% are still experimenting or using AI for tactical tasks only."
   - id: dbt-semantic-layer-vs-text-to-sql-2026
     title: "Semantic Layer vs. Text-to-SQL: 2026 Benchmark Update"
     publisher: dbt Labs (Jason Ganz and Benoit Perigaud)
@@ -171,29 +172,29 @@ sources:
     type: vendor
     vendorAffiliated: true
     quote: With text-to-SQL, failure looks like a plausible but incorrect answer.
-  - id: semantic-layer-paired-benchmark
-    title: "Semantic Layers for Reliable LLM-Powered Data Analytics: A Paired Benchmark of Accuracy and Hallucination Across Three Frontier Models"
-    publisher: arXiv (Michael Rumiantsau and Ivan Fokeev)
-    url: https://arxiv.org/abs/2604.25149v1
-    published: 2026-04-28
-    accessed: 2026-09-14
+  - id: nyu-nlidb-sql-users
+    title: "Natural Language Interfaces for Databases: What Changes for SQL-Literate Users?"
+    publisher: arXiv (Panos Ipeirotis and Haotian Zheng, New York University)
+    url: https://arxiv.org/abs/2511.14718v3
+    published: 2026-07-26
+    accessed: 2026-09-28
     type: research
-    vendorAffiliated: true
-    quote: Adding the document improves accuracy by +17 to +23 percentage points across all three models.
+    vendorAffiliated: false
+    quote: "The interface reallocated the work of querying rather than removing it: users still had to verify the generated SQL, and an NLIDB that hid it would remove the step that let them trust the answer."
   - id: text-to-sql-annotation-errors
     title: Pervasive Annotation Errors Break Text-to-SQL Benchmarks and Leaderboards
     publisher: arXiv (Tengjun Jin, Yoojin Choi, Yuxuan Zhu and Daniel Kang)
     url: https://arxiv.org/abs/2601.08778v3
-    published: 2026-01-13
+    published: 2026-01-19
     accessed: 2026-09-14
     type: research
     vendorAffiliated: false
-    quote: Through expert analysis, we show that BIRD Mini-Dev and Spider 2.0-Snow have error rates of 52.8% and 62.8%, respectively.
+    quote: "Through expert analysis, we show that BIRD Mini-Dev and Spider 2.0-Snow have error rates of 52.8% and 62.8%, respectively. We re-evaluate all 16 open-source agents from the BIRD leaderboard on both the original and the corrected BIRD Dev subsets. We show that performance changes range from -7% to 31% (in relative terms) and rank changes range from -9 to +9 positions."
   - id: elt-bench-verified
     title: "ELT-Bench-Verified: Benchmark Quality Issues Underestimate AI Agent Capabilities"
     publisher: arXiv (Christopher Zanoli, Andrea Giovannini, Tengjun Jin, Ana Klimovic and Yotam Perlitz)
     url: https://arxiv.org/abs/2603.29399v2
-    published: 2026-03-31
+    published: 2026-04-02
     accessed: 2026-09-14
     type: research
     vendorAffiliated: false
@@ -202,7 +203,7 @@ sources:
     title: Arming Data Agents with Tribal Knowledge
     publisher: arXiv (Shubham Agarwal et al.)
     url: https://arxiv.org/abs/2602.13521v2
-    published: 2026-02-13
+    published: 2026-02-17
     accessed: 2026-09-14
     type: research
     vendorAffiliated: false
