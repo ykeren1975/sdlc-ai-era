@@ -4,7 +4,7 @@ order: 100
 icon: chart-gantt
 summary: AI tools draft status reports, meeting summaries and risk flags from plan and tracker data. Checking those drafts, deciding what to escalate and keeping stakeholders aligned stay with the project manager.
 tagline: AI drafts reports and risk flags; you check, escalate and align
-lastReviewed: 2026-09-14
+lastReviewed: 2026-09-28
 sdlcPhases:
   - plan
   - build

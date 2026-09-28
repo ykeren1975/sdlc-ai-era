@@ -4,7 +4,7 @@ order: 110
 icon: refresh-cw
 summary: AI takes on drafting and retro prep, and agents raise questions about cadence and accountability. Facilitating how the team uses AI, keeping humans accountable and protecting quality become core work.
 tagline: Facilitate how the team uses AI and keep humans accountable
-lastReviewed: 2026-09-14
+lastReviewed: 2026-09-28
 sdlcPhases:
   - plan
   - requirements
