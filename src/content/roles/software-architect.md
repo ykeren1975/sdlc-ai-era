@@ -36,7 +36,7 @@ shifts:
       - infoq-architecture-trends-2025
   - phase: design
     activity: Deciding how AI agents connect to other systems
-    headline: "Thoughtworks: don't default to MCP; a good CLI often gives agents what they need"
+    headline: "Thoughtworks: don't default to MCP; a good CLI often meets agents' needs"
     traditional: Architects chose integration styles such as APIs, messaging or command-line tools, weighing interoperability against the complexity each layer adds.
     aiEra: Thoughtworks' Technology Radar (Vol. 34, April 2026) cautions against using the Model Context Protocol (MCP) by default. It says MCP adds real value for structured tool contracts, OAuth-based authentication boundaries and governed multi-tenant access, but a well-designed CLI with good help output, structured JSON responses and predictable error handling often gives agents what they need. Teams should first ask whether their system actually requires protocol-level interoperability.
     sourceIds:
@@ -62,7 +62,7 @@ shifts:
       - thoughtworks-radar-architecture-drift
   - phase: plan
     activity: Understanding a legacy system before modernising it
-    headline: "Thoughtworks: use AI to surface business rules and dependencies in legacy code"
+    headline: "Thoughtworks: use AI to surface rules and dependencies in legacy code"
     traditional: Architects reverse-engineered legacy systems by reading code, tracing dependencies and interviewing the few people who still knew how they worked.
     aiEra: Thoughtworks moved "using GenAI to understand legacy codebases" to Adopt in Radar Vol. 33 (November 2025), saying its experience across multiple clients shows this is now a practical default rather than an experiment. Tools it names, including Cursor, Claude Code and Copilot, help developers surface business rules, summarise logic and identify dependencies.
     sourceIds:
