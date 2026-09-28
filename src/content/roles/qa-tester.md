@@ -4,7 +4,7 @@ order: 60
 icon: flask-conical
 summary: AI tools can draft test cases, generate and repair automation, and run exploratory sessions. The tester directs and checks that work, and tests AI features that have no single right answer.
 tagline: AI can draft and repair tests; testers direct and check the work
-lastReviewed: 2026-09-14
+lastReviewed: 2026-09-28
 sdlcPhases:
   - plan
   - requirements
@@ -13,19 +13,19 @@ sdlcPhases:
 shifts:
   - phase: requirements
     activity: Test analysis and test case design
-    headline: Prompt AI for test analysis and design, now an ISTQB-certified skill
+    headline: ISTQB now certifies prompt engineering for test analysis and design
     takeaway: Prompting AI for test design is a certified skill
     highlight: true
     traditional: Testers read requirements and user stories, identified test conditions and wrote test cases by hand, often in a test management tool.
-    aiEra: Since July 2025, ISTQB certifies testers in applying prompt engineering to test analysis, design, automation and reporting. One Ministry of Testing author treats AI output "as a starting signal rather than a final answer". In the World Quality Report 2025-26, test case design and requirements refinement lead generative AI adoption in quality engineering, and in PractiTest's 2026 State of Testing report, 70% use AI for test case creation.
+    aiEra: Since July 2025, ISTQB certifies testers in applying prompt engineering to test analysis, design, automation and reporting. One Ministry of Testing author treats AI output "as a starting signal rather than a final answer". In a 2025 interview study of 15 software testers, LLMs were used mainly for test case design, automation and learning, and in PractiTest's 2026 State of Testing report, 70% use AI for test case creation.
     sourceIds:
       - istqb-ct-genai
       - mot-back-to-basics
-      - wqr-2025-26
+      - testers-llm-interviews
       - practitest-sot-2026
   - phase: build
     activity: Writing UI test automation
-    headline: Give Playwright's agents a request and seed test; they plan and write tests
+    headline: Playwright's agents plan and write tests from a request and a seed test
     takeaway: Tests can be planned and written by Playwright's agents
     highlight: true
     traditional: Automation engineers hand-coded browser tests in frameworks such as Selenium or Playwright, finding locators and writing assertions step by step.
@@ -34,11 +34,11 @@ shifts:
       - playwright-test-agents
   - phase: test
     activity: Maintaining broken and brittle tests
-    headline: Let Playwright's healer suggest fixes for failing tests and re-run them
+    headline: Playwright's healer suggests a patch and re-runs the failing test
     takeaway: Playwright's healer suggests fixes and re-runs failing tests
     highlight: true
     traditional: When the UI changed, engineers debugged failing tests and updated locators, waits and test data by hand.
-    aiEra: Playwright's healer agent replays the failing steps, inspects the current UI for equivalent elements and suggests a patch such as a locator update, wait adjustment or data fix, then re-runs the test. The outcome is a passing test or, if the agent believes the functionality is broken, a skipped test. Script maintenance is a common AI use among State of Testing respondents.
+    aiEra: Playwright's healer agent replays the failing steps, inspects the current UI for equivalent elements and suggests a patch such as a locator update, wait adjustment or data fix, then re-runs the test. The outcome is a passing test or, if the agent believes the functionality is broken, a skipped test. Script maintenance is a common AI use in PractiTest's 2026 report.
     sourceIds:
       - playwright-test-agents
       - practitest-sot-2026
@@ -51,14 +51,14 @@ shifts:
       - akehurst-ryan-exploratory-ai
   - phase: test
     activity: Checking tests written alongside AI-generated code
-    headline: When an agent writes the code, watch for disabled or deleted tests
+    headline: Kent Beck watches for agents disabling or deleting tests as a warning sign
     traditional: Developers and testers wrote tests themselves, and a passing suite was treated as evidence that the code behaved as intended.
     aiEra: When a coding agent writes the code, the tests need watching too. Kent Beck treats "any indication that the genie was cheating, for example by disabling or deleting tests" as a warning sign, and instructs his agent to always follow the TDD cycle of red, green, refactor.
     sourceIds:
       - beck-augmented-coding
   - phase: test
     activity: Testing features built on large language models
-    headline: Test LLM features with structured evals; the same input can vary in output
+    headline: OpenAI recommends structured evals; the same input can give different output
     traditional: Test cases compared actual output with a single expected result, on the assumption that the same input gives the same output.
     aiEra: Generative AI can produce different output from the same input, which makes traditional software testing methods insufficient. OpenAI's guidance recommends structured evals, combining metrics with human judgement, validating an LLM judge against human labels, and running evals on every change.
     sourceIds:
@@ -67,7 +67,7 @@ shifts:
     activity: Test planning and reporting
     headline: One author uses AI to draft test plans and summaries, not risk assessment
     traditional: Test leads wrote test plans, status updates and summary reports by hand from notes, logs and defect data.
-    aiEra: One Ministry of Testing author uses AI to turn rough notes into structured test plans and to summarise test results, defects and feedback for stakeholders, but advises avoiding it for risk assessment, test analysis and the first version of a test strategy. In PractiTest's 2026 survey, far fewer respondents use AI for risk identification than for test case creation.
+    aiEra: One Ministry of Testing author uses AI to turn rough notes into structured test plans and to summarise test results, defects and feedback for stakeholders, but advises avoiding it for risk assessment, test analysis and the first version of a test strategy. In PractiTest's 2026 report, far fewer use AI for risk identification than for test case creation.
     sourceIds:
       - mot-back-to-basics
       - practitest-sot-2026
@@ -120,10 +120,10 @@ risks:
     sourceIds:
       - playwright-test-agents
       - beck-augmented-coding
-  - headline: Hallucination, reliability and privacy are among top reported GenAI challenges in testing
-    text: Hallucination, reliability and data privacy are among the top challenges respondents report with generative AI in quality engineering. ISTQB's CT-GenAI certification covers identifying and mitigating hallucinations, biases and data privacy concerns.
+  - headline: Hallucination and test-data confidentiality risks recur, testers told one study
+    text: Hallucination and test-data confidentiality risks recur for testers. In a 2025 interview study of 15 software testers, the most recurrent issues were accuracy and hallucination in generated artifacts, confidentiality risks in test data, limited prompting proficiency, over-reliance on automated reasoning and organisational resistance to tool integration. ISTQB's CT-GenAI certification covers identifying and mitigating hallucinations, biases and data privacy concerns.
     sourceIds:
-      - wqr-2025-26
+      - testers-llm-interviews
       - istqb-ct-genai
   - headline: AI use in testing leans towards producing scripts rather than finding risk
     text: AI use in testing leans towards producing scripts rather than finding risk. In PractiTest's 2026 State of Testing report, 70% use AI for test case creation and only 19.9% for risk identification.
@@ -149,15 +149,15 @@ starterSkills:
   - agent-test-change-audit
   - llm-feature-eval-plan
 sources:
-  - id: wqr-2025-26
-    title: "World Quality Report 2025: AI adoption surges in Quality Engineering, but enterprise-level scaling remains elusive"
-    publisher: Capgemini
-    url: https://www.capgemini.com/news/press-releases/world-quality-report-2025-ai-adoption-surges-in-quality-engineering-but-enterprise-level-scaling-remains-elusive/
-    published: 2025-11-13
-    accessed: 2026-09-14
-    type: survey
-    vendorAffiliated: true
-    quote: Top challenges experienced by respondents include integration complexity (64%), data privacy risks (67%), and hallucination and reliability concerns (60%)
+  - id: testers-llm-interviews
+    title: "Software Testing with Large Language Models: An Interview Study with Practitioners"
+    publisher: arXiv (Deolinda Santana, Cleyton Magalhaes and Ronnie de Souza Santos)
+    url: https://arxiv.org/abs/2510.17164v1
+    published: 2025-10-20
+    accessed: 2026-09-28
+    type: research
+    vendorAffiliated: false
+    quote: The most recurrent issues include accuracy and hallucination in generated artifacts, confidentiality risks in test data, limited prompting proficiency, over-reliance on automated reasoning, and organizational resistance to tool integration.
   - id: practitest-sot-2026
     title: The 2026 State of Testing Report
     publisher: PractiTest
