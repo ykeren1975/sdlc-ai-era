@@ -77,12 +77,12 @@ shifts:
       - scrum-expansion-ai
   - phase: plan
     activity: Coaching AI adoption across teams
-    headline: "Most surveyed agile practitioners use AI, but few had formal training"
+    headline: In one study, interviews and AI training created new forums to share knowledge
     traditional: The Scrum Master led, trained and coached the organisation in its Scrum adoption, and advised on Scrum implementations.
-    aiEra: Digital.ai's 18th State of Agile survey (published October 2025), of nearly 350 participants who were primarily agile coaches and consultants at enterprises with over 20,000 employees, found AI adoption rose from 68% to 84%, with 41% implementing tools in a coordinated way across teams. In Wolpers' survey, 83% use AI tools, but 55% spend 10% or less of their work time with AI, and only 15% have had any formal training on using AI in agile contexts.
+    aiEra: "In one study of three agile teams at one large consulting firm (October 2023 to November 2024), interviews run jointly with Microsoft specialists and a two-hour workshop on using GitHub Copilot created new formal (retrospectives) and informal (stand-ups, Teams calls) forums for knowledge exchange. Qualitative feedback suggested that GenAI shifted collaboration from co-writing code towards review and integration. The authors note these teams may have been early adopters. In Wolpers' survey, 83% use AI tools, but 55% spend 10% or less of their work time with AI, and only 15% have had any formal training on using AI in agile contexts."
     sourceIds:
       - scrum-guide-2020
-      - digital-ai-state-of-agile-18
+      - tomaz-genai-agile-teams
       - ai4agile-report-2026
 tools:
   - tool: miro
@@ -133,10 +133,6 @@ risks:
     sourceIds:
       - scrum-expansion-ai
       - dora-small-batches
-  - headline: Adoption can run ahead of oversight, with many lacking guardrails in Digital.ai's survey
-    text: Adoption can run ahead of oversight. Digital.ai's survey, primarily of agile coaches and consultants at large enterprises, found only 49% have governance guardrails in place.
-    sourceIds:
-      - digital-ai-state-of-agile-18
   - headline: Retrospective input may leave your tools, as Parabol's AI summaries send it to OpenAI
     text: Retrospective input may leave your tools. Parabol's AI summaries send reflections, comments and tasks to OpenAI to produce a summary; Parabol says it has asked OpenAI to exclude its data from model training. Check your data policy before switching on AI features in facilitation tools.
     sourceIds:
@@ -164,12 +160,12 @@ sources:
   - id: scrum-expansion-ai
     title: AI and Scrum (Scrum Guide Expansion Pack, v2026.1)
     publisher: Scrum Guide Expansion Pack (Ralph Jocham and Jeff Sutherland)
-    url: https://scrumexpansion.org/ai-and-scrum/
+    url: https://scrumexpansion.org/ai-and-scrum/2026.1/
     published: 2026-01-18
     accessed: 2026-09-14
     type: official
     vendorAffiliated: false
-    quote: They also keep an eye on over-reliance or under-utilization – for example, if one team member becomes the 'AI guru' and others disengage, the Scrum Master might encourage knowledge sharing or pair programming with AI to spread skills.
+    quote: They also keep an eye on over-reliance or under-utilization – for example, if one team member becomes the “AI guru” and others disengage, the Scrum Master might encourage knowledge sharing or pair programming with AI to spread skills.
   - id: scrum-guide-2020
     title: The 2020 Scrum Guide
     publisher: Ken Schwaber and Jeff Sutherland
@@ -186,16 +182,16 @@ sources:
     accessed: 2026-09-14
     type: survey
     vendorAffiliated: true
-    quote: "83% of respondents use AI tools. That number sounds impressive until you look closer: 55% spend 10% or less of their work time with AI."
-  - id: digital-ai-state-of-agile-18
-    title: "Digital.ai's 18th State of Agile Report Marks the Start of the Fourth Wave of Software Delivery: AI Is Transforming Agile from a Team Practice into an Enterprise-Wide Advantage"
-    publisher: Digital.ai
-    url: https://digital.ai/press-releases/digital-ais-18th-state-of-agile-report-marks-the-start-of-the-fourth-wave-of-software-delivery/
-    published: 2025-10-28
-    accessed: 2026-09-14
-    type: survey
-    vendorAffiliated: true
-    quote: Yet only 49% have governance guardrails in place, creating risk as automation advances faster than oversight.
+    quote: "83% of respondents use AI tools. That number sounds impressive until you look closer: 55% spend 10% or less of their work time with AI. Only 9% exceed 25%. And just 15% have received any formal training on using AI in Agile contexts."
+  - id: tomaz-genai-agile-teams
+    title: "Impacts of Generative AI on Agile Teams' Productivity: A Multi-Case Longitudinal Study"
+    publisher: arXiv (Tomaz, Guenes, Araújo, Baldassarre and Kalinowski; accepted at FORGE 2026)
+    url: https://arxiv.org/abs/2602.13766v1
+    published: 2026-02-14
+    accessed: 2026-09-28
+    type: research
+    vendorAffiliated: false
+    quote: These interventions had a positive impact by creating new formal (retrospectives) and informal (stand-ups, Microsoft Teams calls) forums for knowledge exchange and sharing. Furthermore, qualitative feedback suggested that GenAI shifted the focus of collaboration, with less time spent co-writing code and more time dedicated to review and integration.
   - id: aws-ai-dlc
     title: "AI-Driven Development Life Cycle: Reimagining Software Engineering"
     publisher: AWS DevOps & Developer Productivity Blog (Raja SP)
